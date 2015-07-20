@@ -1,0 +1,200 @@
+ol, ul {
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Charlie Reset */
+a, a:visited {
+  text-decoration:none;
+}
+a:hover, a:focus {
+  text-decoration:underline;
+}
+body {
+  font-family:Arial, sans-serif;
+  font-size:16px;
+  line-height:1.4em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* STYLES */
+
+a {
+  color:#f00;
+}
+
+a:hover,
+a:focus {
+  color:#f90;
+}
+
+#skip-to-content {
+  background:#eee;
+  border:1px solid #aaa;
+  overflow:hidden;
+  padding:5px;
+  position:absolute;
+  left:-9999px;
+  top:-9999px;
+}
+#skip-to-content:focus {
+  left:0;
+  top:0;
+}
+
+#header {
+  background:#eee;
+  margin:0 0 20px;
+  padding:20px 0;
+  text-align:center;
+}
+
+#header a {
+  color:#222;
+}
+
+#header a:hover,
+#header a:focus {
+  color:#f00;
+}
+
+#logo {
+  display:block;
+  font-size:30px;
+  font-weight:bold;
+  margin:0 0 20px;
+}
+
+#nav li {
+  display:inline-block;
+  list-style:none;
+  padding:0 5px;
+}
+
+#main,
+#nav {
+  max-width:960px;
+  margin:0 auto;
+  width:100%;
+}
+
+#main {
+  padding:0 20px 40px;
+}
+
+#main h1 {
+  font-size:30px;
+  font-weight:bold;
+}
+
+#main h2 {
+  font-size:24px;
+  font-weight:bold;
+  margin:0 0 20px;
+}
+
+.section {
+  border-top:1px solid #ccc;
+  margin-top:20px;
+  padding:20px 0 0;
+}
+
+.section img {
+  max-width:100%;
+}
+
+label {
+  display:block;
+}
+
+fieldset label {
+  display:inline;
+}
+
+.tooltip-icon {
+  background:url('tooltip.png') no-repeat scroll 0 0 transparent;
+  display:inline-block;
+  height:16px;
+  margin-left:5px;
+  overflow:hidden;
+  text-indent:-9999px;
+  width:16px;
+}
+
+.tooltip-help {
+  background:#666;
+  color:#fff;
+  display:none;
+  font-size:14px;
+  line-height:18px;
+  margin-top:5px;
+  padding:10px;
+  width:300px;
+}
+
+.tooltip-label {
+  display:inline-block;
+}
+
+form li {
+  padding:10px 0;
+}
+
+table {
+  border:1px solid #ccc;
+  margin:20px 0;
+}
+
+table caption {
+  font-weight:bold;
+}
+
+table th {
+  font-weight:bold;
+}
+
+table td,
+table th {
+  border:1px solid #ccc;
+  padding:5px;
+}
+
+pre {
+  margin-top:10px;
+}
+
+.space {
+  padding-top:20px;
+}
+
+h3.example-heading {
+  color:#666;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.on-off-toggle {
+  background:#eee;
+  border:2px solid #aaa;
+  color:#666;
+  font-weight:bold;
+  display:inline-block;
+  padding:10px;
+  text-transform: uppercase;
+}
+
+.on-off-toggle.on {
+  background:#5cb85c;
+  color:#fff;
+}
+
+.example-nav li {
+  display:inline-block;
+  padding:0 5px;
+}
