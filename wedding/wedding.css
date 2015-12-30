@@ -91,6 +91,9 @@ a {
 a:hover, a:focus {
   color:#c9a0dc;
 }
+.mobile-only {
+  display:none;
+}
 #header {
   padding:40px 0 20px;
   text-align:center;
@@ -181,6 +184,9 @@ ul.page-nav a:focus {
 
 /* Mobile */
 @media screen and (max-width:640px) {
+  .mobile-only {
+    display:block;
+  }
   #header {
     padding:20px 0;
   }
