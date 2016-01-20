@@ -197,9 +197,11 @@ ul.page-nav a:focus {
 .hotel p strong {
   color:#666;
 }
-.hotel p:last-child {
-  max-width:500px;
+.hotel p.resv {
   padding-top:5px;
+}
+.hotel p.resv a {
+  font-weight:bold;
 }
 
 /* Mobile */
