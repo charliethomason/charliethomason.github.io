@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Photo Gallery - Charlie Thomason</title>
 	<link rel="icon" href="/img/favicon.ico">
-	<!--[if lt IE 9]><script src="/js/html5shiv.js"></script><![endif]-->
 	<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="/css/ie.css"><![endif]-->
   
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald">
@@ -25,26 +24,22 @@
 
 		<nav id="main-nav" role="navigation">
 			<a href="#" id="hamburger"><span> </span>Menu</a>
-			<ul role="menu">
+			<ul role="menu" data-show="false">
 				<li>
 					<a href="/index.html" role="menuitem">Home</a>
 				</li>
 				<li>
 					<a href="/about.html" role="menuitem">About</a>
 				</li>
-				<li>
-					<a href="/art.html" role="menuitem">Art</a>
-				</li>
-				<li class="active">
-					<a href="/photos.html" role="menuitem">Photos</a>
-				</li>
-				<li>
-					<a href="/birds/" role="menuitem" class="birds-menuitem">Birds</a>
+				<li 
+					
+					
+					>
+					<a href="/gallery.html" role="menuitem">Gallery</a>
 				</li>
 				<li>
 					<a href="/code/" role="menuitem">Code</a>
 				</li>
-				<li><a href="http://charliethomason.tumblr.com" role="menuitem">Blog</a></li>
 			</ul>
 		</nav>
 
@@ -53,16 +48,12 @@
 
 <main id="main" role="main">
 
-	<section id="content" class="photos">
+	<section class="content" id="page-photos">
 
 
 
 <h1>Photo Gallery</h1>
 
-<div class="gallery-view">
-  <input type="radio" id="view-grid" name="view" value="grid" checked="checked"><label for="view-grid">View as Grid</label>
-  <input type="radio" id="view-list" name="view" value="list"><label for="view-list">View as List</label>
-</div>
 <form id="gallery-filter">
   <label for="filters">Filter by category</label>
   <select class="filters" id="filters">
@@ -589,7 +580,6 @@
 
 
 
-  <script src="/js/jquery.min.js"></script>
   <script src="/js/main.js"></script>
 
 </body>

@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Web Development Portfolio - Charlie Thomason</title>
 	<link rel="icon" href="/img/favicon.ico">
-	<!--[if lt IE 9]><script src="/js/html5shiv.js"></script><![endif]-->
 	<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="/css/ie.css"><![endif]-->
   
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald">
@@ -25,26 +24,22 @@
 
 		<nav id="main-nav" role="navigation">
 			<a href="#" id="hamburger"><span> </span>Menu</a>
-			<ul role="menu">
+			<ul role="menu" data-show="false">
 				<li>
 					<a href="/index.html" role="menuitem">Home</a>
 				</li>
 				<li>
 					<a href="/about.html" role="menuitem">About</a>
 				</li>
-				<li>
-					<a href="/art.html" role="menuitem">Art</a>
-				</li>
-				<li>
-					<a href="/photos.html" role="menuitem">Photos</a>
-				</li>
-				<li>
-					<a href="/birds/" role="menuitem" class="birds-menuitem">Birds</a>
+				<li 
+					
+					
+					>
+					<a href="/gallery.html" role="menuitem">Gallery</a>
 				</li>
 				<li class="active">
 					<a href="/code/" role="menuitem">Code</a>
 				</li>
-				<li><a href="http://charliethomason.tumblr.com" role="menuitem">Blog</a></li>
 			</ul>
 		</nav>
 
@@ -53,7 +48,7 @@
 
 <main id="main" role="main">
 
-	<section id="content" class="code">
+	<section class="content" id="page-code">
 
 
 
@@ -61,6 +56,24 @@
 <p class="code-intro">Here is a small sampling of the web development work I've done over the past few years. Due to the confidential nature of some client work, all names, logos, branding, fonts, and images have been changed. In many cases, the parts of the code I worked on have been extracted from their original pages and/or software framework for the purpose of hosting them here. Many of these projects were a collaborative effort with other developers, so in some cases I cannot claim 100% responsibility. If you have questions or concerns about any of the work found here, please <a href="/about.html#contact-charlie">contact me</a>.</p>
 <section class="gallery">
   <ul class="gallery-wrap list">
+    
+    <li class="img-li">
+      <a href="work/vuef1/" title="F1 Data App" class="galleryImg">
+        <img src="../img/code/vuef1.jpg" alt="screenshot of Vue.js with Routing, Bootstrap, and Webpack">
+      </a>
+      <div class="info">
+          <a href="work/vuef1/" class="code-title">
+            <h2 class="title">F1 Data App</h2>
+            <h3 class="subtitle">Vue.js with Routing, Bootstrap, and Webpack</h3>
+          </a>
+          <p class="description">Formula One driver, team, and race data application built with Vue.js v2.4, Webpack v2.2, Bootstrap v3.2, and APIs from <a href="http://ergast.com/mrd" target="_blank">Ergast.com</a>.</p>
+          <p class="year">2017</p>
+      </div>
+      <div class="code-btns">
+        <a href="work/vuef1/" class="code-btn">View Demo</a>
+        <a href="https://github.com/charliethomason/f1-vuejs-webpack" target="_blank" class="code-btn">View Code</a>
+      </div>
+    </li>
     
     <li class="img-li">
       <a href="work/quiz/" title="Traveler Type" class="galleryImg">
@@ -186,7 +199,6 @@
 
 
 
-  <script src="/js/jquery.min.js"></script>
   <script src="/js/main.js"></script>
 
 </body>
