@@ -86,6 +86,118 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _arrayLikeToArray(arr, len) {\n  if (len == null || len > arr.length) len = arr.length;\n\n  for (var i = 0, arr2 = new Array(len); i < len; i++) {\n    arr2[i] = arr[i];\n  }\n\n  return arr2;\n}\n\nmodule.exports = _arrayLikeToArray;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/arrayLikeToArray.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _arrayWithHoles(arr) {\n  if (Array.isArray(arr)) return arr;\n}\n\nmodule.exports = _arrayWithHoles;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/arrayWithHoles.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {\n  try {\n    var info = gen[key](arg);\n    var value = info.value;\n  } catch (error) {\n    reject(error);\n    return;\n  }\n\n  if (info.done) {\n    resolve(value);\n  } else {\n    Promise.resolve(value).then(_next, _throw);\n  }\n}\n\nfunction _asyncToGenerator(fn) {\n  return function () {\n    var self = this,\n        args = arguments;\n    return new Promise(function (resolve, reject) {\n      var gen = fn.apply(self, args);\n\n      function _next(value) {\n        asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n      }\n\n      function _throw(err) {\n        asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n      }\n\n      _next(undefined);\n    });\n  };\n}\n\nmodule.exports = _asyncToGenerator;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/asyncToGenerator.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _iterableToArrayLimit(arr, i) {\n  if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n  var _arr = [];\n  var _n = true;\n  var _d = false;\n  var _e = undefined;\n\n  try {\n    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n      _arr.push(_s.value);\n\n      if (i && _arr.length === i) break;\n    }\n  } catch (err) {\n    _d = true;\n    _e = err;\n  } finally {\n    try {\n      if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n    } finally {\n      if (_d) throw _e;\n    }\n  }\n\n  return _arr;\n}\n\nmodule.exports = _iterableToArrayLimit;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _nonIterableRest() {\n  throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n}\n\nmodule.exports = _nonIterableRest;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/nonIterableRest.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ \"./node_modules/@babel/runtime/helpers/arrayWithHoles.js\");\n\nvar iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ \"./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js\");\n\nvar unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ \"./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js\");\n\nvar nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ \"./node_modules/@babel/runtime/helpers/nonIterableRest.js\");\n\nfunction _slicedToArray(arr, i) {\n  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();\n}\n\nmodule.exports = _slicedToArray;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/slicedToArray.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ \"./node_modules/@babel/runtime/helpers/arrayLikeToArray.js\");\n\nfunction _unsupportedIterableToArray(o, minLen) {\n  if (!o) return;\n  if (typeof o === \"string\") return arrayLikeToArray(o, minLen);\n  var n = Object.prototype.toString.call(o).slice(8, -1);\n  if (n === \"Object\" && o.constructor) n = o.constructor.name;\n  if (n === \"Map\" || n === \"Set\") return Array.from(o);\n  if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);\n}\n\nmodule.exports = _unsupportedIterableToArray;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"./node_modules/regenerator-runtime/runtime.js\");\n\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/regenerator/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/partials/footer.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/partials/footer.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'FooterNote'\n});\n\n//# sourceURL=webpack:///./src/partials/footer.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/partials/galleria.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/partials/galleria.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"./node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ \"./node_modules/@babel/runtime/helpers/slicedToArray.js\");\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Galleria',\n  props: {\n    bookName: {\n      type: String\n    },\n    photos: {\n      type: Array\n    }\n  },\n  data: function data() {\n    return {\n      photosInRows: [],\n      actualRowWidth: 0,\n      imgHeight: 600,\n      maxRowWidth: {\n        large: 2400,\n        small: 1800\n      },\n      breakpoints: {\n        large: 1000,\n        medium: 600,\n        small: 320\n      },\n      windowWidth: 0,\n      lightImgId: null\n    };\n  },\n  methods: {\n    putPhotosInRows: function putPhotosInRows() {\n      var _this = this;\n\n      if (!this.photos || !this.photos.length) {\n        return null;\n      }\n\n      this.photosInRows = this.photos.reduce(function (rows, img) {\n        // if we have no rows created yet, create a row with this 1st image\n        if (!rows.length) {\n          rows.push([img]);\n          return rows;\n        } else {\n          // loop through all the rows we have created so far\n          var _iterator = _createForOfIteratorHelper(rows.entries()),\n              _step;\n\n          try {\n            for (_iterator.s(); !(_step = _iterator.n()).done;) {\n              var _step$value = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_step.value, 2),\n                  i = _step$value[0],\n                  row = _step$value[1];\n\n              var currentRowWidth = _this.getTotalWidth(row);\n\n              var maxRowWidth = _this.windowWidth < _this.breakpoints.medium ? _this.maxRowWidth.small : _this.maxRowWidth.large;\n              var isLastRow = i === rows.length - 1; // \"If the currrent total width of the images in this row is\n              // greater than/equal to the max width allowed for a single row.\"\n              // If the image heights are 600px then the max possible row width is 2400px.\n              // 2400 / 600 = 4, thus a 4:1 min aspect ratio for each row.\n\n              if (currentRowWidth >= maxRowWidth) {\n                // if this is the last row and it's already full, create a new one with this image.\n                // otherwise continue on to check the next row.\n                if (isLastRow) {\n                  rows.push([img]);\n                  break;\n                } else {\n                  continue;\n                } // if there is still space in this row, add this image.\n\n              } else {\n                row.push(img);\n                break;\n              }\n            }\n          } catch (err) {\n            _iterator.e(err);\n          } finally {\n            _iterator.f();\n          }\n\n          return rows;\n        }\n      }, []);\n    },\n    loadImages: function loadImages() {\n      if (!this.$refs.row || !this.$refs.row.length) {\n        return null;\n      }\n\n      this.$refs.row.forEach(function (row) {\n        if (row.childNodes && row.childNodes.length) {\n          var _iterator2 = _createForOfIteratorHelper(row.childNodes),\n              _step2;\n\n          try {\n            var _loop = function _loop() {\n              var img = _step2.value;\n\n              if (img.classList && img.classList.contains('galleria-img')) {\n                var small = img.children[0];\n                var imgSrc = img.dataset.large;\n                var imgSmall = new Image();\n                imgSmall.src = small.src;\n\n                imgSmall.onload = function () {\n                  small.classList.add('loaded');\n                };\n\n                if (img.querySelector('.galleria-large')) {\n                  img.querySelector('.galleria-large').src = imgSrc;\n                } else {\n                  var imgLarge = new Image();\n                  imgLarge.src = imgSrc;\n                  imgLarge.alt = small.alt;\n\n                  imgLarge.onload = function () {\n                    // give the link a class of \"ready\"\n                    // to indicate lightbox clicks can now happen\n                    img.classList.add(\"ready\");\n                    imgLarge.classList.add('galleria-large', 'loaded');\n                  };\n\n                  img.appendChild(imgLarge);\n                }\n              }\n            };\n\n            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {\n              _loop();\n            }\n          } catch (err) {\n            _iterator2.e(err);\n          } finally {\n            _iterator2.f();\n          }\n        }\n      });\n    },\n    getTotalWidth: function getTotalWidth(row) {\n      return row.reduce(function (sum, r) {\n        return sum + r.width;\n      }, 0);\n    },\n    getStyle: function getStyle(row, img) {\n      var onlyOneInRow = row.length === 1;\n      var totalWidth = this.getTotalWidth(row); // actual displayed row width, divided by the aspect ratio of the row.\n      // e.g.: 1000 / (2400 / 600 = 4) = 250\n\n      var rowHeight = onlyOneInRow && img.width <= this.actualRowWidth ? this.imgHeight : this.actualRowWidth / (totalWidth / this.imgHeight); // reduce the image width by the same amount the image height was reduced\n\n      var imgWidth = onlyOneInRow && img.width <= this.actualRowWidth ? img.width : img.width / (this.imgHeight / rowHeight);\n      return {\n        height: rowHeight + 'px',\n        width: imgWidth + 'px'\n      };\n    },\n    setGalleriaWidth: function setGalleriaWidth() {\n      var _this$breakpoints = this.breakpoints,\n          small = _this$breakpoints.small,\n          medium = _this$breakpoints.medium,\n          large = _this$breakpoints.large;\n      this.windowWidth = window.innerWidth;\n\n      if (this.windowWidth > medium && this.windowWidth < large) {\n        this.actualRowWidth = medium;\n      } else if (this.windowWidth >= small && this.windowWidth < medium) {\n        this.actualRowWidth = small;\n      } else {\n        this.actualRowWidth = large;\n      }\n    },\n    onResize: function onResize() {\n      var _this2 = this;\n\n      return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n        var startRowWidth;\n        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n          while (1) {\n            switch (_context.prev = _context.next) {\n              case 0:\n                startRowWidth = _this2.actualRowWidth;\n                _context.next = 3;\n                return _this2.setGalleriaWidth();\n\n              case 3:\n                _context.next = 5;\n                return _this2.putPhotosInRows();\n\n              case 5:\n                if (startRowWidth !== _this2.actualRowWidth) {\n                  _this2.loadImages();\n                }\n\n              case 6:\n              case \"end\":\n                return _context.stop();\n            }\n          }\n        }, _callee);\n      }))();\n    },\n    closeLightbox: function closeLightbox() {\n      this.lightImgId = null;\n    },\n    onClick: function onClick(e, img) {\n      // don't let lightbox happen before images have loaded\n      if (e.target.classList.contains(\"ready\")) {\n        if (this.lightImgId !== img.file) {\n          this.lightImgId = img.file;\n        } else {\n          this.closeLightbox();\n        }\n      }\n    }\n  },\n  mounted: function mounted() {\n    var _this3 = this;\n\n    return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {\n      var timeoutId;\n      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {\n        while (1) {\n          switch (_context2.prev = _context2.next) {\n            case 0:\n              window.addEventListener('keydown', function (e) {\n                if (e.key === \"Escape\") {\n                  _this3.closeLightbox();\n                }\n              });\n              window.addEventListener('resize', function () {\n                clearTimeout(timeoutId);\n                timeoutId = setTimeout(_this3.onResize, 500);\n              });\n\n              _this3.onResize();\n\n            case 3:\n            case \"end\":\n              return _context2.stop();\n          }\n        }\n      }, _callee2);\n    }))();\n  },\n  beforeDestroy: function beforeDestroy() {\n    window.removeEventListener('resize', this.onResize);\n  }\n});\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/partials/gallery.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/partials/gallery.vue?vue&type=script&lang=js& ***!
@@ -146,6 +258,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _par
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_books_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/books.json */ \"./src/data/books.json\");\nvar _data_books_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/books.json */ \"./src/data/books.json\", 1);\n/* harmony import */ var _partials_galleria_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/galleria.vue */ \"./src/partials/galleria.vue\");\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'BookGalleria',\n  components: {\n    Galleria: _partials_galleria_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n  },\n  computed: {\n    bookName: function bookName() {\n      return this.$route.params.id;\n    },\n    bookData: function bookData() {\n      return _data_books_json__WEBPACK_IMPORTED_MODULE_0__[this.bookName];\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/books.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_books_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/books.json */ \"./src/data/books.json\");\nvar _data_books_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/books.json */ \"./src/data/books.json\", 1);\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Books',\n  components: {\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: function data() {\n    return {\n      books: _data_books_json__WEBPACK_IMPORTED_MODULE_0__[\"books\"]\n    };\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/galleries.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/galleries.vue?vue&type=script&lang=js& ***!
@@ -154,7 +290,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _par
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_art_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/art.json */ \"./src/data/art.json\");\nvar _data_art_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/art.json */ \"./src/data/art.json\", 1);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Galleries',\n  data: function data() {\n    return {\n      galleries: _data_art_json__WEBPACK_IMPORTED_MODULE_0__[\"galleries\"]\n    };\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/galleries.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_art_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/art.json */ \"./src/data/art.json\");\nvar _data_art_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/art.json */ \"./src/data/art.json\", 1);\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Galleries',\n  components: {\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: function data() {\n    return {\n      galleries: _data_art_json__WEBPACK_IMPORTED_MODULE_0__[\"galleries\"]\n    };\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/galleries.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -189,7 +325,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _par
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nvar urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/url-escape.js */ \"./node_modules/css-loader/dist/runtime/url-escape.js\");\nvar ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default.png */ \"./src/img/global/charlie-logo-default.png\"));\nvar ___CSS_LOADER_URL___1___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default-2x.png */ \"./src/img/global/charlie-logo-default-2x.png\"));\nvar ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile.png */ \"./src/img/global/charlie-logo-mobile.png\"));\nvar ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile-2x.png */ \"./src/img/global/charlie-logo-mobile-2x.png\"));\n\n// Module\nexports.push([module.i, \"html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{font-family:'Roboto','Helvetica','Arial',sans-serif;line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*,*:before,*:after{-webkit-box-sizing:border-box;box-sizing:border-box}a{text-decoration:none}a:hover,a:focus{text-decoration:underline}button,[role=\\\"button\\\"]{cursor:pointer}b,strong{font-weight:bold}em,i{font-style:italic}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:normal}.sr-text{clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;position:absolute;width:1px}body{background-color:#191919}.header{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#399;border-bottom:7px solid #066;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:125px;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 15px}.header__logo{background:url(\" + ___CSS_LOADER_URL___0___ + \") no-repeat scroll 0 0 transparent;display:block;height:75px;width:275px}.header__logo:hover,.header__logo:focus{text-decoration:none}.nav{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.nav__link{color:#fff;font-size:16px;font-weight:bold;margin:0 5px;outline:0;padding:0 0 3px}.nav__link:hover,.nav__link:focus{text-decoration:none}.nav__link:hover,.nav__link:focus{border-bottom:2px solid #066}.nav__link--active{border-bottom:2px solid #fff}.content{color:#fff}.h1{font-size:32px;font-weight:300;padding:15px 0;text-align:center}.h2{font-size:18px;padding:0 0 10px;text-align:center}.big-btn-wrap{margin:15px auto 30px;text-align:center}.big-btn{background-color:#399;color:#fff;display:inline-block;font-size:20px;font-weight:bold;padding:15px 30px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease}.big-btn:hover,.big-btn:focus{background-color:#066;text-decoration:none}.copyright-note{color:#777;font-size:12px;line-height:16px;margin:10px auto 30px;max-width:250px;text-align:center}.copyright-note a{color:#777}.copyright-note a:hover,.copyright-note a:focus{color:#399}@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___1___ + \");background-size:275px 75px}}@media screen and (max-width: 767px) and (orientation: landscape){.header{height:90px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 767px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 767px) and (orientation: landscape) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 570px){.header{height:90px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 570px) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 570px) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 480px){.big-btn{font-size:16px;padding:15px}}.homepage{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;max-width:830px;margin:0 auto;padding:0 15px}.contact{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;margin:30px auto 15px}.contact__photo{display:inline-block;width:230px}.contact__info{background-color:rgba(0,0,0,0.6);margin-left:30px;padding:15px}.contact__name{padding-top:0;text-align:left}.contact__subtitle{font-size:20px;font-weight:bold;line-height:1.4;padding:5px 0 0}.contact__tooltip{background-color:#f1f1f1;border-radius:7px;color:#000;display:inline-block;font-size:14px;left:-9999px;margin-bottom:10px;padding:5px 10px;position:absolute;text-align:center;top:-9999px}.contact__tooltip:after{border-left:10px solid rgba(0,0,0,0);border-right:10px solid rgba(0,0,0,0);border-top:10px solid #f1f1f1;content:'';left:50%;position:absolute;top:100%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.contact__link{display:inline-block;margin:0 10px 0 0;outline:0;position:relative}.contact__link:last-child{margin:0}.contact__link svg{height:50px;width:50px}.contact__link path,.contact__link polygon{fill:#399}.contact__link:hover path,.contact__link:hover polygon,.contact__link:focus path,.contact__link:focus polygon{fill:#f1f1f1}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:100%;left:50%;top:auto;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media screen and (max-width: 767px){.contact{display:block;margin:15px 0 0;text-align:center}.contact__info{margin:15px 0 0}}@media screen and (max-width: 480px){.contact__photo{width:150px}.contact__name{font-size:24px}.contact__subtitle{font-size:16px}.contact__link svg{height:35px;width:35px}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:auto;left:-9999px;top:-9999px;-webkit-transform:none;transform:none}}.galleries{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin:auto;max-width:1500px;padding:15px}.galleries__item{padding-left:15px}.galleries__item:first-child{padding-left:0}.galleries__img{max-width:100%}.galleries__text{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.4);color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-size:20px;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;position:absolute;text-shadow:2px 2px 0px #066;top:0;width:100%;-webkit-transition:background-color 0.3s;transition:background-color 0.3s}.galleries__link{display:block;position:relative}.galleries__link:hover .galleries__text,.galleries__link:focus .galleries__text{background-color:rgba(0,0,0,0)}.gallery{display:grid;grid-template-columns:375px 1fr;grid-template-rows:minmax(0, 100%);height:calc(100vh - 125px);overflow:hidden}.gallery__header,.gallery__back{-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.gallery__header{background-color:#066;height:23px;padding:0 5px 7px}.gallery__back{background-color:#399;border-bottom:1px solid #066;height:30px;padding:0 5px}.gallery__back:hover,.gallery__back:focus{background-color:#000;border-bottom-color:#000;text-decoration:none}.gallery__list{-ms-flex-line-pack:start;align-content:start;display:grid;grid-template-columns:repeat(3, 1fr);height:calc(100% - 53px);overflow:auto}.gallery__list__img{display:block;width:125px}.gallery__list__title{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.6);border:3px solid rgba(0,0,0,0);color:#fff;display:none;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;padding:5px;position:absolute;top:0;width:100%}.gallery__list__btn{background:none transparent;border:medium none;padding:0;outline:0;display:block;position:relative}.gallery__list__btn:hover .gallery__list__title,.gallery__list__btn:focus .gallery__list__title,.gallery__list__btn--active .gallery__list__title{display:-webkit-box;display:-ms-flexbox;display:flex}.gallery__list__btn--active .gallery__list__title{border-color:#399}.gallery__viewer{display:grid;grid-template-columns:1fr;grid-template-rows:1fr -webkit-min-content -webkit-min-content;grid-template-rows:1fr min-content min-content;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:15px;text-align:center}.gallery__viewer__img{display:block;min-height:250px;max-height:100%;max-width:100%;margin:0 auto}.gallery__viewer__title{font-weight:bold;padding:15px 0 5px}.gallery__viewer .fade-enter-active,.gallery__viewer .fade-leave-active{-webkit-transition:opacity .3s;transition:opacity .3s}.gallery__viewer .fade-enter,.gallery__viewer .fade-leave-to{opacity:0}@media screen and (max-width: 960px){.gallery{grid-template-columns:250px 1fr}.gallery__list{grid-template-columns:repeat(2, 1fr)}}@media screen and (max-width: 767px){.gallery{grid-template-columns:100%;grid-template-rows:130px 1fr}.gallery__menu{display:grid;grid-template-rows:30px 100px;grid-template-columns:repeat(2, 1fr)}.gallery__header{height:30px;padding:0 5px}.gallery__list{display:-webkit-box;display:-ms-flexbox;display:flex;grid-column:1 / 3;height:100%}.gallery__list__img{width:100px}.gallery__viewer{display:block;height:auto;overflow:auto}}@media screen and (max-width: 767px) and (orientation: landscape){.gallery{height:calc(100vh - 90px)}}@media screen and (max-width: 570px){.galleries{display:block}.galleries__item{padding:15px 0 0}.galleries__item:first-child{padding-top:0}.gallery{height:calc(100vh - 90px)}}.code-wrapper{margin:0 auto;max-width:830px;padding:0 15px}.code-list{padding:0 0 15px}.code-list__item{margin-top:30px}.code-preview{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff}.code-preview__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.code-preview__heading__text{padding-right:15px}.code-preview__content{line-height:1.5}.code-preview__content{display:-webkit-box;display:-ms-flexbox;display:flex}.code-preview__img{border-radius:0 0 0 5px;-webkit-box-flex:0;-ms-flex:0 0 41.25%;flex:0 0 41.25%;overflow:hidden}.code-preview__img img{display:block;max-width:100%}.code-preview__info{overflow:hidden}.code-preview__description{font-size:14px;padding:15px}.code-preview__description a{color:#399}.code-preview__btns{display:-webkit-box;display:-ms-flexbox;display:flex;padding:10px 10px 0}.code-preview__btn{color:#fff;display:inline-block;font-size:14px;font-weight:bold;height:25px;line-height:14px;margin:0 10px;padding:5px;position:relative;text-decoration:none;white-space:nowrap}.code-preview__btn::before{content:'';display:block;height:0;position:absolute;top:0;width:0;border-bottom-style:solid;border-bottom-width:25px;border-left:10px solid rgba(0,0,0,0);left:-10px}.code-preview__btn::after{content:'';display:block;height:0;position:absolute;top:0;width:0;border-top-style:solid;border-top-width:25px;border-right:10px solid rgba(0,0,0,0);right:-10px}.code-preview__btn:not([class$=\\\"--year\\\"]):hover,.code-preview__btn:not([class$=\\\"--year\\\"]):focus{background-color:#000;text-decoration:none}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::before,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::before{border-bottom-color:#000}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::after,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::after{border-top-color:#000}.code-preview__btn--primary{background-color:#292929;margin-left:auto}.code-preview__btn--primary::before{border-bottom-color:#292929}.code-preview__btn--primary::after{border-top-color:#292929}.code-preview__btn--secondary{background-color:#444}.code-preview__btn--secondary::before{border-bottom-color:#444}.code-preview__btn--secondary::after{border-top-color:#444}.code-preview__btn--year{background-color:#399}.code-preview__btn--year::before{border-bottom-color:#399}.code-preview__btn--year::after{border-top-color:#399}@media screen and (max-width: 767px){.code-preview__content{-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.code-preview__img{-webkit-box-flex:0;-ms-flex:0 1 auto;flex:0 1 auto;max-width:330px;margin-top:15px}}@media screen and (max-width: 570px){.code-preview__heading{display:block;padding:10px 10px 10px 25px}.code-preview__heading__text{display:block;margin-left:-10px;padding:0 0 5px}}@media screen and (max-width: 480px){.code-preview__heading{padding-left:20px}.code-preview__heading__text{margin-left:-5px}.code-preview__btn{font-size:12px;margin:0 5px}.code-preview__btn--primary{margin-left:0}.code-preview__btn::before{border-left-width:5px;left:-5px}.code-preview__btn::after{border-right-width:5px;right:-5px}}.drawer{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff;margin:15px auto}.drawer__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.drawer__heading__text{padding-right:15px}.drawer__content{line-height:1.5}.drawer__content{padding:15px}.drawer__content .content-item{border-top:1px solid #f1f1f1;margin-top:30px;padding-top:30px}.drawer__content .h3{font-size:20px}.drawer__content .details{font-weight:bold}.drawer__content .date{font-style:italic}.drawer__content .notes{list-style:outside square;padding-left:20px}.drawer__content .notes li{margin-top:5px}.drawer__main .content-item{border-top:medium none;margin-top:0;padding-top:0}.drawer__more{max-height:9999px;-webkit-transition:max-height 0.5s ease-in-out;transition:max-height 0.5s ease-in-out}.drawer__more--hidden{max-height:0;overflow:hidden;-webkit-transition:max-height 0.5s cubic-bezier(0, 1, 0, 1);transition:max-height 0.5s cubic-bezier(0, 1, 0, 1)}.drawer__expand{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#000));background:linear-gradient(rgba(0,0,0,0), #000);border:medium none;border-radius:0 0 5px 5px;color:#fff;display:block;font-size:16px;font-weight:bold;padding:20px 15px 15px;text-align:left;width:100%}.drawer__expand:hover,.drawer__expand:focus{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#066));background:linear-gradient(rgba(0,0,0,0), #066);outline:0}.drawer__expand:before,.drawer__expand:after{content:'-'}.drawer__expand--collapsed:before,.drawer__expand--collapsed:after{content:'+'}\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js??ref--2-3");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nvar urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/url-escape.js */ \"./node_modules/css-loader/dist/runtime/url-escape.js\");\nvar ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default.png */ \"./src/img/global/charlie-logo-default.png\"));\nvar ___CSS_LOADER_URL___1___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default-2x.png */ \"./src/img/global/charlie-logo-default-2x.png\"));\nvar ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile.png */ \"./src/img/global/charlie-logo-mobile.png\"));\nvar ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile-2x.png */ \"./src/img/global/charlie-logo-mobile-2x.png\"));\n\n// Module\nexports.push([module.i, \"html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{font-family:'Roboto','Helvetica','Arial',sans-serif;line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*,*:before,*:after{-webkit-box-sizing:border-box;box-sizing:border-box}a{text-decoration:none}a:hover,a:focus{text-decoration:underline}button,[role=\\\"button\\\"]{cursor:pointer}b,strong{font-weight:bold}em,i{font-style:italic}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:normal}.sr-text{clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;position:absolute;width:1px}body{background-color:#191919}.header{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#399;border-bottom:7px solid #066;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:125px;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 15px}.header__logo{background:url(\" + ___CSS_LOADER_URL___0___ + \") no-repeat scroll 0 0 transparent;display:block;height:75px;width:275px}.header__logo:hover,.header__logo:focus{text-decoration:none}.nav{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.nav__link{color:#fff;font-size:16px;font-weight:bold;margin:0 5px;outline:0;padding:0 0 3px}.nav__link:hover,.nav__link:focus{text-decoration:none}.nav__link:hover,.nav__link:focus{border-bottom:2px solid #066}.nav__link--active{border-bottom:2px solid #fff}.content{color:#fff}.h1{font-size:32px;font-weight:300;padding:15px 0;text-align:center}.h2{font-size:18px;padding:0 0 15px;text-align:center}.big-btn-wrap{margin:15px auto 30px;text-align:center}.btn{background-color:#399;color:#fff;display:inline-block;font-weight:bold;padding:8px 16px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease}.btn:hover,.btn:focus{background-color:#066;text-decoration:none}.big-btn{background-color:#399;color:#fff;display:inline-block;font-weight:bold;padding:8px 16px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease;font-size:20px;padding:15px 30px}.big-btn:hover,.big-btn:focus{background-color:#066;text-decoration:none}.eyebrow{padding-top:15px;text-align:center}.eyebrow__link{color:#399;display:inline-block;font-size:16px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}.eyebrow__link:hover,.eyebrow__link:focus{color:#f1f1f1}.copyright-note{color:#777;font-size:12px;line-height:16px;margin:10px auto 30px;max-width:250px;text-align:center}.copyright-note a{color:#777}.copyright-note a:hover,.copyright-note a:focus{color:#399}@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___1___ + \");background-size:275px 75px}}@media screen and (max-width: 767px) and (orientation: landscape){.header{height:90px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 767px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 767px) and (orientation: landscape) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 570px){.header{height:90px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 570px) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 570px) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 480px){.big-btn{font-size:16px;padding:15px}}.homepage{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;max-width:700px;margin:0 auto;padding:0 15px}.contact{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;margin:30px auto 15px}.contact__photo{display:inline-block;width:230px}.contact__info{background-color:rgba(0,0,0,0.6);margin-left:30px;padding:15px}.contact__name{padding-top:0;text-align:left}.contact__subtitle{font-size:20px;font-weight:bold;line-height:1.4;padding:5px 0 0}.contact__tooltip{background-color:#f1f1f1;border-radius:7px;color:#000;display:inline-block;font-size:14px;left:-9999px;margin-bottom:10px;padding:5px 10px;position:absolute;text-align:center;top:-9999px}.contact__tooltip:after{border-left:10px solid rgba(0,0,0,0);border-right:10px solid rgba(0,0,0,0);border-top:10px solid #f1f1f1;content:'';left:50%;position:absolute;top:100%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.contact__link{display:inline-block;margin:0 10px 0 0;outline:0;position:relative}.contact__link:last-child{margin:0}.contact__link svg{height:50px;width:50px}.contact__link path,.contact__link polygon{fill:#399}.contact__link:hover path,.contact__link:hover polygon,.contact__link:focus path,.contact__link:focus polygon{fill:#f1f1f1}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:100%;left:50%;top:auto;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media screen and (max-width: 767px){.contact{display:block;margin:15px 0 0;text-align:center}.contact__info{margin:15px 0 0;text-align:center}.contact__name{text-align:center}}@media screen and (max-width: 480px){.contact__photo{width:150px}.contact__name{font-size:24px}.contact__subtitle{font-size:16px}.contact__link svg{height:35px;width:35px}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:auto;left:-9999px;top:-9999px;-webkit-transform:none;transform:none}}.galleries{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin:auto;max-width:1500px;padding:8px}.galleries__item{-webkit-box-flex:0;-ms-flex:0 1 33.3333%;flex:0 1 33.3333%;padding:8px}.galleries__item--wide{-webkit-box-flex:1;-ms-flex:1 0 100%;flex:1 0 100%}.galleries__img{display:block;max-width:100%}.galleries__text{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.4);border:3px solid transparent;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-size:20px;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;position:absolute;text-shadow:2px 2px 0px #066;top:0;width:100%;-webkit-transition:background-color 0.3s, border-color 0.3s;transition:background-color 0.3s, border-color 0.3s}.galleries__link{display:block;position:relative}.galleries__link:hover .galleries__text,.galleries__link:focus .galleries__text{background-color:rgba(0,0,0,0);border-color:#399}.gallery{display:grid;grid-template-columns:375px 1fr;grid-template-rows:minmax(0, 100%);height:calc(100vh - 125px);overflow:hidden}.gallery__header,.gallery__back{-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.gallery__header{background-color:#066;height:23px;padding:0 5px 7px}.gallery__back{background-color:#399;border-bottom:1px solid #066;height:30px;padding:0 5px}.gallery__back:hover,.gallery__back:focus{background-color:#000;border-bottom-color:#000;text-decoration:none}.gallery__list{-ms-flex-line-pack:start;align-content:start;display:grid;grid-template-columns:repeat(3, 1fr);height:calc(100% - 53px);overflow:auto}.gallery__list__img{display:block;width:125px}.gallery__list__title{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.6);border:3px solid rgba(0,0,0,0);color:#fff;display:none;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;padding:5px;position:absolute;top:0;width:100%}.gallery__list__btn{background:none transparent;border:medium none;padding:0;outline:0;display:block;position:relative}.gallery__list__btn:hover .gallery__list__title,.gallery__list__btn:focus .gallery__list__title,.gallery__list__btn--active .gallery__list__title{display:-webkit-box;display:-ms-flexbox;display:flex}.gallery__list__btn--active .gallery__list__title{border-color:#399}.gallery__viewer{display:grid;grid-template-columns:1fr;grid-template-rows:1fr -webkit-min-content -webkit-min-content;grid-template-rows:1fr min-content min-content;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:15px;text-align:center}.gallery__viewer__img{display:block;min-height:250px;max-height:100%;max-width:100%;margin:0 auto}.gallery__viewer__title{font-weight:bold;padding:15px 0 5px}.gallery__viewer .fade-enter-active,.gallery__viewer .fade-leave-active{-webkit-transition:opacity .3s;transition:opacity .3s}.gallery__viewer .fade-enter,.gallery__viewer .fade-leave-to{opacity:0}.books{margin:0 auto;max-width:1500px;padding:0 16px}.books .intro{line-height:1.4;margin:0 auto 15px;max-width:600px}.books .intro a{color:#399}.books .intro a:hover,.books .intro a:focus{color:#066}.books__shop{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin:0 -16px}.books__shop li{line-height:1.2;padding:16px;text-align:center}.books__shop img{display:block;max-width:100%;margin:0 0 16px}.books__shop .h2{color:#fff;font-weight:700;padding:0}.books__shop .subtitle{color:#fff;font-size:18px;font-weight:300;padding:0 0 8px}.books__shop .meta{color:#f1f1f1;font-size:14px}.books__shop .btn{margin-top:16px}.books__shop .hover-wrap{position:relative}.books__shop .hover-cover{background:rgba(0,0,0,0.4);border:3px solid #399;color:#fff;font-weight:bold;display:none;position:absolute;top:0;left:0;width:100%;height:100%}.books__shop__link:hover,.books__shop__link:focus{color:#399;text-decoration:none}.books__shop__link:hover .h2,.books__shop__link:hover .subtitle,.books__shop__link:focus .h2,.books__shop__link:focus .subtitle{color:#399}.books__shop__link:hover .hover-cover,.books__shop__link:focus .hover-cover{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}@media screen and (max-width: 960px){.gallery{grid-template-columns:250px 1fr}.gallery__list{grid-template-columns:repeat(2, 1fr)}}@media screen and (max-width: 767px){.gallery{grid-template-columns:100%;grid-template-rows:130px 1fr}.gallery__menu{display:grid;grid-template-rows:30px 100px;grid-template-columns:repeat(2, 1fr)}.gallery__header{height:30px;padding:0 5px}.gallery__list{display:-webkit-box;display:-ms-flexbox;display:flex;grid-column:1 / 3;height:100%}.gallery__list__img{width:100px}.gallery__viewer{display:block;height:auto;overflow:auto}}@media screen and (max-width: 767px) and (orientation: landscape){.gallery{height:calc(100vh - 90px)}}@media screen and (max-width: 570px){.galleries{display:block}.gallery{height:calc(100vh - 90px)}.books__shop{display:block}}.code-wrapper{margin:0 auto;max-width:830px;padding:0 15px}.code-list{padding:0 0 15px}.code-list__item{margin-top:30px}.code-preview{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff}.code-preview__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.code-preview__heading__text{padding-right:15px}.code-preview__content{line-height:1.5}.code-preview__content{display:-webkit-box;display:-ms-flexbox;display:flex}.code-preview__img{border-radius:0 0 0 5px;-webkit-box-flex:0;-ms-flex:0 0 41.25%;flex:0 0 41.25%;overflow:hidden}.code-preview__img img{display:block;max-width:100%}.code-preview__info{overflow:hidden}.code-preview__description{font-size:14px;padding:15px}.code-preview__description a{color:#399}.code-preview__btns{display:-webkit-box;display:-ms-flexbox;display:flex;padding:10px 10px 0}.code-preview__btn{color:#fff;display:inline-block;font-size:14px;font-weight:bold;height:25px;line-height:14px;margin:0 10px;padding:5px;position:relative;text-decoration:none;white-space:nowrap}.code-preview__btn::before{content:'';display:block;height:0;position:absolute;top:0;width:0;border-bottom-style:solid;border-bottom-width:25px;border-left:10px solid rgba(0,0,0,0);left:-10px}.code-preview__btn::after{content:'';display:block;height:0;position:absolute;top:0;width:0;border-top-style:solid;border-top-width:25px;border-right:10px solid rgba(0,0,0,0);right:-10px}.code-preview__btn:not([class$=\\\"--year\\\"]):hover,.code-preview__btn:not([class$=\\\"--year\\\"]):focus{background-color:#000;text-decoration:none}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::before,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::before{border-bottom-color:#000}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::after,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::after{border-top-color:#000}.code-preview__btn--primary{background-color:#292929;margin-left:auto}.code-preview__btn--primary::before{border-bottom-color:#292929}.code-preview__btn--primary::after{border-top-color:#292929}.code-preview__btn--secondary{background-color:#444}.code-preview__btn--secondary::before{border-bottom-color:#444}.code-preview__btn--secondary::after{border-top-color:#444}.code-preview__btn--year{background-color:#399}.code-preview__btn--year::before{border-bottom-color:#399}.code-preview__btn--year::after{border-top-color:#399}@media screen and (max-width: 767px){.code-preview__content{-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.code-preview__img{-webkit-box-flex:0;-ms-flex:0 1 auto;flex:0 1 auto;max-width:330px;margin-top:15px}}@media screen and (max-width: 570px){.code-preview__heading{display:block;padding:10px 10px 10px 25px}.code-preview__heading__text{display:block;margin-left:-10px;padding:0 0 5px}}@media screen and (max-width: 480px){.code-preview__heading{padding-left:20px}.code-preview__heading__text{margin-left:-5px}.code-preview__btn{font-size:12px;margin:0 5px}.code-preview__btn--primary{margin-left:0}.code-preview__btn::before{border-left-width:5px;left:-5px}.code-preview__btn::after{border-right-width:5px;right:-5px}}.drawer{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff;margin:15px auto;position:relative}.drawer__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.drawer__heading__text{padding-right:15px}.drawer__content{line-height:1.5}.drawer__content{padding:15px 30px;overflow:hidden;outline:none}.drawer__content a{color:#399}.drawer__content a:hover,.drawer__content a:focus{color:#066}.drawer__content--hidden{height:200px}.drawer__expand{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#000));background:linear-gradient(rgba(0,0,0,0), #000);border:medium none;border-radius:0 0 5px 5px;color:#fff;display:block;font-size:16px;font-weight:bold;padding:60px 15px 15px;text-align:center;position:absolute;left:0;bottom:0;width:100%}.drawer__expand:hover,.drawer__expand:focus{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#066));background:linear-gradient(rgba(0,0,0,0), #066);outline:0}.drawer__expand:before,.drawer__expand:after{content:'+'}.drawer__expand--expanded{padding-top:20px;position:static}.drawer__expand--expanded:before,.drawer__expand--expanded:after{content:'-'}.galleria{max-width:1000px;margin:0 auto}.galleria-row{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.galleria-img{display:block;position:relative;overflow:hidden}.galleria-img:after{border:3px solid #399;content:none;height:100%;position:absolute;width:100%}.galleria-img:hover:after{content:\\\"\\\"}.galleria-img img{opacity:0;position:absolute;left:0;top:0;width:100%}.galleria-img img.loaded{opacity:1}.galleria-small{-webkit-filter:blur(10px);filter:blur(10px);-webkit-transform:scale(1);transform:scale(1)}.galleria__lightbox{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background:rgba(0,0,0,0.6);bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;left:0;position:fixed;right:0;top:0;width:100%;z-index:1}.galleria__lightbox__img{display:block;margin:0 auto;max-height:90%;max-width:100%}.galleria__lightbox__close{background:#000;border:2px solid #fff;border-radius:20px;color:#fff;font-weight:bold;padding:5px 10px;position:fixed;right:15px;top:15px;z-index:2}@media screen and (max-width: 1000px) and (min-width: 600px){.galleria{max-width:600px}}@media screen and (max-width: 600px){.galleria{max-width:320px}}\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js??ref--2-3");
 
 /***/ }),
 
@@ -225,6 +361,17 @@ eval("\n\nmodule.exports = function escape(url, needQuotes) {\n  if (typeof url 
 /***/ (function(module, exports) {
 
 eval("// shim for using process in browser\nvar process = module.exports = {};\n\n// cached from whatever global is present so that test runners that stub it\n// don't break things.  But we need to wrap it in a try catch in case it is\n// wrapped in strict mode code which doesn't define any globals.  It's inside a\n// function because try/catches deoptimize in certain engines.\n\nvar cachedSetTimeout;\nvar cachedClearTimeout;\n\nfunction defaultSetTimout() {\n    throw new Error('setTimeout has not been defined');\n}\nfunction defaultClearTimeout () {\n    throw new Error('clearTimeout has not been defined');\n}\n(function () {\n    try {\n        if (typeof setTimeout === 'function') {\n            cachedSetTimeout = setTimeout;\n        } else {\n            cachedSetTimeout = defaultSetTimout;\n        }\n    } catch (e) {\n        cachedSetTimeout = defaultSetTimout;\n    }\n    try {\n        if (typeof clearTimeout === 'function') {\n            cachedClearTimeout = clearTimeout;\n        } else {\n            cachedClearTimeout = defaultClearTimeout;\n        }\n    } catch (e) {\n        cachedClearTimeout = defaultClearTimeout;\n    }\n} ())\nfunction runTimeout(fun) {\n    if (cachedSetTimeout === setTimeout) {\n        //normal enviroments in sane situations\n        return setTimeout(fun, 0);\n    }\n    // if setTimeout wasn't available but was latter defined\n    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {\n        cachedSetTimeout = setTimeout;\n        return setTimeout(fun, 0);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedSetTimeout(fun, 0);\n    } catch(e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally\n            return cachedSetTimeout.call(null, fun, 0);\n        } catch(e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error\n            return cachedSetTimeout.call(this, fun, 0);\n        }\n    }\n\n\n}\nfunction runClearTimeout(marker) {\n    if (cachedClearTimeout === clearTimeout) {\n        //normal enviroments in sane situations\n        return clearTimeout(marker);\n    }\n    // if clearTimeout wasn't available but was latter defined\n    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {\n        cachedClearTimeout = clearTimeout;\n        return clearTimeout(marker);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedClearTimeout(marker);\n    } catch (e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally\n            return cachedClearTimeout.call(null, marker);\n        } catch (e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.\n            // Some versions of I.E. have different rules for clearTimeout vs setTimeout\n            return cachedClearTimeout.call(this, marker);\n        }\n    }\n\n\n\n}\nvar queue = [];\nvar draining = false;\nvar currentQueue;\nvar queueIndex = -1;\n\nfunction cleanUpNextTick() {\n    if (!draining || !currentQueue) {\n        return;\n    }\n    draining = false;\n    if (currentQueue.length) {\n        queue = currentQueue.concat(queue);\n    } else {\n        queueIndex = -1;\n    }\n    if (queue.length) {\n        drainQueue();\n    }\n}\n\nfunction drainQueue() {\n    if (draining) {\n        return;\n    }\n    var timeout = runTimeout(cleanUpNextTick);\n    draining = true;\n\n    var len = queue.length;\n    while(len) {\n        currentQueue = queue;\n        queue = [];\n        while (++queueIndex < len) {\n            if (currentQueue) {\n                currentQueue[queueIndex].run();\n            }\n        }\n        queueIndex = -1;\n        len = queue.length;\n    }\n    currentQueue = null;\n    draining = false;\n    runClearTimeout(timeout);\n}\n\nprocess.nextTick = function (fun) {\n    var args = new Array(arguments.length - 1);\n    if (arguments.length > 1) {\n        for (var i = 1; i < arguments.length; i++) {\n            args[i - 1] = arguments[i];\n        }\n    }\n    queue.push(new Item(fun, args));\n    if (queue.length === 1 && !draining) {\n        runTimeout(drainQueue);\n    }\n};\n\n// v8 likes predictible objects\nfunction Item(fun, array) {\n    this.fun = fun;\n    this.array = array;\n}\nItem.prototype.run = function () {\n    this.fun.apply(null, this.array);\n};\nprocess.title = 'browser';\nprocess.browser = true;\nprocess.env = {};\nprocess.argv = [];\nprocess.version = ''; // empty string to avoid regexp issues\nprocess.versions = {};\n\nfunction noop() {}\n\nprocess.on = noop;\nprocess.addListener = noop;\nprocess.once = noop;\nprocess.off = noop;\nprocess.removeListener = noop;\nprocess.removeAllListeners = noop;\nprocess.emit = noop;\nprocess.prependListener = noop;\nprocess.prependOnceListener = noop;\n\nprocess.listeners = function (name) { return [] }\n\nprocess.binding = function (name) {\n    throw new Error('process.binding is not supported');\n};\n\nprocess.cwd = function () { return '/' };\nprocess.chdir = function (dir) {\n    throw new Error('process.chdir is not supported');\n};\nprocess.umask = function() { return 0; };\n\n\n//# sourceURL=webpack:///./node_modules/process/browser.js?");
+
+/***/ }),
+
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\nvar runtime = (function (exports) {\n  \"use strict\";\n\n  var Op = Object.prototype;\n  var hasOwn = Op.hasOwnProperty;\n  var undefined; // More compressible than void 0.\n  var $Symbol = typeof Symbol === \"function\" ? Symbol : {};\n  var iteratorSymbol = $Symbol.iterator || \"@@iterator\";\n  var asyncIteratorSymbol = $Symbol.asyncIterator || \"@@asyncIterator\";\n  var toStringTagSymbol = $Symbol.toStringTag || \"@@toStringTag\";\n\n  function wrap(innerFn, outerFn, self, tryLocsList) {\n    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.\n    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;\n    var generator = Object.create(protoGenerator.prototype);\n    var context = new Context(tryLocsList || []);\n\n    // The ._invoke method unifies the implementations of the .next,\n    // .throw, and .return methods.\n    generator._invoke = makeInvokeMethod(innerFn, self, context);\n\n    return generator;\n  }\n  exports.wrap = wrap;\n\n  // Try/catch helper to minimize deoptimizations. Returns a completion\n  // record like context.tryEntries[i].completion. This interface could\n  // have been (and was previously) designed to take a closure to be\n  // invoked without arguments, but in all the cases we care about we\n  // already have an existing method we want to call, so there's no need\n  // to create a new function object. We can even get away with assuming\n  // the method takes exactly one argument, since that happens to be true\n  // in every case, so we don't have to touch the arguments object. The\n  // only additional allocation required is the completion record, which\n  // has a stable shape and so hopefully should be cheap to allocate.\n  function tryCatch(fn, obj, arg) {\n    try {\n      return { type: \"normal\", arg: fn.call(obj, arg) };\n    } catch (err) {\n      return { type: \"throw\", arg: err };\n    }\n  }\n\n  var GenStateSuspendedStart = \"suspendedStart\";\n  var GenStateSuspendedYield = \"suspendedYield\";\n  var GenStateExecuting = \"executing\";\n  var GenStateCompleted = \"completed\";\n\n  // Returning this object from the innerFn has the same effect as\n  // breaking out of the dispatch switch statement.\n  var ContinueSentinel = {};\n\n  // Dummy constructor functions that we use as the .constructor and\n  // .constructor.prototype properties for functions that return Generator\n  // objects. For full spec compliance, you may wish to configure your\n  // minifier not to mangle the names of these two functions.\n  function Generator() {}\n  function GeneratorFunction() {}\n  function GeneratorFunctionPrototype() {}\n\n  // This is a polyfill for %IteratorPrototype% for environments that\n  // don't natively support it.\n  var IteratorPrototype = {};\n  IteratorPrototype[iteratorSymbol] = function () {\n    return this;\n  };\n\n  var getProto = Object.getPrototypeOf;\n  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));\n  if (NativeIteratorPrototype &&\n      NativeIteratorPrototype !== Op &&\n      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {\n    // This environment has a native %IteratorPrototype%; use it instead\n    // of the polyfill.\n    IteratorPrototype = NativeIteratorPrototype;\n  }\n\n  var Gp = GeneratorFunctionPrototype.prototype =\n    Generator.prototype = Object.create(IteratorPrototype);\n  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;\n  GeneratorFunctionPrototype.constructor = GeneratorFunction;\n  GeneratorFunctionPrototype[toStringTagSymbol] =\n    GeneratorFunction.displayName = \"GeneratorFunction\";\n\n  // Helper for defining the .next, .throw, and .return methods of the\n  // Iterator interface in terms of a single ._invoke method.\n  function defineIteratorMethods(prototype) {\n    [\"next\", \"throw\", \"return\"].forEach(function(method) {\n      prototype[method] = function(arg) {\n        return this._invoke(method, arg);\n      };\n    });\n  }\n\n  exports.isGeneratorFunction = function(genFun) {\n    var ctor = typeof genFun === \"function\" && genFun.constructor;\n    return ctor\n      ? ctor === GeneratorFunction ||\n        // For the native GeneratorFunction constructor, the best we can\n        // do is to check its .name property.\n        (ctor.displayName || ctor.name) === \"GeneratorFunction\"\n      : false;\n  };\n\n  exports.mark = function(genFun) {\n    if (Object.setPrototypeOf) {\n      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);\n    } else {\n      genFun.__proto__ = GeneratorFunctionPrototype;\n      if (!(toStringTagSymbol in genFun)) {\n        genFun[toStringTagSymbol] = \"GeneratorFunction\";\n      }\n    }\n    genFun.prototype = Object.create(Gp);\n    return genFun;\n  };\n\n  // Within the body of any async function, `await x` is transformed to\n  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test\n  // `hasOwn.call(value, \"__await\")` to determine if the yielded value is\n  // meant to be awaited.\n  exports.awrap = function(arg) {\n    return { __await: arg };\n  };\n\n  function AsyncIterator(generator, PromiseImpl) {\n    function invoke(method, arg, resolve, reject) {\n      var record = tryCatch(generator[method], generator, arg);\n      if (record.type === \"throw\") {\n        reject(record.arg);\n      } else {\n        var result = record.arg;\n        var value = result.value;\n        if (value &&\n            typeof value === \"object\" &&\n            hasOwn.call(value, \"__await\")) {\n          return PromiseImpl.resolve(value.__await).then(function(value) {\n            invoke(\"next\", value, resolve, reject);\n          }, function(err) {\n            invoke(\"throw\", err, resolve, reject);\n          });\n        }\n\n        return PromiseImpl.resolve(value).then(function(unwrapped) {\n          // When a yielded Promise is resolved, its final value becomes\n          // the .value of the Promise<{value,done}> result for the\n          // current iteration.\n          result.value = unwrapped;\n          resolve(result);\n        }, function(error) {\n          // If a rejected Promise was yielded, throw the rejection back\n          // into the async generator function so it can be handled there.\n          return invoke(\"throw\", error, resolve, reject);\n        });\n      }\n    }\n\n    var previousPromise;\n\n    function enqueue(method, arg) {\n      function callInvokeWithMethodAndArg() {\n        return new PromiseImpl(function(resolve, reject) {\n          invoke(method, arg, resolve, reject);\n        });\n      }\n\n      return previousPromise =\n        // If enqueue has been called before, then we want to wait until\n        // all previous Promises have been resolved before calling invoke,\n        // so that results are always delivered in the correct order. If\n        // enqueue has not been called before, then it is important to\n        // call invoke immediately, without waiting on a callback to fire,\n        // so that the async generator function has the opportunity to do\n        // any necessary setup in a predictable way. This predictability\n        // is why the Promise constructor synchronously invokes its\n        // executor callback, and why async functions synchronously\n        // execute code before the first await. Since we implement simple\n        // async functions in terms of async generators, it is especially\n        // important to get this right, even though it requires care.\n        previousPromise ? previousPromise.then(\n          callInvokeWithMethodAndArg,\n          // Avoid propagating failures to Promises returned by later\n          // invocations of the iterator.\n          callInvokeWithMethodAndArg\n        ) : callInvokeWithMethodAndArg();\n    }\n\n    // Define the unified helper method that is used to implement .next,\n    // .throw, and .return (see defineIteratorMethods).\n    this._invoke = enqueue;\n  }\n\n  defineIteratorMethods(AsyncIterator.prototype);\n  AsyncIterator.prototype[asyncIteratorSymbol] = function () {\n    return this;\n  };\n  exports.AsyncIterator = AsyncIterator;\n\n  // Note that simple async functions are implemented on top of\n  // AsyncIterator objects; they just return a Promise for the value of\n  // the final result produced by the iterator.\n  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {\n    if (PromiseImpl === void 0) PromiseImpl = Promise;\n\n    var iter = new AsyncIterator(\n      wrap(innerFn, outerFn, self, tryLocsList),\n      PromiseImpl\n    );\n\n    return exports.isGeneratorFunction(outerFn)\n      ? iter // If outerFn is a generator, return the full iterator.\n      : iter.next().then(function(result) {\n          return result.done ? result.value : iter.next();\n        });\n  };\n\n  function makeInvokeMethod(innerFn, self, context) {\n    var state = GenStateSuspendedStart;\n\n    return function invoke(method, arg) {\n      if (state === GenStateExecuting) {\n        throw new Error(\"Generator is already running\");\n      }\n\n      if (state === GenStateCompleted) {\n        if (method === \"throw\") {\n          throw arg;\n        }\n\n        // Be forgiving, per 25.3.3.3.3 of the spec:\n        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume\n        return doneResult();\n      }\n\n      context.method = method;\n      context.arg = arg;\n\n      while (true) {\n        var delegate = context.delegate;\n        if (delegate) {\n          var delegateResult = maybeInvokeDelegate(delegate, context);\n          if (delegateResult) {\n            if (delegateResult === ContinueSentinel) continue;\n            return delegateResult;\n          }\n        }\n\n        if (context.method === \"next\") {\n          // Setting context._sent for legacy support of Babel's\n          // function.sent implementation.\n          context.sent = context._sent = context.arg;\n\n        } else if (context.method === \"throw\") {\n          if (state === GenStateSuspendedStart) {\n            state = GenStateCompleted;\n            throw context.arg;\n          }\n\n          context.dispatchException(context.arg);\n\n        } else if (context.method === \"return\") {\n          context.abrupt(\"return\", context.arg);\n        }\n\n        state = GenStateExecuting;\n\n        var record = tryCatch(innerFn, self, context);\n        if (record.type === \"normal\") {\n          // If an exception is thrown from innerFn, we leave state ===\n          // GenStateExecuting and loop back for another invocation.\n          state = context.done\n            ? GenStateCompleted\n            : GenStateSuspendedYield;\n\n          if (record.arg === ContinueSentinel) {\n            continue;\n          }\n\n          return {\n            value: record.arg,\n            done: context.done\n          };\n\n        } else if (record.type === \"throw\") {\n          state = GenStateCompleted;\n          // Dispatch the exception by looping back around to the\n          // context.dispatchException(context.arg) call above.\n          context.method = \"throw\";\n          context.arg = record.arg;\n        }\n      }\n    };\n  }\n\n  // Call delegate.iterator[context.method](context.arg) and handle the\n  // result, either by returning a { value, done } result from the\n  // delegate iterator, or by modifying context.method and context.arg,\n  // setting context.delegate to null, and returning the ContinueSentinel.\n  function maybeInvokeDelegate(delegate, context) {\n    var method = delegate.iterator[context.method];\n    if (method === undefined) {\n      // A .throw or .return when the delegate iterator has no .throw\n      // method always terminates the yield* loop.\n      context.delegate = null;\n\n      if (context.method === \"throw\") {\n        // Note: [\"return\"] must be used for ES3 parsing compatibility.\n        if (delegate.iterator[\"return\"]) {\n          // If the delegate iterator has a return method, give it a\n          // chance to clean up.\n          context.method = \"return\";\n          context.arg = undefined;\n          maybeInvokeDelegate(delegate, context);\n\n          if (context.method === \"throw\") {\n            // If maybeInvokeDelegate(context) changed context.method from\n            // \"return\" to \"throw\", let that override the TypeError below.\n            return ContinueSentinel;\n          }\n        }\n\n        context.method = \"throw\";\n        context.arg = new TypeError(\n          \"The iterator does not provide a 'throw' method\");\n      }\n\n      return ContinueSentinel;\n    }\n\n    var record = tryCatch(method, delegate.iterator, context.arg);\n\n    if (record.type === \"throw\") {\n      context.method = \"throw\";\n      context.arg = record.arg;\n      context.delegate = null;\n      return ContinueSentinel;\n    }\n\n    var info = record.arg;\n\n    if (! info) {\n      context.method = \"throw\";\n      context.arg = new TypeError(\"iterator result is not an object\");\n      context.delegate = null;\n      return ContinueSentinel;\n    }\n\n    if (info.done) {\n      // Assign the result of the finished delegate to the temporary\n      // variable specified by delegate.resultName (see delegateYield).\n      context[delegate.resultName] = info.value;\n\n      // Resume execution at the desired location (see delegateYield).\n      context.next = delegate.nextLoc;\n\n      // If context.method was \"throw\" but the delegate handled the\n      // exception, let the outer generator proceed normally. If\n      // context.method was \"next\", forget context.arg since it has been\n      // \"consumed\" by the delegate iterator. If context.method was\n      // \"return\", allow the original .return call to continue in the\n      // outer generator.\n      if (context.method !== \"return\") {\n        context.method = \"next\";\n        context.arg = undefined;\n      }\n\n    } else {\n      // Re-yield the result returned by the delegate method.\n      return info;\n    }\n\n    // The delegate iterator is finished, so forget it and continue with\n    // the outer generator.\n    context.delegate = null;\n    return ContinueSentinel;\n  }\n\n  // Define Generator.prototype.{next,throw,return} in terms of the\n  // unified ._invoke helper method.\n  defineIteratorMethods(Gp);\n\n  Gp[toStringTagSymbol] = \"Generator\";\n\n  // A Generator should always return itself as the iterator object when the\n  // @@iterator function is called on it. Some browsers' implementations of the\n  // iterator prototype chain incorrectly implement this, causing the Generator\n  // object to not be returned from this call. This ensures that doesn't happen.\n  // See https://github.com/facebook/regenerator/issues/274 for more details.\n  Gp[iteratorSymbol] = function() {\n    return this;\n  };\n\n  Gp.toString = function() {\n    return \"[object Generator]\";\n  };\n\n  function pushTryEntry(locs) {\n    var entry = { tryLoc: locs[0] };\n\n    if (1 in locs) {\n      entry.catchLoc = locs[1];\n    }\n\n    if (2 in locs) {\n      entry.finallyLoc = locs[2];\n      entry.afterLoc = locs[3];\n    }\n\n    this.tryEntries.push(entry);\n  }\n\n  function resetTryEntry(entry) {\n    var record = entry.completion || {};\n    record.type = \"normal\";\n    delete record.arg;\n    entry.completion = record;\n  }\n\n  function Context(tryLocsList) {\n    // The root entry object (effectively a try statement without a catch\n    // or a finally block) gives us a place to store values thrown from\n    // locations where there is no enclosing try statement.\n    this.tryEntries = [{ tryLoc: \"root\" }];\n    tryLocsList.forEach(pushTryEntry, this);\n    this.reset(true);\n  }\n\n  exports.keys = function(object) {\n    var keys = [];\n    for (var key in object) {\n      keys.push(key);\n    }\n    keys.reverse();\n\n    // Rather than returning an object with a next method, we keep\n    // things simple and return the next function itself.\n    return function next() {\n      while (keys.length) {\n        var key = keys.pop();\n        if (key in object) {\n          next.value = key;\n          next.done = false;\n          return next;\n        }\n      }\n\n      // To avoid creating an additional object, we just hang the .value\n      // and .done properties off the next function object itself. This\n      // also ensures that the minifier will not anonymize the function.\n      next.done = true;\n      return next;\n    };\n  };\n\n  function values(iterable) {\n    if (iterable) {\n      var iteratorMethod = iterable[iteratorSymbol];\n      if (iteratorMethod) {\n        return iteratorMethod.call(iterable);\n      }\n\n      if (typeof iterable.next === \"function\") {\n        return iterable;\n      }\n\n      if (!isNaN(iterable.length)) {\n        var i = -1, next = function next() {\n          while (++i < iterable.length) {\n            if (hasOwn.call(iterable, i)) {\n              next.value = iterable[i];\n              next.done = false;\n              return next;\n            }\n          }\n\n          next.value = undefined;\n          next.done = true;\n\n          return next;\n        };\n\n        return next.next = next;\n      }\n    }\n\n    // Return an iterator with no values.\n    return { next: doneResult };\n  }\n  exports.values = values;\n\n  function doneResult() {\n    return { value: undefined, done: true };\n  }\n\n  Context.prototype = {\n    constructor: Context,\n\n    reset: function(skipTempReset) {\n      this.prev = 0;\n      this.next = 0;\n      // Resetting context._sent for legacy support of Babel's\n      // function.sent implementation.\n      this.sent = this._sent = undefined;\n      this.done = false;\n      this.delegate = null;\n\n      this.method = \"next\";\n      this.arg = undefined;\n\n      this.tryEntries.forEach(resetTryEntry);\n\n      if (!skipTempReset) {\n        for (var name in this) {\n          // Not sure about the optimal order of these conditions:\n          if (name.charAt(0) === \"t\" &&\n              hasOwn.call(this, name) &&\n              !isNaN(+name.slice(1))) {\n            this[name] = undefined;\n          }\n        }\n      }\n    },\n\n    stop: function() {\n      this.done = true;\n\n      var rootEntry = this.tryEntries[0];\n      var rootRecord = rootEntry.completion;\n      if (rootRecord.type === \"throw\") {\n        throw rootRecord.arg;\n      }\n\n      return this.rval;\n    },\n\n    dispatchException: function(exception) {\n      if (this.done) {\n        throw exception;\n      }\n\n      var context = this;\n      function handle(loc, caught) {\n        record.type = \"throw\";\n        record.arg = exception;\n        context.next = loc;\n\n        if (caught) {\n          // If the dispatched exception was caught by a catch block,\n          // then let that catch block handle the exception normally.\n          context.method = \"next\";\n          context.arg = undefined;\n        }\n\n        return !! caught;\n      }\n\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        var record = entry.completion;\n\n        if (entry.tryLoc === \"root\") {\n          // Exception thrown outside of any try block that could handle\n          // it, so set the completion value of the entire function to\n          // throw the exception.\n          return handle(\"end\");\n        }\n\n        if (entry.tryLoc <= this.prev) {\n          var hasCatch = hasOwn.call(entry, \"catchLoc\");\n          var hasFinally = hasOwn.call(entry, \"finallyLoc\");\n\n          if (hasCatch && hasFinally) {\n            if (this.prev < entry.catchLoc) {\n              return handle(entry.catchLoc, true);\n            } else if (this.prev < entry.finallyLoc) {\n              return handle(entry.finallyLoc);\n            }\n\n          } else if (hasCatch) {\n            if (this.prev < entry.catchLoc) {\n              return handle(entry.catchLoc, true);\n            }\n\n          } else if (hasFinally) {\n            if (this.prev < entry.finallyLoc) {\n              return handle(entry.finallyLoc);\n            }\n\n          } else {\n            throw new Error(\"try statement without catch or finally\");\n          }\n        }\n      }\n    },\n\n    abrupt: function(type, arg) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.tryLoc <= this.prev &&\n            hasOwn.call(entry, \"finallyLoc\") &&\n            this.prev < entry.finallyLoc) {\n          var finallyEntry = entry;\n          break;\n        }\n      }\n\n      if (finallyEntry &&\n          (type === \"break\" ||\n           type === \"continue\") &&\n          finallyEntry.tryLoc <= arg &&\n          arg <= finallyEntry.finallyLoc) {\n        // Ignore the finally entry if control is not jumping to a\n        // location outside the try/catch block.\n        finallyEntry = null;\n      }\n\n      var record = finallyEntry ? finallyEntry.completion : {};\n      record.type = type;\n      record.arg = arg;\n\n      if (finallyEntry) {\n        this.method = \"next\";\n        this.next = finallyEntry.finallyLoc;\n        return ContinueSentinel;\n      }\n\n      return this.complete(record);\n    },\n\n    complete: function(record, afterLoc) {\n      if (record.type === \"throw\") {\n        throw record.arg;\n      }\n\n      if (record.type === \"break\" ||\n          record.type === \"continue\") {\n        this.next = record.arg;\n      } else if (record.type === \"return\") {\n        this.rval = this.arg = record.arg;\n        this.method = \"return\";\n        this.next = \"end\";\n      } else if (record.type === \"normal\" && afterLoc) {\n        this.next = afterLoc;\n      }\n\n      return ContinueSentinel;\n    },\n\n    finish: function(finallyLoc) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.finallyLoc === finallyLoc) {\n          this.complete(entry.completion, entry.afterLoc);\n          resetTryEntry(entry);\n          return ContinueSentinel;\n        }\n      }\n    },\n\n    \"catch\": function(tryLoc) {\n      for (var i = this.tryEntries.length - 1; i >= 0; --i) {\n        var entry = this.tryEntries[i];\n        if (entry.tryLoc === tryLoc) {\n          var record = entry.completion;\n          if (record.type === \"throw\") {\n            var thrown = record.arg;\n            resetTryEntry(entry);\n          }\n          return thrown;\n        }\n      }\n\n      // The context.catch method must only be called with a location\n      // argument that corresponds to a known catch block.\n      throw new Error(\"illegal catch attempt\");\n    },\n\n    delegateYield: function(iterable, resultName, nextLoc) {\n      this.delegate = {\n        iterator: values(iterable),\n        resultName: resultName,\n        nextLoc: nextLoc\n      };\n\n      if (this.method === \"next\") {\n        // Deliberately forget the last sent value so that we don't\n        // accidentally pass it on to the delegate.\n        this.arg = undefined;\n      }\n\n      return ContinueSentinel;\n    }\n  };\n\n  // Regardless of whether this script is executing as a CommonJS module\n  // or not, return the runtime object so that we can declare the variable\n  // regeneratorRuntime in the outer scope, which allows this module to be\n  // injected easily by `bin/regenerator --include-runtime script.js`.\n  return exports;\n\n}(\n  // If this script is executing as a CommonJS module, use module.exports\n  // as the regeneratorRuntime namespace. Otherwise create a new empty\n  // object. Either way, the resulting object will be used to initialize\n  // the regeneratorRuntime variable at the top of this file.\n   true ? module.exports : undefined\n));\n\ntry {\n  regeneratorRuntime = runtime;\n} catch (accidentalStrictMode) {\n  // This module should not be running in strict mode, so the above\n  // assignment should always work unless something is misconfigured. Just\n  // in case runtime.js accidentally runs in strict mode, we can escape\n  // strict mode using a global Function call. This could conceivably fail\n  // if a Content Security Policy forbids using Function, but in that case\n  // the proper solution is to fix the accidental strict mode problem. If\n  // you've misconfigured your bundler to force strict mode and applied a\n  // CSP to forbid Function, and you're not willing to fix either of those\n  // problems, please detail your unique predicament in a GitHub issue.\n  Function(\"r\", \"regeneratorRuntime = r\")(runtime);\n}\n\n\n//# sourceURL=webpack:///./node_modules/regenerator-runtime/runtime.js?");
 
 /***/ }),
 
@@ -269,6 +416,30 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== \"undefined\" && global) ||\n            (typeof self !== \"undefined\" && self) ||\n            window;\nvar apply = Function.prototype.apply;\n\n// DOM APIs, for completeness\n\nexports.setTimeout = function() {\n  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);\n};\nexports.setInterval = function() {\n  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);\n};\nexports.clearTimeout =\nexports.clearInterval = function(timeout) {\n  if (timeout) {\n    timeout.close();\n  }\n};\n\nfunction Timeout(id, clearFn) {\n  this._id = id;\n  this._clearFn = clearFn;\n}\nTimeout.prototype.unref = Timeout.prototype.ref = function() {};\nTimeout.prototype.close = function() {\n  this._clearFn.call(scope, this._id);\n};\n\n// Does not start the time, just sets up the members needed.\nexports.enroll = function(item, msecs) {\n  clearTimeout(item._idleTimeoutId);\n  item._idleTimeout = msecs;\n};\n\nexports.unenroll = function(item) {\n  clearTimeout(item._idleTimeoutId);\n  item._idleTimeout = -1;\n};\n\nexports._unrefActive = exports.active = function(item) {\n  clearTimeout(item._idleTimeoutId);\n\n  var msecs = item._idleTimeout;\n  if (msecs >= 0) {\n    item._idleTimeoutId = setTimeout(function onTimeout() {\n      if (item._onTimeout)\n        item._onTimeout();\n    }, msecs);\n  }\n};\n\n// setimmediate attaches itself to the global object\n__webpack_require__(/*! setimmediate */ \"./node_modules/setimmediate/setImmediate.js\");\n// On some exotic environments, it's not clear which object `setimmediate` was\n// able to install onto.  Search each possibility in the same order as the\n// `setimmediate` library.\nexports.setImmediate = (typeof self !== \"undefined\" && self.setImmediate) ||\n                       (typeof global !== \"undefined\" && global.setImmediate) ||\n                       (this && this.setImmediate);\nexports.clearImmediate = (typeof self !== \"undefined\" && self.clearImmediate) ||\n                         (typeof global !== \"undefined\" && global.clearImmediate) ||\n                         (this && this.clearImmediate);\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack:///./node_modules/timers-browserify/main.js?");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/partials/footer.vue?vue&type=template&id=18bd2722&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/partials/footer.vue?vue&type=template&id=18bd2722& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _vm._m(0)\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"div\", { staticClass: \"copyright-note\" }, [\n      _vm._v(\"\\n  All artwork on this website is property of \"),\n      _c(\"a\", { attrs: { href: \"https://charliethomason.github.io\" } }, [\n        _vm._v(\"Charlie Thomason\")\n      ]),\n      _vm._v(\". Do not reuse or republish without permission.\\n\")\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/partials/footer.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/partials/galleria.vue?vue&type=template&id=588e2733&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/partials/galleria.vue?vue&type=template&id=588e2733& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"galleria\" },\n    [\n      _vm._l(_vm.photosInRows, function(row, r) {\n        return _c(\n          \"div\",\n          {\n            key: \"row-\" + r,\n            ref: \"row\",\n            refInFor: true,\n            staticClass: \"galleria-row\"\n          },\n          _vm._l(row, function(img, i) {\n            return _c(\n              \"a\",\n              {\n                key: \"row-\" + r + \"-img-\" + i,\n                staticClass: \"galleria-img\",\n                style: _vm.getStyle(row, img),\n                attrs: {\n                  href: \"#\",\n                  \"data-large\":\n                    \"../img/art/books/\" + _vm.bookName + \"/\" + img.file + \".jpg\"\n                },\n                on: {\n                  click: function($event) {\n                    $event.stopPropagation()\n                    $event.preventDefault()\n                    return (function(e) {\n                      return _vm.onClick(e, img)\n                    })($event)\n                  }\n                }\n              },\n              [\n                _c(\"img\", {\n                  staticClass: \"galleria-small\",\n                  attrs: {\n                    src: __webpack_require__(\"./src/img/art/books sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                      _vm.bookName +\n                      \"/thumbs/\" +\n                      img.file +\n                      \".jpg\"),\n                    alt: img.file\n                  }\n                })\n              ]\n            )\n          }),\n          0\n        )\n      }),\n      _vm._v(\" \"),\n      !!_vm.lightImgId\n        ? _c(\n            \"div\",\n            {\n              staticClass: \"galleria__lightbox\",\n              on: {\n                click: function($event) {\n                  $event.stopPropagation()\n                  $event.preventDefault()\n                  return _vm.closeLightbox($event)\n                }\n              }\n            },\n            [\n              _c(\"img\", {\n                staticClass: \"galleria__lightbox__img\",\n                attrs: {\n                  src: __webpack_require__(\"./src/img/art/books sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                    _vm.bookName +\n                    \"/\" +\n                    _vm.lightImgId +\n                    \".jpg\"),\n                  alt: _vm.lightImgId\n                }\n              }),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  staticClass: \"galleria__lightbox__close\",\n                  attrs: { type: \"button\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return _vm.closeLightbox($event)\n                    }\n                  }\n                },\n                [_vm._v(\"\\n      Close\\n    \")]\n              )\n            ]\n          )\n        : _vm._e()\n    ],\n    2\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -332,6 +503,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\n        \"div\",\n        { staticClass: \"eyebrow\" },\n        [\n          _c(\n            \"router-link\",\n            { staticClass: \"eyebrow__link\", attrs: { to: \"/books\" } },\n            [_vm._v(\"Books\")]\n          )\n        ],\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"h1\", { staticClass: \"h1\" }, [_vm._v(_vm._s(_vm.bookData.title))]),\n      _vm._v(\" \"),\n      _c(\"h2\", { staticClass: \"h2\" }, [_vm._v(_vm._s(_vm.bookData.subtitle))]),\n      _vm._v(\" \"),\n      _c(\"galleria\", {\n        attrs: { \"book-name\": _vm.bookName, photos: _vm.bookData.photos }\n      }),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"books\" },\n    [\n      _c(\"h1\", { staticClass: \"h1\" }, [_vm._v(\"Books\")]),\n      _vm._v(\" \"),\n      _vm._m(0),\n      _vm._v(\" \"),\n      _c(\n        \"ul\",\n        { staticClass: \"books__shop\" },\n        _vm._l(_vm.books, function(book, i) {\n          return _c(\n            \"router-link\",\n            { key: i, attrs: { tag: \"li\", to: \"/books/\" + book.id } },\n            [\n              _c(\"a\", { staticClass: \"books__shop__link\" }, [\n                _c(\"div\", { staticClass: \"hover-wrap\" }, [\n                  _c(\"img\", {\n                    attrs: {\n                      src: __webpack_require__(\"./src/img/art/books/covers sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                        book.id +\n                        \".jpg\"),\n                      alt: book.title + \" by Charlie Thomason hardcover book\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"span\", { staticClass: \"hover-cover\" }, [\n                    _vm._v(\"View book\")\n                  ])\n                ]),\n                _vm._v(\" \"),\n                _c(\"h2\", { staticClass: \"h2\" }, [_vm._v(_vm._s(book.title))]),\n                _vm._v(\" \"),\n                _c(\"h3\", { staticClass: \"subtitle\" }, [\n                  _vm._v(_vm._s(book.subtitle))\n                ])\n              ]),\n              _vm._v(\" \"),\n              _c(\"div\", { staticClass: \"meta\" }, [_vm._v(_vm._s(book.year))]),\n              _vm._v(\" \"),\n              _c(\"div\", { staticClass: \"meta\" }, [\n                _vm._v(_vm._s(book.pages) + \" pages\")\n              ]),\n              _vm._v(\" \"),\n              _c(\n                \"a\",\n                {\n                  staticClass: \"btn\",\n                  attrs: { href: book.blurb, target: \"_blank\" }\n                },\n                [_vm._v(\"Order book on Blurb.com\")]\n              )\n            ]\n          )\n        }),\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"p\", { staticClass: \"intro\" }, [\n      _vm._v(\n        \"I am proud to have written, designed, and self-published all of the below listed art books. The content consists of my own art and/or photography, scanned and printed in high resolution. These books are currently only available as print-on-demand through \"\n      ),\n      _c(\"a\", { attrs: { href: \"http://www.blurb.com\", target: \"_blank\" } }, [\n        _vm._v(\"Blurb.com\")\n      ]),\n      _vm._v(\n        \", and I do not control the pricing. If you would like me to sign the book for you, please reach out to me directly (see contact methods on homepage).\"\n      )\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/galleries.vue?vue&type=template&id=02c11d9c&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/galleries.vue?vue&type=template&id=02c11d9c& ***!
@@ -340,7 +535,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", [\n    _c(\n      \"ul\",\n      { staticClass: \"galleries\" },\n      _vm._l(_vm.galleries, function(gallery, i) {\n        return _c(\n          \"router-link\",\n          {\n            key: i,\n            staticClass: \"galleries__item\",\n            attrs: {\n              tag: \"li\",\n              to: gallery.href,\n              \"exact-active-class\": \"active\",\n              \"active-class\": \"active\"\n            }\n          },\n          [\n            _c(\"a\", { staticClass: \"galleries__link\" }, [\n              _c(\"img\", {\n                staticClass: \"galleries__img\",\n                attrs: {\n                  src: __webpack_require__(\"./src/img/art/galleries sync recursive ^\\\\.\\\\/galleries\\\\-.*\\\\-960\\\\.jpg$\")(\"./galleries-\" +\n                    gallery.href +\n                    \"-960.jpg\"),\n                  alt: gallery.name + \" gallery icon\"\n                }\n              }),\n              _vm._v(\" \"),\n              _c(\"span\", { staticClass: \"galleries__text\" }, [\n                _vm._v(_vm._s(gallery.name))\n              ])\n            ])\n          ]\n        )\n      }),\n      1\n    ),\n    _vm._v(\" \"),\n    _vm._m(0)\n  ])\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"div\", { staticClass: \"copyright-note\" }, [\n      _vm._v(\"\\n        All artwork on this website is property of \"),\n      _c(\"a\", { attrs: { href: \"https://charliethomason.github.io\" } }, [\n        _vm._v(\"Charlie Thomason\")\n      ]),\n      _vm._v(\". Do not reuse or republish without permission.\\n    \")\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/galleries.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\n        \"ul\",\n        { staticClass: \"galleries\" },\n        _vm._l(_vm.galleries, function(gallery, i) {\n          return _c(\n            \"router-link\",\n            {\n              key: i,\n              class: [\n                \"galleries__item\",\n                { \"galleries__item--wide\": gallery.wide }\n              ],\n              attrs: {\n                tag: \"li\",\n                to: gallery.href,\n                \"exact-active-class\": \"active\",\n                \"active-class\": \"active\"\n              }\n            },\n            [\n              _c(\"a\", { staticClass: \"galleries__link\" }, [\n                _c(\"img\", {\n                  staticClass: \"galleries__img\",\n                  attrs: {\n                    src: __webpack_require__(\"./src/img/art/galleries sync recursive ^\\\\.\\\\/galleries\\\\-.*\\\\.jpg$\")(\"./galleries-\" +\n                      gallery.href +\n                      \".jpg\"),\n                    alt: gallery.name + \" gallery icon\"\n                  }\n                }),\n                _vm._v(\" \"),\n                _c(\"span\", { staticClass: \"galleries__text\" }, [\n                  _vm._v(_vm._s(gallery.name))\n                ])\n              ])\n            ]\n          )\n        }),\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/galleries.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -422,7 +617,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! exports provided: galleries, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"galleries\\\":[{\\\"href\\\":\\\"birds\\\",\\\"name\\\":\\\"Birds\\\"},{\\\"href\\\":\\\"movies\\\",\\\"name\\\":\\\"Movies\\\"},{\\\"href\\\":\\\"other\\\",\\\"name\\\":\\\"Other\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/art.json?");
+eval("module.exports = JSON.parse(\"{\\\"galleries\\\":[{\\\"href\\\":\\\"books\\\",\\\"name\\\":\\\"Books\\\",\\\"wide\\\":true},{\\\"href\\\":\\\"birds\\\",\\\"name\\\":\\\"Birds\\\"},{\\\"href\\\":\\\"movies\\\",\\\"name\\\":\\\"Movies\\\"},{\\\"href\\\":\\\"other\\\",\\\"name\\\":\\\"Other\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/art.json?");
 
 /***/ }),
 
@@ -433,7 +628,18 @@ eval("module.exports = JSON.parse(\"{\\\"galleries\\\":[{\\\"href\\\":\\\"birds\
 /*! exports provided: birds, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"birds\\\":[{\\\"id\\\":\\\"emeraldosprey\\\",\\\"title\\\":\\\"Emerald Osprey\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"blaumeise\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"magpieparkcity\\\",\\\"title\\\":\\\"Park City Magpie\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"kestrelgreenskies\\\",\\\"title\\\":\\\"Kestrel Flies Over Green Skies\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"turquoiseperegrine\\\",\\\"title\\\":\\\"Turquoise Peregrine\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pelicanvenice\\\",\\\"title\\\":\\\"Pelicanus Venezia\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"whitethroatedsparrow\\\",\\\"title\\\":\\\"White Throated Sparrow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"tern\\\",\\\"title\\\":\\\"Caspian Tern\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"coopershawk\\\",\\\"title\\\":\\\"Cooper's Hawk\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"crow\\\",\\\"title\\\":\\\"American Crow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"grosbeaks\\\",\\\"title\\\":\\\"Rose-Breasted Grosbeaks\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"redwingedblackbird\\\",\\\"title\\\":\\\"Red-Winged Blackbird\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"rockpigeon\\\",\\\"title\\\":\\\"Rock Pigeon\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kingfisher\\\",\\\"title\\\":\\\"Belted Kingfisher\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"ospreykingfisher\\\",\\\"title\\\":\\\"Osprey and Kingfisher\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"turkey\\\",\\\"title\\\":\\\"Wild Turkey\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greathornedowl\\\",\\\"title\\\":\\\"Great Horned Owl\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pileatedwoodpecker\\\",\\\"title\\\":\\\"Pileated Woodpecker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"goshawk\\\",\\\"title\\\":\\\"Northern Goshawk\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"loon\\\",\\\"title\\\":\\\"Common Loon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kestrel\\\",\\\"title\\\":\\\"American Kestrel\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"flicker\\\",\\\"title\\\":\\\"Northern Flicker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormorant\\\",\\\"title\\\":\\\"Double-Crested Cormorant\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cardinals\\\",\\\"title\\\":\\\"Northern Cardinals\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"nightheron\\\",\\\"title\\\":\\\"Black-Crowned Night Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"peregrine\\\",\\\"title\\\":\\\"Peregrine Falcon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"woodduck\\\",\\\"title\\\":\\\"Wood Duck\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"bluejay\\\",\\\"title\\\":\\\"Blue Jay\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greatblueheron\\\",\\\"title\\\":\\\"Great Blue Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"meadowlark\\\",\\\"title\\\":\\\"Eastern Meadowlark\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"passengerpigeons\\\",\\\"title\\\":\\\"Passenger Pigeons\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"screechowl\\\",\\\"title\\\":\\\"Screech Owl\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"bluejaydesert\\\",\\\"title\\\":\\\"Blue Jay in the Desert\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/birds.json?");
+eval("module.exports = JSON.parse(\"{\\\"birds\\\":[{\\\"id\\\":\\\"blaumeisecolor\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria (watercolor)\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"emeraldosprey\\\",\\\"title\\\":\\\"Emerald Osprey\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"blaumeise\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"magpieparkcity\\\",\\\"title\\\":\\\"Park City Magpie\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"kestrelgreenskies\\\",\\\"title\\\":\\\"Kestrel Flies Over Green Skies\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"turquoiseperegrine\\\",\\\"title\\\":\\\"Turquoise Peregrine\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pelicanvenice\\\",\\\"title\\\":\\\"Pelicanus Venezia\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"whitethroatedsparrow\\\",\\\"title\\\":\\\"White Throated Sparrow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"tern\\\",\\\"title\\\":\\\"Caspian Tern\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"coopershawk\\\",\\\"title\\\":\\\"Cooper's Hawk\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"crow\\\",\\\"title\\\":\\\"American Crow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"grosbeaks\\\",\\\"title\\\":\\\"Rose-Breasted Grosbeaks\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"redwingedblackbird\\\",\\\"title\\\":\\\"Red-Winged Blackbird\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"rockpigeon\\\",\\\"title\\\":\\\"Rock Pigeon\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kingfisher\\\",\\\"title\\\":\\\"Belted Kingfisher\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"ospreykingfisher\\\",\\\"title\\\":\\\"Osprey and Kingfisher\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"turkey\\\",\\\"title\\\":\\\"Wild Turkey\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greathornedowl\\\",\\\"title\\\":\\\"Great Horned Owl\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pileatedwoodpecker\\\",\\\"title\\\":\\\"Pileated Woodpecker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"goshawk\\\",\\\"title\\\":\\\"Northern Goshawk\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"loon\\\",\\\"title\\\":\\\"Common Loon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kestrel\\\",\\\"title\\\":\\\"American Kestrel\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"flicker\\\",\\\"title\\\":\\\"Northern Flicker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormorant\\\",\\\"title\\\":\\\"Double-Crested Cormorant\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cardinals\\\",\\\"title\\\":\\\"Northern Cardinals\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"nightheron\\\",\\\"title\\\":\\\"Black-Crowned Night Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"peregrine\\\",\\\"title\\\":\\\"Peregrine Falcon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"woodduck\\\",\\\"title\\\":\\\"Wood Duck\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"bluejay\\\",\\\"title\\\":\\\"Blue Jay\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greatblueheron\\\",\\\"title\\\":\\\"Great Blue Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"meadowlark\\\",\\\"title\\\":\\\"Eastern Meadowlark\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"passengerpigeons\\\",\\\"title\\\":\\\"Passenger Pigeons\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"screechowl\\\",\\\"title\\\":\\\"Screech Owl\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"bluejaydesert\\\",\\\"title\\\":\\\"Blue Jay in the Desert\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/birds.json?");
+
+/***/ }),
+
+/***/ "./src/data/books.json":
+/*!*****************************!*\
+  !*** ./src/data/books.json ***!
+  \*****************************/
+/*! exports provided: books, charlieinktober, birdsofchicagoland, openrange, default */
+/***/ (function(module) {
+
+eval("module.exports = JSON.parse(\"{\\\"books\\\":[{\\\"id\\\":\\\"charlieinktober\\\",\\\"title\\\":\\\"#charlieinktober 2020\\\",\\\"subtitle\\\":\\\"Silver Stills From Favorite Films\\\",\\\"medium\\\":\\\"Ink Paintings\\\",\\\"year\\\":\\\"2020\\\",\\\"pages\\\":\\\"28\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/10393438-charlieinktober-2020-silver-stills-from-favorite\\\"},{\\\"id\\\":\\\"birdsofchicagoland\\\",\\\"title\\\":\\\"Birds of Chicagoland\\\",\\\"subtitle\\\":\\\"Paintings by Charlie Thomason\\\",\\\"medium\\\":\\\"Watercolor and Ink Paintings\\\",\\\"year\\\":\\\"2016\\\",\\\"pages\\\":\\\"68\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/7500748-birds-of-chicagoland\\\"},{\\\"id\\\":\\\"openrange\\\",\\\"title\\\":\\\"Open Range\\\",\\\"subtitle\\\":\\\"From Monument Valley to the Mojave Desert\\\",\\\"medium\\\":\\\"Film and Digital Photography\\\",\\\"year\\\":\\\"2012\\\",\\\"pages\\\":\\\"152\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/2868673-open-range\\\"}],\\\"charlieinktober\\\":{\\\"title\\\":\\\"#charlieinktober 2020\\\",\\\"subtitle\\\":\\\"Silver Stills From Favorite Films\\\",\\\"photos\\\":[{\\\"file\\\":\\\"beetlejuice\\\",\\\"width\\\":964},{\\\"file\\\":\\\"halloween\\\",\\\"width\\\":1087},{\\\"file\\\":\\\"lotr\\\",\\\"width\\\":1040},{\\\"file\\\":\\\"phibes\\\",\\\"width\\\":1004},{\\\"file\\\":\\\"shining\\\",\\\"width\\\":954},{\\\"file\\\":\\\"starwars\\\",\\\"width\\\":1004},{\\\"file\\\":\\\"batman\\\",\\\"width\\\":1002},{\\\"file\\\":\\\"sleepyhollow\\\",\\\"width\\\":1000},{\\\"file\\\":\\\"donniedarko\\\",\\\"width\\\":1009},{\\\"file\\\":\\\"terminator2\\\",\\\"width\\\":1133},{\\\"file\\\":\\\"nightmareb4xmas\\\",\\\"width\\\":1006},{\\\"file\\\":\\\"thefog\\\",\\\"width\\\":1009},{\\\"file\\\":\\\"edwardscissorhands\\\",\\\"width\\\":986},{\\\"file\\\":\\\"alien\\\",\\\"width\\\":983},{\\\"file\\\":\\\"bladerunner\\\",\\\"width\\\":1098},{\\\"file\\\":\\\"thecrow\\\",\\\"width\\\":979},{\\\"file\\\":\\\"shaunofthedead\\\",\\\"width\\\":1211},{\\\"file\\\":\\\"metropolis\\\",\\\"width\\\":992},{\\\"file\\\":\\\"escapefromny\\\",\\\"width\\\":1017},{\\\"file\\\":\\\"dracula\\\",\\\"width\\\":996}]},\\\"birdsofchicagoland\\\":{\\\"title\\\":\\\"Birds of Chicagoland\\\",\\\"subtitle\\\":\\\"Paintings by Charlie Thomason\\\",\\\"photos\\\":[{\\\"file\\\":\\\"peregrine\\\",\\\"width\\\":530},{\\\"file\\\":\\\"kestrel\\\",\\\"width\\\":456},{\\\"file\\\":\\\"goshawk\\\",\\\"width\\\":501},{\\\"file\\\":\\\"coopershawk\\\",\\\"width\\\":462},{\\\"file\\\":\\\"greathornedowl\\\",\\\"width\\\":526},{\\\"file\\\":\\\"greatblueheron\\\",\\\"width\\\":511},{\\\"file\\\":\\\"woodduck\\\",\\\"width\\\":471},{\\\"file\\\":\\\"nightheron\\\",\\\"width\\\":759},{\\\"file\\\":\\\"cormorant\\\",\\\"width\\\":393},{\\\"file\\\":\\\"loon\\\",\\\"width\\\":541},{\\\"file\\\":\\\"grosbeaks\\\",\\\"width\\\":456},{\\\"file\\\":\\\"meadowlark\\\",\\\"width\\\":489},{\\\"file\\\":\\\"bluejay\\\",\\\"width\\\":817},{\\\"file\\\":\\\"cardinals\\\",\\\"width\\\":923},{\\\"file\\\":\\\"redwingedblackbird\\\",\\\"width\\\":694},{\\\"file\\\":\\\"rockpigeon\\\",\\\"width\\\":807},{\\\"file\\\":\\\"crow\\\",\\\"width\\\":525},{\\\"file\\\":\\\"tern\\\",\\\"width\\\":455},{\\\"file\\\":\\\"whitethroatedsparrow\\\",\\\"width\\\":468},{\\\"file\\\":\\\"passengerpigeons\\\",\\\"width\\\":453},{\\\"file\\\":\\\"flicker\\\",\\\"width\\\":420},{\\\"file\\\":\\\"woodpecker\\\",\\\"width\\\":435},{\\\"file\\\":\\\"turkey\\\",\\\"width\\\":864},{\\\"file\\\":\\\"kingfisher\\\",\\\"width\\\":471}]},\\\"openrange\\\":{\\\"title\\\":\\\"Open Range\\\",\\\"subtitle\\\":\\\"From Monument Valley to the Mojave Desert\\\",\\\"photos\\\":[{\\\"file\\\":\\\"lakepowell02\\\",\\\"width\\\":1978},{\\\"file\\\":\\\"lakepowell01\\\",\\\"width\\\":800},{\\\"file\\\":\\\"lakepowell03\\\",\\\"width\\\":908},{\\\"file\\\":\\\"lakepowell04\\\",\\\"width\\\":919},{\\\"file\\\":\\\"lakepowell05\\\",\\\"width\\\":907},{\\\"file\\\":\\\"leesferry01\\\",\\\"width\\\":450},{\\\"file\\\":\\\"leesferry02\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley01\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley02\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley03\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley04\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley05\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley06\\\",\\\"width\\\":820},{\\\"file\\\":\\\"monumentvalley09\\\",\\\"width\\\":2502},{\\\"file\\\":\\\"monumentvalley07\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley08\\\",\\\"width\\\":799},{\\\"file\\\":\\\"monumentvalley10\\\",\\\"width\\\":899},{\\\"file\\\":\\\"monumentvalley11\\\",\\\"width\\\":901},{\\\"file\\\":\\\"monumentvalley12\\\",\\\"width\\\":903},{\\\"file\\\":\\\"monumentvalley13\\\",\\\"width\\\":907},{\\\"file\\\":\\\"monumentvalley14\\\",\\\"width\\\":499},{\\\"file\\\":\\\"monumentvalley15\\\",\\\"width\\\":508},{\\\"file\\\":\\\"monumentvalley16\\\",\\\"width\\\":507},{\\\"file\\\":\\\"highways01\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways02\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways03\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways04\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways05\\\",\\\"width\\\":898},{\\\"file\\\":\\\"highways06\\\",\\\"width\\\":889},{\\\"file\\\":\\\"highways07\\\",\\\"width\\\":927},{\\\"file\\\":\\\"highways08\\\",\\\"width\\\":506},{\\\"file\\\":\\\"highways09\\\",\\\"width\\\":510},{\\\"file\\\":\\\"navajomonument01\\\",\\\"width\\\":799},{\\\"file\\\":\\\"navajomonument02\\\",\\\"width\\\":799},{\\\"file\\\":\\\"navajomonument03\\\",\\\"width\\\":800},{\\\"file\\\":\\\"navajomonument04\\\",\\\"width\\\":899},{\\\"file\\\":\\\"navajomonument05\\\",\\\"width\\\":396},{\\\"file\\\":\\\"grandcanyon01\\\",\\\"width\\\":800},{\\\"file\\\":\\\"grandcanyon02\\\",\\\"width\\\":457},{\\\"file\\\":\\\"grandcanyon03\\\",\\\"width\\\":803},{\\\"file\\\":\\\"grandcanyon04\\\",\\\"width\\\":449},{\\\"file\\\":\\\"grandcanyon05\\\",\\\"width\\\":800},{\\\"file\\\":\\\"grandcanyon06\\\",\\\"width\\\":804},{\\\"file\\\":\\\"grandcanyon07\\\",\\\"width\\\":903},{\\\"file\\\":\\\"joshuatree01\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree02\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree03\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree04\\\",\\\"width\\\":800}]}}\");\n\n//# sourceURL=webpack:///./src/data/books.json?");
 
 /***/ }),
 
@@ -444,7 +650,7 @@ eval("module.exports = JSON.parse(\"{\\\"birds\\\":[{\\\"id\\\":\\\"emeraldospre
 /*! exports provided: movies, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"movies\\\":[{\\\"id\\\":\\\"theshape\\\",\\\"title\\\":\\\"The Shape\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thefog\\\",\\\"title\\\":\\\"The Fog\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thesnake\\\",\\\"title\\\":\\\"The Snake\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thedancingclown\\\",\\\"title\\\":\\\"The Dancing Clown\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thecrow\\\",\\\"title\\\":\\\"The Crow\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"swampthing\\\",\\\"title\\\":\\\"Swamp Thing\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"edwardscissorhands\\\",\\\"title\\\":\\\"Edward Scissorhands\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"eternalsunshine\\\",\\\"title\\\":\\\"Eternal Sunshine\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"frankcellardoor\\\",\\\"title\\\":\\\"Frank and the Cellar Door\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"earthvsflyingsaucers\\\",\\\"title\\\":\\\"Earth vs the Flying Saucers\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormanandpoe\\\",\\\"title\\\":\\\"Corman and Poe\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"vincentprice\\\",\\\"title\\\":\\\"Vincent Price\\\",\\\"year\\\":\\\"2006\\\",\\\"medium\\\":\\\"Ink on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/movies.json?");
+eval("module.exports = JSON.parse(\"{\\\"movies\\\":[{\\\"id\\\":\\\"beetlejuice\\\",\\\"title\\\":\\\"Beetlejuice\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"phibes\\\",\\\"title\\\":\\\"The Abominable Dr. Phibes\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"shining\\\",\\\"title\\\":\\\"The Shining\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"sleepyhollow\\\",\\\"title\\\":\\\"Sleepy Hollow\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"nightmareb4xmas\\\",\\\"title\\\":\\\"The Nightmare Before Christmas\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"shaunofthedead\\\",\\\"title\\\":\\\"Shaun of the Dead\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"theshape\\\",\\\"title\\\":\\\"The Shape\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thefog\\\",\\\"title\\\":\\\"The Fog\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thesnake\\\",\\\"title\\\":\\\"The Snake\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thedancingclown\\\",\\\"title\\\":\\\"The Dancing Clown\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thecrow\\\",\\\"title\\\":\\\"The Crow\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"swampthing\\\",\\\"title\\\":\\\"Swamp Thing\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"edwardscissorhands\\\",\\\"title\\\":\\\"Edward Scissorhands\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"eternalsunshine\\\",\\\"title\\\":\\\"Eternal Sunshine\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"frankcellardoor\\\",\\\"title\\\":\\\"Frank and the Cellar Door\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"earthvsflyingsaucers\\\",\\\"title\\\":\\\"Earth vs the Flying Saucers\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormanandpoe\\\",\\\"title\\\":\\\"Corman and Poe\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"vincentprice\\\",\\\"title\\\":\\\"Vincent Price\\\",\\\"year\\\":\\\"2006\\\",\\\"medium\\\":\\\"Ink on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/movies.json?");
 
 /***/ }),
 
@@ -455,7 +661,7 @@ eval("module.exports = JSON.parse(\"{\\\"movies\\\":[{\\\"id\\\":\\\"theshape\\\
 /*! exports provided: other, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"other\\\":[{\\\"id\\\":\\\"redrialto\\\",\\\"title\\\":\\\"Red Rialto\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and atercolor on paper\\\"},{\\\"id\\\":\\\"riomendicanti\\\",\\\"title\\\":\\\"Rio dei Mendicanti\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"sotoportego\\\",\\\"title\\\":\\\"Sotoportego\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"allanon\\\",\\\"title\\\":\\\"Allanon\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"mexicanvaquero\\\",\\\"title\\\":\\\"A Mexican Vaquero\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"schumi-monaco\\\",\\\"title\\\":\\\"Schumacher at Monaco\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"andrettilongbeach\\\",\\\"title\\\":\\\"Andretti vs Andretti at Long Beach\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"jimclark\\\",\\\"title\\\":\\\"Jim Clark in the Lotus 49\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"quanahparker\\\",\\\"title\\\":\\\"Quanah Parker\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"chopin\\\",\\\"title\\\":\\\"Frederic Chopin\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"fqmg\\\",\\\"title\\\":\\\"French Quarter Motorcycle Guitarist\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"meltingdoge\\\",\\\"title\\\":\\\"The Melting Doge\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"mingojack\\\",\\\"title\\\":\\\"Mingo Jack\\\",\\\"year\\\":\\\"2010\\\",\\\"medium\\\":\\\"Oil on MDF board\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/other.json?");
+eval("module.exports = JSON.parse(\"{\\\"other\\\":[{\\\"id\\\":\\\"selfportrait2020\\\",\\\"title\\\":\\\"Self-Portrait 2020\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"redrialto\\\",\\\"title\\\":\\\"Red Rialto\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"riomendicanti\\\",\\\"title\\\":\\\"Rio dei Mendicanti\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"sotoportego\\\",\\\"title\\\":\\\"Sotoportego\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"allanon\\\",\\\"title\\\":\\\"Allanon\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"mexicanvaquero\\\",\\\"title\\\":\\\"A Mexican Vaquero\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"schumi-monaco\\\",\\\"title\\\":\\\"Schumacher at Monaco\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"andrettilongbeach\\\",\\\"title\\\":\\\"Andretti vs Andretti at Long Beach\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"jimclark\\\",\\\"title\\\":\\\"Jim Clark in the Lotus 49\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"quanahparker\\\",\\\"title\\\":\\\"Quanah Parker\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"chopin\\\",\\\"title\\\":\\\"Frederic Chopin\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"fqmg\\\",\\\"title\\\":\\\"French Quarter Motorcycle Guitarist\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"meltingdoge\\\",\\\"title\\\":\\\"The Melting Doge\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"mingojack\\\",\\\"title\\\":\\\"Mingo Jack\\\",\\\"year\\\":\\\"2010\\\",\\\"medium\\\":\\\"Oil on MDF board\\\"},{\\\"id\\\":\\\"selfportrait2007\\\",\\\"title\\\":\\\"Self-Portrait 2007\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Pencil on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/other.json?");
 
 /***/ }),
 
@@ -477,7 +683,7 @@ eval("module.exports = JSON.parse(\"{\\\"pages\\\":[{\\\"id\\\":\\\"index\\\",\\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\-250\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\-250\\.jpg$?");
+eval("var map = {\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/blaumeisecolor-250.jpg\": \"./src/img/art/birds/thumbs/blaumeisecolor-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./movies/thumbs/beetlejuice-250.jpg\": \"./src/img/art/movies/thumbs/beetlejuice-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/nightmareb4xmas-250.jpg\": \"./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg\",\n\t\"./movies/thumbs/phibes-250.jpg\": \"./src/img/art/movies/thumbs/phibes-250.jpg\",\n\t\"./movies/thumbs/shaunofthedead-250.jpg\": \"./src/img/art/movies/thumbs/shaunofthedead-250.jpg\",\n\t\"./movies/thumbs/shining-250.jpg\": \"./src/img/art/movies/thumbs/shining-250.jpg\",\n\t\"./movies/thumbs/sleepyhollow-250.jpg\": \"./src/img/art/movies/thumbs/sleepyhollow-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/selfportrait2007-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2007-250.jpg\",\n\t\"./other/thumbs/selfportrait2020-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2020-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\-250\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\-250\\.jpg$?");
 
 /***/ }),
 
@@ -488,7 +694,7 @@ eval("var map = {\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./birds/full/blaumeise.jpg\": \"./src/img/art/birds/full/blaumeise.jpg\",\n\t\"./birds/full/bluejay.jpg\": \"./src/img/art/birds/full/bluejay.jpg\",\n\t\"./birds/full/bluejaydesert.jpg\": \"./src/img/art/birds/full/bluejaydesert.jpg\",\n\t\"./birds/full/cardinals.jpg\": \"./src/img/art/birds/full/cardinals.jpg\",\n\t\"./birds/full/coopershawk.jpg\": \"./src/img/art/birds/full/coopershawk.jpg\",\n\t\"./birds/full/cormorant.jpg\": \"./src/img/art/birds/full/cormorant.jpg\",\n\t\"./birds/full/crow.jpg\": \"./src/img/art/birds/full/crow.jpg\",\n\t\"./birds/full/emeraldosprey.jpg\": \"./src/img/art/birds/full/emeraldosprey.jpg\",\n\t\"./birds/full/flicker.jpg\": \"./src/img/art/birds/full/flicker.jpg\",\n\t\"./birds/full/goshawk.jpg\": \"./src/img/art/birds/full/goshawk.jpg\",\n\t\"./birds/full/greatblueheron.jpg\": \"./src/img/art/birds/full/greatblueheron.jpg\",\n\t\"./birds/full/greathornedowl.jpg\": \"./src/img/art/birds/full/greathornedowl.jpg\",\n\t\"./birds/full/grosbeaks.jpg\": \"./src/img/art/birds/full/grosbeaks.jpg\",\n\t\"./birds/full/kestrel.jpg\": \"./src/img/art/birds/full/kestrel.jpg\",\n\t\"./birds/full/kestrelgreenskies.jpg\": \"./src/img/art/birds/full/kestrelgreenskies.jpg\",\n\t\"./birds/full/kingfisher.jpg\": \"./src/img/art/birds/full/kingfisher.jpg\",\n\t\"./birds/full/loon.jpg\": \"./src/img/art/birds/full/loon.jpg\",\n\t\"./birds/full/magpieparkcity.jpg\": \"./src/img/art/birds/full/magpieparkcity.jpg\",\n\t\"./birds/full/meadowlark.jpg\": \"./src/img/art/birds/full/meadowlark.jpg\",\n\t\"./birds/full/nightheron.jpg\": \"./src/img/art/birds/full/nightheron.jpg\",\n\t\"./birds/full/ospreykingfisher.jpg\": \"./src/img/art/birds/full/ospreykingfisher.jpg\",\n\t\"./birds/full/passengerpigeons.jpg\": \"./src/img/art/birds/full/passengerpigeons.jpg\",\n\t\"./birds/full/pelicanvenice.jpg\": \"./src/img/art/birds/full/pelicanvenice.jpg\",\n\t\"./birds/full/peregrine.jpg\": \"./src/img/art/birds/full/peregrine.jpg\",\n\t\"./birds/full/pileatedwoodpecker.jpg\": \"./src/img/art/birds/full/pileatedwoodpecker.jpg\",\n\t\"./birds/full/redwingedblackbird.jpg\": \"./src/img/art/birds/full/redwingedblackbird.jpg\",\n\t\"./birds/full/rockpigeon.jpg\": \"./src/img/art/birds/full/rockpigeon.jpg\",\n\t\"./birds/full/screechowl.jpg\": \"./src/img/art/birds/full/screechowl.jpg\",\n\t\"./birds/full/tern.jpg\": \"./src/img/art/birds/full/tern.jpg\",\n\t\"./birds/full/turkey.jpg\": \"./src/img/art/birds/full/turkey.jpg\",\n\t\"./birds/full/turquoiseperegrine.jpg\": \"./src/img/art/birds/full/turquoiseperegrine.jpg\",\n\t\"./birds/full/whitethroatedsparrow.jpg\": \"./src/img/art/birds/full/whitethroatedsparrow.jpg\",\n\t\"./birds/full/woodduck.jpg\": \"./src/img/art/birds/full/woodduck.jpg\",\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./galleries/galleries-birds-960.jpg\": \"./src/img/art/galleries/galleries-birds-960.jpg\",\n\t\"./galleries/galleries-movies-960.jpg\": \"./src/img/art/galleries/galleries-movies-960.jpg\",\n\t\"./galleries/galleries-other-960.jpg\": \"./src/img/art/galleries/galleries-other-960.jpg\",\n\t\"./movies/full/cormanandpoe.jpg\": \"./src/img/art/movies/full/cormanandpoe.jpg\",\n\t\"./movies/full/earthvsflyingsaucers.jpg\": \"./src/img/art/movies/full/earthvsflyingsaucers.jpg\",\n\t\"./movies/full/edwardscissorhands.jpg\": \"./src/img/art/movies/full/edwardscissorhands.jpg\",\n\t\"./movies/full/eternalsunshine.jpg\": \"./src/img/art/movies/full/eternalsunshine.jpg\",\n\t\"./movies/full/frankcellardoor.jpg\": \"./src/img/art/movies/full/frankcellardoor.jpg\",\n\t\"./movies/full/swampthing.jpg\": \"./src/img/art/movies/full/swampthing.jpg\",\n\t\"./movies/full/thecrow.jpg\": \"./src/img/art/movies/full/thecrow.jpg\",\n\t\"./movies/full/thedancingclown.jpg\": \"./src/img/art/movies/full/thedancingclown.jpg\",\n\t\"./movies/full/thefog.jpg\": \"./src/img/art/movies/full/thefog.jpg\",\n\t\"./movies/full/theshape.jpg\": \"./src/img/art/movies/full/theshape.jpg\",\n\t\"./movies/full/thesnake.jpg\": \"./src/img/art/movies/full/thesnake.jpg\",\n\t\"./movies/full/vincentprice.jpg\": \"./src/img/art/movies/full/vincentprice.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/full/allanon.jpg\": \"./src/img/art/other/full/allanon.jpg\",\n\t\"./other/full/andrettilongbeach.jpg\": \"./src/img/art/other/full/andrettilongbeach.jpg\",\n\t\"./other/full/chopin.jpg\": \"./src/img/art/other/full/chopin.jpg\",\n\t\"./other/full/fqmg.jpg\": \"./src/img/art/other/full/fqmg.jpg\",\n\t\"./other/full/jimclark.jpg\": \"./src/img/art/other/full/jimclark.jpg\",\n\t\"./other/full/meltingdoge.jpg\": \"./src/img/art/other/full/meltingdoge.jpg\",\n\t\"./other/full/mexicanvaquero.jpg\": \"./src/img/art/other/full/mexicanvaquero.jpg\",\n\t\"./other/full/mingojack.jpg\": \"./src/img/art/other/full/mingojack.jpg\",\n\t\"./other/full/quanahparker.jpg\": \"./src/img/art/other/full/quanahparker.jpg\",\n\t\"./other/full/redrialto.jpg\": \"./src/img/art/other/full/redrialto.jpg\",\n\t\"./other/full/riomendicanti.jpg\": \"./src/img/art/other/full/riomendicanti.jpg\",\n\t\"./other/full/schumi-monaco.jpg\": \"./src/img/art/other/full/schumi-monaco.jpg\",\n\t\"./other/full/sotoportego.jpg\": \"./src/img/art/other/full/sotoportego.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\.jpg$?");
+eval("var map = {\n\t\"./birds/full/blaumeise.jpg\": \"./src/img/art/birds/full/blaumeise.jpg\",\n\t\"./birds/full/blaumeisecolor.jpg\": \"./src/img/art/birds/full/blaumeisecolor.jpg\",\n\t\"./birds/full/bluejay.jpg\": \"./src/img/art/birds/full/bluejay.jpg\",\n\t\"./birds/full/bluejaydesert.jpg\": \"./src/img/art/birds/full/bluejaydesert.jpg\",\n\t\"./birds/full/cardinals.jpg\": \"./src/img/art/birds/full/cardinals.jpg\",\n\t\"./birds/full/coopershawk.jpg\": \"./src/img/art/birds/full/coopershawk.jpg\",\n\t\"./birds/full/cormorant.jpg\": \"./src/img/art/birds/full/cormorant.jpg\",\n\t\"./birds/full/crow.jpg\": \"./src/img/art/birds/full/crow.jpg\",\n\t\"./birds/full/emeraldosprey.jpg\": \"./src/img/art/birds/full/emeraldosprey.jpg\",\n\t\"./birds/full/flicker.jpg\": \"./src/img/art/birds/full/flicker.jpg\",\n\t\"./birds/full/goshawk.jpg\": \"./src/img/art/birds/full/goshawk.jpg\",\n\t\"./birds/full/greatblueheron.jpg\": \"./src/img/art/birds/full/greatblueheron.jpg\",\n\t\"./birds/full/greathornedowl.jpg\": \"./src/img/art/birds/full/greathornedowl.jpg\",\n\t\"./birds/full/grosbeaks.jpg\": \"./src/img/art/birds/full/grosbeaks.jpg\",\n\t\"./birds/full/kestrel.jpg\": \"./src/img/art/birds/full/kestrel.jpg\",\n\t\"./birds/full/kestrelgreenskies.jpg\": \"./src/img/art/birds/full/kestrelgreenskies.jpg\",\n\t\"./birds/full/kingfisher.jpg\": \"./src/img/art/birds/full/kingfisher.jpg\",\n\t\"./birds/full/loon.jpg\": \"./src/img/art/birds/full/loon.jpg\",\n\t\"./birds/full/magpieparkcity.jpg\": \"./src/img/art/birds/full/magpieparkcity.jpg\",\n\t\"./birds/full/meadowlark.jpg\": \"./src/img/art/birds/full/meadowlark.jpg\",\n\t\"./birds/full/nightheron.jpg\": \"./src/img/art/birds/full/nightheron.jpg\",\n\t\"./birds/full/ospreykingfisher.jpg\": \"./src/img/art/birds/full/ospreykingfisher.jpg\",\n\t\"./birds/full/passengerpigeons.jpg\": \"./src/img/art/birds/full/passengerpigeons.jpg\",\n\t\"./birds/full/pelicanvenice.jpg\": \"./src/img/art/birds/full/pelicanvenice.jpg\",\n\t\"./birds/full/peregrine.jpg\": \"./src/img/art/birds/full/peregrine.jpg\",\n\t\"./birds/full/pileatedwoodpecker.jpg\": \"./src/img/art/birds/full/pileatedwoodpecker.jpg\",\n\t\"./birds/full/redwingedblackbird.jpg\": \"./src/img/art/birds/full/redwingedblackbird.jpg\",\n\t\"./birds/full/rockpigeon.jpg\": \"./src/img/art/birds/full/rockpigeon.jpg\",\n\t\"./birds/full/screechowl.jpg\": \"./src/img/art/birds/full/screechowl.jpg\",\n\t\"./birds/full/tern.jpg\": \"./src/img/art/birds/full/tern.jpg\",\n\t\"./birds/full/turkey.jpg\": \"./src/img/art/birds/full/turkey.jpg\",\n\t\"./birds/full/turquoiseperegrine.jpg\": \"./src/img/art/birds/full/turquoiseperegrine.jpg\",\n\t\"./birds/full/whitethroatedsparrow.jpg\": \"./src/img/art/birds/full/whitethroatedsparrow.jpg\",\n\t\"./birds/full/woodduck.jpg\": \"./src/img/art/birds/full/woodduck.jpg\",\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/blaumeisecolor-250.jpg\": \"./src/img/art/birds/thumbs/blaumeisecolor-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./books/birdsofchicagoland/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/bluejay.jpg\",\n\t\"./books/birdsofchicagoland/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/cardinals.jpg\",\n\t\"./books/birdsofchicagoland/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/coopershawk.jpg\",\n\t\"./books/birdsofchicagoland/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/cormorant.jpg\",\n\t\"./books/birdsofchicagoland/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/crow.jpg\",\n\t\"./books/birdsofchicagoland/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/flicker.jpg\",\n\t\"./books/birdsofchicagoland/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/goshawk.jpg\",\n\t\"./books/birdsofchicagoland/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/greatblueheron.jpg\",\n\t\"./books/birdsofchicagoland/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/greathornedowl.jpg\",\n\t\"./books/birdsofchicagoland/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/grosbeaks.jpg\",\n\t\"./books/birdsofchicagoland/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/kestrel.jpg\",\n\t\"./books/birdsofchicagoland/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/kingfisher.jpg\",\n\t\"./books/birdsofchicagoland/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/loon.jpg\",\n\t\"./books/birdsofchicagoland/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/meadowlark.jpg\",\n\t\"./books/birdsofchicagoland/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/nightheron.jpg\",\n\t\"./books/birdsofchicagoland/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg\",\n\t\"./books/birdsofchicagoland/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/peregrine.jpg\",\n\t\"./books/birdsofchicagoland/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg\",\n\t\"./books/birdsofchicagoland/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/rockpigeon.jpg\",\n\t\"./books/birdsofchicagoland/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/tern.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg\",\n\t\"./books/birdsofchicagoland/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/turkey.jpg\",\n\t\"./books/birdsofchicagoland/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg\",\n\t\"./books/birdsofchicagoland/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/woodduck.jpg\",\n\t\"./books/birdsofchicagoland/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/woodpecker.jpg\",\n\t\"./books/charlieinktober/alien.jpg\": \"./src/img/art/books/charlieinktober/alien.jpg\",\n\t\"./books/charlieinktober/batman.jpg\": \"./src/img/art/books/charlieinktober/batman.jpg\",\n\t\"./books/charlieinktober/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/beetlejuice.jpg\",\n\t\"./books/charlieinktober/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/bladerunner.jpg\",\n\t\"./books/charlieinktober/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/donniedarko.jpg\",\n\t\"./books/charlieinktober/dracula.jpg\": \"./src/img/art/books/charlieinktober/dracula.jpg\",\n\t\"./books/charlieinktober/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/edwardscissorhands.jpg\",\n\t\"./books/charlieinktober/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/escapefromny.jpg\",\n\t\"./books/charlieinktober/halloween.jpg\": \"./src/img/art/books/charlieinktober/halloween.jpg\",\n\t\"./books/charlieinktober/lotr.jpg\": \"./src/img/art/books/charlieinktober/lotr.jpg\",\n\t\"./books/charlieinktober/metropolis.jpg\": \"./src/img/art/books/charlieinktober/metropolis.jpg\",\n\t\"./books/charlieinktober/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/nightmareb4xmas.jpg\",\n\t\"./books/charlieinktober/phibes.jpg\": \"./src/img/art/books/charlieinktober/phibes.jpg\",\n\t\"./books/charlieinktober/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/shaunofthedead.jpg\",\n\t\"./books/charlieinktober/shining.jpg\": \"./src/img/art/books/charlieinktober/shining.jpg\",\n\t\"./books/charlieinktober/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/sleepyhollow.jpg\",\n\t\"./books/charlieinktober/starwars.jpg\": \"./src/img/art/books/charlieinktober/starwars.jpg\",\n\t\"./books/charlieinktober/terminator2.jpg\": \"./src/img/art/books/charlieinktober/terminator2.jpg\",\n\t\"./books/charlieinktober/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thecrow.jpg\",\n\t\"./books/charlieinktober/thefog.jpg\": \"./src/img/art/books/charlieinktober/thefog.jpg\",\n\t\"./books/charlieinktober/thumbs/alien.jpg\": \"./src/img/art/books/charlieinktober/thumbs/alien.jpg\",\n\t\"./books/charlieinktober/thumbs/batman.jpg\": \"./src/img/art/books/charlieinktober/thumbs/batman.jpg\",\n\t\"./books/charlieinktober/thumbs/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg\",\n\t\"./books/charlieinktober/thumbs/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg\",\n\t\"./books/charlieinktober/thumbs/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg\",\n\t\"./books/charlieinktober/thumbs/dracula.jpg\": \"./src/img/art/books/charlieinktober/thumbs/dracula.jpg\",\n\t\"./books/charlieinktober/thumbs/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg\",\n\t\"./books/charlieinktober/thumbs/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg\",\n\t\"./books/charlieinktober/thumbs/halloween.jpg\": \"./src/img/art/books/charlieinktober/thumbs/halloween.jpg\",\n\t\"./books/charlieinktober/thumbs/lotr.jpg\": \"./src/img/art/books/charlieinktober/thumbs/lotr.jpg\",\n\t\"./books/charlieinktober/thumbs/metropolis.jpg\": \"./src/img/art/books/charlieinktober/thumbs/metropolis.jpg\",\n\t\"./books/charlieinktober/thumbs/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg\",\n\t\"./books/charlieinktober/thumbs/phibes.jpg\": \"./src/img/art/books/charlieinktober/thumbs/phibes.jpg\",\n\t\"./books/charlieinktober/thumbs/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg\",\n\t\"./books/charlieinktober/thumbs/shining.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shining.jpg\",\n\t\"./books/charlieinktober/thumbs/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg\",\n\t\"./books/charlieinktober/thumbs/starwars.jpg\": \"./src/img/art/books/charlieinktober/thumbs/starwars.jpg\",\n\t\"./books/charlieinktober/thumbs/terminator2.jpg\": \"./src/img/art/books/charlieinktober/thumbs/terminator2.jpg\",\n\t\"./books/charlieinktober/thumbs/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thecrow.jpg\",\n\t\"./books/charlieinktober/thumbs/thefog.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thefog.jpg\",\n\t\"./books/covers/birdsofchicagoland.jpg\": \"./src/img/art/books/covers/birdsofchicagoland.jpg\",\n\t\"./books/covers/charlieinktober.jpg\": \"./src/img/art/books/covers/charlieinktober.jpg\",\n\t\"./books/covers/openrange.jpg\": \"./src/img/art/books/covers/openrange.jpg\",\n\t\"./books/openrange/grandcanyon01.jpg\": \"./src/img/art/books/openrange/grandcanyon01.jpg\",\n\t\"./books/openrange/grandcanyon02.jpg\": \"./src/img/art/books/openrange/grandcanyon02.jpg\",\n\t\"./books/openrange/grandcanyon03.jpg\": \"./src/img/art/books/openrange/grandcanyon03.jpg\",\n\t\"./books/openrange/grandcanyon04.jpg\": \"./src/img/art/books/openrange/grandcanyon04.jpg\",\n\t\"./books/openrange/grandcanyon05.jpg\": \"./src/img/art/books/openrange/grandcanyon05.jpg\",\n\t\"./books/openrange/grandcanyon06.jpg\": \"./src/img/art/books/openrange/grandcanyon06.jpg\",\n\t\"./books/openrange/grandcanyon07.jpg\": \"./src/img/art/books/openrange/grandcanyon07.jpg\",\n\t\"./books/openrange/highways01.jpg\": \"./src/img/art/books/openrange/highways01.jpg\",\n\t\"./books/openrange/highways02.jpg\": \"./src/img/art/books/openrange/highways02.jpg\",\n\t\"./books/openrange/highways03.jpg\": \"./src/img/art/books/openrange/highways03.jpg\",\n\t\"./books/openrange/highways04.jpg\": \"./src/img/art/books/openrange/highways04.jpg\",\n\t\"./books/openrange/highways05.jpg\": \"./src/img/art/books/openrange/highways05.jpg\",\n\t\"./books/openrange/highways06.jpg\": \"./src/img/art/books/openrange/highways06.jpg\",\n\t\"./books/openrange/highways07.jpg\": \"./src/img/art/books/openrange/highways07.jpg\",\n\t\"./books/openrange/highways08.jpg\": \"./src/img/art/books/openrange/highways08.jpg\",\n\t\"./books/openrange/highways09.jpg\": \"./src/img/art/books/openrange/highways09.jpg\",\n\t\"./books/openrange/joshuatree01.jpg\": \"./src/img/art/books/openrange/joshuatree01.jpg\",\n\t\"./books/openrange/joshuatree02.jpg\": \"./src/img/art/books/openrange/joshuatree02.jpg\",\n\t\"./books/openrange/joshuatree03.jpg\": \"./src/img/art/books/openrange/joshuatree03.jpg\",\n\t\"./books/openrange/joshuatree04.jpg\": \"./src/img/art/books/openrange/joshuatree04.jpg\",\n\t\"./books/openrange/lakepowell01.jpg\": \"./src/img/art/books/openrange/lakepowell01.jpg\",\n\t\"./books/openrange/lakepowell02.jpg\": \"./src/img/art/books/openrange/lakepowell02.jpg\",\n\t\"./books/openrange/lakepowell03.jpg\": \"./src/img/art/books/openrange/lakepowell03.jpg\",\n\t\"./books/openrange/lakepowell04.jpg\": \"./src/img/art/books/openrange/lakepowell04.jpg\",\n\t\"./books/openrange/lakepowell05.jpg\": \"./src/img/art/books/openrange/lakepowell05.jpg\",\n\t\"./books/openrange/leesferry01.jpg\": \"./src/img/art/books/openrange/leesferry01.jpg\",\n\t\"./books/openrange/leesferry02.jpg\": \"./src/img/art/books/openrange/leesferry02.jpg\",\n\t\"./books/openrange/monumentvalley01.jpg\": \"./src/img/art/books/openrange/monumentvalley01.jpg\",\n\t\"./books/openrange/monumentvalley02.jpg\": \"./src/img/art/books/openrange/monumentvalley02.jpg\",\n\t\"./books/openrange/monumentvalley03.jpg\": \"./src/img/art/books/openrange/monumentvalley03.jpg\",\n\t\"./books/openrange/monumentvalley04.jpg\": \"./src/img/art/books/openrange/monumentvalley04.jpg\",\n\t\"./books/openrange/monumentvalley05.jpg\": \"./src/img/art/books/openrange/monumentvalley05.jpg\",\n\t\"./books/openrange/monumentvalley06.jpg\": \"./src/img/art/books/openrange/monumentvalley06.jpg\",\n\t\"./books/openrange/monumentvalley07.jpg\": \"./src/img/art/books/openrange/monumentvalley07.jpg\",\n\t\"./books/openrange/monumentvalley08.jpg\": \"./src/img/art/books/openrange/monumentvalley08.jpg\",\n\t\"./books/openrange/monumentvalley09.jpg\": \"./src/img/art/books/openrange/monumentvalley09.jpg\",\n\t\"./books/openrange/monumentvalley10.jpg\": \"./src/img/art/books/openrange/monumentvalley10.jpg\",\n\t\"./books/openrange/monumentvalley11.jpg\": \"./src/img/art/books/openrange/monumentvalley11.jpg\",\n\t\"./books/openrange/monumentvalley12.jpg\": \"./src/img/art/books/openrange/monumentvalley12.jpg\",\n\t\"./books/openrange/monumentvalley13.jpg\": \"./src/img/art/books/openrange/monumentvalley13.jpg\",\n\t\"./books/openrange/monumentvalley14.jpg\": \"./src/img/art/books/openrange/monumentvalley14.jpg\",\n\t\"./books/openrange/monumentvalley15.jpg\": \"./src/img/art/books/openrange/monumentvalley15.jpg\",\n\t\"./books/openrange/monumentvalley16.jpg\": \"./src/img/art/books/openrange/monumentvalley16.jpg\",\n\t\"./books/openrange/navajomonument01.jpg\": \"./src/img/art/books/openrange/navajomonument01.jpg\",\n\t\"./books/openrange/navajomonument02.jpg\": \"./src/img/art/books/openrange/navajomonument02.jpg\",\n\t\"./books/openrange/navajomonument03.jpg\": \"./src/img/art/books/openrange/navajomonument03.jpg\",\n\t\"./books/openrange/navajomonument04.jpg\": \"./src/img/art/books/openrange/navajomonument04.jpg\",\n\t\"./books/openrange/navajomonument05.jpg\": \"./src/img/art/books/openrange/navajomonument05.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon01.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon01.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon02.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon02.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon03.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon03.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon04.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon04.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon05.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon05.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon06.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon06.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon07.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon07.jpg\",\n\t\"./books/openrange/thumbs/highways01.jpg\": \"./src/img/art/books/openrange/thumbs/highways01.jpg\",\n\t\"./books/openrange/thumbs/highways02.jpg\": \"./src/img/art/books/openrange/thumbs/highways02.jpg\",\n\t\"./books/openrange/thumbs/highways03.jpg\": \"./src/img/art/books/openrange/thumbs/highways03.jpg\",\n\t\"./books/openrange/thumbs/highways04.jpg\": \"./src/img/art/books/openrange/thumbs/highways04.jpg\",\n\t\"./books/openrange/thumbs/highways05.jpg\": \"./src/img/art/books/openrange/thumbs/highways05.jpg\",\n\t\"./books/openrange/thumbs/highways06.jpg\": \"./src/img/art/books/openrange/thumbs/highways06.jpg\",\n\t\"./books/openrange/thumbs/highways07.jpg\": \"./src/img/art/books/openrange/thumbs/highways07.jpg\",\n\t\"./books/openrange/thumbs/highways08.jpg\": \"./src/img/art/books/openrange/thumbs/highways08.jpg\",\n\t\"./books/openrange/thumbs/highways09.jpg\": \"./src/img/art/books/openrange/thumbs/highways09.jpg\",\n\t\"./books/openrange/thumbs/joshuatree01.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree01.jpg\",\n\t\"./books/openrange/thumbs/joshuatree02.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree02.jpg\",\n\t\"./books/openrange/thumbs/joshuatree03.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree03.jpg\",\n\t\"./books/openrange/thumbs/joshuatree04.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree04.jpg\",\n\t\"./books/openrange/thumbs/lakepowell01.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell01.jpg\",\n\t\"./books/openrange/thumbs/lakepowell02.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell02.jpg\",\n\t\"./books/openrange/thumbs/lakepowell03.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell03.jpg\",\n\t\"./books/openrange/thumbs/lakepowell04.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell04.jpg\",\n\t\"./books/openrange/thumbs/lakepowell05.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell05.jpg\",\n\t\"./books/openrange/thumbs/leesferry01.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry01.jpg\",\n\t\"./books/openrange/thumbs/leesferry02.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry02.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley01.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley01.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley02.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley02.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley03.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley03.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley04.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley04.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley05.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley05.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley06.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley06.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley07.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley07.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley08.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley08.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley09.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley09.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley10.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley10.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley11.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley11.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley12.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley12.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley13.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley13.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley14.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley14.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley15.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley15.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley16.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley16.jpg\",\n\t\"./books/openrange/thumbs/navajomonument01.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument01.jpg\",\n\t\"./books/openrange/thumbs/navajomonument02.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument02.jpg\",\n\t\"./books/openrange/thumbs/navajomonument03.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument03.jpg\",\n\t\"./books/openrange/thumbs/navajomonument04.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument04.jpg\",\n\t\"./books/openrange/thumbs/navajomonument05.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument05.jpg\",\n\t\"./galleries/galleries-birds.jpg\": \"./src/img/art/galleries/galleries-birds.jpg\",\n\t\"./galleries/galleries-books.jpg\": \"./src/img/art/galleries/galleries-books.jpg\",\n\t\"./galleries/galleries-movies.jpg\": \"./src/img/art/galleries/galleries-movies.jpg\",\n\t\"./galleries/galleries-other.jpg\": \"./src/img/art/galleries/galleries-other.jpg\",\n\t\"./movies/full/beetlejuice.jpg\": \"./src/img/art/movies/full/beetlejuice.jpg\",\n\t\"./movies/full/cormanandpoe.jpg\": \"./src/img/art/movies/full/cormanandpoe.jpg\",\n\t\"./movies/full/earthvsflyingsaucers.jpg\": \"./src/img/art/movies/full/earthvsflyingsaucers.jpg\",\n\t\"./movies/full/edwardscissorhands.jpg\": \"./src/img/art/movies/full/edwardscissorhands.jpg\",\n\t\"./movies/full/eternalsunshine.jpg\": \"./src/img/art/movies/full/eternalsunshine.jpg\",\n\t\"./movies/full/frankcellardoor.jpg\": \"./src/img/art/movies/full/frankcellardoor.jpg\",\n\t\"./movies/full/nightmareb4xmas.jpg\": \"./src/img/art/movies/full/nightmareb4xmas.jpg\",\n\t\"./movies/full/phibes.jpg\": \"./src/img/art/movies/full/phibes.jpg\",\n\t\"./movies/full/shaunofthedead.jpg\": \"./src/img/art/movies/full/shaunofthedead.jpg\",\n\t\"./movies/full/shining.jpg\": \"./src/img/art/movies/full/shining.jpg\",\n\t\"./movies/full/sleepyhollow.jpg\": \"./src/img/art/movies/full/sleepyhollow.jpg\",\n\t\"./movies/full/swampthing.jpg\": \"./src/img/art/movies/full/swampthing.jpg\",\n\t\"./movies/full/thecrow.jpg\": \"./src/img/art/movies/full/thecrow.jpg\",\n\t\"./movies/full/thedancingclown.jpg\": \"./src/img/art/movies/full/thedancingclown.jpg\",\n\t\"./movies/full/thefog.jpg\": \"./src/img/art/movies/full/thefog.jpg\",\n\t\"./movies/full/theshape.jpg\": \"./src/img/art/movies/full/theshape.jpg\",\n\t\"./movies/full/thesnake.jpg\": \"./src/img/art/movies/full/thesnake.jpg\",\n\t\"./movies/full/vincentprice.jpg\": \"./src/img/art/movies/full/vincentprice.jpg\",\n\t\"./movies/thumbs/beetlejuice-250.jpg\": \"./src/img/art/movies/thumbs/beetlejuice-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/nightmareb4xmas-250.jpg\": \"./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg\",\n\t\"./movies/thumbs/phibes-250.jpg\": \"./src/img/art/movies/thumbs/phibes-250.jpg\",\n\t\"./movies/thumbs/shaunofthedead-250.jpg\": \"./src/img/art/movies/thumbs/shaunofthedead-250.jpg\",\n\t\"./movies/thumbs/shining-250.jpg\": \"./src/img/art/movies/thumbs/shining-250.jpg\",\n\t\"./movies/thumbs/sleepyhollow-250.jpg\": \"./src/img/art/movies/thumbs/sleepyhollow-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/full/allanon.jpg\": \"./src/img/art/other/full/allanon.jpg\",\n\t\"./other/full/andrettilongbeach.jpg\": \"./src/img/art/other/full/andrettilongbeach.jpg\",\n\t\"./other/full/chopin.jpg\": \"./src/img/art/other/full/chopin.jpg\",\n\t\"./other/full/fqmg.jpg\": \"./src/img/art/other/full/fqmg.jpg\",\n\t\"./other/full/jimclark.jpg\": \"./src/img/art/other/full/jimclark.jpg\",\n\t\"./other/full/meltingdoge.jpg\": \"./src/img/art/other/full/meltingdoge.jpg\",\n\t\"./other/full/mexicanvaquero.jpg\": \"./src/img/art/other/full/mexicanvaquero.jpg\",\n\t\"./other/full/mingojack.jpg\": \"./src/img/art/other/full/mingojack.jpg\",\n\t\"./other/full/quanahparker.jpg\": \"./src/img/art/other/full/quanahparker.jpg\",\n\t\"./other/full/redrialto.jpg\": \"./src/img/art/other/full/redrialto.jpg\",\n\t\"./other/full/riomendicanti.jpg\": \"./src/img/art/other/full/riomendicanti.jpg\",\n\t\"./other/full/schumi-monaco.jpg\": \"./src/img/art/other/full/schumi-monaco.jpg\",\n\t\"./other/full/selfportrait2007.jpg\": \"./src/img/art/other/full/selfportrait2007.jpg\",\n\t\"./other/full/selfportrait2020.jpg\": \"./src/img/art/other/full/selfportrait2020.jpg\",\n\t\"./other/full/sotoportego.jpg\": \"./src/img/art/other/full/sotoportego.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/selfportrait2007-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2007-250.jpg\",\n\t\"./other/thumbs/selfportrait2020-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2020-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\.jpg$?");
 
 /***/ }),
 
@@ -500,6 +706,17 @@ eval("var map = {\n\t\"./birds/full/blaumeise.jpg\": \"./src/img/art/birds/full/
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/birds/full/blaumeise.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/birds/full/blaumeise.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/birds/full/blaumeisecolor.jpg":
+/*!***************************************************!*\
+  !*** ./src/img/art/birds/full/blaumeisecolor.jpg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/birds/full/blaumeisecolor.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/birds/full/blaumeisecolor.jpg?");
 
 /***/ }),
 
@@ -866,6 +1083,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/birds/thumbs/blaumeise-
 
 /***/ }),
 
+/***/ "./src/img/art/birds/thumbs/blaumeisecolor-250.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/birds/thumbs/blaumeisecolor-250.jpg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/birds/thumbs/blaumeisecolor-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/birds/thumbs/blaumeisecolor-250.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/birds/thumbs/bluejay-250.jpg":
 /*!**************************************************!*\
   !*** ./src/img/art/birds/thumbs/bluejay-250.jpg ***!
@@ -1218,47 +1446,2148 @@ eval("module.exports = __webpack_require__.p + \"img/art/birds/thumbs/woodduck-2
 
 /***/ }),
 
-/***/ "./src/img/art/galleries sync recursive ^\\.\\/galleries\\-.*\\-960\\.jpg$":
+/***/ "./src/img/art/books sync recursive ^\\.\\/.*\\.jpg$":
+/*!**********************************************!*\
+  !*** ./src/img/art/books sync ^\.\/.*\.jpg$ ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./birdsofchicagoland/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/bluejay.jpg\",\n\t\"./birdsofchicagoland/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/cardinals.jpg\",\n\t\"./birdsofchicagoland/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/coopershawk.jpg\",\n\t\"./birdsofchicagoland/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/cormorant.jpg\",\n\t\"./birdsofchicagoland/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/crow.jpg\",\n\t\"./birdsofchicagoland/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/flicker.jpg\",\n\t\"./birdsofchicagoland/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/goshawk.jpg\",\n\t\"./birdsofchicagoland/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/greatblueheron.jpg\",\n\t\"./birdsofchicagoland/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/greathornedowl.jpg\",\n\t\"./birdsofchicagoland/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/grosbeaks.jpg\",\n\t\"./birdsofchicagoland/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/kestrel.jpg\",\n\t\"./birdsofchicagoland/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/kingfisher.jpg\",\n\t\"./birdsofchicagoland/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/loon.jpg\",\n\t\"./birdsofchicagoland/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/meadowlark.jpg\",\n\t\"./birdsofchicagoland/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/nightheron.jpg\",\n\t\"./birdsofchicagoland/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg\",\n\t\"./birdsofchicagoland/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/peregrine.jpg\",\n\t\"./birdsofchicagoland/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg\",\n\t\"./birdsofchicagoland/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/rockpigeon.jpg\",\n\t\"./birdsofchicagoland/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/tern.jpg\",\n\t\"./birdsofchicagoland/thumbs/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg\",\n\t\"./birdsofchicagoland/thumbs/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg\",\n\t\"./birdsofchicagoland/thumbs/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg\",\n\t\"./birdsofchicagoland/thumbs/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg\",\n\t\"./birdsofchicagoland/thumbs/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg\",\n\t\"./birdsofchicagoland/thumbs/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg\",\n\t\"./birdsofchicagoland/thumbs/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg\",\n\t\"./birdsofchicagoland/thumbs/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg\",\n\t\"./birdsofchicagoland/thumbs/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg\",\n\t\"./birdsofchicagoland/thumbs/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg\",\n\t\"./birdsofchicagoland/thumbs/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg\",\n\t\"./birdsofchicagoland/thumbs/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg\",\n\t\"./birdsofchicagoland/thumbs/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg\",\n\t\"./birdsofchicagoland/thumbs/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg\",\n\t\"./birdsofchicagoland/thumbs/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg\",\n\t\"./birdsofchicagoland/thumbs/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg\",\n\t\"./birdsofchicagoland/thumbs/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg\",\n\t\"./birdsofchicagoland/thumbs/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\",\n\t\"./birdsofchicagoland/thumbs/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg\",\n\t\"./birdsofchicagoland/thumbs/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg\",\n\t\"./birdsofchicagoland/thumbs/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg\",\n\t\"./birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\",\n\t\"./birdsofchicagoland/thumbs/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg\",\n\t\"./birdsofchicagoland/thumbs/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg\",\n\t\"./birdsofchicagoland/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/turkey.jpg\",\n\t\"./birdsofchicagoland/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg\",\n\t\"./birdsofchicagoland/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/woodduck.jpg\",\n\t\"./birdsofchicagoland/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/woodpecker.jpg\",\n\t\"./charlieinktober/alien.jpg\": \"./src/img/art/books/charlieinktober/alien.jpg\",\n\t\"./charlieinktober/batman.jpg\": \"./src/img/art/books/charlieinktober/batman.jpg\",\n\t\"./charlieinktober/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/beetlejuice.jpg\",\n\t\"./charlieinktober/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/bladerunner.jpg\",\n\t\"./charlieinktober/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/donniedarko.jpg\",\n\t\"./charlieinktober/dracula.jpg\": \"./src/img/art/books/charlieinktober/dracula.jpg\",\n\t\"./charlieinktober/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/edwardscissorhands.jpg\",\n\t\"./charlieinktober/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/escapefromny.jpg\",\n\t\"./charlieinktober/halloween.jpg\": \"./src/img/art/books/charlieinktober/halloween.jpg\",\n\t\"./charlieinktober/lotr.jpg\": \"./src/img/art/books/charlieinktober/lotr.jpg\",\n\t\"./charlieinktober/metropolis.jpg\": \"./src/img/art/books/charlieinktober/metropolis.jpg\",\n\t\"./charlieinktober/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/nightmareb4xmas.jpg\",\n\t\"./charlieinktober/phibes.jpg\": \"./src/img/art/books/charlieinktober/phibes.jpg\",\n\t\"./charlieinktober/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/shaunofthedead.jpg\",\n\t\"./charlieinktober/shining.jpg\": \"./src/img/art/books/charlieinktober/shining.jpg\",\n\t\"./charlieinktober/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/sleepyhollow.jpg\",\n\t\"./charlieinktober/starwars.jpg\": \"./src/img/art/books/charlieinktober/starwars.jpg\",\n\t\"./charlieinktober/terminator2.jpg\": \"./src/img/art/books/charlieinktober/terminator2.jpg\",\n\t\"./charlieinktober/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thecrow.jpg\",\n\t\"./charlieinktober/thefog.jpg\": \"./src/img/art/books/charlieinktober/thefog.jpg\",\n\t\"./charlieinktober/thumbs/alien.jpg\": \"./src/img/art/books/charlieinktober/thumbs/alien.jpg\",\n\t\"./charlieinktober/thumbs/batman.jpg\": \"./src/img/art/books/charlieinktober/thumbs/batman.jpg\",\n\t\"./charlieinktober/thumbs/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg\",\n\t\"./charlieinktober/thumbs/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg\",\n\t\"./charlieinktober/thumbs/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg\",\n\t\"./charlieinktober/thumbs/dracula.jpg\": \"./src/img/art/books/charlieinktober/thumbs/dracula.jpg\",\n\t\"./charlieinktober/thumbs/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg\",\n\t\"./charlieinktober/thumbs/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg\",\n\t\"./charlieinktober/thumbs/halloween.jpg\": \"./src/img/art/books/charlieinktober/thumbs/halloween.jpg\",\n\t\"./charlieinktober/thumbs/lotr.jpg\": \"./src/img/art/books/charlieinktober/thumbs/lotr.jpg\",\n\t\"./charlieinktober/thumbs/metropolis.jpg\": \"./src/img/art/books/charlieinktober/thumbs/metropolis.jpg\",\n\t\"./charlieinktober/thumbs/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg\",\n\t\"./charlieinktober/thumbs/phibes.jpg\": \"./src/img/art/books/charlieinktober/thumbs/phibes.jpg\",\n\t\"./charlieinktober/thumbs/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg\",\n\t\"./charlieinktober/thumbs/shining.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shining.jpg\",\n\t\"./charlieinktober/thumbs/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg\",\n\t\"./charlieinktober/thumbs/starwars.jpg\": \"./src/img/art/books/charlieinktober/thumbs/starwars.jpg\",\n\t\"./charlieinktober/thumbs/terminator2.jpg\": \"./src/img/art/books/charlieinktober/thumbs/terminator2.jpg\",\n\t\"./charlieinktober/thumbs/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thecrow.jpg\",\n\t\"./charlieinktober/thumbs/thefog.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thefog.jpg\",\n\t\"./covers/birdsofchicagoland.jpg\": \"./src/img/art/books/covers/birdsofchicagoland.jpg\",\n\t\"./covers/charlieinktober.jpg\": \"./src/img/art/books/covers/charlieinktober.jpg\",\n\t\"./covers/openrange.jpg\": \"./src/img/art/books/covers/openrange.jpg\",\n\t\"./openrange/grandcanyon01.jpg\": \"./src/img/art/books/openrange/grandcanyon01.jpg\",\n\t\"./openrange/grandcanyon02.jpg\": \"./src/img/art/books/openrange/grandcanyon02.jpg\",\n\t\"./openrange/grandcanyon03.jpg\": \"./src/img/art/books/openrange/grandcanyon03.jpg\",\n\t\"./openrange/grandcanyon04.jpg\": \"./src/img/art/books/openrange/grandcanyon04.jpg\",\n\t\"./openrange/grandcanyon05.jpg\": \"./src/img/art/books/openrange/grandcanyon05.jpg\",\n\t\"./openrange/grandcanyon06.jpg\": \"./src/img/art/books/openrange/grandcanyon06.jpg\",\n\t\"./openrange/grandcanyon07.jpg\": \"./src/img/art/books/openrange/grandcanyon07.jpg\",\n\t\"./openrange/highways01.jpg\": \"./src/img/art/books/openrange/highways01.jpg\",\n\t\"./openrange/highways02.jpg\": \"./src/img/art/books/openrange/highways02.jpg\",\n\t\"./openrange/highways03.jpg\": \"./src/img/art/books/openrange/highways03.jpg\",\n\t\"./openrange/highways04.jpg\": \"./src/img/art/books/openrange/highways04.jpg\",\n\t\"./openrange/highways05.jpg\": \"./src/img/art/books/openrange/highways05.jpg\",\n\t\"./openrange/highways06.jpg\": \"./src/img/art/books/openrange/highways06.jpg\",\n\t\"./openrange/highways07.jpg\": \"./src/img/art/books/openrange/highways07.jpg\",\n\t\"./openrange/highways08.jpg\": \"./src/img/art/books/openrange/highways08.jpg\",\n\t\"./openrange/highways09.jpg\": \"./src/img/art/books/openrange/highways09.jpg\",\n\t\"./openrange/joshuatree01.jpg\": \"./src/img/art/books/openrange/joshuatree01.jpg\",\n\t\"./openrange/joshuatree02.jpg\": \"./src/img/art/books/openrange/joshuatree02.jpg\",\n\t\"./openrange/joshuatree03.jpg\": \"./src/img/art/books/openrange/joshuatree03.jpg\",\n\t\"./openrange/joshuatree04.jpg\": \"./src/img/art/books/openrange/joshuatree04.jpg\",\n\t\"./openrange/lakepowell01.jpg\": \"./src/img/art/books/openrange/lakepowell01.jpg\",\n\t\"./openrange/lakepowell02.jpg\": \"./src/img/art/books/openrange/lakepowell02.jpg\",\n\t\"./openrange/lakepowell03.jpg\": \"./src/img/art/books/openrange/lakepowell03.jpg\",\n\t\"./openrange/lakepowell04.jpg\": \"./src/img/art/books/openrange/lakepowell04.jpg\",\n\t\"./openrange/lakepowell05.jpg\": \"./src/img/art/books/openrange/lakepowell05.jpg\",\n\t\"./openrange/leesferry01.jpg\": \"./src/img/art/books/openrange/leesferry01.jpg\",\n\t\"./openrange/leesferry02.jpg\": \"./src/img/art/books/openrange/leesferry02.jpg\",\n\t\"./openrange/monumentvalley01.jpg\": \"./src/img/art/books/openrange/monumentvalley01.jpg\",\n\t\"./openrange/monumentvalley02.jpg\": \"./src/img/art/books/openrange/monumentvalley02.jpg\",\n\t\"./openrange/monumentvalley03.jpg\": \"./src/img/art/books/openrange/monumentvalley03.jpg\",\n\t\"./openrange/monumentvalley04.jpg\": \"./src/img/art/books/openrange/monumentvalley04.jpg\",\n\t\"./openrange/monumentvalley05.jpg\": \"./src/img/art/books/openrange/monumentvalley05.jpg\",\n\t\"./openrange/monumentvalley06.jpg\": \"./src/img/art/books/openrange/monumentvalley06.jpg\",\n\t\"./openrange/monumentvalley07.jpg\": \"./src/img/art/books/openrange/monumentvalley07.jpg\",\n\t\"./openrange/monumentvalley08.jpg\": \"./src/img/art/books/openrange/monumentvalley08.jpg\",\n\t\"./openrange/monumentvalley09.jpg\": \"./src/img/art/books/openrange/monumentvalley09.jpg\",\n\t\"./openrange/monumentvalley10.jpg\": \"./src/img/art/books/openrange/monumentvalley10.jpg\",\n\t\"./openrange/monumentvalley11.jpg\": \"./src/img/art/books/openrange/monumentvalley11.jpg\",\n\t\"./openrange/monumentvalley12.jpg\": \"./src/img/art/books/openrange/monumentvalley12.jpg\",\n\t\"./openrange/monumentvalley13.jpg\": \"./src/img/art/books/openrange/monumentvalley13.jpg\",\n\t\"./openrange/monumentvalley14.jpg\": \"./src/img/art/books/openrange/monumentvalley14.jpg\",\n\t\"./openrange/monumentvalley15.jpg\": \"./src/img/art/books/openrange/monumentvalley15.jpg\",\n\t\"./openrange/monumentvalley16.jpg\": \"./src/img/art/books/openrange/monumentvalley16.jpg\",\n\t\"./openrange/navajomonument01.jpg\": \"./src/img/art/books/openrange/navajomonument01.jpg\",\n\t\"./openrange/navajomonument02.jpg\": \"./src/img/art/books/openrange/navajomonument02.jpg\",\n\t\"./openrange/navajomonument03.jpg\": \"./src/img/art/books/openrange/navajomonument03.jpg\",\n\t\"./openrange/navajomonument04.jpg\": \"./src/img/art/books/openrange/navajomonument04.jpg\",\n\t\"./openrange/navajomonument05.jpg\": \"./src/img/art/books/openrange/navajomonument05.jpg\",\n\t\"./openrange/thumbs/grandcanyon01.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon01.jpg\",\n\t\"./openrange/thumbs/grandcanyon02.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon02.jpg\",\n\t\"./openrange/thumbs/grandcanyon03.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon03.jpg\",\n\t\"./openrange/thumbs/grandcanyon04.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon04.jpg\",\n\t\"./openrange/thumbs/grandcanyon05.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon05.jpg\",\n\t\"./openrange/thumbs/grandcanyon06.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon06.jpg\",\n\t\"./openrange/thumbs/grandcanyon07.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon07.jpg\",\n\t\"./openrange/thumbs/highways01.jpg\": \"./src/img/art/books/openrange/thumbs/highways01.jpg\",\n\t\"./openrange/thumbs/highways02.jpg\": \"./src/img/art/books/openrange/thumbs/highways02.jpg\",\n\t\"./openrange/thumbs/highways03.jpg\": \"./src/img/art/books/openrange/thumbs/highways03.jpg\",\n\t\"./openrange/thumbs/highways04.jpg\": \"./src/img/art/books/openrange/thumbs/highways04.jpg\",\n\t\"./openrange/thumbs/highways05.jpg\": \"./src/img/art/books/openrange/thumbs/highways05.jpg\",\n\t\"./openrange/thumbs/highways06.jpg\": \"./src/img/art/books/openrange/thumbs/highways06.jpg\",\n\t\"./openrange/thumbs/highways07.jpg\": \"./src/img/art/books/openrange/thumbs/highways07.jpg\",\n\t\"./openrange/thumbs/highways08.jpg\": \"./src/img/art/books/openrange/thumbs/highways08.jpg\",\n\t\"./openrange/thumbs/highways09.jpg\": \"./src/img/art/books/openrange/thumbs/highways09.jpg\",\n\t\"./openrange/thumbs/joshuatree01.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree01.jpg\",\n\t\"./openrange/thumbs/joshuatree02.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree02.jpg\",\n\t\"./openrange/thumbs/joshuatree03.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree03.jpg\",\n\t\"./openrange/thumbs/joshuatree04.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree04.jpg\",\n\t\"./openrange/thumbs/lakepowell01.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell01.jpg\",\n\t\"./openrange/thumbs/lakepowell02.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell02.jpg\",\n\t\"./openrange/thumbs/lakepowell03.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell03.jpg\",\n\t\"./openrange/thumbs/lakepowell04.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell04.jpg\",\n\t\"./openrange/thumbs/lakepowell05.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell05.jpg\",\n\t\"./openrange/thumbs/leesferry01.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry01.jpg\",\n\t\"./openrange/thumbs/leesferry02.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry02.jpg\",\n\t\"./openrange/thumbs/monumentvalley01.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley01.jpg\",\n\t\"./openrange/thumbs/monumentvalley02.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley02.jpg\",\n\t\"./openrange/thumbs/monumentvalley03.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley03.jpg\",\n\t\"./openrange/thumbs/monumentvalley04.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley04.jpg\",\n\t\"./openrange/thumbs/monumentvalley05.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley05.jpg\",\n\t\"./openrange/thumbs/monumentvalley06.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley06.jpg\",\n\t\"./openrange/thumbs/monumentvalley07.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley07.jpg\",\n\t\"./openrange/thumbs/monumentvalley08.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley08.jpg\",\n\t\"./openrange/thumbs/monumentvalley09.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley09.jpg\",\n\t\"./openrange/thumbs/monumentvalley10.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley10.jpg\",\n\t\"./openrange/thumbs/monumentvalley11.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley11.jpg\",\n\t\"./openrange/thumbs/monumentvalley12.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley12.jpg\",\n\t\"./openrange/thumbs/monumentvalley13.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley13.jpg\",\n\t\"./openrange/thumbs/monumentvalley14.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley14.jpg\",\n\t\"./openrange/thumbs/monumentvalley15.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley15.jpg\",\n\t\"./openrange/thumbs/monumentvalley16.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley16.jpg\",\n\t\"./openrange/thumbs/navajomonument01.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument01.jpg\",\n\t\"./openrange/thumbs/navajomonument02.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument02.jpg\",\n\t\"./openrange/thumbs/navajomonument03.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument03.jpg\",\n\t\"./openrange/thumbs/navajomonument04.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument04.jpg\",\n\t\"./openrange/thumbs/navajomonument05.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument05.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/books sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/books_sync_^\\.\\/.*\\.jpg$?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/bluejay.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/bluejay.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/bluejay.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/bluejay.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/cardinals.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/cardinals.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/cardinals.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/cardinals.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/coopershawk.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/coopershawk.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/coopershawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/coopershawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/cormorant.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/cormorant.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/cormorant.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/cormorant.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/crow.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/crow.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/crow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/crow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/flicker.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/flicker.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/flicker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/flicker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/goshawk.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/goshawk.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/goshawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/goshawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/greatblueheron.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/greatblueheron.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/greatblueheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/greatblueheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/greathornedowl.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/greathornedowl.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/greathornedowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/greathornedowl.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/grosbeaks.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/grosbeaks.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/grosbeaks.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/grosbeaks.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/kestrel.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/kestrel.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/kestrel.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/kestrel.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/kingfisher.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/kingfisher.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/kingfisher.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/kingfisher.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/loon.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/loon.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/loon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/loon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/meadowlark.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/meadowlark.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/meadowlark.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/meadowlark.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/nightheron.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/nightheron.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/nightheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/nightheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/passengerpigeons.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/peregrine.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/peregrine.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/peregrine.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/peregrine.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg":
+/*!*********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/redwingedblackbird.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/rockpigeon.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/rockpigeon.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/rockpigeon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/rockpigeon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/tern.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/tern.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/tern.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/tern.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/bluejay.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/cardinals.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg":
+/*!*********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/cormorant.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/crow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/flicker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/goshawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/kestrel.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/loon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/nightheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/peregrine.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg":
+/*!****************************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/tern.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/turkey.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg":
+/*!******************************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg":
 /*!******************************************************************!*\
-  !*** ./src/img/art/galleries sync ^\.\/galleries\-.*\-960\.jpg$ ***!
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./galleries-birds-960.jpg\": \"./src/img/art/galleries/galleries-birds-960.jpg\",\n\t\"./galleries-movies-960.jpg\": \"./src/img/art/galleries/galleries-movies-960.jpg\",\n\t\"./galleries-other-960.jpg\": \"./src/img/art/galleries/galleries-other-960.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/galleries sync recursive ^\\\\.\\\\/galleries\\\\-.*\\\\-960\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/galleries_sync_^\\.\\/galleries\\-.*\\-960\\.jpg$?");
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/woodduck.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/galleries/galleries-birds-960.jpg":
+/***/ "./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/turkey.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/turkey.jpg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/turkey.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/turkey.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/woodduck.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/woodduck.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/woodduck.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/woodduck.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/birdsofchicagoland/woodpecker.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/birdsofchicagoland/woodpecker.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/woodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/woodpecker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/alien.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/alien.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/alien.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/alien.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/batman.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/batman.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/batman.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/batman.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/beetlejuice.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/beetlejuice.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/beetlejuice.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/bladerunner.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/bladerunner.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/bladerunner.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/bladerunner.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/donniedarko.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/donniedarko.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/donniedarko.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/donniedarko.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/dracula.jpg":
 /*!*******************************************************!*\
-  !*** ./src/img/art/galleries/galleries-birds-960.jpg ***!
+  !*** ./src/img/art/books/charlieinktober/dracula.jpg ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-birds-960.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-birds-960.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/dracula.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/dracula.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/galleries/galleries-movies-960.jpg":
+/***/ "./src/img/art/books/charlieinktober/edwardscissorhands.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/edwardscissorhands.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/edwardscissorhands.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/edwardscissorhands.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/escapefromny.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/escapefromny.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/escapefromny.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/escapefromny.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/halloween.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/halloween.jpg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/halloween.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/halloween.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/lotr.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/lotr.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/lotr.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/lotr.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/metropolis.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/metropolis.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/metropolis.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/metropolis.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/nightmareb4xmas.jpg":
+/*!***************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/nightmareb4xmas.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/nightmareb4xmas.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/phibes.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/phibes.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/phibes.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/shaunofthedead.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/shaunofthedead.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/shaunofthedead.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/shining.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/shining.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/shining.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/sleepyhollow.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/sleepyhollow.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/sleepyhollow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/starwars.jpg":
 /*!********************************************************!*\
-  !*** ./src/img/art/galleries/galleries-movies-960.jpg ***!
+  !*** ./src/img/art/books/charlieinktober/starwars.jpg ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-movies-960.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-movies-960.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/starwars.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/starwars.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/galleries/galleries-other-960.jpg":
+/***/ "./src/img/art/books/charlieinktober/terminator2.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/terminator2.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/terminator2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/terminator2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thecrow.jpg":
 /*!*******************************************************!*\
-  !*** ./src/img/art/galleries/galleries-other-960.jpg ***!
+  !*** ./src/img/art/books/charlieinktober/thecrow.jpg ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-other-960.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-other-960.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thecrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thecrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thefog.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thefog.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thefog.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thefog.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/alien.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/alien.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/alien.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/alien.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/batman.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/batman.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/batman.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/batman.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/bladerunner.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/donniedarko.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/dracula.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/dracula.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/dracula.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/dracula.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/escapefromny.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/halloween.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/halloween.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/halloween.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/halloween.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/lotr.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/lotr.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/lotr.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/lotr.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/metropolis.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/metropolis.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/metropolis.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/metropolis.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg":
+/*!**********************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/phibes.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/phibes.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/phibes.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg":
+/*!*********************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/shining.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/shining.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/shining.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/starwars.jpg":
+/*!***************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/starwars.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/starwars.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/starwars.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/terminator2.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/terminator2.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/terminator2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/terminator2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/thecrow.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/thecrow.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/thecrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/thecrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/charlieinktober/thumbs/thefog.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/charlieinktober/thumbs/thefog.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/thefog.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/thefog.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/covers sync recursive ^\\.\\/.*\\.jpg$":
+/*!*****************************************************!*\
+  !*** ./src/img/art/books/covers sync ^\.\/.*\.jpg$ ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./birdsofchicagoland.jpg\": \"./src/img/art/books/covers/birdsofchicagoland.jpg\",\n\t\"./charlieinktober.jpg\": \"./src/img/art/books/covers/charlieinktober.jpg\",\n\t\"./openrange.jpg\": \"./src/img/art/books/covers/openrange.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/books/covers sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers_sync_^\\.\\/.*\\.jpg$?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/covers/birdsofchicagoland.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/books/covers/birdsofchicagoland.jpg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/covers/birdsofchicagoland.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers/birdsofchicagoland.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/covers/charlieinktober.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/covers/charlieinktober.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/covers/charlieinktober.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers/charlieinktober.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/covers/openrange.jpg":
+/*!************************************************!*\
+  !*** ./src/img/art/books/covers/openrange.jpg ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/covers/openrange.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers/openrange.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon01.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon01.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon02.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon02.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon03.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon03.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon04.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon04.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon05.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon05.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon06.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon06.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/grandcanyon07.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/books/openrange/grandcanyon07.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways01.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways01.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways02.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways02.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways03.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways03.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways04.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways04.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways05.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways05.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways06.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways06.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways07.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways07.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways08.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways08.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/highways09.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/books/openrange/highways09.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/joshuatree01.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/joshuatree01.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/joshuatree02.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/joshuatree02.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/joshuatree03.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/joshuatree03.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/joshuatree04.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/joshuatree04.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/lakepowell01.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/lakepowell01.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/lakepowell02.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/lakepowell02.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/lakepowell03.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/lakepowell03.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/lakepowell04.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/lakepowell04.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/lakepowell05.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/books/openrange/lakepowell05.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/leesferry01.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/books/openrange/leesferry01.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/leesferry01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/leesferry01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/leesferry02.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/books/openrange/leesferry02.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/leesferry02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/leesferry02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley01.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley01.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley02.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley02.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley03.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley03.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley04.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley04.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley05.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley05.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley06.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley06.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley07.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley07.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley08.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley08.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley09.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley09.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley10.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley10.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley10.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley10.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley11.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley11.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley11.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley11.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley12.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley12.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley12.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley12.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley13.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley13.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley13.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley13.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley14.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley14.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley14.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley14.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley15.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley15.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley15.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley15.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/monumentvalley16.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/monumentvalley16.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley16.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley16.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/navajomonument01.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/navajomonument01.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/navajomonument02.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/navajomonument02.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/navajomonument03.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/navajomonument03.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/navajomonument04.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/navajomonument04.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/navajomonument05.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/books/openrange/navajomonument05.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon01.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon01.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon02.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon02.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon03.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon03.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon04.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon04.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon05.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon05.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon06.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon06.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/grandcanyon07.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/grandcanyon07.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways01.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways01.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways02.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways02.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways03.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways03.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways04.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways04.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways05.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways05.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways06.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways06.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways07.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways07.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways08.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways08.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/highways09.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/highways09.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/joshuatree01.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/joshuatree01.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/joshuatree02.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/joshuatree02.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/joshuatree03.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/joshuatree03.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/joshuatree04.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/joshuatree04.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/lakepowell01.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/lakepowell01.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/lakepowell02.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/lakepowell02.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/lakepowell03.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/lakepowell03.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/lakepowell04.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/lakepowell04.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/lakepowell05.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/lakepowell05.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/leesferry01.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/leesferry01.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/leesferry01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/leesferry01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/leesferry02.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/leesferry02.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/leesferry02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/leesferry02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley01.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley01.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley02.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley02.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley03.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley03.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley04.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley04.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley05.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley05.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley06.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley06.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley07.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley07.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley08.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley08.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley09.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley09.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley10.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley10.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley10.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley10.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley11.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley11.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley11.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley11.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley12.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley12.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley12.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley12.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley13.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley13.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley13.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley13.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley14.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley14.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley14.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley14.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley15.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley15.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley15.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley15.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/monumentvalley16.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/monumentvalley16.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley16.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley16.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/navajomonument01.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/navajomonument01.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/navajomonument02.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/navajomonument02.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/navajomonument03.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/navajomonument03.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/navajomonument04.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/navajomonument04.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/books/openrange/thumbs/navajomonument05.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/books/openrange/thumbs/navajomonument05.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/galleries sync recursive ^\\.\\/galleries\\-.*\\.jpg$":
+/*!*************************************************************!*\
+  !*** ./src/img/art/galleries sync ^\.\/galleries\-.*\.jpg$ ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./galleries-birds.jpg\": \"./src/img/art/galleries/galleries-birds.jpg\",\n\t\"./galleries-books.jpg\": \"./src/img/art/galleries/galleries-books.jpg\",\n\t\"./galleries-movies.jpg\": \"./src/img/art/galleries/galleries-movies.jpg\",\n\t\"./galleries-other.jpg\": \"./src/img/art/galleries/galleries-other.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/galleries sync recursive ^\\\\.\\\\/galleries\\\\-.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/galleries_sync_^\\.\\/galleries\\-.*\\.jpg$?");
+
+/***/ }),
+
+/***/ "./src/img/art/galleries/galleries-birds.jpg":
+/*!***************************************************!*\
+  !*** ./src/img/art/galleries/galleries-birds.jpg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-birds.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-birds.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/galleries/galleries-books.jpg":
+/*!***************************************************!*\
+  !*** ./src/img/art/galleries/galleries-books.jpg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-books.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-books.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/galleries/galleries-movies.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/galleries/galleries-movies.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-movies.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-movies.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/galleries/galleries-other.jpg":
+/*!***************************************************!*\
+  !*** ./src/img/art/galleries/galleries-other.jpg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-other.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-other.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/beetlejuice.jpg":
+/*!*************************************************!*\
+  !*** ./src/img/art/movies/full/beetlejuice.jpg ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/beetlejuice.jpg?");
 
 /***/ }),
 
@@ -1314,6 +3643,61 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/full/eternalsuns
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/movies/full/frankcellardoor.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/frankcellardoor.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/nightmareb4xmas.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/movies/full/nightmareb4xmas.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/nightmareb4xmas.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/phibes.jpg":
+/*!********************************************!*\
+  !*** ./src/img/art/movies/full/phibes.jpg ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/phibes.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/shaunofthedead.jpg":
+/*!****************************************************!*\
+  !*** ./src/img/art/movies/full/shaunofthedead.jpg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/shaunofthedead.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/shining.jpg":
+/*!*********************************************!*\
+  !*** ./src/img/art/movies/full/shining.jpg ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/shining.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/sleepyhollow.jpg":
+/*!**************************************************!*\
+  !*** ./src/img/art/movies/full/sleepyhollow.jpg ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/sleepyhollow.jpg?");
 
 /***/ }),
 
@@ -1394,6 +3778,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/full/vincentpric
 
 /***/ }),
 
+/***/ "./src/img/art/movies/thumbs/beetlejuice-250.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/movies/thumbs/beetlejuice-250.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/beetlejuice-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/beetlejuice-250.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/movies/thumbs/cormanandpoe-250.jpg":
 /*!********************************************************!*\
   !*** ./src/img/art/movies/thumbs/cormanandpoe-250.jpg ***!
@@ -1446,6 +3841,61 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/eternalsu
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/frankcellardoor-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/frankcellardoor-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/nightmareb4xmas-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/phibes-250.jpg":
+/*!**************************************************!*\
+  !*** ./src/img/art/movies/thumbs/phibes-250.jpg ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/phibes-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/phibes-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/shaunofthedead-250.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/movies/thumbs/shaunofthedead-250.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/shaunofthedead-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/shaunofthedead-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/shining-250.jpg":
+/*!***************************************************!*\
+  !*** ./src/img/art/movies/thumbs/shining-250.jpg ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/shining-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/shining-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/sleepyhollow-250.jpg":
+/*!********************************************************!*\
+  !*** ./src/img/art/movies/thumbs/sleepyhollow-250.jpg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/sleepyhollow-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/sleepyhollow-250.jpg?");
 
 /***/ }),
 
@@ -1658,6 +4108,28 @@ eval("module.exports = __webpack_require__.p + \"img/art/other/full/schumi-monac
 
 /***/ }),
 
+/***/ "./src/img/art/other/full/selfportrait2007.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/other/full/selfportrait2007.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/other/full/selfportrait2007.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/full/selfportrait2007.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/other/full/selfportrait2020.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/other/full/selfportrait2020.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/other/full/selfportrait2020.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/full/selfportrait2020.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/other/full/sotoportego.jpg":
 /*!************************************************!*\
   !*** ./src/img/art/other/full/sotoportego.jpg ***!
@@ -1801,6 +4273,28 @@ eval("module.exports = __webpack_require__.p + \"img/art/other/thumbs/schumi-mon
 
 /***/ }),
 
+/***/ "./src/img/art/other/thumbs/selfportrait2007-250.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/other/thumbs/selfportrait2007-250.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/other/thumbs/selfportrait2007-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/thumbs/selfportrait2007-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/other/thumbs/selfportrait2020-250.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/other/thumbs/selfportrait2020-250.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/other/thumbs/selfportrait2020-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/thumbs/selfportrait2020-250.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/other/thumbs/sotoportego-250.jpg":
 /*!******************************************************!*\
   !*** ./src/img/art/other/thumbs/sotoportego-250.jpg ***!
@@ -1876,7 +4370,79 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../templates/galleries/galleries.vue */ \"./src/templates/galleries/galleries.vue\");\n/* harmony import */ var _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/galleries/birds.vue */ \"./src/templates/galleries/birds.vue\");\n/* harmony import */ var _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/galleries/movies.vue */ \"./src/templates/galleries/movies.vue\");\n/* harmony import */ var _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../templates/galleries/other.vue */ \"./src/templates/galleries/other.vue\");\n\n\n\n\nvar routes = [{\n  path: '/',\n  component: _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n}, {\n  path: '/birds',\n  component: _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}, {\n  path: '/movies',\n  component: _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}, {\n  path: '/other',\n  component: _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n}];\n/* harmony default export */ __webpack_exports__[\"default\"] = (routes);\n\n//# sourceURL=webpack:///./src/js/galleries.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../templates/galleries/galleries.vue */ \"./src/templates/galleries/galleries.vue\");\n/* harmony import */ var _templates_galleries_books_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/galleries/books.vue */ \"./src/templates/galleries/books.vue\");\n/* harmony import */ var _templates_galleries_book_galleria_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/galleries/book-galleria.vue */ \"./src/templates/galleries/book-galleria.vue\");\n/* harmony import */ var _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../templates/galleries/birds.vue */ \"./src/templates/galleries/birds.vue\");\n/* harmony import */ var _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../templates/galleries/movies.vue */ \"./src/templates/galleries/movies.vue\");\n/* harmony import */ var _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../templates/galleries/other.vue */ \"./src/templates/galleries/other.vue\");\n\n\n\n\n\n\nvar routes = [{\n  path: '/',\n  component: _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n}, {\n  path: '/books',\n  component: _templates_galleries_books_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}, {\n  path: '/books/:id',\n  component: _templates_galleries_book_galleria_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}, {\n  path: '/birds',\n  component: _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n}, {\n  path: '/movies',\n  component: _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"]\n}, {\n  path: '/other',\n  component: _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"]\n}];\n/* harmony default export */ __webpack_exports__[\"default\"] = (routes);\n\n//# sourceURL=webpack:///./src/js/galleries.js?");
+
+/***/ }),
+
+/***/ "./src/partials/footer.vue":
+/*!*********************************!*\
+  !*** ./src/partials/footer.vue ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _footer_vue_vue_type_template_id_18bd2722___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footer.vue?vue&type=template&id=18bd2722& */ \"./src/partials/footer.vue?vue&type=template&id=18bd2722&\");\n/* harmony import */ var _footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footer.vue?vue&type=script&lang=js& */ \"./src/partials/footer.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _footer_vue_vue_type_template_id_18bd2722___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _footer_vue_vue_type_template_id_18bd2722___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/partials/footer.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/partials/footer.vue?");
+
+/***/ }),
+
+/***/ "./src/partials/footer.vue?vue&type=script&lang=js&":
+/*!**********************************************************!*\
+  !*** ./src/partials/footer.vue?vue&type=script&lang=js& ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib!../../node_modules/vue-loader/lib??vue-loader-options!./footer.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/partials/footer.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/partials/footer.vue?");
+
+/***/ }),
+
+/***/ "./src/partials/footer.vue?vue&type=template&id=18bd2722&":
+/*!****************************************************************!*\
+  !*** ./src/partials/footer.vue?vue&type=template&id=18bd2722& ***!
+  \****************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_template_id_18bd2722___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./footer.vue?vue&type=template&id=18bd2722& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/partials/footer.vue?vue&type=template&id=18bd2722&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_template_id_18bd2722___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footer_vue_vue_type_template_id_18bd2722___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/partials/footer.vue?");
+
+/***/ }),
+
+/***/ "./src/partials/galleria.vue":
+/*!***********************************!*\
+  !*** ./src/partials/galleria.vue ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _galleria_vue_vue_type_template_id_588e2733___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./galleria.vue?vue&type=template&id=588e2733& */ \"./src/partials/galleria.vue?vue&type=template&id=588e2733&\");\n/* harmony import */ var _galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./galleria.vue?vue&type=script&lang=js& */ \"./src/partials/galleria.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _galleria_vue_vue_type_template_id_588e2733___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _galleria_vue_vue_type_template_id_588e2733___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/partials/galleria.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?");
+
+/***/ }),
+
+/***/ "./src/partials/galleria.vue?vue&type=script&lang=js&":
+/*!************************************************************!*\
+  !*** ./src/partials/galleria.vue?vue&type=script&lang=js& ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib!../../node_modules/vue-loader/lib??vue-loader-options!./galleria.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/partials/galleria.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/partials/galleria.vue?");
+
+/***/ }),
+
+/***/ "./src/partials/galleria.vue?vue&type=template&id=588e2733&":
+/*!******************************************************************!*\
+  !*** ./src/partials/galleria.vue?vue&type=template&id=588e2733& ***!
+  \******************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_galleria_vue_vue_type_template_id_588e2733___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./galleria.vue?vue&type=template&id=588e2733& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/partials/galleria.vue?vue&type=template&id=588e2733&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_galleria_vue_vue_type_template_id_588e2733___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_galleria_vue_vue_type_template_id_588e2733___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?");
 
 /***/ }),
 
@@ -2068,6 +4634,78 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_birds_vue_vue_type_template_id_24a6eec8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./birds.vue?vue&type=template&id=24a6eec8& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/birds.vue?vue&type=template&id=24a6eec8&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_birds_vue_vue_type_template_id_24a6eec8___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_birds_vue_vue_type_template_id_24a6eec8___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/birds.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/book-galleria.vue":
+/*!***************************************************!*\
+  !*** ./src/templates/galleries/book-galleria.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./book-galleria.vue?vue&type=template&id=bd0ac1f6& */ \"./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&\");\n/* harmony import */ var _book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./book-galleria.vue?vue&type=script&lang=js& */ \"./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/templates/galleries/book-galleria.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/lib??vue-loader-options!./book-galleria.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&":
+/*!**********************************************************************************!*\
+  !*** ./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./book-galleria.vue?vue&type=template&id=bd0ac1f6& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/books.vue":
+/*!*******************************************!*\
+  !*** ./src/templates/galleries/books.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./books.vue?vue&type=template&id=6b9a5f28& */ \"./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&\");\n/* harmony import */ var _books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./books.vue?vue&type=script&lang=js& */ \"./src/templates/galleries/books.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/templates/galleries/books.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/books.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./src/templates/galleries/books.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/lib??vue-loader-options!./books.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&":
+/*!**************************************************************************!*\
+  !*** ./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./books.vue?vue&type=template&id=6b9a5f28& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?");
 
 /***/ }),
 
