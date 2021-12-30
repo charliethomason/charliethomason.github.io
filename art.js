@@ -206,7 +206,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n/* ha
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"./node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ \"./node_modules/@babel/runtime/helpers/slicedToArray.js\");\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _img_svg_icons_arrow_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../img/svg-icons/arrow.vue */ \"./src/img/svg-icons/arrow.vue\");\n\n\n\n\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Galleria',\n  components: {\n    ArrowIcon: _img_svg_icons_arrow_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n  },\n  props: {\n    bookName: {\n      type: String\n    },\n    photos: {\n      type: Array\n    }\n  },\n  data: function data() {\n    return {\n      photosInRows: [],\n      actualRowWidth: 0,\n      imgHeight: 600,\n      maxRowWidth: {\n        large: 2400,\n        small: 1800\n      },\n      breakpoints: {\n        large: 1000,\n        medium: 600,\n        small: 320\n      },\n      windowWidth: 0,\n      lightImg: null\n    };\n  },\n  methods: {\n    putPhotosInRows: function putPhotosInRows() {\n      var _this = this;\n\n      if (!this.photos || !this.photos.length) {\n        return null;\n      }\n\n      this.photosInRows = this.photos.reduce(function (rows, img) {\n        // if we have no rows created yet, create a row with this 1st image\n        if (!rows.length) {\n          rows.push([img]);\n          return rows;\n        } else {\n          // loop through all the rows we have created so far\n          var _iterator = _createForOfIteratorHelper(rows.entries()),\n              _step;\n\n          try {\n            for (_iterator.s(); !(_step = _iterator.n()).done;) {\n              var _step$value = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_step.value, 2),\n                  i = _step$value[0],\n                  row = _step$value[1];\n\n              var currentRowWidth = _this.getTotalWidth(row);\n\n              var maxRowWidth = _this.windowWidth < _this.breakpoints.medium ? _this.maxRowWidth.small : _this.maxRowWidth.large;\n              var isLastRow = i === rows.length - 1; // \"If the currrent total width of the images in this row is\n              // greater than/equal to the max width allowed for a single row.\"\n              // If the image heights are 600px then the max possible row width is 2400px.\n              // 2400 / 600 = 4, thus a 4:1 min aspect ratio for each row.\n\n              if (currentRowWidth >= maxRowWidth) {\n                // if this is the last row and it's already full, create a new one with this image.\n                // otherwise continue on to check the next row.\n                if (isLastRow) {\n                  rows.push([img]);\n                  break;\n                } else {\n                  continue;\n                } // if there is still space in this row, add this image.\n\n              } else {\n                row.push(img);\n                break;\n              }\n            }\n          } catch (err) {\n            _iterator.e(err);\n          } finally {\n            _iterator.f();\n          }\n\n          return rows;\n        }\n      }, []);\n    },\n    loadImages: function loadImages() {\n      if (!this.$refs.row || !this.$refs.row.length) {\n        return null;\n      }\n\n      this.$refs.row.forEach(function (row) {\n        if (row.childNodes && row.childNodes.length) {\n          var _iterator2 = _createForOfIteratorHelper(row.childNodes),\n              _step2;\n\n          try {\n            var _loop = function _loop() {\n              var img = _step2.value;\n\n              if (img.classList && img.classList.contains('galleria-img')) {\n                var small = img.children[0];\n                var imgSrc = img.dataset.large;\n                var imgSmall = new Image();\n                imgSmall.src = small.src;\n\n                imgSmall.onload = function () {\n                  small.classList.add('loaded');\n                };\n\n                if (img.querySelector('.galleria-large')) {\n                  img.querySelector('.galleria-large').src = imgSrc;\n                } else {\n                  var imgLarge = new Image();\n                  imgLarge.src = imgSrc;\n                  imgLarge.alt = small.alt;\n\n                  imgLarge.onload = function () {\n                    // give the link a class of \"ready\"\n                    // to indicate lightbox clicks can now happen\n                    img.classList.add(\"ready\");\n                    imgLarge.classList.add('galleria-large', 'loaded');\n                  };\n\n                  img.appendChild(imgLarge);\n                }\n              }\n            };\n\n            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {\n              _loop();\n            }\n          } catch (err) {\n            _iterator2.e(err);\n          } finally {\n            _iterator2.f();\n          }\n        }\n      });\n    },\n    getTotalWidth: function getTotalWidth(row) {\n      return row.reduce(function (sum, r) {\n        return sum + r.width;\n      }, 0);\n    },\n    getStyle: function getStyle(row, img) {\n      var onlyOneInRow = row.length === 1;\n      var totalWidth = this.getTotalWidth(row); // actual displayed row width, divided by the aspect ratio of the row.\n      // e.g.: 1000 / (2400 / 600 = 4) = 250\n\n      var rowHeight = onlyOneInRow && img.width <= this.actualRowWidth ? this.imgHeight : this.actualRowWidth / (totalWidth / this.imgHeight); // reduce the image width by the same amount the image height was reduced\n\n      var imgWidth = onlyOneInRow && img.width <= this.actualRowWidth ? img.width : img.width / (this.imgHeight / rowHeight);\n      return {\n        height: rowHeight + 'px',\n        width: imgWidth + 'px'\n      };\n    },\n    setGalleriaWidth: function setGalleriaWidth() {\n      var _this$breakpoints = this.breakpoints,\n          small = _this$breakpoints.small,\n          medium = _this$breakpoints.medium,\n          large = _this$breakpoints.large;\n      this.windowWidth = window.innerWidth;\n\n      if (this.windowWidth > medium && this.windowWidth < large) {\n        this.actualRowWidth = medium;\n      } else if (this.windowWidth >= small && this.windowWidth < medium) {\n        this.actualRowWidth = small;\n      } else {\n        this.actualRowWidth = large;\n      }\n    },\n    onResize: function onResize() {\n      var _this2 = this;\n\n      return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n        var startRowWidth;\n        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n          while (1) {\n            switch (_context.prev = _context.next) {\n              case 0:\n                startRowWidth = _this2.actualRowWidth;\n                _context.next = 3;\n                return _this2.setGalleriaWidth();\n\n              case 3:\n                _context.next = 5;\n                return _this2.putPhotosInRows();\n\n              case 5:\n                if (startRowWidth !== _this2.actualRowWidth) {\n                  _this2.loadImages();\n                }\n\n              case 6:\n              case \"end\":\n                return _context.stop();\n            }\n          }\n        }, _callee);\n      }))();\n    },\n    lightboxNav: function lightboxNav(change) {\n      var _this3 = this;\n\n      var currentIndex = this.photos.findIndex(function (img) {\n        return img.file === _this3.lightImg.file;\n      });\n      var lastImgIndex = this.photos.length - 1; // if it's the first photo and they clicked previous\n\n      if (currentIndex === 0 && change === -1) {\n        this.lightImg = this.photos[lastImgIndex]; // if it's the last photo and they clicked next\n      } else if (currentIndex === lastImgIndex && change === 1) {\n        this.lightImg = this.photos[0];\n      } else {\n        this.lightImg = this.photos[currentIndex + change];\n      }\n    },\n    closeLightbox: function closeLightbox() {\n      this.lightImg = null;\n    },\n    imgClick: function imgClick(e, img) {\n      // don't let lightbox happen before images have loaded\n      if (e.target.classList.contains(\"ready\")) {\n        if (!this.lightImg || this.lightImg.file !== img.file) {\n          this.lightImg = img;\n        } else {\n          this.closeLightbox();\n        }\n      }\n    }\n  },\n  mounted: function mounted() {\n    var _this4 = this;\n\n    return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {\n      var timeoutId;\n      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {\n        while (1) {\n          switch (_context2.prev = _context2.next) {\n            case 0:\n              window.addEventListener('keydown', function (e) {\n                if (e.key === \"Escape\") {\n                  _this4.closeLightbox();\n                } else if (e.key === \"ArrowLeft\" && !!_this4.lightImg) {\n                  _this4.lightboxNav(-1);\n                } else if (e.key === \"ArrowRight\" && !!_this4.lightImg) {\n                  _this4.lightboxNav(1);\n                }\n              });\n              window.addEventListener('resize', function () {\n                clearTimeout(timeoutId);\n                timeoutId = setTimeout(_this4.onResize, 500);\n              });\n\n              _this4.onResize();\n\n            case 3:\n            case \"end\":\n              return _context2.stop();\n          }\n        }\n      }, _callee2);\n    }))();\n  },\n  beforeDestroy: function beforeDestroy() {\n    window.removeEventListener('resize', this.onResize);\n  }\n});\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"./node_modules/@babel/runtime/regenerator/index.js\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ \"./node_modules/@babel/runtime/helpers/slicedToArray.js\");\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _img_svg_icons_arrow_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../img/svg-icons/arrow.vue */ \"./src/img/svg-icons/arrow.vue\");\n\n\n\n\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Galleria',\n  components: {\n    ArrowIcon: _img_svg_icons_arrow_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n  },\n  props: {\n    name: {\n      type: String\n    },\n    images: {\n      type: Array\n    }\n  },\n  data: function data() {\n    return {\n      imagesInRows: [],\n      actualRowWidth: 0,\n      imgHeight: 600,\n      maxRowWidth: {\n        large: 2400,\n        small: 1800\n      },\n      breakpoints: {\n        full: 2400,\n        jumbo: 2000,\n        xlarge: 1400,\n        large: 1000,\n        medium: 600,\n        small: 320\n      },\n      windowWidth: 0,\n      lightImg: null\n    };\n  },\n  methods: {\n    putPhotosInRows: function putPhotosInRows() {\n      var _this = this;\n\n      if (!this.images || !this.images.length) {\n        return null;\n      }\n\n      this.imagesInRows = this.images.reduce(function (rows, img) {\n        // if we have no rows created yet, create a row with this 1st image\n        if (!rows.length) {\n          rows.push([img]);\n          return rows;\n        } else {\n          // loop through all the rows we have created so far\n          var _iterator = _createForOfIteratorHelper(rows.entries()),\n              _step;\n\n          try {\n            for (_iterator.s(); !(_step = _iterator.n()).done;) {\n              var _step$value = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2___default()(_step.value, 2),\n                  i = _step$value[0],\n                  row = _step$value[1];\n\n              var currentRowWidth = _this.getTotalWidth(row);\n\n              var maxRowWidth = _this.windowWidth <= _this.breakpoints.medium ? _this.maxRowWidth.small : _this.maxRowWidth.large;\n              var isLastRow = i === rows.length - 1; // \"If the currrent total width of the images in this row is\n              // greater than/equal to the max width allowed for a single row.\"\n              // If the image heights are 600px then the max possible row width is 2400px.\n              // 2400 / 600 = 4, thus a 4:1 min aspect ratio for each row.\n\n              if (currentRowWidth >= maxRowWidth) {\n                // if this is the last row and it's already full, create a new one with this image.\n                // otherwise continue on to check the next row.\n                if (isLastRow) {\n                  rows.push([img]);\n                  break;\n                } else {\n                  continue;\n                } // if there is still space in this row, add this image.\n\n              } else {\n                row.push(img);\n                break;\n              }\n            }\n          } catch (err) {\n            _iterator.e(err);\n          } finally {\n            _iterator.f();\n          }\n\n          return rows;\n        }\n      }, []);\n    },\n    loadImages: function loadImages() {\n      if (!this.$refs.row || !this.$refs.row.length) {\n        return null;\n      }\n\n      this.$refs.row.forEach(function (row) {\n        if (row.childNodes && row.childNodes.length) {\n          var _iterator2 = _createForOfIteratorHelper(row.childNodes),\n              _step2;\n\n          try {\n            var _loop = function _loop() {\n              var img = _step2.value;\n\n              if (img.classList && img.classList.contains('galleria-img')) {\n                var small = img.children[0];\n                var imgSrc = img.dataset.large;\n                var imgSmall = new Image();\n                imgSmall.src = small.src;\n\n                imgSmall.onload = function () {\n                  small.classList.add('loaded');\n                };\n\n                if (img.querySelector('.galleria-large')) {\n                  img.querySelector('.galleria-large').src = imgSrc;\n                } else {\n                  var imgLarge = new Image();\n                  imgLarge.src = imgSrc;\n                  imgLarge.alt = small.alt;\n\n                  imgLarge.onload = function () {\n                    // give the link a class of \"ready\"\n                    // to indicate lightbox clicks can now happen\n                    img.classList.add(\"ready\");\n                    imgLarge.classList.add('galleria-large', 'loaded');\n                  };\n\n                  img.appendChild(imgLarge);\n                }\n              }\n            };\n\n            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {\n              _loop();\n            }\n          } catch (err) {\n            _iterator2.e(err);\n          } finally {\n            _iterator2.f();\n          }\n        }\n      });\n    },\n    getTotalWidth: function getTotalWidth(row) {\n      return row.reduce(function (sum, r) {\n        return sum + r.width;\n      }, 0);\n    },\n    getStyle: function getStyle(row, img) {\n      var onlyOneInRow = row.length === 1;\n      var totalWidth = this.getTotalWidth(row); // actual displayed row width, divided by the aspect ratio of the row.\n      // e.g.: 1000 / (2400 / 600 = 4) = 250\n\n      var rowHeight = onlyOneInRow && img.width <= this.actualRowWidth ? this.imgHeight : this.actualRowWidth / (totalWidth / this.imgHeight); // reduce the image width by the same amount the image height was reduced\n\n      var imgWidth = onlyOneInRow && img.width <= this.actualRowWidth ? img.width : img.width / (this.imgHeight / rowHeight);\n      return {\n        height: rowHeight + 'px',\n        width: imgWidth + 'px'\n      };\n    },\n    setGalleriaWidth: function setGalleriaWidth() {\n      var _this$breakpoints = this.breakpoints,\n          small = _this$breakpoints.small,\n          medium = _this$breakpoints.medium,\n          large = _this$breakpoints.large,\n          xlarge = _this$breakpoints.xlarge,\n          jumbo = _this$breakpoints.jumbo,\n          full = _this$breakpoints.full;\n      this.windowWidth = window.innerWidth;\n\n      if (this.windowWidth > full) {\n        this.actualRowWidth = full;\n      } else if (this.windowWidth > jumbo && this.windowWidth <= full) {\n        this.actualRowWidth = jumbo;\n      } else if (this.windowWidth > xlarge && this.windowWidth <= jumbo) {\n        this.actualRowWidth = xlarge;\n      } else if (this.windowWidth > large && this.windowWidth <= xlarge) {\n        this.actualRowWidth = large;\n      } else if (this.windowWidth > medium && this.windowWidth <= large) {\n        this.actualRowWidth = medium;\n      } else {\n        this.actualRowWidth = small;\n      }\n    },\n    onResize: function onResize() {\n      var _this2 = this;\n\n      return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {\n        var startRowWidth;\n        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n          while (1) {\n            switch (_context.prev = _context.next) {\n              case 0:\n                startRowWidth = _this2.actualRowWidth;\n                _context.next = 3;\n                return _this2.setGalleriaWidth();\n\n              case 3:\n                _context.next = 5;\n                return _this2.putPhotosInRows();\n\n              case 5:\n                if (startRowWidth !== _this2.actualRowWidth) {\n                  _this2.loadImages();\n                }\n\n              case 6:\n              case \"end\":\n                return _context.stop();\n            }\n          }\n        }, _callee);\n      }))();\n    },\n    lightboxNav: function lightboxNav(change) {\n      var _this3 = this;\n\n      var currentIndex = this.images.findIndex(function (img) {\n        return img.file === _this3.lightImg.file;\n      });\n      var lastImgIndex = this.images.length - 1; // if it's the first photo and they clicked previous\n\n      if (currentIndex === 0 && change === -1) {\n        this.lightImg = this.images[lastImgIndex]; // if it's the last photo and they clicked next\n      } else if (currentIndex === lastImgIndex && change === 1) {\n        this.lightImg = this.images[0];\n      } else {\n        this.lightImg = this.images[currentIndex + change];\n      }\n    },\n    closeLightbox: function closeLightbox() {\n      var currLightId = this.lightImg.file;\n      this.lightImg = null;\n      this.$nextTick(function () {\n        this.$refs[\"galleriaImg-\".concat(currLightId)][0].focus();\n      });\n    },\n    imgClick: function imgClick(e, img) {\n      // don't let lightbox happen before images have loaded\n      if (e.target.classList.contains(\"ready\")) {\n        if (!this.lightImg || this.lightImg.file !== img.file) {\n          this.lightImg = img;\n          this.$nextTick(function () {\n            this.$refs.closeBtn.focus();\n          });\n        } else {\n          this.closeLightbox();\n        }\n      }\n    }\n  },\n  mounted: function mounted() {\n    var _this4 = this;\n\n    return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {\n      var timeoutId;\n      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {\n        while (1) {\n          switch (_context2.prev = _context2.next) {\n            case 0:\n              window.addEventListener('keydown', function (e) {\n                if (e.key === \"Escape\") {\n                  _this4.closeLightbox();\n                } else if (e.key === \"ArrowLeft\" && !!_this4.lightImg) {\n                  _this4.lightboxNav(-1);\n                } else if (e.key === \"ArrowRight\" && !!_this4.lightImg) {\n                  _this4.lightboxNav(1);\n                }\n              });\n              window.addEventListener('resize', function () {\n                clearTimeout(timeoutId);\n                timeoutId = setTimeout(_this4.onResize, 500);\n              });\n\n              _this4.onResize();\n\n            case 3:\n            case \"end\":\n              return _context2.stop();\n          }\n        }\n      }, _callee2);\n    }))();\n  },\n  beforeDestroy: function beforeDestroy() {\n    window.removeEventListener('resize', this.onResize);\n  }\n});\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -270,27 +270,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _par
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collection.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/collection.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_books_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/books.json */ \"./src/data/books.json\");\nvar _data_books_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/books.json */ \"./src/data/books.json\", 1);\n/* harmony import */ var _partials_galleria_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/galleria.vue */ \"./src/partials/galleria.vue\");\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'BookGalleria',\n  components: {\n    Galleria: _partials_galleria_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n  },\n  computed: {\n    bookName: function bookName() {\n      return this.$route.params.id;\n    },\n    bookData: function bookData() {\n      return _data_books_json__WEBPACK_IMPORTED_MODULE_0__[this.bookName];\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_collections_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/collections.json */ \"./src/data/collections.json\");\nvar _data_collections_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/collections.json */ \"./src/data/collections.json\", 1);\n/* harmony import */ var _partials_galleria_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/galleria.vue */ \"./src/partials/galleria.vue\");\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Collection',\n  components: {\n    Galleria: _partials_galleria_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n  },\n  computed: {\n    cName: function cName() {\n      return this.$route.params.id;\n    },\n    cData: function cData() {\n      return _data_collections_json__WEBPACK_IMPORTED_MODULE_0__[this.cName];\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/collection.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/books.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collections.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/collections.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_books_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/books.json */ \"./src/data/books.json\");\nvar _data_books_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/books.json */ \"./src/data/books.json\", 1);\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Books',\n  components: {\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: function data() {\n    return {\n      books: _data_books_json__WEBPACK_IMPORTED_MODULE_0__[\"books\"]\n    };\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data_collections_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/collections.json */ \"./src/data/collections.json\");\nvar _data_collections_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/collections.json */ \"./src/data/collections.json\", 1);\n/* harmony import */ var _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../partials/footer.vue */ \"./src/partials/footer.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'Collections',\n  components: {\n    FooterNote: _partials_footer_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: function data() {\n    return {\n      intro: _data_collections_json__WEBPACK_IMPORTED_MODULE_0__[\"intro\"],\n      collections: _data_collections_json__WEBPACK_IMPORTED_MODULE_0__[\"collections\"]\n    };\n  }\n});\n\n//# sourceURL=webpack:///./src/templates/galleries/collections.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -337,7 +337,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _par
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nvar urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/url-escape.js */ \"./node_modules/css-loader/dist/runtime/url-escape.js\");\nvar ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default.png */ \"./src/img/global/charlie-logo-default.png\"));\nvar ___CSS_LOADER_URL___1___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default-2x.png */ \"./src/img/global/charlie-logo-default-2x.png\"));\nvar ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile.png */ \"./src/img/global/charlie-logo-mobile.png\"));\nvar ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile-2x.png */ \"./src/img/global/charlie-logo-mobile-2x.png\"));\n\n// Module\nexports.push([module.i, \"html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{font-family:'Roboto','Helvetica','Arial',sans-serif;line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*,*:before,*:after{-webkit-box-sizing:border-box;box-sizing:border-box}a{text-decoration:none}a:hover,a:focus{text-decoration:underline}button,[role=\\\"button\\\"]{cursor:pointer}b,strong{font-weight:bold}em,i{font-style:italic}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:normal}.sr-text{clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;position:absolute;width:1px}body{background-color:#191919}.header{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#399;border-bottom:7px solid #066;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:130px;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 15px}.header__logo{background:url(\" + ___CSS_LOADER_URL___0___ + \") no-repeat scroll 0 0 transparent;display:block;height:75px;width:275px}.header__logo:hover,.header__logo:focus{text-decoration:none}.nav{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:5px}.nav__link{border-radius:3px;color:#fff;display:block;font-size:16px;font-weight:bold;margin:0 5px;outline:0;padding:5px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.nav__link:hover,.nav__link:focus{text-decoration:none}.nav__link:hover,.nav__link:focus{background-color:#066}.nav__link--active{background-color:#fff;color:#066}.nav__link--active:hover,.nav__link--active:focus{color:#fff}.content{color:#fff}.h1{font-size:32px;font-weight:300;padding:15px 0;text-align:center}.h2{font-size:18px;padding:0 0 15px;text-align:center}.big-btn-wrap{margin:15px auto 30px;text-align:center}.btn{background-color:#399;color:#fff;display:inline-block;font-weight:bold;padding:8px 16px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease}.btn:hover,.btn:focus{background-color:#066;text-decoration:none}.big-btn{background-color:#399;color:#fff;display:inline-block;font-weight:bold;padding:8px 16px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease;font-size:20px;padding:15px 30px}.big-btn:hover,.big-btn:focus{background-color:#066;text-decoration:none}.eyebrow{padding-top:15px;text-align:center}.eyebrow__link{color:#399;display:inline-block;font-size:16px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}.eyebrow__link:hover,.eyebrow__link:focus{color:#f1f1f1}.copyright-note{color:#777;font-size:12px;line-height:16px;margin:10px auto 30px;max-width:250px;text-align:center}.copyright-note a{color:#777}.copyright-note a:hover,.copyright-note a:focus{color:#399}@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___1___ + \");background-size:275px 75px}}@media screen and (max-width: 767px) and (orientation: landscape){.header{height:95px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 767px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 767px) and (orientation: landscape) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 570px){.header{height:95px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 570px) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 570px) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 480px){.big-btn{font-size:16px;padding:15px}}.homepage{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;margin:0 auto;padding:0 15px}.homepage .contact{max-width:800px}.homepage .drawer{max-width:600px}.contact{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;margin:30px auto 15px}.contact__photo{display:inline-block;width:230px}.contact__info{background-color:rgba(0,0,0,0.6);margin-left:30px;padding:15px}.contact__name{padding-top:0;text-align:left}.contact__subtitle{font-size:20px;font-weight:bold;line-height:1.4;padding:5px 0 0}.contact__tooltip{background-color:#f1f1f1;border-radius:7px;color:#000;display:inline-block;font-size:14px;left:-9999px;margin-bottom:10px;padding:5px 10px;position:absolute;text-align:center;top:-9999px}.contact__tooltip:after{border-left:10px solid rgba(0,0,0,0);border-right:10px solid rgba(0,0,0,0);border-top:10px solid #f1f1f1;content:'';left:50%;position:absolute;top:100%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.contact__link-row{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.contact__link-row li{margin-left:10px}.contact__link-row li:first-child{margin-left:0}.contact__link{display:inline-block;outline:0;position:relative}.contact__link svg{height:50px;width:50px}.contact__link path,.contact__link polygon{fill:#399;-webkit-transition:fill 0.2s ease-in-out;transition:fill 0.2s ease-in-out}.contact__link .fill-dark{fill:#000}.contact__link:hover path,.contact__link:hover polygon,.contact__link:focus path,.contact__link:focus polygon{fill:#f1f1f1}.contact__link:hover .fill-dark,.contact__link:focus .fill-dark{fill:#000}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:100%;left:50%;top:auto;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media screen and (max-width: 767px){.contact{display:block;margin:15px 0 0;text-align:center}.contact__info{margin:15px 0 0;text-align:center}.contact__name{text-align:center}.contact__link-row{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}}@media screen and (max-width: 480px){.contact__photo{width:150px}.contact__name{font-size:24px}.contact__subtitle{font-size:16px}.contact__link-row{-ms-flex-wrap:wrap;flex-wrap:wrap;max-width:200px;margin:-10px auto 0}.contact__link-row li{margin-top:10px}.contact__link svg{height:35px;width:35px}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:auto;left:-9999px;top:-9999px;-webkit-transform:none;transform:none}}.galleries{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin:auto;max-width:1500px;padding:8px}.galleries__item{-webkit-box-flex:0;-ms-flex:0 1 33.3333%;flex:0 1 33.3333%;padding:8px}.galleries__item--wide{-webkit-box-flex:1;-ms-flex:1 0 100%;flex:1 0 100%}.galleries__img{display:block;max-width:100%}.galleries__text{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.4);border:3px solid transparent;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-size:20px;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;position:absolute;text-shadow:2px 2px 0px #066;top:0;width:100%;-webkit-transition:background-color 0.3s, border-color 0.3s;transition:background-color 0.3s, border-color 0.3s}.galleries__link{display:block;position:relative}.galleries__link:hover .galleries__text,.galleries__link:focus .galleries__text{background-color:rgba(0,0,0,0);border-color:#399}.gallery{display:grid;grid-template-columns:375px 1fr;grid-template-rows:minmax(0, 100%);height:calc(100vh - 125px);overflow:hidden}.gallery__header,.gallery__back{-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.gallery__header{background-color:#066;height:23px;padding:0 5px 7px}.gallery__back{background-color:#399;border-bottom:1px solid #066;height:30px;padding:0 5px}.gallery__back:hover,.gallery__back:focus{background-color:#000;border-bottom-color:#000;text-decoration:none}.gallery__list{-ms-flex-line-pack:start;align-content:start;display:grid;grid-template-columns:repeat(3, 1fr);height:calc(100% - 53px);overflow:auto}.gallery__list__img{display:block;width:125px}.gallery__list__title{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.6);border:3px solid rgba(0,0,0,0);color:#fff;display:none;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;padding:5px;position:absolute;top:0;width:100%}.gallery__list__btn{background:none transparent;border:medium none;padding:0;outline:0;display:block;position:relative}.gallery__list__btn:hover .gallery__list__title,.gallery__list__btn:focus .gallery__list__title,.gallery__list__btn--active .gallery__list__title{display:-webkit-box;display:-ms-flexbox;display:flex}.gallery__list__btn--active .gallery__list__title{border-color:#399}.gallery__viewer{display:grid;grid-template-columns:1fr;grid-template-rows:1fr -webkit-min-content -webkit-min-content;grid-template-rows:1fr min-content min-content;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:15px;text-align:center}.gallery__viewer__img{display:block;min-height:250px;max-height:100%;max-width:100%;margin:0 auto}.gallery__viewer__title{font-weight:bold;padding:15px 0 5px}.gallery__viewer .fade-enter-active,.gallery__viewer .fade-leave-active{-webkit-transition:opacity .3s;transition:opacity .3s}.gallery__viewer .fade-enter,.gallery__viewer .fade-leave-to{opacity:0}.books{margin:0 auto;max-width:1500px;padding:0 16px}.books .intro{line-height:1.4;margin:0 auto 15px;max-width:600px}.books .intro a{color:#399}.books .intro a:hover,.books .intro a:focus{color:#066}.books__shop{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin:0 -16px}.books__shop li{line-height:1.2;padding:16px;text-align:center}.books__shop img{display:block;max-width:100%;margin:0 0 16px}.books__shop .h2{color:#fff;font-weight:700;padding:0}.books__shop .subtitle{color:#fff;font-size:18px;font-weight:300;padding:0 0 8px}.books__shop .meta{color:#f1f1f1;font-size:14px}.books__shop .btn{margin-top:16px}.books__shop .hover-wrap{position:relative}.books__shop .hover-cover{background:rgba(0,0,0,0.4);border:3px solid #399;color:#fff;font-weight:bold;display:none;position:absolute;top:0;left:0;width:100%;height:100%}.books__shop__link:hover,.books__shop__link:focus{color:#399;text-decoration:none}.books__shop__link:hover .h2,.books__shop__link:hover .subtitle,.books__shop__link:focus .h2,.books__shop__link:focus .subtitle{color:#399}.books__shop__link:hover .hover-cover,.books__shop__link:focus .hover-cover{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}@media screen and (max-width: 960px){.gallery{grid-template-columns:250px 1fr}.gallery__list{grid-template-columns:repeat(2, 1fr)}}@media screen and (max-width: 767px){.gallery{grid-template-columns:100%;grid-template-rows:130px 1fr}.gallery__menu{display:grid;grid-template-rows:30px 100px;grid-template-columns:repeat(2, 1fr)}.gallery__header{height:30px;padding:0 5px}.gallery__list{display:-webkit-box;display:-ms-flexbox;display:flex;grid-column:1 / 3;height:100%}.gallery__list__img{width:100px}.gallery__viewer{display:block;height:auto;overflow:auto}}@media screen and (max-width: 767px) and (orientation: landscape){.gallery{height:calc(100vh - 90px)}}@media screen and (max-width: 570px){.galleries{display:block}.gallery{height:calc(100vh - 90px)}.books__shop{display:block}}.code-wrapper{margin:0 auto;max-width:830px;padding:0 15px}.code-list{padding:0 0 15px}.code-list__item{margin-top:30px}.code-preview{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff}.code-preview__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.code-preview__heading__text{padding-right:15px}.code-preview__content{line-height:1.5}.code-preview__content{display:-webkit-box;display:-ms-flexbox;display:flex}.code-preview__img{border-radius:0 0 0 5px;-webkit-box-flex:0;-ms-flex:0 0 41.25%;flex:0 0 41.25%;overflow:hidden}.code-preview__img img{display:block;max-width:100%}.code-preview__info{overflow:hidden}.code-preview__description{font-size:14px;padding:15px}.code-preview__description a{color:#399}.code-preview__btns{display:-webkit-box;display:-ms-flexbox;display:flex;padding:10px 10px 0}.code-preview__btn{color:#fff;display:inline-block;font-size:14px;font-weight:bold;height:25px;line-height:14px;margin:0 10px;padding:5px;position:relative;text-decoration:none;white-space:nowrap}.code-preview__btn::before{content:'';display:block;height:0;position:absolute;top:0;width:0;border-bottom-style:solid;border-bottom-width:25px;border-left:10px solid rgba(0,0,0,0);left:-10px}.code-preview__btn::after{content:'';display:block;height:0;position:absolute;top:0;width:0;border-top-style:solid;border-top-width:25px;border-right:10px solid rgba(0,0,0,0);right:-10px}.code-preview__btn:not([class$=\\\"--year\\\"]):hover,.code-preview__btn:not([class$=\\\"--year\\\"]):focus{background-color:#000;text-decoration:none}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::before,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::before{border-bottom-color:#000}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::after,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::after{border-top-color:#000}.code-preview__btn--primary{background-color:#292929;margin-left:auto}.code-preview__btn--primary::before{border-bottom-color:#292929}.code-preview__btn--primary::after{border-top-color:#292929}.code-preview__btn--secondary{background-color:#444}.code-preview__btn--secondary::before{border-bottom-color:#444}.code-preview__btn--secondary::after{border-top-color:#444}.code-preview__btn--year{background-color:#399}.code-preview__btn--year::before{border-bottom-color:#399}.code-preview__btn--year::after{border-top-color:#399}@media screen and (max-width: 767px){.code-preview__content{-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.code-preview__img{-webkit-box-flex:0;-ms-flex:0 1 auto;flex:0 1 auto;max-width:330px;margin-top:15px}}@media screen and (max-width: 570px){.code-preview__heading{display:block;padding:10px 10px 10px 25px}.code-preview__heading__text{display:block;margin-left:-10px;padding:0 0 5px}}@media screen and (max-width: 480px){.code-preview__heading{padding-left:20px}.code-preview__heading__text{margin-left:-5px}.code-preview__btn{font-size:12px;margin:0 5px}.code-preview__btn--primary{margin-left:0}.code-preview__btn::before{border-left-width:5px;left:-5px}.code-preview__btn::after{border-right-width:5px;right:-5px}}.drawer{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff;margin:15px auto;position:relative}.drawer__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.drawer__heading__text{padding-right:15px}.drawer__content{line-height:1.5}.drawer__content{padding:15px 30px;overflow:hidden;outline:none}.drawer__content a{color:#399}.drawer__content a:hover,.drawer__content a:focus{color:#066}.drawer__content--hidden{height:200px}.drawer__expand{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#000));background:linear-gradient(rgba(0,0,0,0), #000);border:medium none;border-radius:0 0 5px 5px;color:#fff;display:block;font-size:16px;font-weight:bold;padding:60px 15px 15px;text-align:center;position:absolute;left:0;bottom:0;width:100%}.drawer__expand:hover,.drawer__expand:focus{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#066));background:linear-gradient(rgba(0,0,0,0), #066);outline:0}.drawer__expand:before,.drawer__expand:after{content:'+'}.drawer__expand--expanded{padding-top:20px;position:static}.drawer__expand--expanded:before,.drawer__expand--expanded:after{content:'-'}.galleria{max-width:1000px;margin:0 auto}.galleria-row{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.galleria-img{display:block;position:relative;overflow:hidden}.galleria-img:after{border:3px solid #399;content:none;height:100%;position:absolute;width:100%}.galleria-img:hover:after{content:\\\"\\\"}.galleria-img img{opacity:0;position:absolute;left:0;top:0;width:100%}.galleria-img img.loaded{opacity:1}.galleria-small{-webkit-filter:blur(10px);filter:blur(10px);-webkit-transform:scale(1);transform:scale(1)}.galleria__lightbox{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background:rgba(0,0,0,0.6);bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;position:fixed;right:0;top:0;width:100%;z-index:1}.galleria__lightbox__img{display:block;margin:0 auto;max-height:90%;max-width:100%;padding:0 50px}.galleria__lightbox__title{font-weight:bold;padding:15px 0 0;text-align:center}.galleria__lightbox__close{background:#000;border:2px solid #fff;border-radius:20px;color:#fff;font-weight:bold;padding:5px 10px;position:fixed;right:15px;top:15px;z-index:2}.galleria__lightbox__nav{background:none transparent;border:medium none;padding:0;outline:0;line-height:1;position:fixed;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);z-index:2}.galleria__lightbox__nav[title=\\\"Previous\\\"]{left:5px}.galleria__lightbox__nav[title=\\\"Next\\\"]{right:5px}.galleria__lightbox__nav:hover .galleria__lightbox__icon-shape{fill:#399}.galleria__lightbox__icon{height:40px;width:40px}.galleria__lightbox__icon--prev{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.galleria__lightbox__icon--next{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.galleria__lightbox__icon-shape{fill:#fff}.galleria__lightbox__icon-symbol{fill:#000}@media screen and (max-width: 1000px) and (min-width: 600px){.galleria{max-width:600px}}@media screen and (max-width: 600px){.galleria{max-width:320px}}@media screen and (max-width: 480px){.galleria__lightbox__img{padding:0 40px}.galleria__lightbox__icon{height:30px;width:30px}}\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js??ref--2-3");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nvar urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/url-escape.js */ \"./node_modules/css-loader/dist/runtime/url-escape.js\");\nvar ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default.png */ \"./src/img/global/charlie-logo-default.png\"));\nvar ___CSS_LOADER_URL___1___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-default-2x.png */ \"./src/img/global/charlie-logo-default-2x.png\"));\nvar ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile.png */ \"./src/img/global/charlie-logo-mobile.png\"));\nvar ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! img/global/charlie-logo-mobile-2x.png */ \"./src/img/global/charlie-logo-mobile-2x.png\"));\n\n// Module\nexports.push([module.i, \"html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{font-family:'Roboto','Helvetica','Arial',sans-serif;line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*,*:before,*:after{-webkit-box-sizing:border-box;box-sizing:border-box}a{text-decoration:none}a:hover,a:focus{text-decoration:underline}button,[role=\\\"button\\\"]{cursor:pointer}b,strong{font-weight:bold}em,i{font-style:italic}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:normal}.sr-text{clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;position:absolute;width:1px}body{background-color:#191919}.header{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#399;border-bottom:7px solid #066;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:130px;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 15px}.header__logo{background:url(\" + ___CSS_LOADER_URL___0___ + \") no-repeat scroll 0 0 transparent;display:block;height:75px;width:275px}.header__logo:hover,.header__logo:focus{text-decoration:none}.nav{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:5px}.nav__link{border-radius:3px;color:#fff;display:block;font-size:16px;font-weight:bold;margin:0 5px;outline:0;padding:5px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.nav__link:hover,.nav__link:focus{text-decoration:none}.nav__link:hover,.nav__link:focus{background-color:#066}.nav__link--active{background-color:#fff;color:#066}.nav__link--active:hover,.nav__link--active:focus{color:#fff}.content{color:#fff}.h1{font-size:32px;font-weight:300;padding:15px 0;text-align:center}.h2{font-size:18px;padding:0 0 15px;text-align:center}.big-btn-wrap{margin:15px auto 30px;text-align:center}.btn{background-color:#399;color:#fff;display:inline-block;font-weight:bold;padding:8px 16px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease}.btn:hover,.btn:focus{background-color:#066;text-decoration:none}.big-btn{background-color:#399;color:#fff;display:inline-block;font-weight:bold;padding:8px 16px;text-decoration:none;-webkit-transition:background-color 0.4s ease;transition:background-color 0.4s ease;font-size:20px;padding:15px 30px}.big-btn:hover,.big-btn:focus{background-color:#066;text-decoration:none}.eyebrow{padding-top:15px;text-align:center}.copyright-note{color:#777;font-size:12px;line-height:16px;margin:10px auto 30px;max-width:250px;text-align:center}.copyright-note a{color:#777}.copyright-note a:hover,.copyright-note a:focus{color:#399}@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___1___ + \");background-size:275px 75px}}@media screen and (max-width: 767px) and (orientation: landscape){.header{height:95px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 767px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 767px) and (orientation: landscape) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 570px){.header{height:95px}.header__logo{background-image:url(\" + ___CSS_LOADER_URL___2___ + \");background-size:160px 44px;height:44px;width:160px}}@media screen and (max-width: 570px) and (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 570px) and (min-resolution: 192dpi){.header__logo{background-image:url(\" + ___CSS_LOADER_URL___3___ + \")}}@media screen and (max-width: 480px){.big-btn{font-size:16px;padding:15px}}.homepage{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;margin:0 auto;padding:0 15px}.homepage .contact{max-width:800px}.homepage .drawer{max-width:600px}.contact{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;margin:30px auto 15px}.contact__photo{display:inline-block;width:230px}.contact__info{background-color:rgba(0,0,0,0.6);margin-left:30px;padding:15px}.contact__name{padding-top:0;text-align:left}.contact__subtitle{font-size:20px;font-weight:bold;line-height:1.4;padding:5px 0 0}.contact__tooltip{background-color:#f1f1f1;border-radius:7px;color:#000;display:inline-block;font-size:14px;left:-9999px;margin-bottom:10px;padding:5px 10px;position:absolute;text-align:center;top:-9999px}.contact__tooltip:after{border-left:10px solid rgba(0,0,0,0);border-right:10px solid rgba(0,0,0,0);border-top:10px solid #f1f1f1;content:'';left:50%;position:absolute;top:100%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.contact__link-row{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.contact__link-row li{margin-left:10px}.contact__link-row li:first-child{margin-left:0}.contact__link{display:inline-block;outline:0;position:relative}.contact__link svg{height:50px;width:50px}.contact__link path,.contact__link polygon{fill:#399;-webkit-transition:fill 0.2s ease-in-out;transition:fill 0.2s ease-in-out}.contact__link .fill-dark{fill:#000}.contact__link:hover path,.contact__link:hover polygon,.contact__link:focus path,.contact__link:focus polygon{fill:#f1f1f1}.contact__link:hover .fill-dark,.contact__link:focus .fill-dark{fill:#000}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:100%;left:50%;top:auto;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media screen and (max-width: 767px){.contact{display:block;margin:15px 0 0;text-align:center}.contact__info{margin:15px 0 0;text-align:center}.contact__name{text-align:center}.contact__link-row{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}}@media screen and (max-width: 480px){.contact__photo{width:150px}.contact__name{font-size:24px}.contact__subtitle{font-size:16px}.contact__link-row{-ms-flex-wrap:wrap;flex-wrap:wrap;max-width:200px;margin:-10px auto 0}.contact__link-row li{margin-top:10px}.contact__link svg{height:35px;width:35px}.contact__link:hover .contact__tooltip,.contact__link:focus .contact__tooltip{bottom:auto;left:-9999px;top:-9999px;-webkit-transform:none;transform:none}}.galleries{display:-ms-grid;display:grid;-ms-grid-columns:(1fr)[2];grid-template-columns:repeat(2, 1fr);margin:auto;max-width:1008px;padding:8px}.galleries__item{padding:8px}.galleries__img{display:block;max-width:100%}.galleries__text{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.4);border:3px solid transparent;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-size:20px;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;position:absolute;text-shadow:2px 2px 0px #066;top:0;width:100%;-webkit-transition:background-color 0.3s, border-color 0.3s;transition:background-color 0.3s, border-color 0.3s}.galleries__link{display:block;position:relative}.galleries__link:hover .galleries__text,.galleries__link:focus .galleries__text{background-color:rgba(0,0,0,0);border-color:#399}.gallery{display:-ms-grid;display:grid;-ms-grid-columns:375px 1fr;grid-template-columns:375px 1fr;-ms-grid-rows:minmax(0, 100%);grid-template-rows:minmax(0, 100%);height:calc(100vh - 125px);overflow:hidden}.gallery__header,.gallery__back{-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.gallery__header{background-color:#066;height:23px;padding:0 5px 7px}.gallery__back{background-color:#399;border-bottom:1px solid #066;height:30px;padding:0 5px}.gallery__back:hover,.gallery__back:focus{background-color:#000;border-bottom-color:#000;text-decoration:none}.gallery__list{display:-ms-grid;display:grid;-ms-grid-columns:(1fr)[3];grid-template-columns:repeat(3, 1fr);height:calc(100% - 53px);overflow:auto}.gallery__list__img{display:block;width:125px}.gallery__list__title{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0,0,0,0.6);border:3px solid rgba(0,0,0,0);color:#fff;display:none;font-weight:bold;height:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;padding:5px;position:absolute;top:0;width:100%}.gallery__list__btn{background:none transparent;border:medium none;padding:0;outline:0;display:block;position:relative}.gallery__list__btn:hover .gallery__list__title,.gallery__list__btn:focus .gallery__list__title,.gallery__list__btn--active .gallery__list__title{display:-webkit-box;display:-ms-flexbox;display:flex}.gallery__list__btn--active .gallery__list__title{border-color:#399}.gallery__viewer{display:-ms-grid;display:grid;-ms-grid-columns:1fr;grid-template-columns:1fr;-ms-grid-rows:1fr -webkit-min-content -webkit-min-content;-ms-grid-rows:1fr min-content min-content;grid-template-rows:1fr -webkit-min-content -webkit-min-content;grid-template-rows:1fr min-content min-content;height:100%;padding:15px;text-align:center}.gallery__viewer__img{display:block;min-height:250px;max-height:100%;max-width:100%;margin:0 auto}.gallery__viewer__title{font-weight:bold;padding:15px 0 5px}.gallery__viewer .fade-enter-active,.gallery__viewer .fade-leave-active{-webkit-transition:opacity .3s;transition:opacity .3s}.gallery__viewer .fade-enter,.gallery__viewer .fade-leave-to{opacity:0}.collections{margin:0 auto;max-width:1500px;padding:0 16px}.collections .intro{line-height:1.4;margin:0 auto 15px;max-width:600px}.collections .intro a{color:#399}.collections .intro a:hover,.collections .intro a:focus{color:#066}.collections__shop{display:-ms-grid;display:grid;-ms-grid-columns:(1fr)[3];grid-template-columns:repeat(3, 1fr);margin:0 -16px}.collections__shop li{line-height:1.2;padding:16px;text-align:center}.collections__shop img{display:block;max-width:100%;margin:0 0 16px}.collections__shop .h2{color:#fff;font-weight:700;padding:0}.collections__shop .subtitle{color:#fff;font-size:18px;font-weight:300;padding:0 0 8px}.collections__shop .meta{color:#f1f1f1;font-size:14px;line-height:18px}.collections__shop .btn{margin-top:16px}.collections__shop .hover-wrap{position:relative}.collections__shop .hover-cover{background:rgba(0,0,0,0.4);border:3px solid #399;color:#fff;font-weight:bold;display:none;position:absolute;top:0;left:0;width:100%;height:100%}.collections__shop__link:hover,.collections__shop__link:focus{color:#399;text-decoration:none}.collections__shop__link:hover .h2,.collections__shop__link:hover .subtitle,.collections__shop__link:focus .h2,.collections__shop__link:focus .subtitle{color:#399}.collections__shop__link:hover .hover-cover,.collections__shop__link:focus .hover-cover{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.collection__info{font-size:16px;line-height:24px;margin:0 auto 30px;max-width:600px;text-align:center}@media screen and (max-width: 960px){.gallery{-ms-grid-columns:250px 1fr;grid-template-columns:250px 1fr}.gallery__list{-ms-grid-columns:(1fr)[2];grid-template-columns:repeat(2, 1fr)}}@media screen and (max-width: 767px){.gallery{-ms-grid-columns:100%;grid-template-columns:100%;-ms-grid-rows:130px 1fr;grid-template-rows:130px 1fr}.gallery__menu{display:-ms-grid;display:grid;-ms-grid-rows:30px 100px;grid-template-rows:30px 100px;-ms-grid-columns:(1fr)[2];grid-template-columns:repeat(2, 1fr)}.gallery__header{height:30px;padding:0 5px}.gallery__list{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-grid-column:1;-ms-grid-column-span:2;grid-column:1 / 3;height:100%}.gallery__list__img{width:100px}.gallery__viewer{display:block;height:auto;overflow:auto}}@media screen and (max-width: 767px) and (orientation: landscape){.gallery{height:calc(100vh - 90px)}}@media screen and (max-width: 570px){.galleries{display:block}.gallery{height:calc(100vh - 90px)}.collections__shop{display:block}}.code-wrapper{margin:0 auto;max-width:830px;padding:0 15px}.code-list{padding:0 0 15px}.code-list__item{margin-top:30px}.code-preview{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff}.code-preview__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.code-preview__heading__text{padding-right:15px}.code-preview__content{line-height:1.5}.code-preview__content{display:-webkit-box;display:-ms-flexbox;display:flex}.code-preview__img{border-radius:0 0 0 5px;-webkit-box-flex:0;-ms-flex:0 0 41.25%;flex:0 0 41.25%;overflow:hidden}.code-preview__img img{display:block;max-width:100%}.code-preview__info{overflow:hidden}.code-preview__description{font-size:14px;padding:15px}.code-preview__description a{color:#399}.code-preview__btns{display:-webkit-box;display:-ms-flexbox;display:flex;padding:10px 10px 0}.code-preview__btn{color:#fff;display:inline-block;font-size:14px;font-weight:bold;height:25px;line-height:14px;margin:0 10px;padding:5px;position:relative;text-decoration:none;white-space:nowrap}.code-preview__btn::before{content:'';display:block;height:0;position:absolute;top:0;width:0;border-bottom-style:solid;border-bottom-width:25px;border-left:10px solid rgba(0,0,0,0);left:-10px}.code-preview__btn::after{content:'';display:block;height:0;position:absolute;top:0;width:0;border-top-style:solid;border-top-width:25px;border-right:10px solid rgba(0,0,0,0);right:-10px}.code-preview__btn:not([class$=\\\"--year\\\"]):hover,.code-preview__btn:not([class$=\\\"--year\\\"]):focus{background-color:#000;text-decoration:none}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::before,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::before{border-bottom-color:#000}.code-preview__btn:not([class$=\\\"--year\\\"]):hover::after,.code-preview__btn:not([class$=\\\"--year\\\"]):focus::after{border-top-color:#000}.code-preview__btn--primary{background-color:#292929;margin-left:auto}.code-preview__btn--primary::before{border-bottom-color:#292929}.code-preview__btn--primary::after{border-top-color:#292929}.code-preview__btn--secondary{background-color:#444}.code-preview__btn--secondary::before{border-bottom-color:#444}.code-preview__btn--secondary::after{border-top-color:#444}.code-preview__btn--year{background-color:#399}.code-preview__btn--year::before{border-bottom-color:#399}.code-preview__btn--year::after{border-top-color:#399}@media screen and (max-width: 767px){.code-preview__content{-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.code-preview__img{-webkit-box-flex:0;-ms-flex:0 1 auto;flex:0 1 auto;max-width:330px;margin-top:15px}}@media screen and (max-width: 570px){.code-preview__heading{display:block;padding:10px 10px 10px 25px}.code-preview__heading__text{display:block;margin-left:-10px;padding:0 0 5px}}@media screen and (max-width: 480px){.code-preview__heading{padding-left:20px}.code-preview__heading__text{margin-left:-5px}.code-preview__btn{font-size:12px;margin:0 5px}.code-preview__btn--primary{margin-left:0}.code-preview__btn::before{border-left-width:5px;left:-5px}.code-preview__btn::after{border-right-width:5px;right:-5px}}.drawer{background-color:#292929;border-bottom:2px solid #444;border-radius:5px;color:#fff;margin:15px auto;position:relative}.drawer__heading{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#360;border-radius:5px 5px 0 0;color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:bold;min-height:40px;padding:0 15px}.drawer__heading__text{padding-right:15px}.drawer__content{line-height:1.5}.drawer__content{padding:15px 30px;overflow:hidden;outline:none}.drawer__content a{color:#399}.drawer__content a:hover,.drawer__content a:focus{color:#066}.drawer__content--hidden{height:200px}.drawer__expand{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#000));background:linear-gradient(rgba(0,0,0,0), #000);border:medium none;border-radius:0 0 5px 5px;color:#fff;display:block;font-size:16px;font-weight:bold;padding:60px 15px 15px;text-align:center;position:absolute;left:0;bottom:0;width:100%}.drawer__expand:hover,.drawer__expand:focus{background:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#066));background:linear-gradient(rgba(0,0,0,0), #066);outline:0}.drawer__expand:before,.drawer__expand:after{content:'+'}.drawer__expand--expanded{padding-top:20px;position:static}.drawer__expand--expanded:before,.drawer__expand--expanded:after{content:'-'}.galleria{max-width:2400px;margin:0 auto}.galleria-row{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.galleria-img{background:none transparent;border:medium none;padding:0;outline:0;display:block;position:relative;overflow:hidden}.galleria-img:after{border:3px solid #399;content:none;height:100%;left:0;position:absolute;top:0;width:100%}.galleria-img:hover:after,.galleria-img:focus:after{content:\\\"\\\"}.galleria-img img{opacity:0;position:absolute;left:0;top:0;width:100%}.galleria-img img.loaded{opacity:1}.galleria-small{-webkit-filter:blur(10px);filter:blur(10px);-webkit-transform:scale(1);transform:scale(1)}.galleria__lightbox{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background:rgba(0,0,0,0.6);bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;position:fixed;right:0;top:0;width:100%;z-index:1}.galleria__lightbox__img{display:block;margin:0 auto;max-height:90%;max-width:100%;padding:0 50px}.galleria__lightbox__title{font-weight:bold;padding:15px 0 0;text-align:center}.galleria__lightbox__close{background:#000;border:2px solid #fff;border-radius:20px;color:#fff;font-weight:bold;outline:0;padding:5px 10px;position:fixed;right:15px;top:15px;z-index:2}.galleria__lightbox__close:hover,.galleria__lightbox__close:focus{background:#fff;color:#000}.galleria__lightbox__nav{background:none transparent;border:medium none;padding:0;outline:0;line-height:1;position:fixed;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);z-index:2}.galleria__lightbox__nav[title=\\\"Previous\\\"]{left:5px}.galleria__lightbox__nav[title=\\\"Next\\\"]{right:5px}.galleria__lightbox__nav:hover .galleria__lightbox__icon-shape{fill:#399}.galleria__lightbox__icon{height:40px;width:40px}.galleria__lightbox__icon--prev{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.galleria__lightbox__icon--next{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.galleria__lightbox__icon-shape{fill:#fff}.galleria__lightbox__icon-symbol{fill:#000}@media screen and (max-width: 2400px) and (min-width: 2000px){.galleria{max-width:2000px}}@media screen and (max-width: 2000px) and (min-width: 1400px){.galleria{max-width:1400px}}@media screen and (max-width: 1400px) and (min-width: 1000px){.galleria{max-width:1000px}}@media screen and (max-width: 1000px) and (min-width: 600px){.galleria{max-width:600px}}@media screen and (max-width: 600px){.galleria{max-width:320px}}@media screen and (max-width: 480px){.galleria__lightbox__img{padding:0 40px}.galleria__lightbox__icon{height:30px;width:30px}}\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src!./node_modules/sass-loader/dist/cjs.js??ref--2-3");
 
 /***/ }),
 
@@ -463,7 +463,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"galleria\" },\n    [\n      _vm._l(_vm.photosInRows, function(row, r) {\n        return _c(\n          \"div\",\n          {\n            key: \"row-\" + r,\n            ref: \"row\",\n            refInFor: true,\n            staticClass: \"galleria-row\"\n          },\n          _vm._l(row, function(img, i) {\n            return _c(\n              \"a\",\n              {\n                key: \"row-\" + r + \"-img-\" + i,\n                staticClass: \"galleria-img\",\n                style: _vm.getStyle(row, img),\n                attrs: {\n                  href: \"#\",\n                  title: img.title,\n                  \"data-large\":\n                    \"../img/art/books/\" + _vm.bookName + \"/\" + img.file + \".jpg\"\n                },\n                on: {\n                  click: function($event) {\n                    $event.stopPropagation()\n                    $event.preventDefault()\n                    return (function(e) {\n                      return _vm.imgClick(e, img)\n                    })($event)\n                  }\n                }\n              },\n              [\n                _c(\"img\", {\n                  staticClass: \"galleria-small\",\n                  attrs: {\n                    src: __webpack_require__(\"./src/img/art/books sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                      _vm.bookName +\n                      \"/thumbs/\" +\n                      img.file +\n                      \".jpg\"),\n                    alt: img.title || img.file\n                  }\n                })\n              ]\n            )\n          }),\n          0\n        )\n      }),\n      _vm._v(\" \"),\n      _vm.lightImg && _vm.lightImg.file\n        ? _c(\n            \"div\",\n            {\n              staticClass: \"galleria__lightbox\",\n              on: {\n                click: function($event) {\n                  $event.stopPropagation()\n                  $event.preventDefault()\n                  return _vm.closeLightbox($event)\n                }\n              }\n            },\n            [\n              _c(\"img\", {\n                staticClass: \"galleria__lightbox__img\",\n                attrs: {\n                  src: __webpack_require__(\"./src/img/art/books sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                    _vm.bookName +\n                    \"/\" +\n                    _vm.lightImg.file +\n                    \".jpg\"),\n                  alt: _vm.lightImg.file\n                }\n              }),\n              _vm._v(\" \"),\n              _vm.lightImg.title\n                ? _c(\"div\", { staticClass: \"galleria__lightbox__title\" }, [\n                    _vm._v(_vm._s(_vm.lightImg.title))\n                  ])\n                : _vm._e(),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  staticClass: \"galleria__lightbox__nav\",\n                  attrs: { type: \"button\", title: \"Previous\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return (function() {\n                        return _vm.lightboxNav(-1)\n                      })($event)\n                    }\n                  }\n                },\n                [\n                  _c(\"span\", { staticClass: \"sr-text\" }, [_vm._v(\"Previous\")]),\n                  _vm._v(\" \"),\n                  _c(\"ArrowIcon\", {\n                    staticClass: \"galleria__lightbox__icon--prev\"\n                  })\n                ],\n                1\n              ),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  staticClass: \"galleria__lightbox__nav\",\n                  attrs: { type: \"button\", title: \"Next\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return (function() {\n                        return _vm.lightboxNav(1)\n                      })($event)\n                    }\n                  }\n                },\n                [\n                  _c(\"span\", { staticClass: \"sr-text\" }, [_vm._v(\"Next\")]),\n                  _vm._v(\" \"),\n                  _c(\"ArrowIcon\", {\n                    staticClass: \"galleria__lightbox__icon--next\"\n                  })\n                ],\n                1\n              ),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  staticClass: \"galleria__lightbox__close\",\n                  attrs: { type: \"button\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return _vm.closeLightbox($event)\n                    }\n                  }\n                },\n                [_vm._v(\"\\n      Close\\n    \")]\n              )\n            ]\n          )\n        : _vm._e()\n    ],\n    2\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"galleria\" },\n    [\n      _vm._l(_vm.imagesInRows, function(row, r) {\n        return _c(\n          \"div\",\n          {\n            key: \"row-\" + r,\n            ref: \"row\",\n            refInFor: true,\n            staticClass: \"galleria-row\"\n          },\n          _vm._l(row, function(img, i) {\n            return _c(\n              \"button\",\n              {\n                key: \"row-\" + r + \"-img-\" + i,\n                ref: \"galleriaImg-\" + img.file,\n                refInFor: true,\n                staticClass: \"galleria-img\",\n                style: _vm.getStyle(row, img),\n                attrs: {\n                  type: \"button\",\n                  title: img.title,\n                  \"data-large\":\n                    \"../img/art/collections/\" +\n                    _vm.name +\n                    \"/\" +\n                    img.file +\n                    \".jpg\"\n                },\n                on: {\n                  click: function($event) {\n                    $event.stopPropagation()\n                    $event.preventDefault()\n                    return (function(e) {\n                      return _vm.imgClick(e, img)\n                    })($event)\n                  }\n                }\n              },\n              [\n                _c(\"img\", {\n                  staticClass: \"galleria-small\",\n                  attrs: {\n                    src: __webpack_require__(\"./src/img/art/collections sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                      _vm.name +\n                      \"/thumbs/\" +\n                      img.file +\n                      \".jpg\"),\n                    alt: (img.title || img.file) + \" open image in lightbox\",\n                    role: \"presentation\"\n                  }\n                })\n              ]\n            )\n          }),\n          0\n        )\n      }),\n      _vm._v(\" \"),\n      _vm.lightImg && _vm.lightImg.file\n        ? _c(\n            \"div\",\n            {\n              staticClass: \"galleria__lightbox\",\n              on: {\n                click: function($event) {\n                  $event.stopPropagation()\n                  $event.preventDefault()\n                  return _vm.closeLightbox($event)\n                }\n              }\n            },\n            [\n              _c(\"img\", {\n                staticClass: \"galleria__lightbox__img\",\n                attrs: {\n                  src: __webpack_require__(\"./src/img/art/collections sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                    _vm.name +\n                    \"/\" +\n                    _vm.lightImg.file +\n                    \".jpg\"),\n                  alt: _vm.lightImg.file\n                }\n              }),\n              _vm._v(\" \"),\n              _vm.lightImg.title\n                ? _c(\"div\", { staticClass: \"galleria__lightbox__title\" }, [\n                    _vm._v(_vm._s(_vm.lightImg.title))\n                  ])\n                : _vm._e(),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  staticClass: \"galleria__lightbox__nav\",\n                  attrs: { type: \"button\", title: \"Previous\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return (function() {\n                        return _vm.lightboxNav(-1)\n                      })($event)\n                    }\n                  }\n                },\n                [\n                  _c(\"span\", { staticClass: \"sr-text\" }, [_vm._v(\"Previous\")]),\n                  _vm._v(\" \"),\n                  _c(\"ArrowIcon\", {\n                    staticClass: \"galleria__lightbox__icon--prev\"\n                  })\n                ],\n                1\n              ),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  staticClass: \"galleria__lightbox__nav\",\n                  attrs: { type: \"button\", title: \"Next\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return (function() {\n                        return _vm.lightboxNav(1)\n                      })($event)\n                    }\n                  }\n                },\n                [\n                  _c(\"span\", { staticClass: \"sr-text\" }, [_vm._v(\"Next\")]),\n                  _vm._v(\" \"),\n                  _c(\"ArrowIcon\", {\n                    staticClass: \"galleria__lightbox__icon--next\"\n                  })\n                ],\n                1\n              ),\n              _vm._v(\" \"),\n              _c(\n                \"button\",\n                {\n                  ref: \"closeBtn\",\n                  staticClass: \"galleria__lightbox__close\",\n                  attrs: { type: \"button\" },\n                  on: {\n                    click: function($event) {\n                      $event.stopPropagation()\n                      $event.preventDefault()\n                      return _vm.closeLightbox($event)\n                    }\n                  }\n                },\n                [\n                  _vm._v(\"\\n      Close \"),\n                  _c(\"span\", { staticClass: \"sr-text\" }, [_vm._v(\"lightbox\")])\n                ]\n              )\n            ]\n          )\n        : _vm._e()\n    ],\n    2\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/partials/galleria.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -527,27 +527,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6& ***!
-  \****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collection.vue?vue&type=template&id=2051e768&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/collection.vue?vue&type=template&id=2051e768& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\n        \"div\",\n        { staticClass: \"eyebrow\" },\n        [\n          _c(\n            \"router-link\",\n            { staticClass: \"eyebrow__link\", attrs: { to: \"/books\" } },\n            [_vm._v(\"Books\")]\n          )\n        ],\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"h1\", { staticClass: \"h1\" }, [_vm._v(_vm._s(_vm.bookData.title))]),\n      _vm._v(\" \"),\n      _c(\"h2\", { staticClass: \"h2\" }, [_vm._v(_vm._s(_vm.bookData.subtitle))]),\n      _vm._v(\" \"),\n      _c(\"galleria\", {\n        attrs: { \"book-name\": _vm.bookName, photos: _vm.bookData.photos }\n      }),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\n        \"div\",\n        { staticClass: \"eyebrow\" },\n        [\n          _c(\n            \"router-link\",\n            { staticClass: \"btn\", attrs: { to: \"/collections\" } },\n            [_vm._v(\"Collections\")]\n          )\n        ],\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"h1\", { staticClass: \"h1\" }, [_vm._v(_vm._s(_vm.cData.title))]),\n      _vm._v(\" \"),\n      _c(\"h2\", { staticClass: \"h2\" }, [_vm._v(_vm._s(_vm.cData.subtitle))]),\n      _vm._v(\" \"),\n      _c(\"p\", { staticClass: \"collection__info\" }, [\n        _vm._v(_vm._s(_vm.cData.info))\n      ]),\n      _vm._v(\" \"),\n      _c(\"galleria\", { attrs: { name: _vm.cName, images: _vm.cData.images } }),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/collection.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28& ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collections.vue?vue&type=template&id=0eb61e57&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/templates/galleries/collections.vue?vue&type=template&id=0eb61e57& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"books\" },\n    [\n      _c(\"h1\", { staticClass: \"h1\" }, [_vm._v(\"Books\")]),\n      _vm._v(\" \"),\n      _vm._m(0),\n      _vm._v(\" \"),\n      _c(\n        \"ul\",\n        { staticClass: \"books__shop\" },\n        _vm._l(_vm.books, function(book, i) {\n          return _c(\n            \"router-link\",\n            { key: i, attrs: { tag: \"li\", to: \"/books/\" + book.id } },\n            [\n              _c(\"a\", { staticClass: \"books__shop__link\" }, [\n                _c(\"div\", { staticClass: \"hover-wrap\" }, [\n                  _c(\"img\", {\n                    attrs: {\n                      src: __webpack_require__(\"./src/img/art/books/covers sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                        book.id +\n                        \".jpg\"),\n                      alt: book.title + \" by Charlie Thomason hardcover book\"\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"span\", { staticClass: \"hover-cover\" }, [\n                    _vm._v(\"View book\")\n                  ])\n                ]),\n                _vm._v(\" \"),\n                _c(\"h2\", { staticClass: \"h2\" }, [_vm._v(_vm._s(book.title))]),\n                _vm._v(\" \"),\n                _c(\"h3\", { staticClass: \"subtitle\" }, [\n                  _vm._v(_vm._s(book.subtitle))\n                ])\n              ]),\n              _vm._v(\" \"),\n              _c(\"div\", { staticClass: \"meta\" }, [_vm._v(_vm._s(book.year))]),\n              _vm._v(\" \"),\n              _c(\"div\", { staticClass: \"meta\" }, [\n                _vm._v(_vm._s(book.pages) + \" pages\")\n              ]),\n              _vm._v(\" \"),\n              _c(\n                \"a\",\n                {\n                  staticClass: \"btn\",\n                  attrs: { href: book.blurb, target: \"_blank\" }\n                },\n                [_vm._v(\"Order book on Blurb.com\")]\n              )\n            ]\n          )\n        }),\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"p\", { staticClass: \"intro\" }, [\n      _vm._v(\n        \"I am proud to have written, designed, and self-published all of the below listed art books. The content consists of my own art and/or photography, scanned and printed in high resolution. These books are currently only available as print-on-demand through \"\n      ),\n      _c(\"a\", { attrs: { href: \"http://www.blurb.com\", target: \"_blank\" } }, [\n        _vm._v(\"Blurb.com\")\n      ]),\n      _vm._v(\n        \", and I do not control the pricing. If you would like me to sign the book for you, please reach out to me directly (see contact methods on homepage).\"\n      )\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"collections\" },\n    [\n      _c(\"h1\", { staticClass: \"h1\" }, [_vm._v(\"Collections\")]),\n      _vm._v(\" \"),\n      _c(\"p\", { staticClass: \"intro\" }, [_vm._v(_vm._s(_vm.intro))]),\n      _vm._v(\" \"),\n      _c(\n        \"ul\",\n        { staticClass: \"collections__shop\" },\n        _vm._l(_vm.collections, function(c, i) {\n          return _c(\n            \"router-link\",\n            { key: i, attrs: { tag: \"li\", to: \"/collections/\" + c.id } },\n            [\n              _c(\"a\", { staticClass: \"collections__shop__link\" }, [\n                _c(\"div\", { staticClass: \"hover-wrap\" }, [\n                  _c(\"img\", {\n                    attrs: {\n                      src: __webpack_require__(\"./src/img/art/collections/covers sync recursive ^\\\\.\\\\/.*\\\\.jpg$\")(\"./\" +\n                        c.id +\n                        \".jpg\"),\n                      alt: \"\" + c.title\n                    }\n                  }),\n                  _vm._v(\" \"),\n                  _c(\"span\", { staticClass: \"hover-cover\" }, [\n                    _vm._v(\"View book\")\n                  ])\n                ]),\n                _vm._v(\" \"),\n                _c(\"h2\", { staticClass: \"h2\" }, [_vm._v(_vm._s(c.title))]),\n                _vm._v(\" \"),\n                _c(\"h3\", { staticClass: \"subtitle\" }, [\n                  _vm._v(_vm._s(c.subtitle))\n                ])\n              ]),\n              _vm._v(\" \"),\n              _c(\"div\", { staticClass: \"meta\" }, [_vm._v(_vm._s(c.year))]),\n              _vm._v(\" \"),\n              _c(\"div\", { staticClass: \"meta\" }, [_vm._v(_vm._s(c.medium))]),\n              _vm._v(\" \"),\n              c.pages\n                ? _c(\"div\", { staticClass: \"meta\" }, [\n                    _vm._v(_vm._s(c.pages) + \" pages\")\n                  ])\n                : _vm._e(),\n              _vm._v(\" \"),\n              c.blurb\n                ? _c(\n                    \"a\",\n                    {\n                      staticClass: \"btn\",\n                      attrs: { href: c.blurb, target: \"_blank\" }\n                    },\n                    [_vm._v(\"Order book on Blurb.com\")]\n                  )\n                : _vm._e()\n            ]\n          )\n        }),\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"footer-note\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/collections.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -641,7 +641,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! exports provided: galleries, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"galleries\\\":[{\\\"href\\\":\\\"books\\\",\\\"name\\\":\\\"Books\\\",\\\"wide\\\":true},{\\\"href\\\":\\\"birds\\\",\\\"name\\\":\\\"Birds\\\"},{\\\"href\\\":\\\"movies\\\",\\\"name\\\":\\\"Movies\\\"},{\\\"href\\\":\\\"other\\\",\\\"name\\\":\\\"Other\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/art.json?");
+eval("module.exports = JSON.parse(\"{\\\"galleries\\\":[{\\\"href\\\":\\\"collections\\\",\\\"name\\\":\\\"Collections\\\"},{\\\"href\\\":\\\"birds\\\",\\\"name\\\":\\\"Birds\\\"},{\\\"href\\\":\\\"movies\\\",\\\"name\\\":\\\"Movies\\\"},{\\\"href\\\":\\\"other\\\",\\\"name\\\":\\\"Other\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/art.json?");
 
 /***/ }),
 
@@ -652,18 +652,18 @@ eval("module.exports = JSON.parse(\"{\\\"galleries\\\":[{\\\"href\\\":\\\"books\
 /*! exports provided: birds, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"birds\\\":[{\\\"id\\\":\\\"blaumeisecolor\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria (watercolor)\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"emeraldosprey\\\",\\\"title\\\":\\\"Emerald Osprey\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"blaumeise\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"magpieparkcity\\\",\\\"title\\\":\\\"Park City Magpie\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"kestrelgreenskies\\\",\\\"title\\\":\\\"Kestrel Flies Over Green Skies\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"turquoiseperegrine\\\",\\\"title\\\":\\\"Turquoise Peregrine\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pelicanvenice\\\",\\\"title\\\":\\\"Pelicanus Venezia\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"whitethroatedsparrow\\\",\\\"title\\\":\\\"White Throated Sparrow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"tern\\\",\\\"title\\\":\\\"Caspian Tern\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"coopershawk\\\",\\\"title\\\":\\\"Cooper's Hawk\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"crow\\\",\\\"title\\\":\\\"American Crow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"grosbeaks\\\",\\\"title\\\":\\\"Rose-Breasted Grosbeaks\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"redwingedblackbird\\\",\\\"title\\\":\\\"Red-Winged Blackbird\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"rockpigeon\\\",\\\"title\\\":\\\"Rock Pigeon\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kingfisher\\\",\\\"title\\\":\\\"Belted Kingfisher\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"ospreykingfisher\\\",\\\"title\\\":\\\"Osprey and Kingfisher\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"turkey\\\",\\\"title\\\":\\\"Wild Turkey\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greathornedowl\\\",\\\"title\\\":\\\"Great Horned Owl\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pileatedwoodpecker\\\",\\\"title\\\":\\\"Pileated Woodpecker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"goshawk\\\",\\\"title\\\":\\\"Northern Goshawk\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"loon\\\",\\\"title\\\":\\\"Common Loon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kestrel\\\",\\\"title\\\":\\\"American Kestrel\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"flicker\\\",\\\"title\\\":\\\"Northern Flicker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormorant\\\",\\\"title\\\":\\\"Double-Crested Cormorant\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cardinals\\\",\\\"title\\\":\\\"Northern Cardinals\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"nightheron\\\",\\\"title\\\":\\\"Black-Crowned Night Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"peregrine\\\",\\\"title\\\":\\\"Peregrine Falcon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"woodduck\\\",\\\"title\\\":\\\"Wood Duck\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"bluejay\\\",\\\"title\\\":\\\"Blue Jay\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greatblueheron\\\",\\\"title\\\":\\\"Great Blue Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"meadowlark\\\",\\\"title\\\":\\\"Eastern Meadowlark\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"passengerpigeons\\\",\\\"title\\\":\\\"Passenger Pigeons\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"screechowl\\\",\\\"title\\\":\\\"Screech Owl\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"bluejaydesert\\\",\\\"title\\\":\\\"Blue Jay in the Desert\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/birds.json?");
+eval("module.exports = JSON.parse(\"{\\\"birds\\\":[{\\\"id\\\":\\\"redjunglefowl\\\",\\\"title\\\":\\\"Asian Red Junglefowl\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Gouache on paper\\\"},{\\\"id\\\":\\\"blaumeisecolor\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria (watercolor)\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"emeraldosprey\\\",\\\"title\\\":\\\"Emerald Osprey\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"blaumeise\\\",\\\"title\\\":\\\"Blue Tit of Tyrol, Austria\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"magpieparkcity\\\",\\\"title\\\":\\\"Park City Magpie\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"kestrelgreenskies\\\",\\\"title\\\":\\\"Kestrel Flies Over Green Skies\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"turquoiseperegrine\\\",\\\"title\\\":\\\"Turquoise Peregrine\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pelicanvenice\\\",\\\"title\\\":\\\"Pelicanus Venezia\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"whitethroatedsparrow\\\",\\\"title\\\":\\\"White Throated Sparrow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"tern\\\",\\\"title\\\":\\\"Caspian Tern\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"coopershawk\\\",\\\"title\\\":\\\"Cooper's Hawk\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"crow\\\",\\\"title\\\":\\\"American Crow\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"grosbeaks\\\",\\\"title\\\":\\\"Rose-Breasted Grosbeaks\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"redwingedblackbird\\\",\\\"title\\\":\\\"Red-Winged Blackbird\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"rockpigeon\\\",\\\"title\\\":\\\"Rock Pigeon\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kingfisher\\\",\\\"title\\\":\\\"Belted Kingfisher\\\",\\\"year\\\":\\\"2016\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"ospreykingfisher\\\",\\\"title\\\":\\\"Osprey and Kingfisher\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"turkey\\\",\\\"title\\\":\\\"Wild Turkey\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greathornedowl\\\",\\\"title\\\":\\\"Great Horned Owl\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"pileatedwoodpecker\\\",\\\"title\\\":\\\"Pileated Woodpecker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"goshawk\\\",\\\"title\\\":\\\"Northern Goshawk\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"loon\\\",\\\"title\\\":\\\"Common Loon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"kestrel\\\",\\\"title\\\":\\\"American Kestrel\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"flicker\\\",\\\"title\\\":\\\"Northern Flicker\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormorant\\\",\\\"title\\\":\\\"Double-Crested Cormorant\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cardinals\\\",\\\"title\\\":\\\"Northern Cardinals\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"nightheron\\\",\\\"title\\\":\\\"Black-Crowned Night Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"peregrine\\\",\\\"title\\\":\\\"Peregrine Falcon\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"woodduck\\\",\\\"title\\\":\\\"Wood Duck\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"bluejay\\\",\\\"title\\\":\\\"Blue Jay\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"greatblueheron\\\",\\\"title\\\":\\\"Great Blue Heron\\\",\\\"year\\\":\\\"2015\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"meadowlark\\\",\\\"title\\\":\\\"Eastern Meadowlark\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"passengerpigeons\\\",\\\"title\\\":\\\"Passenger Pigeons\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"screechowl\\\",\\\"title\\\":\\\"Screech Owl\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"bluejaydesert\\\",\\\"title\\\":\\\"Blue Jay in the Desert\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/birds.json?");
 
 /***/ }),
 
-/***/ "./src/data/books.json":
-/*!*****************************!*\
-  !*** ./src/data/books.json ***!
-  \*****************************/
-/*! exports provided: books, charlieinktober, birdsofchicagoland, openrange, default */
+/***/ "./src/data/collections.json":
+/*!***********************************!*\
+  !*** ./src/data/collections.json ***!
+  \***********************************/
+/*! exports provided: intro, collections, lightandink, charlieinktober, birdsofchicagoland, wideworld, openrange, englishportfolio, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"books\\\":[{\\\"id\\\":\\\"charlieinktober\\\",\\\"title\\\":\\\"#charlieinktober 2020\\\",\\\"subtitle\\\":\\\"Silver Stills From Favorite Films\\\",\\\"medium\\\":\\\"Ink Paintings\\\",\\\"year\\\":\\\"2020\\\",\\\"pages\\\":\\\"28\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/10393438-charlieinktober-2020-silver-stills-from-favorite\\\"},{\\\"id\\\":\\\"birdsofchicagoland\\\",\\\"title\\\":\\\"Birds of Chicagoland\\\",\\\"subtitle\\\":\\\"Paintings by Charlie Thomason\\\",\\\"medium\\\":\\\"Watercolor and Ink Paintings\\\",\\\"year\\\":\\\"2016\\\",\\\"pages\\\":\\\"68\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/7500748-birds-of-chicagoland\\\"},{\\\"id\\\":\\\"openrange\\\",\\\"title\\\":\\\"Open Range\\\",\\\"subtitle\\\":\\\"From Monument Valley to the Mojave Desert\\\",\\\"medium\\\":\\\"Film and Digital Photography\\\",\\\"year\\\":\\\"2012\\\",\\\"pages\\\":\\\"152\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/2868673-open-range\\\"}],\\\"charlieinktober\\\":{\\\"title\\\":\\\"#charlieinktober 2020\\\",\\\"subtitle\\\":\\\"Silver Stills From Favorite Films\\\",\\\"photos\\\":[{\\\"file\\\":\\\"beetlejuice\\\",\\\"title\\\":\\\"1. Beetlejuice (1988)\\\",\\\"width\\\":964},{\\\"file\\\":\\\"halloween\\\",\\\"title\\\":\\\"2. Halloween (1978)\\\",\\\"width\\\":1087},{\\\"file\\\":\\\"lotr\\\",\\\"title\\\":\\\"3. The Lord of the Rings: The Fellowship of the Ring (2001)\\\",\\\"width\\\":1040},{\\\"file\\\":\\\"phibes\\\",\\\"title\\\":\\\"4. The Abominable Dr. Phibes (1971)\\\",\\\"width\\\":1004},{\\\"file\\\":\\\"shining\\\",\\\"title\\\":\\\"5. The Shining (1980)\\\",\\\"width\\\":954},{\\\"file\\\":\\\"starwars\\\",\\\"title\\\":\\\"6. Star Wars (1977)\\\",\\\"width\\\":1004},{\\\"file\\\":\\\"batman\\\",\\\"title\\\":\\\"7. Batman (1989)\\\",\\\"width\\\":1002},{\\\"file\\\":\\\"sleepyhollow\\\",\\\"title\\\":\\\"8. Sleepy Hollow (1999)\\\",\\\"width\\\":1000},{\\\"file\\\":\\\"donniedarko\\\",\\\"title\\\":\\\"9. Donnie Darko (2001)\\\",\\\"width\\\":1009},{\\\"file\\\":\\\"terminator2\\\",\\\"title\\\":\\\"10. Terminator 2: Judgement Day (1991)\\\",\\\"width\\\":1133},{\\\"file\\\":\\\"nightmareb4xmas\\\",\\\"title\\\":\\\"11. The Nightmare Before Christmas (1993)\\\",\\\"width\\\":1006},{\\\"file\\\":\\\"thefog\\\",\\\"title\\\":\\\"12. The Fog (1980)\\\",\\\"width\\\":1009},{\\\"file\\\":\\\"edwardscissorhands\\\",\\\"title\\\":\\\"13. Edward Scissorhands (1990)\\\",\\\"width\\\":986},{\\\"file\\\":\\\"alien\\\",\\\"title\\\":\\\"14. Alien (1979)\\\",\\\"width\\\":983},{\\\"file\\\":\\\"bladerunner\\\",\\\"title\\\":\\\"15. Blade Runner (1982)\\\",\\\"width\\\":1098},{\\\"file\\\":\\\"thecrow\\\",\\\"title\\\":\\\"16. The Crow (1994)\\\",\\\"width\\\":979},{\\\"file\\\":\\\"shaunofthedead\\\",\\\"title\\\":\\\"17. Shaun of the Dead (2004)\\\",\\\"width\\\":1211},{\\\"file\\\":\\\"metropolis\\\",\\\"title\\\":\\\"18. Metropolis (1927)\\\",\\\"width\\\":992},{\\\"file\\\":\\\"escapefromny\\\",\\\"title\\\":\\\"19. Escape From New York (1981)\\\",\\\"width\\\":1017},{\\\"file\\\":\\\"dracula\\\",\\\"title\\\":\\\"20. Dracula (1931)\\\",\\\"width\\\":996}]},\\\"birdsofchicagoland\\\":{\\\"title\\\":\\\"Birds of Chicagoland\\\",\\\"subtitle\\\":\\\"Paintings by Charlie Thomason\\\",\\\"photos\\\":[{\\\"file\\\":\\\"peregrine\\\",\\\"title\\\":\\\"Peregrine Falcon at Old St. Patrick's Church\\\",\\\"width\\\":530},{\\\"file\\\":\\\"kestrel\\\",\\\"title\\\":\\\"American Kestrel at Museum Campus with Skyline\\\",\\\"width\\\":456},{\\\"file\\\":\\\"goshawk\\\",\\\"title\\\":\\\"Northern Goshawk at Northerly Island, Winter\\\",\\\"width\\\":501},{\\\"file\\\":\\\"coopershawk\\\",\\\"title\\\":\\\"Cooper's Hawk at Wind Farm\\\",\\\"width\\\":462},{\\\"file\\\":\\\"greathornedowl\\\",\\\"title\\\":\\\"Great Horned Owl at Graceland Cemetery\\\",\\\"width\\\":526},{\\\"file\\\":\\\"greatblueheron\\\",\\\"title\\\":\\\"Great Blue Heron at Humboldt Park Lagoon\\\",\\\"width\\\":511},{\\\"file\\\":\\\"woodduck\\\",\\\"title\\\":\\\"Wood Duck at Lincoln Park South Pond\\\",\\\"width\\\":471},{\\\"file\\\":\\\"nightheron\\\",\\\"title\\\":\\\"Black-crowned Night Heron at Lincoln Park South Pond\\\",\\\"width\\\":759},{\\\"file\\\":\\\"cormorant\\\",\\\"title\\\":\\\"Double-crested Cormorant at Monroe Harbor Breakwater\\\",\\\"width\\\":393},{\\\"file\\\":\\\"loon\\\",\\\"title\\\":\\\"Common Loon at Jackson Park Lagoon\\\",\\\"width\\\":541},{\\\"file\\\":\\\"grosbeaks\\\",\\\"title\\\":\\\"Rose-breasted Grosbeaks at the Art Institute of Chicago\\\",\\\"width\\\":456},{\\\"file\\\":\\\"meadowlark\\\",\\\"title\\\":\\\"Eastern Meadowlark\\\",\\\"width\\\":489},{\\\"file\\\":\\\"bluejay\\\",\\\"title\\\":\\\"Blue Jay at Printer's Row\\\",\\\"width\\\":817},{\\\"file\\\":\\\"cardinals\\\",\\\"title\\\":\\\"Northern Cardinals with Gynandromorph\\\",\\\"width\\\":923},{\\\"file\\\":\\\"redwingedblackbird\\\",\\\"title\\\":\\\"Red-winged Blackbird at Glessner House Museum\\\",\\\"width\\\":694},{\\\"file\\\":\\\"rockpigeon\\\",\\\"title\\\":\\\"Rock Pigeon at Madison & Wabash CTA Station\\\",\\\"width\\\":807},{\\\"file\\\":\\\"crow\\\",\\\"title\\\":\\\"American Crow at University of Chicago\\\",\\\"width\\\":525},{\\\"file\\\":\\\"tern\\\",\\\"title\\\":\\\"Caspian Tern at Promontory Point\\\",\\\"width\\\":455},{\\\"file\\\":\\\"whitethroatedsparrow\\\",\\\"title\\\":\\\"White-throated Sparrow at Old Chicago Water Tower\\\",\\\"width\\\":468},{\\\"file\\\":\\\"passengerpigeons\\\",\\\"title\\\":\\\"Passenger Pigeons at Field Museum\\\",\\\"width\\\":453},{\\\"file\\\":\\\"flicker\\\",\\\"title\\\":\\\"Northern Flicker at Grant Park Rose Garden\\\",\\\"width\\\":420},{\\\"file\\\":\\\"woodpecker\\\",\\\"title\\\":\\\"Pileated Woodpecker at Starved Rock State Park, Summer\\\",\\\"width\\\":435},{\\\"file\\\":\\\"turkey\\\",\\\"title\\\":\\\"Wild Turkey at Starved Rock State Park, Autumn\\\",\\\"width\\\":864},{\\\"file\\\":\\\"kingfisher\\\",\\\"title\\\":\\\"Belted Kingfisher at Halsted St Bridge, River West\\\",\\\"width\\\":471}]},\\\"openrange\\\":{\\\"title\\\":\\\"Open Range\\\",\\\"subtitle\\\":\\\"From Monument Valley to the Mojave Desert\\\",\\\"photos\\\":[{\\\"file\\\":\\\"lakepowell02\\\",\\\"title\\\":\\\"Lake Powell - iPhone panorama\\\",\\\"width\\\":1978},{\\\"file\\\":\\\"lakepowell01\\\",\\\"title\\\":\\\"Lake Powell - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"lakepowell03\\\",\\\"title\\\":\\\"Lake Powell - 35mm film\\\",\\\"width\\\":908},{\\\"file\\\":\\\"lakepowell04\\\",\\\"title\\\":\\\"Lake Powell - 35mm film\\\",\\\"width\\\":919},{\\\"file\\\":\\\"lakepowell05\\\",\\\"title\\\":\\\"Lake Powell - 35mm film\\\",\\\"width\\\":907},{\\\"file\\\":\\\"leesferry01\\\",\\\"title\\\":\\\"Lee's Ferry - DSLR digital\\\",\\\"width\\\":450},{\\\"file\\\":\\\"leesferry02\\\",\\\"title\\\":\\\"Lee's Ferry - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley01\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley02\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley03\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley04\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley05\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital long-exposure\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley06\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital long-exposure\\\",\\\"width\\\":820},{\\\"file\\\":\\\"monumentvalley09\\\",\\\"title\\\":\\\"Monument Valley - iPhone panorama\\\",\\\"width\\\":2502},{\\\"file\\\":\\\"monumentvalley07\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital long-exposure\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley08\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital HDR composite\\\",\\\"width\\\":799},{\\\"file\\\":\\\"monumentvalley10\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":899},{\\\"file\\\":\\\"monumentvalley11\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":901},{\\\"file\\\":\\\"monumentvalley12\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":903},{\\\"file\\\":\\\"monumentvalley13\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":907},{\\\"file\\\":\\\"monumentvalley14\\\",\\\"title\\\":\\\"Monument Valley - Polaroid instant film\\\",\\\"width\\\":499},{\\\"file\\\":\\\"monumentvalley15\\\",\\\"title\\\":\\\"Monument Valley - Polaroid instant film\\\",\\\"width\\\":508},{\\\"file\\\":\\\"monumentvalley16\\\",\\\"title\\\":\\\"Monument Valley - Polaroid instant film\\\",\\\"width\\\":507},{\\\"file\\\":\\\"highways01\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways02\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways03\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways04\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways05\\\",\\\"title\\\":\\\"On The Road - 35mm film\\\",\\\"width\\\":898},{\\\"file\\\":\\\"highways06\\\",\\\"title\\\":\\\"On The Road - 35mm film\\\",\\\"width\\\":889},{\\\"file\\\":\\\"highways07\\\",\\\"title\\\":\\\"On The Road - 35mm film\\\",\\\"width\\\":927},{\\\"file\\\":\\\"highways08\\\",\\\"title\\\":\\\"On The Road - Polaroid instant film\\\",\\\"width\\\":506},{\\\"file\\\":\\\"highways09\\\",\\\"title\\\":\\\"On The Road - Polaroid instant film\\\",\\\"width\\\":510},{\\\"file\\\":\\\"navajomonument01\\\",\\\"title\\\":\\\"Navajo National Monument - DSLR digital HDR composite\\\",\\\"width\\\":799},{\\\"file\\\":\\\"navajomonument02\\\",\\\"title\\\":\\\"Navajo National Monument - DSLR digital HDR composite\\\",\\\"width\\\":799},{\\\"file\\\":\\\"navajomonument03\\\",\\\"title\\\":\\\"Navajo National Monument - DSLR digital HDR composite\\\",\\\"width\\\":800},{\\\"file\\\":\\\"navajomonument04\\\",\\\"title\\\":\\\"Navajo National Monument - 35mm film\\\",\\\"width\\\":899},{\\\"file\\\":\\\"navajomonument05\\\",\\\"title\\\":\\\"Navajo National Monument - 35mm film\\\",\\\"width\\\":396},{\\\"file\\\":\\\"grandcanyon01\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"grandcanyon02\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital\\\",\\\"width\\\":457},{\\\"file\\\":\\\"grandcanyon03\\\",\\\"title\\\":\\\"Grand Canyon National Park - iPhone\\\",\\\"width\\\":803},{\\\"file\\\":\\\"grandcanyon04\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital HDR composite\\\",\\\"width\\\":449},{\\\"file\\\":\\\"grandcanyon05\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital HDR composite\\\",\\\"width\\\":800},{\\\"file\\\":\\\"grandcanyon06\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital HDR composite\\\",\\\"width\\\":804},{\\\"file\\\":\\\"grandcanyon07\\\",\\\"title\\\":\\\"Grand Canyon National Park - 35mm film\\\",\\\"width\\\":903},{\\\"file\\\":\\\"joshuatree01\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree02\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree03\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree04\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800}]}}\");\n\n//# sourceURL=webpack:///./src/data/books.json?");
+eval("module.exports = JSON.parse(\"{\\\"intro\\\":\\\"Collections are complete albums of my art and photography, as well as the books I've self-published over the years. All books were written and designed by me, and are available as print-on-demand from Blurb.com (I do not control the pricing here).\\\",\\\"collections\\\":[{\\\"id\\\":\\\"lightandink\\\",\\\"title\\\":\\\"#charlieinktober 2021\\\",\\\"subtitle\\\":\\\"Light & Ink\\\",\\\"medium\\\":\\\"Ink Paintings\\\",\\\"year\\\":\\\"2021\\\"},{\\\"id\\\":\\\"charlieinktober\\\",\\\"title\\\":\\\"#charlieinktober 2020\\\",\\\"subtitle\\\":\\\"Silver Stills From Favorite Films\\\",\\\"medium\\\":\\\"Ink Paintings\\\",\\\"year\\\":\\\"2020\\\",\\\"pages\\\":\\\"28\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/10393438-charlieinktober-2020-silver-stills-from-favorite\\\"},{\\\"id\\\":\\\"birdsofchicagoland\\\",\\\"title\\\":\\\"Birds of Chicagoland\\\",\\\"subtitle\\\":\\\"Paintings by Charlie Thomason\\\",\\\"medium\\\":\\\"Watercolor and Ink Paintings\\\",\\\"year\\\":\\\"2016\\\",\\\"pages\\\":\\\"68\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/7500748-birds-of-chicagoland\\\"},{\\\"id\\\":\\\"wideworld\\\",\\\"title\\\":\\\"The Wide World\\\",\\\"subtitle\\\":\\\"Lumix GF1 7-14mm Wide Angle Photos\\\",\\\"medium\\\":\\\"Wide-Angle Digital Photography\\\",\\\"year\\\":\\\"2016-2020\\\"},{\\\"id\\\":\\\"openrange\\\",\\\"title\\\":\\\"Open Range\\\",\\\"subtitle\\\":\\\"From Monument Valley to the Mojave Desert\\\",\\\"medium\\\":\\\"Film and Digital Photography\\\",\\\"year\\\":\\\"2012\\\",\\\"pages\\\":\\\"152\\\",\\\"blurb\\\":\\\"https://www.blurb.com/b/2868673-open-range\\\"},{\\\"id\\\":\\\"englishportfolio\\\",\\\"title\\\":\\\"The English Portfolio\\\",\\\"subtitle\\\":\\\"Film Photography Across England\\\",\\\"medium\\\":\\\"35mm and Polaroid Film Photography\\\",\\\"year\\\":\\\"2008\\\"}],\\\"lightandink\\\":{\\\"title\\\":\\\"#charlieinktober 2021\\\",\\\"subtitle\\\":\\\"Light & Ink\\\",\\\"info\\\":\\\"Ink brush paintings completed Sept-Oct 2021 for the annual #inktober challenge. Continues the theme from #charlieinktober 2020 of depicting scenes from my favorite films\\\",\\\"images\\\":[{\\\"file\\\":\\\"coverpage\\\",\\\"title\\\":\\\"Cover page\\\",\\\"width\\\":811},{\\\"file\\\":\\\"halloween18\\\",\\\"title\\\":\\\"Halloween (2018)\\\",\\\"width\\\":1088},{\\\"file\\\":\\\"batmanreturns\\\",\\\"title\\\":\\\"Batman Returns (1992)\\\",\\\"width\\\":1071},{\\\"file\\\":\\\"doctorsleep\\\",\\\"title\\\":\\\"Doctor Sleep (2019)\\\",\\\"width\\\":1089},{\\\"file\\\":\\\"goldrush\\\",\\\"title\\\":\\\"The Gold Rush (1925)\\\",\\\"width\\\":1039},{\\\"file\\\":\\\"wizardofoz\\\",\\\"title\\\":\\\"The Wizard of Oz (1939)\\\",\\\"width\\\":1090},{\\\"file\\\":\\\"evildeadii\\\",\\\"title\\\":\\\"Evil Dead II (1987)\\\",\\\"width\\\":1094},{\\\"file\\\":\\\"empirestrikesback\\\",\\\"title\\\":\\\"The Empire Strikes Back (1980)\\\",\\\"width\\\":1089},{\\\"file\\\":\\\"thetwotowers\\\",\\\"title\\\":\\\"The Lord of the Rings: The Two Towers (2002)\\\",\\\"width\\\":1095},{\\\"file\\\":\\\"downbylaw\\\",\\\"title\\\":\\\"Down By Law (1986)\\\",\\\"width\\\":1095},{\\\"file\\\":\\\"lostboys\\\",\\\"title\\\":\\\"The Lost Boys (1987)\\\",\\\"width\\\":1098}]},\\\"charlieinktober\\\":{\\\"title\\\":\\\"#charlieinktober 2020\\\",\\\"subtitle\\\":\\\"Silver Stills From Favorite Films\\\",\\\"info\\\":\\\"Ink brush paintings completed Sept-Nov 2020 for the annual #inktober challenge. Depicts scenes from my top 20 favorite films of all-time, in order. Self-published Dec 2020.\\\",\\\"images\\\":[{\\\"file\\\":\\\"beetlejuice\\\",\\\"title\\\":\\\"1. Beetlejuice (1988)\\\",\\\"width\\\":964},{\\\"file\\\":\\\"halloween\\\",\\\"title\\\":\\\"2. Halloween (1978)\\\",\\\"width\\\":1087},{\\\"file\\\":\\\"lotr\\\",\\\"title\\\":\\\"3. The Lord of the Rings: The Fellowship of the Ring (2001)\\\",\\\"width\\\":1040},{\\\"file\\\":\\\"phibes\\\",\\\"title\\\":\\\"4. The Abominable Dr. Phibes (1971)\\\",\\\"width\\\":1004},{\\\"file\\\":\\\"shining\\\",\\\"title\\\":\\\"5. The Shining (1980)\\\",\\\"width\\\":954},{\\\"file\\\":\\\"starwars\\\",\\\"title\\\":\\\"6. Star Wars (1977)\\\",\\\"width\\\":1004},{\\\"file\\\":\\\"batman\\\",\\\"title\\\":\\\"7. Batman (1989)\\\",\\\"width\\\":1002},{\\\"file\\\":\\\"sleepyhollow\\\",\\\"title\\\":\\\"8. Sleepy Hollow (1999)\\\",\\\"width\\\":1000},{\\\"file\\\":\\\"donniedarko\\\",\\\"title\\\":\\\"9. Donnie Darko (2001)\\\",\\\"width\\\":1009},{\\\"file\\\":\\\"terminator2\\\",\\\"title\\\":\\\"10. Terminator 2: Judgement Day (1991)\\\",\\\"width\\\":1133},{\\\"file\\\":\\\"nightmareb4xmas\\\",\\\"title\\\":\\\"11. The Nightmare Before Christmas (1993)\\\",\\\"width\\\":1006},{\\\"file\\\":\\\"thefog\\\",\\\"title\\\":\\\"12. The Fog (1980)\\\",\\\"width\\\":1009},{\\\"file\\\":\\\"edwardscissorhands\\\",\\\"title\\\":\\\"13. Edward Scissorhands (1990)\\\",\\\"width\\\":986},{\\\"file\\\":\\\"alien\\\",\\\"title\\\":\\\"14. Alien (1979)\\\",\\\"width\\\":983},{\\\"file\\\":\\\"bladerunner\\\",\\\"title\\\":\\\"15. Blade Runner (1982)\\\",\\\"width\\\":1098},{\\\"file\\\":\\\"thecrow\\\",\\\"title\\\":\\\"16. The Crow (1994)\\\",\\\"width\\\":979},{\\\"file\\\":\\\"shaunofthedead\\\",\\\"title\\\":\\\"17. Shaun of the Dead (2004)\\\",\\\"width\\\":1211},{\\\"file\\\":\\\"metropolis\\\",\\\"title\\\":\\\"18. Metropolis (1927)\\\",\\\"width\\\":992},{\\\"file\\\":\\\"escapefromny\\\",\\\"title\\\":\\\"19. Escape From New York (1981)\\\",\\\"width\\\":1017},{\\\"file\\\":\\\"dracula\\\",\\\"title\\\":\\\"20. Dracula (1931)\\\",\\\"width\\\":996}]},\\\"birdsofchicagoland\\\":{\\\"title\\\":\\\"Birds of Chicagoland\\\",\\\"subtitle\\\":\\\"Paintings by Charlie Thomason\\\",\\\"info\\\":\\\"A book of paintings of birds native to the Chicagoland area, depicted against notable Chicago locations. All paintings completed with watercolor and ink on paper. Painted between Oct 2014 and Oct 2016, and self-published Dec 2016.\\\",\\\"images\\\":[{\\\"file\\\":\\\"peregrine\\\",\\\"title\\\":\\\"Peregrine Falcon at Old St. Patrick's Church\\\",\\\"width\\\":530},{\\\"file\\\":\\\"kestrel\\\",\\\"title\\\":\\\"American Kestrel at Museum Campus with Skyline\\\",\\\"width\\\":456},{\\\"file\\\":\\\"goshawk\\\",\\\"title\\\":\\\"Northern Goshawk at Northerly Island, Winter\\\",\\\"width\\\":501},{\\\"file\\\":\\\"coopershawk\\\",\\\"title\\\":\\\"Cooper's Hawk at Wind Farm\\\",\\\"width\\\":462},{\\\"file\\\":\\\"greathornedowl\\\",\\\"title\\\":\\\"Great Horned Owl at Graceland Cemetery\\\",\\\"width\\\":526},{\\\"file\\\":\\\"greatblueheron\\\",\\\"title\\\":\\\"Great Blue Heron at Humboldt Park Lagoon\\\",\\\"width\\\":511},{\\\"file\\\":\\\"woodduck\\\",\\\"title\\\":\\\"Wood Duck at Lincoln Park South Pond\\\",\\\"width\\\":471},{\\\"file\\\":\\\"nightheron\\\",\\\"title\\\":\\\"Black-crowned Night Heron at Lincoln Park South Pond\\\",\\\"width\\\":759},{\\\"file\\\":\\\"cormorant\\\",\\\"title\\\":\\\"Double-crested Cormorant at Monroe Harbor Breakwater\\\",\\\"width\\\":393},{\\\"file\\\":\\\"loon\\\",\\\"title\\\":\\\"Common Loon at Jackson Park Lagoon\\\",\\\"width\\\":541},{\\\"file\\\":\\\"grosbeaks\\\",\\\"title\\\":\\\"Rose-breasted Grosbeaks at the Art Institute of Chicago\\\",\\\"width\\\":456},{\\\"file\\\":\\\"meadowlark\\\",\\\"title\\\":\\\"Eastern Meadowlark\\\",\\\"width\\\":489},{\\\"file\\\":\\\"bluejay\\\",\\\"title\\\":\\\"Blue Jay at Printer's Row\\\",\\\"width\\\":817},{\\\"file\\\":\\\"cardinals\\\",\\\"title\\\":\\\"Northern Cardinals with Gynandromorph\\\",\\\"width\\\":923},{\\\"file\\\":\\\"redwingedblackbird\\\",\\\"title\\\":\\\"Red-winged Blackbird at Glessner House Museum\\\",\\\"width\\\":694},{\\\"file\\\":\\\"rockpigeon\\\",\\\"title\\\":\\\"Rock Pigeon at Madison & Wabash CTA Station\\\",\\\"width\\\":807},{\\\"file\\\":\\\"crow\\\",\\\"title\\\":\\\"American Crow at University of Chicago\\\",\\\"width\\\":525},{\\\"file\\\":\\\"tern\\\",\\\"title\\\":\\\"Caspian Tern at Promontory Point\\\",\\\"width\\\":455},{\\\"file\\\":\\\"whitethroatedsparrow\\\",\\\"title\\\":\\\"White-throated Sparrow at Old Chicago Water Tower\\\",\\\"width\\\":468},{\\\"file\\\":\\\"passengerpigeons\\\",\\\"title\\\":\\\"Passenger Pigeons at Field Museum\\\",\\\"width\\\":453},{\\\"file\\\":\\\"flicker\\\",\\\"title\\\":\\\"Northern Flicker at Grant Park Rose Garden\\\",\\\"width\\\":420},{\\\"file\\\":\\\"woodpecker\\\",\\\"title\\\":\\\"Pileated Woodpecker at Starved Rock State Park, Summer\\\",\\\"width\\\":435},{\\\"file\\\":\\\"turkey\\\",\\\"title\\\":\\\"Wild Turkey at Starved Rock State Park, Autumn\\\",\\\"width\\\":864},{\\\"file\\\":\\\"kingfisher\\\",\\\"title\\\":\\\"Belted Kingfisher at Halsted St Bridge, River West\\\",\\\"width\\\":471}]},\\\"wideworld\\\":{\\\"title\\\":\\\"The Wide World\\\",\\\"subtitle\\\":\\\"Lumix GF1 7-14mm Wide Angle Photos\\\",\\\"info\\\":\\\"Photos taken around the United States and Europe, all taken with the same Panasonic Lumix G Vario 7-14mm f/4 wide angle lens, attached to Panasonic Lumix DMC-GF1 camera.\\\",\\\"images\\\":[{\\\"file\\\":\\\"austria-1\\\",\\\"title\\\":\\\"Innsbruck, Austria\\\",\\\"width\\\":898},{\\\"file\\\":\\\"austria-2\\\",\\\"title\\\":\\\"Seefeld, Austria\\\",\\\"width\\\":898},{\\\"file\\\":\\\"austria-3\\\",\\\"title\\\":\\\"Seefeld, Austria\\\",\\\"width\\\":898},{\\\"file\\\":\\\"austria-4\\\",\\\"title\\\":\\\"Innsbruck, Austria\\\",\\\"width\\\":898},{\\\"file\\\":\\\"austria-5\\\",\\\"title\\\":\\\"Salzburg, Austria\\\",\\\"width\\\":898},{\\\"file\\\":\\\"venezia-1\\\",\\\"title\\\":\\\"Venice, Italy\\\",\\\"width\\\":898},{\\\"file\\\":\\\"venezia-2\\\",\\\"title\\\":\\\"Venice, Italy\\\",\\\"width\\\":898},{\\\"file\\\":\\\"venezia-3\\\",\\\"title\\\":\\\"Venice, Italy\\\",\\\"width\\\":898},{\\\"file\\\":\\\"sandiego-1\\\",\\\"title\\\":\\\"La Jolla, California\\\",\\\"width\\\":898},{\\\"file\\\":\\\"sandiego-2\\\",\\\"title\\\":\\\"La Jolla, California\\\",\\\"width\\\":899},{\\\"file\\\":\\\"joshuatree-1\\\",\\\"title\\\":\\\"Joshua Tree National Park, California\\\",\\\"width\\\":898},{\\\"file\\\":\\\"joshuatree-2\\\",\\\"title\\\":\\\"Joshua Tree National Park, California\\\",\\\"width\\\":898},{\\\"file\\\":\\\"joshuatree-3\\\",\\\"title\\\":\\\"Joshua Tree National Park, California\\\",\\\"width\\\":899},{\\\"file\\\":\\\"england-1\\\",\\\"title\\\":\\\"London, England, UK\\\",\\\"width\\\":899},{\\\"file\\\":\\\"england-2\\\",\\\"title\\\":\\\"London, England, UK\\\",\\\"width\\\":898},{\\\"file\\\":\\\"england-3\\\",\\\"title\\\":\\\"London, England, UK\\\",\\\"width\\\":898},{\\\"file\\\":\\\"england-4\\\",\\\"title\\\":\\\"London, England, UK\\\",\\\"width\\\":899},{\\\"file\\\":\\\"england-5\\\",\\\"title\\\":\\\"London, England, UK\\\",\\\"width\\\":899},{\\\"file\\\":\\\"england-6\\\",\\\"title\\\":\\\"Stonehenge, England, UK\\\",\\\"width\\\":899},{\\\"file\\\":\\\"england-7\\\",\\\"title\\\":\\\"London, England, UK\\\",\\\"width\\\":1005},{\\\"file\\\":\\\"paris-1\\\",\\\"title\\\":\\\"Paris, France\\\",\\\"width\\\":480},{\\\"file\\\":\\\"paris-2\\\",\\\"title\\\":\\\"Paris, France\\\",\\\"width\\\":899},{\\\"file\\\":\\\"paris-3\\\",\\\"title\\\":\\\"Paris, France\\\",\\\"width\\\":898},{\\\"file\\\":\\\"emeraldisle-1\\\",\\\"title\\\":\\\"Emerald Isle, North Carolina\\\",\\\"width\\\":898},{\\\"file\\\":\\\"emeraldisle-2\\\",\\\"title\\\":\\\"Emerald Isle, North Carolina\\\",\\\"width\\\":898},{\\\"file\\\":\\\"emeraldisle-3\\\",\\\"title\\\":\\\"Emerald Isle, North Carolina\\\",\\\"width\\\":898},{\\\"file\\\":\\\"maine-1\\\",\\\"title\\\":\\\"Marshall Point Rd, Port Clyde, Maine\\\",\\\"width\\\":898},{\\\"file\\\":\\\"maine-2\\\",\\\"title\\\":\\\"Acadia National Park, Maine\\\",\\\"width\\\":898},{\\\"file\\\":\\\"maine-3\\\",\\\"title\\\":\\\"Acadia National Park, Maine\\\",\\\"width\\\":898},{\\\"file\\\":\\\"maine-4\\\",\\\"title\\\":\\\"Acadia National Park, Maine\\\",\\\"width\\\":898}]},\\\"openrange\\\":{\\\"title\\\":\\\"Open Range\\\",\\\"subtitle\\\":\\\"From Monument Valley to the Mojave Desert\\\",\\\"info\\\":\\\"Deserts, National Parks, and Native American monuments, photographed with 35mm film, Polaroid instant, dSLR, and iPhone cameras. Shot in June 2011 and self-published Jan 2012.\\\",\\\"images\\\":[{\\\"file\\\":\\\"lakepowell02\\\",\\\"title\\\":\\\"Lake Powell - iPhone panorama\\\",\\\"width\\\":1978},{\\\"file\\\":\\\"lakepowell01\\\",\\\"title\\\":\\\"Lake Powell - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"lakepowell03\\\",\\\"title\\\":\\\"Lake Powell - 35mm film\\\",\\\"width\\\":908},{\\\"file\\\":\\\"lakepowell04\\\",\\\"title\\\":\\\"Lake Powell - 35mm film\\\",\\\"width\\\":919},{\\\"file\\\":\\\"lakepowell05\\\",\\\"title\\\":\\\"Lake Powell - 35mm film\\\",\\\"width\\\":907},{\\\"file\\\":\\\"leesferry01\\\",\\\"title\\\":\\\"Lee's Ferry - DSLR digital\\\",\\\"width\\\":450},{\\\"file\\\":\\\"leesferry02\\\",\\\"title\\\":\\\"Lee's Ferry - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley01\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley02\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley03\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley04\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley05\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital long-exposure\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley06\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital long-exposure\\\",\\\"width\\\":820},{\\\"file\\\":\\\"monumentvalley09\\\",\\\"title\\\":\\\"Monument Valley - iPhone panorama\\\",\\\"width\\\":2502},{\\\"file\\\":\\\"monumentvalley07\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital long-exposure\\\",\\\"width\\\":800},{\\\"file\\\":\\\"monumentvalley08\\\",\\\"title\\\":\\\"Monument Valley - DSLR digital HDR composite\\\",\\\"width\\\":799},{\\\"file\\\":\\\"monumentvalley10\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":899},{\\\"file\\\":\\\"monumentvalley11\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":901},{\\\"file\\\":\\\"monumentvalley12\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":903},{\\\"file\\\":\\\"monumentvalley13\\\",\\\"title\\\":\\\"Monument Valley - 35mm film\\\",\\\"width\\\":907},{\\\"file\\\":\\\"monumentvalley14\\\",\\\"title\\\":\\\"Monument Valley - Polaroid instant film\\\",\\\"width\\\":499},{\\\"file\\\":\\\"monumentvalley15\\\",\\\"title\\\":\\\"Monument Valley - Polaroid instant film\\\",\\\"width\\\":508},{\\\"file\\\":\\\"monumentvalley16\\\",\\\"title\\\":\\\"Monument Valley - Polaroid instant film\\\",\\\"width\\\":507},{\\\"file\\\":\\\"highways01\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways02\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways03\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways04\\\",\\\"title\\\":\\\"On The Road - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"highways05\\\",\\\"title\\\":\\\"On The Road - 35mm film\\\",\\\"width\\\":898},{\\\"file\\\":\\\"highways06\\\",\\\"title\\\":\\\"On The Road - 35mm film\\\",\\\"width\\\":889},{\\\"file\\\":\\\"highways07\\\",\\\"title\\\":\\\"On The Road - 35mm film\\\",\\\"width\\\":927},{\\\"file\\\":\\\"highways08\\\",\\\"title\\\":\\\"On The Road - Polaroid instant film\\\",\\\"width\\\":506},{\\\"file\\\":\\\"highways09\\\",\\\"title\\\":\\\"On The Road - Polaroid instant film\\\",\\\"width\\\":510},{\\\"file\\\":\\\"navajomonument01\\\",\\\"title\\\":\\\"Navajo National Monument - DSLR digital HDR composite\\\",\\\"width\\\":799},{\\\"file\\\":\\\"navajomonument02\\\",\\\"title\\\":\\\"Navajo National Monument - DSLR digital HDR composite\\\",\\\"width\\\":799},{\\\"file\\\":\\\"navajomonument03\\\",\\\"title\\\":\\\"Navajo National Monument - DSLR digital HDR composite\\\",\\\"width\\\":800},{\\\"file\\\":\\\"navajomonument04\\\",\\\"title\\\":\\\"Navajo National Monument - 35mm film\\\",\\\"width\\\":899},{\\\"file\\\":\\\"navajomonument05\\\",\\\"title\\\":\\\"Navajo National Monument - 35mm film\\\",\\\"width\\\":396},{\\\"file\\\":\\\"grandcanyon01\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"grandcanyon02\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital\\\",\\\"width\\\":457},{\\\"file\\\":\\\"grandcanyon03\\\",\\\"title\\\":\\\"Grand Canyon National Park - iPhone\\\",\\\"width\\\":803},{\\\"file\\\":\\\"grandcanyon04\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital HDR composite\\\",\\\"width\\\":449},{\\\"file\\\":\\\"grandcanyon05\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital HDR composite\\\",\\\"width\\\":800},{\\\"file\\\":\\\"grandcanyon06\\\",\\\"title\\\":\\\"Grand Canyon National Park - DSLR digital HDR composite\\\",\\\"width\\\":804},{\\\"file\\\":\\\"grandcanyon07\\\",\\\"title\\\":\\\"Grand Canyon National Park - 35mm film\\\",\\\"width\\\":903},{\\\"file\\\":\\\"joshuatree01\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree02\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree03\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800},{\\\"file\\\":\\\"joshuatree04\\\",\\\"title\\\":\\\"Joshua Tree National Park - DSLR digital\\\",\\\"width\\\":800}]},\\\"englishportfolio\\\":{\\\"title\\\":\\\"The English Portfolio\\\",\\\"subtitle\\\":\\\"Film Photography Across England\\\",\\\"info\\\":\\\"35mm and Polaroid instant film photography across England, emphasizing more rural and historical locations. Shot in Feb 2008 and displayed in a solo exhibition in Lexington, KY in May 2008.\\\",\\\"images\\\":[{\\\"file\\\":\\\"bradfield-1\\\",\\\"title\\\":\\\"High Bradfield - 35mm film\\\",\\\"width\\\":407},{\\\"file\\\":\\\"bradfield-3\\\",\\\"title\\\":\\\"High Bradfield - 35mm film\\\",\\\"width\\\":898},{\\\"file\\\":\\\"bradfield-4\\\",\\\"title\\\":\\\"High Bradfield - 35mm film\\\",\\\"width\\\":906},{\\\"file\\\":\\\"bradfield-6\\\",\\\"title\\\":\\\"High Bradfield - Polaroid instant film\\\",\\\"width\\\":498},{\\\"file\\\":\\\"bradfield-5\\\",\\\"title\\\":\\\"High Bradfield - 35mm film\\\",\\\"width\\\":898},{\\\"file\\\":\\\"bradfield-2\\\",\\\"title\\\":\\\"High Bradfield - 35mm film\\\",\\\"width\\\":399},{\\\"file\\\":\\\"liverpool-5\\\",\\\"title\\\":\\\"Liverpool - Polaroid instant film\\\",\\\"width\\\":497},{\\\"file\\\":\\\"liverpool-1\\\",\\\"title\\\":\\\"Liverpool - 35mm film\\\",\\\"width\\\":852},{\\\"file\\\":\\\"liverpool-2\\\",\\\"title\\\":\\\"Liverpool - 35mm film\\\",\\\"width\\\":403},{\\\"file\\\":\\\"liverpool-3\\\",\\\"title\\\":\\\"Liverpool - 35mm film\\\",\\\"width\\\":893},{\\\"file\\\":\\\"liverpool-4\\\",\\\"title\\\":\\\"Liverpool - 35mm film\\\",\\\"width\\\":398},{\\\"file\\\":\\\"birmingham-1\\\",\\\"title\\\":\\\"Birmingham - 35mm film\\\",\\\"width\\\":892},{\\\"file\\\":\\\"birmingham-2\\\",\\\"title\\\":\\\"Birmingham - 35mm film\\\",\\\"width\\\":436},{\\\"file\\\":\\\"birmingham-4\\\",\\\"title\\\":\\\"Birmingham - Polaroid instant film\\\",\\\"width\\\":500},{\\\"file\\\":\\\"birmingham-3\\\",\\\"title\\\":\\\"Birmingham - 35mm film\\\",\\\"width\\\":396},{\\\"file\\\":\\\"kenilworth-1\\\",\\\"title\\\":\\\"Kenilworth - Polaroid instant film\\\",\\\"width\\\":498},{\\\"file\\\":\\\"sheffield-1\\\",\\\"title\\\":\\\"Sheffield - 35mm film\\\",\\\"width\\\":413}]}}\");\n\n//# sourceURL=webpack:///./src/data/collections.json?");
 
 /***/ }),
 
@@ -674,7 +674,7 @@ eval("module.exports = JSON.parse(\"{\\\"books\\\":[{\\\"id\\\":\\\"charlieinkto
 /*! exports provided: movies, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"movies\\\":[{\\\"id\\\":\\\"beetlejuice\\\",\\\"title\\\":\\\"Beetlejuice\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"phibes\\\",\\\"title\\\":\\\"The Abominable Dr. Phibes\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"shining\\\",\\\"title\\\":\\\"The Shining\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"sleepyhollow\\\",\\\"title\\\":\\\"Sleepy Hollow\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"nightmareb4xmas\\\",\\\"title\\\":\\\"The Nightmare Before Christmas\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"shaunofthedead\\\",\\\"title\\\":\\\"Shaun of the Dead\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"theshape\\\",\\\"title\\\":\\\"The Shape\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thefog\\\",\\\"title\\\":\\\"The Fog\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thesnake\\\",\\\"title\\\":\\\"The Snake\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thedancingclown\\\",\\\"title\\\":\\\"The Dancing Clown\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thecrow\\\",\\\"title\\\":\\\"The Crow\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"swampthing\\\",\\\"title\\\":\\\"Swamp Thing\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"edwardscissorhands\\\",\\\"title\\\":\\\"Edward Scissorhands\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"eternalsunshine\\\",\\\"title\\\":\\\"Eternal Sunshine\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"frankcellardoor\\\",\\\"title\\\":\\\"Frank and the Cellar Door\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"earthvsflyingsaucers\\\",\\\"title\\\":\\\"Earth vs the Flying Saucers\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormanandpoe\\\",\\\"title\\\":\\\"Corman and Poe\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"vincentprice\\\",\\\"title\\\":\\\"Vincent Price\\\",\\\"year\\\":\\\"2006\\\",\\\"medium\\\":\\\"Ink on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/movies.json?");
+eval("module.exports = JSON.parse(\"{\\\"movies\\\":[{\\\"id\\\":\\\"rocky\\\",\\\"title\\\":\\\"Rocky\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"downbylaw\\\",\\\"title\\\":\\\"Down By Law\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thetwotowers\\\",\\\"title\\\":\\\"The Lord of the Rings: The Two Towers\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"beetlejuice\\\",\\\"title\\\":\\\"Beetlejuice\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"phibes\\\",\\\"title\\\":\\\"The Abominable Dr. Phibes\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"shining\\\",\\\"title\\\":\\\"The Shining\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"sleepyhollow\\\",\\\"title\\\":\\\"Sleepy Hollow\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"nightmareb4xmas\\\",\\\"title\\\":\\\"The Nightmare Before Christmas\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"shaunofthedead\\\",\\\"title\\\":\\\"Shaun of the Dead\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"theshape\\\",\\\"title\\\":\\\"The Shape\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thefog\\\",\\\"title\\\":\\\"The Fog\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thesnake\\\",\\\"title\\\":\\\"The Snake\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thedancingclown\\\",\\\"title\\\":\\\"The Dancing Clown\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"thecrow\\\",\\\"title\\\":\\\"The Crow\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"swampthing\\\",\\\"title\\\":\\\"Swamp Thing\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"edwardscissorhands\\\",\\\"title\\\":\\\"Edward Scissorhands\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"eternalsunshine\\\",\\\"title\\\":\\\"Eternal Sunshine\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"frankcellardoor\\\",\\\"title\\\":\\\"Frank and the Cellar Door\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"earthvsflyingsaucers\\\",\\\"title\\\":\\\"Earth vs the Flying Saucers\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"cormanandpoe\\\",\\\"title\\\":\\\"Corman and Poe\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"vincentprice\\\",\\\"title\\\":\\\"Vincent Price\\\",\\\"year\\\":\\\"2006\\\",\\\"medium\\\":\\\"Ink on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/movies.json?");
 
 /***/ }),
 
@@ -685,7 +685,7 @@ eval("module.exports = JSON.parse(\"{\\\"movies\\\":[{\\\"id\\\":\\\"beetlejuice
 /*! exports provided: other, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"other\\\":[{\\\"id\\\":\\\"woodspoint\\\",\\\"title\\\":\\\"Woodspoint\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Oil on wood panel\\\"},{\\\"id\\\":\\\"probewinndixie\\\",\\\"title\\\":\\\"Ford Probe at Winn-Dixie Parking Lot on Friday Night\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Oil on wood panel\\\"},{\\\"id\\\":\\\"selfportrait2020\\\",\\\"title\\\":\\\"Self-Portrait 2020\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"redrialto\\\",\\\"title\\\":\\\"Red Rialto\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"riomendicanti\\\",\\\"title\\\":\\\"Rio dei Mendicanti\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"sotoportego\\\",\\\"title\\\":\\\"Sotoportego\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"allanon\\\",\\\"title\\\":\\\"Allanon\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"mexicanvaquero\\\",\\\"title\\\":\\\"A Mexican Vaquero\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"schumi-monaco\\\",\\\"title\\\":\\\"Schumacher at Monaco\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"andrettilongbeach\\\",\\\"title\\\":\\\"Andretti vs Andretti at Long Beach\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"jimclark\\\",\\\"title\\\":\\\"Jim Clark in the Lotus 49\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"quanahparker\\\",\\\"title\\\":\\\"Quanah Parker\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"chopin\\\",\\\"title\\\":\\\"Frederic Chopin\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"fqmg\\\",\\\"title\\\":\\\"French Quarter Motorcycle Guitarist\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"meltingdoge\\\",\\\"title\\\":\\\"The Melting Doge\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"mingojack\\\",\\\"title\\\":\\\"Mingo Jack\\\",\\\"year\\\":\\\"2010\\\",\\\"medium\\\":\\\"Oil on wood panel\\\"},{\\\"id\\\":\\\"selfportrait2007\\\",\\\"title\\\":\\\"Self-Portrait 2007\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Pencil on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/other.json?");
+eval("module.exports = JSON.parse(\"{\\\"other\\\":[{\\\"id\\\":\\\"baxvox\\\",\\\"title\\\":\\\"Bax Vox\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Gouache on paper\\\"},{\\\"id\\\":\\\"woodspoint\\\",\\\"title\\\":\\\"Woodspoint\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Oil on wood panel\\\"},{\\\"id\\\":\\\"probewinndixie\\\",\\\"title\\\":\\\"Ford Probe at Winn-Dixie Parking Lot on Friday Night\\\",\\\"year\\\":\\\"2021\\\",\\\"medium\\\":\\\"Oil on wood panel\\\"},{\\\"id\\\":\\\"selfportrait2020\\\",\\\"title\\\":\\\"Self-Portrait 2020\\\",\\\"year\\\":\\\"2020\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"redrialto\\\",\\\"title\\\":\\\"Red Rialto\\\",\\\"year\\\":\\\"2019\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"riomendicanti\\\",\\\"title\\\":\\\"Rio dei Mendicanti\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"sotoportego\\\",\\\"title\\\":\\\"Sotoportego\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"allanon\\\",\\\"title\\\":\\\"Allanon\\\",\\\"year\\\":\\\"2018\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"mexicanvaquero\\\",\\\"title\\\":\\\"A Mexican Vaquero\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Oil on canvas\\\"},{\\\"id\\\":\\\"schumi-monaco\\\",\\\"title\\\":\\\"Schumacher at Monaco\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"andrettilongbeach\\\",\\\"title\\\":\\\"Andretti vs Andretti at Long Beach\\\",\\\"year\\\":\\\"2017\\\",\\\"medium\\\":\\\"Watercolor on paper\\\"},{\\\"id\\\":\\\"jimclark\\\",\\\"title\\\":\\\"Jim Clark in the Lotus 49\\\",\\\"year\\\":\\\"2014\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"quanahparker\\\",\\\"title\\\":\\\"Quanah Parker\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink on paper\\\"},{\\\"id\\\":\\\"chopin\\\",\\\"title\\\":\\\"Frederic Chopin\\\",\\\"year\\\":\\\"2012\\\",\\\"medium\\\":\\\"Ink and watercolor on paper\\\"},{\\\"id\\\":\\\"fqmg\\\",\\\"title\\\":\\\"French Quarter Motorcycle Guitarist\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"meltingdoge\\\",\\\"title\\\":\\\"The Melting Doge\\\",\\\"year\\\":\\\"2011\\\",\\\"medium\\\":\\\"Oil on canvas paper\\\"},{\\\"id\\\":\\\"mingojack\\\",\\\"title\\\":\\\"Mingo Jack\\\",\\\"year\\\":\\\"2010\\\",\\\"medium\\\":\\\"Oil on wood panel\\\"},{\\\"id\\\":\\\"selfportrait2007\\\",\\\"title\\\":\\\"Self-Portrait 2007\\\",\\\"year\\\":\\\"2007\\\",\\\"medium\\\":\\\"Pencil on paper\\\"}]}\");\n\n//# sourceURL=webpack:///./src/data/other.json?");
 
 /***/ }),
 
@@ -707,7 +707,7 @@ eval("module.exports = JSON.parse(\"{\\\"pages\\\":[{\\\"id\\\":\\\"index\\\",\\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/blaumeisecolor-250.jpg\": \"./src/img/art/birds/thumbs/blaumeisecolor-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./movies/thumbs/beetlejuice-250.jpg\": \"./src/img/art/movies/thumbs/beetlejuice-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/nightmareb4xmas-250.jpg\": \"./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg\",\n\t\"./movies/thumbs/phibes-250.jpg\": \"./src/img/art/movies/thumbs/phibes-250.jpg\",\n\t\"./movies/thumbs/shaunofthedead-250.jpg\": \"./src/img/art/movies/thumbs/shaunofthedead-250.jpg\",\n\t\"./movies/thumbs/shining-250.jpg\": \"./src/img/art/movies/thumbs/shining-250.jpg\",\n\t\"./movies/thumbs/sleepyhollow-250.jpg\": \"./src/img/art/movies/thumbs/sleepyhollow-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/probewinndixie-250.jpg\": \"./src/img/art/other/thumbs/probewinndixie-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/selfportrait2007-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2007-250.jpg\",\n\t\"./other/thumbs/selfportrait2020-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2020-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\",\n\t\"./other/thumbs/woodspoint-250.jpg\": \"./src/img/art/other/thumbs/woodspoint-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\-250\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\-250\\.jpg$?");
+eval("var map = {\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/blaumeisecolor-250.jpg\": \"./src/img/art/birds/thumbs/blaumeisecolor-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redjunglefowl-250.jpg\": \"./src/img/art/birds/thumbs/redjunglefowl-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./movies/thumbs/beetlejuice-250.jpg\": \"./src/img/art/movies/thumbs/beetlejuice-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/downbylaw-250.jpg\": \"./src/img/art/movies/thumbs/downbylaw-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/nightmareb4xmas-250.jpg\": \"./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg\",\n\t\"./movies/thumbs/phibes-250.jpg\": \"./src/img/art/movies/thumbs/phibes-250.jpg\",\n\t\"./movies/thumbs/rocky-250.jpg\": \"./src/img/art/movies/thumbs/rocky-250.jpg\",\n\t\"./movies/thumbs/shaunofthedead-250.jpg\": \"./src/img/art/movies/thumbs/shaunofthedead-250.jpg\",\n\t\"./movies/thumbs/shining-250.jpg\": \"./src/img/art/movies/thumbs/shining-250.jpg\",\n\t\"./movies/thumbs/sleepyhollow-250.jpg\": \"./src/img/art/movies/thumbs/sleepyhollow-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/thetwotowers-250.jpg\": \"./src/img/art/movies/thumbs/thetwotowers-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/baxvox-250.jpg\": \"./src/img/art/other/thumbs/baxvox-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/probewinndixie-250.jpg\": \"./src/img/art/other/thumbs/probewinndixie-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/selfportrait2007-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2007-250.jpg\",\n\t\"./other/thumbs/selfportrait2020-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2020-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\",\n\t\"./other/thumbs/woodspoint-250.jpg\": \"./src/img/art/other/thumbs/woodspoint-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\-250\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\-250\\.jpg$?");
 
 /***/ }),
 
@@ -718,7 +718,7 @@ eval("var map = {\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./birds/full/blaumeise.jpg\": \"./src/img/art/birds/full/blaumeise.jpg\",\n\t\"./birds/full/blaumeisecolor.jpg\": \"./src/img/art/birds/full/blaumeisecolor.jpg\",\n\t\"./birds/full/bluejay.jpg\": \"./src/img/art/birds/full/bluejay.jpg\",\n\t\"./birds/full/bluejaydesert.jpg\": \"./src/img/art/birds/full/bluejaydesert.jpg\",\n\t\"./birds/full/cardinals.jpg\": \"./src/img/art/birds/full/cardinals.jpg\",\n\t\"./birds/full/coopershawk.jpg\": \"./src/img/art/birds/full/coopershawk.jpg\",\n\t\"./birds/full/cormorant.jpg\": \"./src/img/art/birds/full/cormorant.jpg\",\n\t\"./birds/full/crow.jpg\": \"./src/img/art/birds/full/crow.jpg\",\n\t\"./birds/full/emeraldosprey.jpg\": \"./src/img/art/birds/full/emeraldosprey.jpg\",\n\t\"./birds/full/flicker.jpg\": \"./src/img/art/birds/full/flicker.jpg\",\n\t\"./birds/full/goshawk.jpg\": \"./src/img/art/birds/full/goshawk.jpg\",\n\t\"./birds/full/greatblueheron.jpg\": \"./src/img/art/birds/full/greatblueheron.jpg\",\n\t\"./birds/full/greathornedowl.jpg\": \"./src/img/art/birds/full/greathornedowl.jpg\",\n\t\"./birds/full/grosbeaks.jpg\": \"./src/img/art/birds/full/grosbeaks.jpg\",\n\t\"./birds/full/kestrel.jpg\": \"./src/img/art/birds/full/kestrel.jpg\",\n\t\"./birds/full/kestrelgreenskies.jpg\": \"./src/img/art/birds/full/kestrelgreenskies.jpg\",\n\t\"./birds/full/kingfisher.jpg\": \"./src/img/art/birds/full/kingfisher.jpg\",\n\t\"./birds/full/loon.jpg\": \"./src/img/art/birds/full/loon.jpg\",\n\t\"./birds/full/magpieparkcity.jpg\": \"./src/img/art/birds/full/magpieparkcity.jpg\",\n\t\"./birds/full/meadowlark.jpg\": \"./src/img/art/birds/full/meadowlark.jpg\",\n\t\"./birds/full/nightheron.jpg\": \"./src/img/art/birds/full/nightheron.jpg\",\n\t\"./birds/full/ospreykingfisher.jpg\": \"./src/img/art/birds/full/ospreykingfisher.jpg\",\n\t\"./birds/full/passengerpigeons.jpg\": \"./src/img/art/birds/full/passengerpigeons.jpg\",\n\t\"./birds/full/pelicanvenice.jpg\": \"./src/img/art/birds/full/pelicanvenice.jpg\",\n\t\"./birds/full/peregrine.jpg\": \"./src/img/art/birds/full/peregrine.jpg\",\n\t\"./birds/full/pileatedwoodpecker.jpg\": \"./src/img/art/birds/full/pileatedwoodpecker.jpg\",\n\t\"./birds/full/redwingedblackbird.jpg\": \"./src/img/art/birds/full/redwingedblackbird.jpg\",\n\t\"./birds/full/rockpigeon.jpg\": \"./src/img/art/birds/full/rockpigeon.jpg\",\n\t\"./birds/full/screechowl.jpg\": \"./src/img/art/birds/full/screechowl.jpg\",\n\t\"./birds/full/tern.jpg\": \"./src/img/art/birds/full/tern.jpg\",\n\t\"./birds/full/turkey.jpg\": \"./src/img/art/birds/full/turkey.jpg\",\n\t\"./birds/full/turquoiseperegrine.jpg\": \"./src/img/art/birds/full/turquoiseperegrine.jpg\",\n\t\"./birds/full/whitethroatedsparrow.jpg\": \"./src/img/art/birds/full/whitethroatedsparrow.jpg\",\n\t\"./birds/full/woodduck.jpg\": \"./src/img/art/birds/full/woodduck.jpg\",\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/blaumeisecolor-250.jpg\": \"./src/img/art/birds/thumbs/blaumeisecolor-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./books/birdsofchicagoland/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/bluejay.jpg\",\n\t\"./books/birdsofchicagoland/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/cardinals.jpg\",\n\t\"./books/birdsofchicagoland/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/coopershawk.jpg\",\n\t\"./books/birdsofchicagoland/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/cormorant.jpg\",\n\t\"./books/birdsofchicagoland/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/crow.jpg\",\n\t\"./books/birdsofchicagoland/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/flicker.jpg\",\n\t\"./books/birdsofchicagoland/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/goshawk.jpg\",\n\t\"./books/birdsofchicagoland/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/greatblueheron.jpg\",\n\t\"./books/birdsofchicagoland/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/greathornedowl.jpg\",\n\t\"./books/birdsofchicagoland/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/grosbeaks.jpg\",\n\t\"./books/birdsofchicagoland/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/kestrel.jpg\",\n\t\"./books/birdsofchicagoland/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/kingfisher.jpg\",\n\t\"./books/birdsofchicagoland/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/loon.jpg\",\n\t\"./books/birdsofchicagoland/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/meadowlark.jpg\",\n\t\"./books/birdsofchicagoland/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/nightheron.jpg\",\n\t\"./books/birdsofchicagoland/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg\",\n\t\"./books/birdsofchicagoland/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/peregrine.jpg\",\n\t\"./books/birdsofchicagoland/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg\",\n\t\"./books/birdsofchicagoland/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/rockpigeon.jpg\",\n\t\"./books/birdsofchicagoland/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/tern.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg\",\n\t\"./books/birdsofchicagoland/thumbs/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg\",\n\t\"./books/birdsofchicagoland/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/turkey.jpg\",\n\t\"./books/birdsofchicagoland/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg\",\n\t\"./books/birdsofchicagoland/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/woodduck.jpg\",\n\t\"./books/birdsofchicagoland/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/woodpecker.jpg\",\n\t\"./books/charlieinktober/alien.jpg\": \"./src/img/art/books/charlieinktober/alien.jpg\",\n\t\"./books/charlieinktober/batman.jpg\": \"./src/img/art/books/charlieinktober/batman.jpg\",\n\t\"./books/charlieinktober/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/beetlejuice.jpg\",\n\t\"./books/charlieinktober/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/bladerunner.jpg\",\n\t\"./books/charlieinktober/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/donniedarko.jpg\",\n\t\"./books/charlieinktober/dracula.jpg\": \"./src/img/art/books/charlieinktober/dracula.jpg\",\n\t\"./books/charlieinktober/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/edwardscissorhands.jpg\",\n\t\"./books/charlieinktober/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/escapefromny.jpg\",\n\t\"./books/charlieinktober/halloween.jpg\": \"./src/img/art/books/charlieinktober/halloween.jpg\",\n\t\"./books/charlieinktober/lotr.jpg\": \"./src/img/art/books/charlieinktober/lotr.jpg\",\n\t\"./books/charlieinktober/metropolis.jpg\": \"./src/img/art/books/charlieinktober/metropolis.jpg\",\n\t\"./books/charlieinktober/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/nightmareb4xmas.jpg\",\n\t\"./books/charlieinktober/phibes.jpg\": \"./src/img/art/books/charlieinktober/phibes.jpg\",\n\t\"./books/charlieinktober/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/shaunofthedead.jpg\",\n\t\"./books/charlieinktober/shining.jpg\": \"./src/img/art/books/charlieinktober/shining.jpg\",\n\t\"./books/charlieinktober/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/sleepyhollow.jpg\",\n\t\"./books/charlieinktober/starwars.jpg\": \"./src/img/art/books/charlieinktober/starwars.jpg\",\n\t\"./books/charlieinktober/terminator2.jpg\": \"./src/img/art/books/charlieinktober/terminator2.jpg\",\n\t\"./books/charlieinktober/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thecrow.jpg\",\n\t\"./books/charlieinktober/thefog.jpg\": \"./src/img/art/books/charlieinktober/thefog.jpg\",\n\t\"./books/charlieinktober/thumbs/alien.jpg\": \"./src/img/art/books/charlieinktober/thumbs/alien.jpg\",\n\t\"./books/charlieinktober/thumbs/batman.jpg\": \"./src/img/art/books/charlieinktober/thumbs/batman.jpg\",\n\t\"./books/charlieinktober/thumbs/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg\",\n\t\"./books/charlieinktober/thumbs/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg\",\n\t\"./books/charlieinktober/thumbs/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg\",\n\t\"./books/charlieinktober/thumbs/dracula.jpg\": \"./src/img/art/books/charlieinktober/thumbs/dracula.jpg\",\n\t\"./books/charlieinktober/thumbs/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg\",\n\t\"./books/charlieinktober/thumbs/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg\",\n\t\"./books/charlieinktober/thumbs/halloween.jpg\": \"./src/img/art/books/charlieinktober/thumbs/halloween.jpg\",\n\t\"./books/charlieinktober/thumbs/lotr.jpg\": \"./src/img/art/books/charlieinktober/thumbs/lotr.jpg\",\n\t\"./books/charlieinktober/thumbs/metropolis.jpg\": \"./src/img/art/books/charlieinktober/thumbs/metropolis.jpg\",\n\t\"./books/charlieinktober/thumbs/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg\",\n\t\"./books/charlieinktober/thumbs/phibes.jpg\": \"./src/img/art/books/charlieinktober/thumbs/phibes.jpg\",\n\t\"./books/charlieinktober/thumbs/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg\",\n\t\"./books/charlieinktober/thumbs/shining.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shining.jpg\",\n\t\"./books/charlieinktober/thumbs/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg\",\n\t\"./books/charlieinktober/thumbs/starwars.jpg\": \"./src/img/art/books/charlieinktober/thumbs/starwars.jpg\",\n\t\"./books/charlieinktober/thumbs/terminator2.jpg\": \"./src/img/art/books/charlieinktober/thumbs/terminator2.jpg\",\n\t\"./books/charlieinktober/thumbs/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thecrow.jpg\",\n\t\"./books/charlieinktober/thumbs/thefog.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thefog.jpg\",\n\t\"./books/covers/birdsofchicagoland.jpg\": \"./src/img/art/books/covers/birdsofchicagoland.jpg\",\n\t\"./books/covers/charlieinktober.jpg\": \"./src/img/art/books/covers/charlieinktober.jpg\",\n\t\"./books/covers/openrange.jpg\": \"./src/img/art/books/covers/openrange.jpg\",\n\t\"./books/openrange/grandcanyon01.jpg\": \"./src/img/art/books/openrange/grandcanyon01.jpg\",\n\t\"./books/openrange/grandcanyon02.jpg\": \"./src/img/art/books/openrange/grandcanyon02.jpg\",\n\t\"./books/openrange/grandcanyon03.jpg\": \"./src/img/art/books/openrange/grandcanyon03.jpg\",\n\t\"./books/openrange/grandcanyon04.jpg\": \"./src/img/art/books/openrange/grandcanyon04.jpg\",\n\t\"./books/openrange/grandcanyon05.jpg\": \"./src/img/art/books/openrange/grandcanyon05.jpg\",\n\t\"./books/openrange/grandcanyon06.jpg\": \"./src/img/art/books/openrange/grandcanyon06.jpg\",\n\t\"./books/openrange/grandcanyon07.jpg\": \"./src/img/art/books/openrange/grandcanyon07.jpg\",\n\t\"./books/openrange/highways01.jpg\": \"./src/img/art/books/openrange/highways01.jpg\",\n\t\"./books/openrange/highways02.jpg\": \"./src/img/art/books/openrange/highways02.jpg\",\n\t\"./books/openrange/highways03.jpg\": \"./src/img/art/books/openrange/highways03.jpg\",\n\t\"./books/openrange/highways04.jpg\": \"./src/img/art/books/openrange/highways04.jpg\",\n\t\"./books/openrange/highways05.jpg\": \"./src/img/art/books/openrange/highways05.jpg\",\n\t\"./books/openrange/highways06.jpg\": \"./src/img/art/books/openrange/highways06.jpg\",\n\t\"./books/openrange/highways07.jpg\": \"./src/img/art/books/openrange/highways07.jpg\",\n\t\"./books/openrange/highways08.jpg\": \"./src/img/art/books/openrange/highways08.jpg\",\n\t\"./books/openrange/highways09.jpg\": \"./src/img/art/books/openrange/highways09.jpg\",\n\t\"./books/openrange/joshuatree01.jpg\": \"./src/img/art/books/openrange/joshuatree01.jpg\",\n\t\"./books/openrange/joshuatree02.jpg\": \"./src/img/art/books/openrange/joshuatree02.jpg\",\n\t\"./books/openrange/joshuatree03.jpg\": \"./src/img/art/books/openrange/joshuatree03.jpg\",\n\t\"./books/openrange/joshuatree04.jpg\": \"./src/img/art/books/openrange/joshuatree04.jpg\",\n\t\"./books/openrange/lakepowell01.jpg\": \"./src/img/art/books/openrange/lakepowell01.jpg\",\n\t\"./books/openrange/lakepowell02.jpg\": \"./src/img/art/books/openrange/lakepowell02.jpg\",\n\t\"./books/openrange/lakepowell03.jpg\": \"./src/img/art/books/openrange/lakepowell03.jpg\",\n\t\"./books/openrange/lakepowell04.jpg\": \"./src/img/art/books/openrange/lakepowell04.jpg\",\n\t\"./books/openrange/lakepowell05.jpg\": \"./src/img/art/books/openrange/lakepowell05.jpg\",\n\t\"./books/openrange/leesferry01.jpg\": \"./src/img/art/books/openrange/leesferry01.jpg\",\n\t\"./books/openrange/leesferry02.jpg\": \"./src/img/art/books/openrange/leesferry02.jpg\",\n\t\"./books/openrange/monumentvalley01.jpg\": \"./src/img/art/books/openrange/monumentvalley01.jpg\",\n\t\"./books/openrange/monumentvalley02.jpg\": \"./src/img/art/books/openrange/monumentvalley02.jpg\",\n\t\"./books/openrange/monumentvalley03.jpg\": \"./src/img/art/books/openrange/monumentvalley03.jpg\",\n\t\"./books/openrange/monumentvalley04.jpg\": \"./src/img/art/books/openrange/monumentvalley04.jpg\",\n\t\"./books/openrange/monumentvalley05.jpg\": \"./src/img/art/books/openrange/monumentvalley05.jpg\",\n\t\"./books/openrange/monumentvalley06.jpg\": \"./src/img/art/books/openrange/monumentvalley06.jpg\",\n\t\"./books/openrange/monumentvalley07.jpg\": \"./src/img/art/books/openrange/monumentvalley07.jpg\",\n\t\"./books/openrange/monumentvalley08.jpg\": \"./src/img/art/books/openrange/monumentvalley08.jpg\",\n\t\"./books/openrange/monumentvalley09.jpg\": \"./src/img/art/books/openrange/monumentvalley09.jpg\",\n\t\"./books/openrange/monumentvalley10.jpg\": \"./src/img/art/books/openrange/monumentvalley10.jpg\",\n\t\"./books/openrange/monumentvalley11.jpg\": \"./src/img/art/books/openrange/monumentvalley11.jpg\",\n\t\"./books/openrange/monumentvalley12.jpg\": \"./src/img/art/books/openrange/monumentvalley12.jpg\",\n\t\"./books/openrange/monumentvalley13.jpg\": \"./src/img/art/books/openrange/monumentvalley13.jpg\",\n\t\"./books/openrange/monumentvalley14.jpg\": \"./src/img/art/books/openrange/monumentvalley14.jpg\",\n\t\"./books/openrange/monumentvalley15.jpg\": \"./src/img/art/books/openrange/monumentvalley15.jpg\",\n\t\"./books/openrange/monumentvalley16.jpg\": \"./src/img/art/books/openrange/monumentvalley16.jpg\",\n\t\"./books/openrange/navajomonument01.jpg\": \"./src/img/art/books/openrange/navajomonument01.jpg\",\n\t\"./books/openrange/navajomonument02.jpg\": \"./src/img/art/books/openrange/navajomonument02.jpg\",\n\t\"./books/openrange/navajomonument03.jpg\": \"./src/img/art/books/openrange/navajomonument03.jpg\",\n\t\"./books/openrange/navajomonument04.jpg\": \"./src/img/art/books/openrange/navajomonument04.jpg\",\n\t\"./books/openrange/navajomonument05.jpg\": \"./src/img/art/books/openrange/navajomonument05.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon01.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon01.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon02.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon02.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon03.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon03.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon04.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon04.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon05.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon05.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon06.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon06.jpg\",\n\t\"./books/openrange/thumbs/grandcanyon07.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon07.jpg\",\n\t\"./books/openrange/thumbs/highways01.jpg\": \"./src/img/art/books/openrange/thumbs/highways01.jpg\",\n\t\"./books/openrange/thumbs/highways02.jpg\": \"./src/img/art/books/openrange/thumbs/highways02.jpg\",\n\t\"./books/openrange/thumbs/highways03.jpg\": \"./src/img/art/books/openrange/thumbs/highways03.jpg\",\n\t\"./books/openrange/thumbs/highways04.jpg\": \"./src/img/art/books/openrange/thumbs/highways04.jpg\",\n\t\"./books/openrange/thumbs/highways05.jpg\": \"./src/img/art/books/openrange/thumbs/highways05.jpg\",\n\t\"./books/openrange/thumbs/highways06.jpg\": \"./src/img/art/books/openrange/thumbs/highways06.jpg\",\n\t\"./books/openrange/thumbs/highways07.jpg\": \"./src/img/art/books/openrange/thumbs/highways07.jpg\",\n\t\"./books/openrange/thumbs/highways08.jpg\": \"./src/img/art/books/openrange/thumbs/highways08.jpg\",\n\t\"./books/openrange/thumbs/highways09.jpg\": \"./src/img/art/books/openrange/thumbs/highways09.jpg\",\n\t\"./books/openrange/thumbs/joshuatree01.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree01.jpg\",\n\t\"./books/openrange/thumbs/joshuatree02.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree02.jpg\",\n\t\"./books/openrange/thumbs/joshuatree03.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree03.jpg\",\n\t\"./books/openrange/thumbs/joshuatree04.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree04.jpg\",\n\t\"./books/openrange/thumbs/lakepowell01.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell01.jpg\",\n\t\"./books/openrange/thumbs/lakepowell02.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell02.jpg\",\n\t\"./books/openrange/thumbs/lakepowell03.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell03.jpg\",\n\t\"./books/openrange/thumbs/lakepowell04.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell04.jpg\",\n\t\"./books/openrange/thumbs/lakepowell05.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell05.jpg\",\n\t\"./books/openrange/thumbs/leesferry01.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry01.jpg\",\n\t\"./books/openrange/thumbs/leesferry02.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry02.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley01.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley01.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley02.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley02.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley03.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley03.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley04.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley04.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley05.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley05.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley06.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley06.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley07.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley07.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley08.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley08.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley09.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley09.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley10.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley10.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley11.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley11.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley12.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley12.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley13.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley13.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley14.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley14.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley15.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley15.jpg\",\n\t\"./books/openrange/thumbs/monumentvalley16.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley16.jpg\",\n\t\"./books/openrange/thumbs/navajomonument01.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument01.jpg\",\n\t\"./books/openrange/thumbs/navajomonument02.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument02.jpg\",\n\t\"./books/openrange/thumbs/navajomonument03.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument03.jpg\",\n\t\"./books/openrange/thumbs/navajomonument04.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument04.jpg\",\n\t\"./books/openrange/thumbs/navajomonument05.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument05.jpg\",\n\t\"./galleries/galleries-birds.jpg\": \"./src/img/art/galleries/galleries-birds.jpg\",\n\t\"./galleries/galleries-books.jpg\": \"./src/img/art/galleries/galleries-books.jpg\",\n\t\"./galleries/galleries-movies.jpg\": \"./src/img/art/galleries/galleries-movies.jpg\",\n\t\"./galleries/galleries-other.jpg\": \"./src/img/art/galleries/galleries-other.jpg\",\n\t\"./movies/full/beetlejuice.jpg\": \"./src/img/art/movies/full/beetlejuice.jpg\",\n\t\"./movies/full/cormanandpoe.jpg\": \"./src/img/art/movies/full/cormanandpoe.jpg\",\n\t\"./movies/full/earthvsflyingsaucers.jpg\": \"./src/img/art/movies/full/earthvsflyingsaucers.jpg\",\n\t\"./movies/full/edwardscissorhands.jpg\": \"./src/img/art/movies/full/edwardscissorhands.jpg\",\n\t\"./movies/full/eternalsunshine.jpg\": \"./src/img/art/movies/full/eternalsunshine.jpg\",\n\t\"./movies/full/frankcellardoor.jpg\": \"./src/img/art/movies/full/frankcellardoor.jpg\",\n\t\"./movies/full/nightmareb4xmas.jpg\": \"./src/img/art/movies/full/nightmareb4xmas.jpg\",\n\t\"./movies/full/phibes.jpg\": \"./src/img/art/movies/full/phibes.jpg\",\n\t\"./movies/full/shaunofthedead.jpg\": \"./src/img/art/movies/full/shaunofthedead.jpg\",\n\t\"./movies/full/shining.jpg\": \"./src/img/art/movies/full/shining.jpg\",\n\t\"./movies/full/sleepyhollow.jpg\": \"./src/img/art/movies/full/sleepyhollow.jpg\",\n\t\"./movies/full/swampthing.jpg\": \"./src/img/art/movies/full/swampthing.jpg\",\n\t\"./movies/full/thecrow.jpg\": \"./src/img/art/movies/full/thecrow.jpg\",\n\t\"./movies/full/thedancingclown.jpg\": \"./src/img/art/movies/full/thedancingclown.jpg\",\n\t\"./movies/full/thefog.jpg\": \"./src/img/art/movies/full/thefog.jpg\",\n\t\"./movies/full/theshape.jpg\": \"./src/img/art/movies/full/theshape.jpg\",\n\t\"./movies/full/thesnake.jpg\": \"./src/img/art/movies/full/thesnake.jpg\",\n\t\"./movies/full/vincentprice.jpg\": \"./src/img/art/movies/full/vincentprice.jpg\",\n\t\"./movies/thumbs/beetlejuice-250.jpg\": \"./src/img/art/movies/thumbs/beetlejuice-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/nightmareb4xmas-250.jpg\": \"./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg\",\n\t\"./movies/thumbs/phibes-250.jpg\": \"./src/img/art/movies/thumbs/phibes-250.jpg\",\n\t\"./movies/thumbs/shaunofthedead-250.jpg\": \"./src/img/art/movies/thumbs/shaunofthedead-250.jpg\",\n\t\"./movies/thumbs/shining-250.jpg\": \"./src/img/art/movies/thumbs/shining-250.jpg\",\n\t\"./movies/thumbs/sleepyhollow-250.jpg\": \"./src/img/art/movies/thumbs/sleepyhollow-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/full/allanon.jpg\": \"./src/img/art/other/full/allanon.jpg\",\n\t\"./other/full/andrettilongbeach.jpg\": \"./src/img/art/other/full/andrettilongbeach.jpg\",\n\t\"./other/full/chopin.jpg\": \"./src/img/art/other/full/chopin.jpg\",\n\t\"./other/full/fqmg.jpg\": \"./src/img/art/other/full/fqmg.jpg\",\n\t\"./other/full/jimclark.jpg\": \"./src/img/art/other/full/jimclark.jpg\",\n\t\"./other/full/meltingdoge.jpg\": \"./src/img/art/other/full/meltingdoge.jpg\",\n\t\"./other/full/mexicanvaquero.jpg\": \"./src/img/art/other/full/mexicanvaquero.jpg\",\n\t\"./other/full/mingojack.jpg\": \"./src/img/art/other/full/mingojack.jpg\",\n\t\"./other/full/probewinndixie.jpg\": \"./src/img/art/other/full/probewinndixie.jpg\",\n\t\"./other/full/quanahparker.jpg\": \"./src/img/art/other/full/quanahparker.jpg\",\n\t\"./other/full/redrialto.jpg\": \"./src/img/art/other/full/redrialto.jpg\",\n\t\"./other/full/riomendicanti.jpg\": \"./src/img/art/other/full/riomendicanti.jpg\",\n\t\"./other/full/schumi-monaco.jpg\": \"./src/img/art/other/full/schumi-monaco.jpg\",\n\t\"./other/full/selfportrait2007.jpg\": \"./src/img/art/other/full/selfportrait2007.jpg\",\n\t\"./other/full/selfportrait2020.jpg\": \"./src/img/art/other/full/selfportrait2020.jpg\",\n\t\"./other/full/sotoportego.jpg\": \"./src/img/art/other/full/sotoportego.jpg\",\n\t\"./other/full/woodspoint.jpg\": \"./src/img/art/other/full/woodspoint.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/probewinndixie-250.jpg\": \"./src/img/art/other/thumbs/probewinndixie-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/selfportrait2007-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2007-250.jpg\",\n\t\"./other/thumbs/selfportrait2020-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2020-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\",\n\t\"./other/thumbs/woodspoint-250.jpg\": \"./src/img/art/other/thumbs/woodspoint-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\.jpg$?");
+eval("var map = {\n\t\"./birds/full/blaumeise.jpg\": \"./src/img/art/birds/full/blaumeise.jpg\",\n\t\"./birds/full/blaumeisecolor.jpg\": \"./src/img/art/birds/full/blaumeisecolor.jpg\",\n\t\"./birds/full/bluejay.jpg\": \"./src/img/art/birds/full/bluejay.jpg\",\n\t\"./birds/full/bluejaydesert.jpg\": \"./src/img/art/birds/full/bluejaydesert.jpg\",\n\t\"./birds/full/cardinals.jpg\": \"./src/img/art/birds/full/cardinals.jpg\",\n\t\"./birds/full/coopershawk.jpg\": \"./src/img/art/birds/full/coopershawk.jpg\",\n\t\"./birds/full/cormorant.jpg\": \"./src/img/art/birds/full/cormorant.jpg\",\n\t\"./birds/full/crow.jpg\": \"./src/img/art/birds/full/crow.jpg\",\n\t\"./birds/full/emeraldosprey.jpg\": \"./src/img/art/birds/full/emeraldosprey.jpg\",\n\t\"./birds/full/flicker.jpg\": \"./src/img/art/birds/full/flicker.jpg\",\n\t\"./birds/full/goshawk.jpg\": \"./src/img/art/birds/full/goshawk.jpg\",\n\t\"./birds/full/greatblueheron.jpg\": \"./src/img/art/birds/full/greatblueheron.jpg\",\n\t\"./birds/full/greathornedowl.jpg\": \"./src/img/art/birds/full/greathornedowl.jpg\",\n\t\"./birds/full/grosbeaks.jpg\": \"./src/img/art/birds/full/grosbeaks.jpg\",\n\t\"./birds/full/kestrel.jpg\": \"./src/img/art/birds/full/kestrel.jpg\",\n\t\"./birds/full/kestrelgreenskies.jpg\": \"./src/img/art/birds/full/kestrelgreenskies.jpg\",\n\t\"./birds/full/kingfisher.jpg\": \"./src/img/art/birds/full/kingfisher.jpg\",\n\t\"./birds/full/loon.jpg\": \"./src/img/art/birds/full/loon.jpg\",\n\t\"./birds/full/magpieparkcity.jpg\": \"./src/img/art/birds/full/magpieparkcity.jpg\",\n\t\"./birds/full/meadowlark.jpg\": \"./src/img/art/birds/full/meadowlark.jpg\",\n\t\"./birds/full/nightheron.jpg\": \"./src/img/art/birds/full/nightheron.jpg\",\n\t\"./birds/full/ospreykingfisher.jpg\": \"./src/img/art/birds/full/ospreykingfisher.jpg\",\n\t\"./birds/full/passengerpigeons.jpg\": \"./src/img/art/birds/full/passengerpigeons.jpg\",\n\t\"./birds/full/pelicanvenice.jpg\": \"./src/img/art/birds/full/pelicanvenice.jpg\",\n\t\"./birds/full/peregrine.jpg\": \"./src/img/art/birds/full/peregrine.jpg\",\n\t\"./birds/full/pileatedwoodpecker.jpg\": \"./src/img/art/birds/full/pileatedwoodpecker.jpg\",\n\t\"./birds/full/redjunglefowl.jpg\": \"./src/img/art/birds/full/redjunglefowl.jpg\",\n\t\"./birds/full/redwingedblackbird.jpg\": \"./src/img/art/birds/full/redwingedblackbird.jpg\",\n\t\"./birds/full/rockpigeon.jpg\": \"./src/img/art/birds/full/rockpigeon.jpg\",\n\t\"./birds/full/screechowl.jpg\": \"./src/img/art/birds/full/screechowl.jpg\",\n\t\"./birds/full/tern.jpg\": \"./src/img/art/birds/full/tern.jpg\",\n\t\"./birds/full/turkey.jpg\": \"./src/img/art/birds/full/turkey.jpg\",\n\t\"./birds/full/turquoiseperegrine.jpg\": \"./src/img/art/birds/full/turquoiseperegrine.jpg\",\n\t\"./birds/full/whitethroatedsparrow.jpg\": \"./src/img/art/birds/full/whitethroatedsparrow.jpg\",\n\t\"./birds/full/woodduck.jpg\": \"./src/img/art/birds/full/woodduck.jpg\",\n\t\"./birds/thumbs/blaumeise-250.jpg\": \"./src/img/art/birds/thumbs/blaumeise-250.jpg\",\n\t\"./birds/thumbs/blaumeisecolor-250.jpg\": \"./src/img/art/birds/thumbs/blaumeisecolor-250.jpg\",\n\t\"./birds/thumbs/bluejay-250.jpg\": \"./src/img/art/birds/thumbs/bluejay-250.jpg\",\n\t\"./birds/thumbs/bluejaydesert-250.jpg\": \"./src/img/art/birds/thumbs/bluejaydesert-250.jpg\",\n\t\"./birds/thumbs/cardinals-250.jpg\": \"./src/img/art/birds/thumbs/cardinals-250.jpg\",\n\t\"./birds/thumbs/coopershawk-250.jpg\": \"./src/img/art/birds/thumbs/coopershawk-250.jpg\",\n\t\"./birds/thumbs/cormorant-250.jpg\": \"./src/img/art/birds/thumbs/cormorant-250.jpg\",\n\t\"./birds/thumbs/crow-250.jpg\": \"./src/img/art/birds/thumbs/crow-250.jpg\",\n\t\"./birds/thumbs/emeraldosprey-250.jpg\": \"./src/img/art/birds/thumbs/emeraldosprey-250.jpg\",\n\t\"./birds/thumbs/flicker-250.jpg\": \"./src/img/art/birds/thumbs/flicker-250.jpg\",\n\t\"./birds/thumbs/goshawk-250.jpg\": \"./src/img/art/birds/thumbs/goshawk-250.jpg\",\n\t\"./birds/thumbs/greatblueheron-250.jpg\": \"./src/img/art/birds/thumbs/greatblueheron-250.jpg\",\n\t\"./birds/thumbs/greathornedowl-250.jpg\": \"./src/img/art/birds/thumbs/greathornedowl-250.jpg\",\n\t\"./birds/thumbs/grosbeaks-250.jpg\": \"./src/img/art/birds/thumbs/grosbeaks-250.jpg\",\n\t\"./birds/thumbs/kestrel-250.jpg\": \"./src/img/art/birds/thumbs/kestrel-250.jpg\",\n\t\"./birds/thumbs/kestrelgreenskies-250.jpg\": \"./src/img/art/birds/thumbs/kestrelgreenskies-250.jpg\",\n\t\"./birds/thumbs/kingfisher-250.jpg\": \"./src/img/art/birds/thumbs/kingfisher-250.jpg\",\n\t\"./birds/thumbs/loon-250.jpg\": \"./src/img/art/birds/thumbs/loon-250.jpg\",\n\t\"./birds/thumbs/magpieparkcity-250.jpg\": \"./src/img/art/birds/thumbs/magpieparkcity-250.jpg\",\n\t\"./birds/thumbs/meadowlark-250.jpg\": \"./src/img/art/birds/thumbs/meadowlark-250.jpg\",\n\t\"./birds/thumbs/nightheron-250.jpg\": \"./src/img/art/birds/thumbs/nightheron-250.jpg\",\n\t\"./birds/thumbs/ospreykingfisher-250.jpg\": \"./src/img/art/birds/thumbs/ospreykingfisher-250.jpg\",\n\t\"./birds/thumbs/passengerpigeons-250.jpg\": \"./src/img/art/birds/thumbs/passengerpigeons-250.jpg\",\n\t\"./birds/thumbs/pelicanvenice-250.jpg\": \"./src/img/art/birds/thumbs/pelicanvenice-250.jpg\",\n\t\"./birds/thumbs/peregrine-250.jpg\": \"./src/img/art/birds/thumbs/peregrine-250.jpg\",\n\t\"./birds/thumbs/pileatedwoodpecker-250.jpg\": \"./src/img/art/birds/thumbs/pileatedwoodpecker-250.jpg\",\n\t\"./birds/thumbs/redjunglefowl-250.jpg\": \"./src/img/art/birds/thumbs/redjunglefowl-250.jpg\",\n\t\"./birds/thumbs/redwingedblackbird-250.jpg\": \"./src/img/art/birds/thumbs/redwingedblackbird-250.jpg\",\n\t\"./birds/thumbs/rockpigeon-250.jpg\": \"./src/img/art/birds/thumbs/rockpigeon-250.jpg\",\n\t\"./birds/thumbs/screechowl-250.jpg\": \"./src/img/art/birds/thumbs/screechowl-250.jpg\",\n\t\"./birds/thumbs/tern-250.jpg\": \"./src/img/art/birds/thumbs/tern-250.jpg\",\n\t\"./birds/thumbs/turkey-250.jpg\": \"./src/img/art/birds/thumbs/turkey-250.jpg\",\n\t\"./birds/thumbs/turquoiseperegrine-250.jpg\": \"./src/img/art/birds/thumbs/turquoiseperegrine-250.jpg\",\n\t\"./birds/thumbs/whitethroatedsparrow-250.jpg\": \"./src/img/art/birds/thumbs/whitethroatedsparrow-250.jpg\",\n\t\"./birds/thumbs/woodduck-250.jpg\": \"./src/img/art/birds/thumbs/woodduck-250.jpg\",\n\t\"./collections/birdsofchicagoland/bluejay.jpg\": \"./src/img/art/collections/birdsofchicagoland/bluejay.jpg\",\n\t\"./collections/birdsofchicagoland/cardinals.jpg\": \"./src/img/art/collections/birdsofchicagoland/cardinals.jpg\",\n\t\"./collections/birdsofchicagoland/coopershawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/coopershawk.jpg\",\n\t\"./collections/birdsofchicagoland/cormorant.jpg\": \"./src/img/art/collections/birdsofchicagoland/cormorant.jpg\",\n\t\"./collections/birdsofchicagoland/crow.jpg\": \"./src/img/art/collections/birdsofchicagoland/crow.jpg\",\n\t\"./collections/birdsofchicagoland/flicker.jpg\": \"./src/img/art/collections/birdsofchicagoland/flicker.jpg\",\n\t\"./collections/birdsofchicagoland/goshawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/goshawk.jpg\",\n\t\"./collections/birdsofchicagoland/greatblueheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/greatblueheron.jpg\",\n\t\"./collections/birdsofchicagoland/greathornedowl.jpg\": \"./src/img/art/collections/birdsofchicagoland/greathornedowl.jpg\",\n\t\"./collections/birdsofchicagoland/grosbeaks.jpg\": \"./src/img/art/collections/birdsofchicagoland/grosbeaks.jpg\",\n\t\"./collections/birdsofchicagoland/kestrel.jpg\": \"./src/img/art/collections/birdsofchicagoland/kestrel.jpg\",\n\t\"./collections/birdsofchicagoland/kingfisher.jpg\": \"./src/img/art/collections/birdsofchicagoland/kingfisher.jpg\",\n\t\"./collections/birdsofchicagoland/loon.jpg\": \"./src/img/art/collections/birdsofchicagoland/loon.jpg\",\n\t\"./collections/birdsofchicagoland/meadowlark.jpg\": \"./src/img/art/collections/birdsofchicagoland/meadowlark.jpg\",\n\t\"./collections/birdsofchicagoland/nightheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/nightheron.jpg\",\n\t\"./collections/birdsofchicagoland/passengerpigeons.jpg\": \"./src/img/art/collections/birdsofchicagoland/passengerpigeons.jpg\",\n\t\"./collections/birdsofchicagoland/peregrine.jpg\": \"./src/img/art/collections/birdsofchicagoland/peregrine.jpg\",\n\t\"./collections/birdsofchicagoland/redwingedblackbird.jpg\": \"./src/img/art/collections/birdsofchicagoland/redwingedblackbird.jpg\",\n\t\"./collections/birdsofchicagoland/rockpigeon.jpg\": \"./src/img/art/collections/birdsofchicagoland/rockpigeon.jpg\",\n\t\"./collections/birdsofchicagoland/tern.jpg\": \"./src/img/art/collections/birdsofchicagoland/tern.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/bluejay.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/bluejay.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/cardinals.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/cardinals.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/coopershawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/coopershawk.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/cormorant.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/cormorant.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/crow.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/crow.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/flicker.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/flicker.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/goshawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/goshawk.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/greatblueheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/greatblueheron.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/greathornedowl.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/greathornedowl.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/grosbeaks.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/grosbeaks.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/kestrel.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/kestrel.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/kingfisher.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/kingfisher.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/loon.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/loon.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/meadowlark.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/meadowlark.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/nightheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/nightheron.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/passengerpigeons.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/passengerpigeons.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/peregrine.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/peregrine.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/rockpigeon.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/rockpigeon.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/tern.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/tern.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/turkey.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/turkey.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/woodduck.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/woodduck.jpg\",\n\t\"./collections/birdsofchicagoland/thumbs/woodpecker.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/woodpecker.jpg\",\n\t\"./collections/birdsofchicagoland/turkey.jpg\": \"./src/img/art/collections/birdsofchicagoland/turkey.jpg\",\n\t\"./collections/birdsofchicagoland/whitethroatedsparrow.jpg\": \"./src/img/art/collections/birdsofchicagoland/whitethroatedsparrow.jpg\",\n\t\"./collections/birdsofchicagoland/woodduck.jpg\": \"./src/img/art/collections/birdsofchicagoland/woodduck.jpg\",\n\t\"./collections/birdsofchicagoland/woodpecker.jpg\": \"./src/img/art/collections/birdsofchicagoland/woodpecker.jpg\",\n\t\"./collections/charlieinktober/alien.jpg\": \"./src/img/art/collections/charlieinktober/alien.jpg\",\n\t\"./collections/charlieinktober/batman.jpg\": \"./src/img/art/collections/charlieinktober/batman.jpg\",\n\t\"./collections/charlieinktober/beetlejuice.jpg\": \"./src/img/art/collections/charlieinktober/beetlejuice.jpg\",\n\t\"./collections/charlieinktober/bladerunner.jpg\": \"./src/img/art/collections/charlieinktober/bladerunner.jpg\",\n\t\"./collections/charlieinktober/donniedarko.jpg\": \"./src/img/art/collections/charlieinktober/donniedarko.jpg\",\n\t\"./collections/charlieinktober/dracula.jpg\": \"./src/img/art/collections/charlieinktober/dracula.jpg\",\n\t\"./collections/charlieinktober/edwardscissorhands.jpg\": \"./src/img/art/collections/charlieinktober/edwardscissorhands.jpg\",\n\t\"./collections/charlieinktober/escapefromny.jpg\": \"./src/img/art/collections/charlieinktober/escapefromny.jpg\",\n\t\"./collections/charlieinktober/halloween.jpg\": \"./src/img/art/collections/charlieinktober/halloween.jpg\",\n\t\"./collections/charlieinktober/lotr.jpg\": \"./src/img/art/collections/charlieinktober/lotr.jpg\",\n\t\"./collections/charlieinktober/metropolis.jpg\": \"./src/img/art/collections/charlieinktober/metropolis.jpg\",\n\t\"./collections/charlieinktober/nightmareb4xmas.jpg\": \"./src/img/art/collections/charlieinktober/nightmareb4xmas.jpg\",\n\t\"./collections/charlieinktober/phibes.jpg\": \"./src/img/art/collections/charlieinktober/phibes.jpg\",\n\t\"./collections/charlieinktober/shaunofthedead.jpg\": \"./src/img/art/collections/charlieinktober/shaunofthedead.jpg\",\n\t\"./collections/charlieinktober/shining.jpg\": \"./src/img/art/collections/charlieinktober/shining.jpg\",\n\t\"./collections/charlieinktober/sleepyhollow.jpg\": \"./src/img/art/collections/charlieinktober/sleepyhollow.jpg\",\n\t\"./collections/charlieinktober/starwars.jpg\": \"./src/img/art/collections/charlieinktober/starwars.jpg\",\n\t\"./collections/charlieinktober/terminator2.jpg\": \"./src/img/art/collections/charlieinktober/terminator2.jpg\",\n\t\"./collections/charlieinktober/thecrow.jpg\": \"./src/img/art/collections/charlieinktober/thecrow.jpg\",\n\t\"./collections/charlieinktober/thefog.jpg\": \"./src/img/art/collections/charlieinktober/thefog.jpg\",\n\t\"./collections/charlieinktober/thumbs/alien.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/alien.jpg\",\n\t\"./collections/charlieinktober/thumbs/batman.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/batman.jpg\",\n\t\"./collections/charlieinktober/thumbs/beetlejuice.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/beetlejuice.jpg\",\n\t\"./collections/charlieinktober/thumbs/bladerunner.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/bladerunner.jpg\",\n\t\"./collections/charlieinktober/thumbs/donniedarko.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/donniedarko.jpg\",\n\t\"./collections/charlieinktober/thumbs/dracula.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/dracula.jpg\",\n\t\"./collections/charlieinktober/thumbs/edwardscissorhands.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/edwardscissorhands.jpg\",\n\t\"./collections/charlieinktober/thumbs/escapefromny.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/escapefromny.jpg\",\n\t\"./collections/charlieinktober/thumbs/halloween.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/halloween.jpg\",\n\t\"./collections/charlieinktober/thumbs/lotr.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/lotr.jpg\",\n\t\"./collections/charlieinktober/thumbs/metropolis.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/metropolis.jpg\",\n\t\"./collections/charlieinktober/thumbs/nightmareb4xmas.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/nightmareb4xmas.jpg\",\n\t\"./collections/charlieinktober/thumbs/phibes.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/phibes.jpg\",\n\t\"./collections/charlieinktober/thumbs/shaunofthedead.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/shaunofthedead.jpg\",\n\t\"./collections/charlieinktober/thumbs/shining.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/shining.jpg\",\n\t\"./collections/charlieinktober/thumbs/sleepyhollow.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/sleepyhollow.jpg\",\n\t\"./collections/charlieinktober/thumbs/starwars.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/starwars.jpg\",\n\t\"./collections/charlieinktober/thumbs/terminator2.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/terminator2.jpg\",\n\t\"./collections/charlieinktober/thumbs/thecrow.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/thecrow.jpg\",\n\t\"./collections/charlieinktober/thumbs/thefog.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/thefog.jpg\",\n\t\"./collections/covers/birdsofchicagoland.jpg\": \"./src/img/art/collections/covers/birdsofchicagoland.jpg\",\n\t\"./collections/covers/charlieinktober.jpg\": \"./src/img/art/collections/covers/charlieinktober.jpg\",\n\t\"./collections/covers/englishportfolio.jpg\": \"./src/img/art/collections/covers/englishportfolio.jpg\",\n\t\"./collections/covers/lightandink.jpg\": \"./src/img/art/collections/covers/lightandink.jpg\",\n\t\"./collections/covers/openrange.jpg\": \"./src/img/art/collections/covers/openrange.jpg\",\n\t\"./collections/covers/wideworld.jpg\": \"./src/img/art/collections/covers/wideworld.jpg\",\n\t\"./collections/englishportfolio/birmingham-1.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-1.jpg\",\n\t\"./collections/englishportfolio/birmingham-2.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-2.jpg\",\n\t\"./collections/englishportfolio/birmingham-3.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-3.jpg\",\n\t\"./collections/englishportfolio/birmingham-4.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-4.jpg\",\n\t\"./collections/englishportfolio/bradfield-1.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-1.jpg\",\n\t\"./collections/englishportfolio/bradfield-2.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-2.jpg\",\n\t\"./collections/englishportfolio/bradfield-3.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-3.jpg\",\n\t\"./collections/englishportfolio/bradfield-4.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-4.jpg\",\n\t\"./collections/englishportfolio/bradfield-5.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-5.jpg\",\n\t\"./collections/englishportfolio/bradfield-6.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-6.jpg\",\n\t\"./collections/englishportfolio/kenilworth-1.jpg\": \"./src/img/art/collections/englishportfolio/kenilworth-1.jpg\",\n\t\"./collections/englishportfolio/liverpool-1.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-1.jpg\",\n\t\"./collections/englishportfolio/liverpool-2.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-2.jpg\",\n\t\"./collections/englishportfolio/liverpool-3.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-3.jpg\",\n\t\"./collections/englishportfolio/liverpool-4.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-4.jpg\",\n\t\"./collections/englishportfolio/liverpool-5.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-5.jpg\",\n\t\"./collections/englishportfolio/sheffield-1.jpg\": \"./src/img/art/collections/englishportfolio/sheffield-1.jpg\",\n\t\"./collections/englishportfolio/thumbs/birmingham-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-1.jpg\",\n\t\"./collections/englishportfolio/thumbs/birmingham-2.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-2.jpg\",\n\t\"./collections/englishportfolio/thumbs/birmingham-3.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-3.jpg\",\n\t\"./collections/englishportfolio/thumbs/birmingham-4.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-4.jpg\",\n\t\"./collections/englishportfolio/thumbs/bradfield-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-1.jpg\",\n\t\"./collections/englishportfolio/thumbs/bradfield-2.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-2.jpg\",\n\t\"./collections/englishportfolio/thumbs/bradfield-3.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-3.jpg\",\n\t\"./collections/englishportfolio/thumbs/bradfield-4.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-4.jpg\",\n\t\"./collections/englishportfolio/thumbs/bradfield-5.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-5.jpg\",\n\t\"./collections/englishportfolio/thumbs/bradfield-6.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-6.jpg\",\n\t\"./collections/englishportfolio/thumbs/kenilworth-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/kenilworth-1.jpg\",\n\t\"./collections/englishportfolio/thumbs/liverpool-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-1.jpg\",\n\t\"./collections/englishportfolio/thumbs/liverpool-2.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-2.jpg\",\n\t\"./collections/englishportfolio/thumbs/liverpool-3.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-3.jpg\",\n\t\"./collections/englishportfolio/thumbs/liverpool-4.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-4.jpg\",\n\t\"./collections/englishportfolio/thumbs/liverpool-5.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-5.jpg\",\n\t\"./collections/englishportfolio/thumbs/sheffield-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/sheffield-1.jpg\",\n\t\"./collections/lightandink/batmanreturns.jpg\": \"./src/img/art/collections/lightandink/batmanreturns.jpg\",\n\t\"./collections/lightandink/coverpage.jpg\": \"./src/img/art/collections/lightandink/coverpage.jpg\",\n\t\"./collections/lightandink/doctorsleep.jpg\": \"./src/img/art/collections/lightandink/doctorsleep.jpg\",\n\t\"./collections/lightandink/downbylaw.jpg\": \"./src/img/art/collections/lightandink/downbylaw.jpg\",\n\t\"./collections/lightandink/empirestrikesback.jpg\": \"./src/img/art/collections/lightandink/empirestrikesback.jpg\",\n\t\"./collections/lightandink/evildeadii.jpg\": \"./src/img/art/collections/lightandink/evildeadii.jpg\",\n\t\"./collections/lightandink/goldrush.jpg\": \"./src/img/art/collections/lightandink/goldrush.jpg\",\n\t\"./collections/lightandink/halloween18.jpg\": \"./src/img/art/collections/lightandink/halloween18.jpg\",\n\t\"./collections/lightandink/lostboys.jpg\": \"./src/img/art/collections/lightandink/lostboys.jpg\",\n\t\"./collections/lightandink/thetwotowers.jpg\": \"./src/img/art/collections/lightandink/thetwotowers.jpg\",\n\t\"./collections/lightandink/thumbs/batmanreturns.jpg\": \"./src/img/art/collections/lightandink/thumbs/batmanreturns.jpg\",\n\t\"./collections/lightandink/thumbs/coverpage.jpg\": \"./src/img/art/collections/lightandink/thumbs/coverpage.jpg\",\n\t\"./collections/lightandink/thumbs/doctorsleep.jpg\": \"./src/img/art/collections/lightandink/thumbs/doctorsleep.jpg\",\n\t\"./collections/lightandink/thumbs/downbylaw.jpg\": \"./src/img/art/collections/lightandink/thumbs/downbylaw.jpg\",\n\t\"./collections/lightandink/thumbs/empirestrikesback.jpg\": \"./src/img/art/collections/lightandink/thumbs/empirestrikesback.jpg\",\n\t\"./collections/lightandink/thumbs/evildeadii.jpg\": \"./src/img/art/collections/lightandink/thumbs/evildeadii.jpg\",\n\t\"./collections/lightandink/thumbs/goldrush.jpg\": \"./src/img/art/collections/lightandink/thumbs/goldrush.jpg\",\n\t\"./collections/lightandink/thumbs/halloween18.jpg\": \"./src/img/art/collections/lightandink/thumbs/halloween18.jpg\",\n\t\"./collections/lightandink/thumbs/lostboys.jpg\": \"./src/img/art/collections/lightandink/thumbs/lostboys.jpg\",\n\t\"./collections/lightandink/thumbs/thetwotowers.jpg\": \"./src/img/art/collections/lightandink/thumbs/thetwotowers.jpg\",\n\t\"./collections/lightandink/thumbs/wizardofoz.jpg\": \"./src/img/art/collections/lightandink/thumbs/wizardofoz.jpg\",\n\t\"./collections/lightandink/wizardofoz.jpg\": \"./src/img/art/collections/lightandink/wizardofoz.jpg\",\n\t\"./collections/openrange/grandcanyon01.jpg\": \"./src/img/art/collections/openrange/grandcanyon01.jpg\",\n\t\"./collections/openrange/grandcanyon02.jpg\": \"./src/img/art/collections/openrange/grandcanyon02.jpg\",\n\t\"./collections/openrange/grandcanyon03.jpg\": \"./src/img/art/collections/openrange/grandcanyon03.jpg\",\n\t\"./collections/openrange/grandcanyon04.jpg\": \"./src/img/art/collections/openrange/grandcanyon04.jpg\",\n\t\"./collections/openrange/grandcanyon05.jpg\": \"./src/img/art/collections/openrange/grandcanyon05.jpg\",\n\t\"./collections/openrange/grandcanyon06.jpg\": \"./src/img/art/collections/openrange/grandcanyon06.jpg\",\n\t\"./collections/openrange/grandcanyon07.jpg\": \"./src/img/art/collections/openrange/grandcanyon07.jpg\",\n\t\"./collections/openrange/highways01.jpg\": \"./src/img/art/collections/openrange/highways01.jpg\",\n\t\"./collections/openrange/highways02.jpg\": \"./src/img/art/collections/openrange/highways02.jpg\",\n\t\"./collections/openrange/highways03.jpg\": \"./src/img/art/collections/openrange/highways03.jpg\",\n\t\"./collections/openrange/highways04.jpg\": \"./src/img/art/collections/openrange/highways04.jpg\",\n\t\"./collections/openrange/highways05.jpg\": \"./src/img/art/collections/openrange/highways05.jpg\",\n\t\"./collections/openrange/highways06.jpg\": \"./src/img/art/collections/openrange/highways06.jpg\",\n\t\"./collections/openrange/highways07.jpg\": \"./src/img/art/collections/openrange/highways07.jpg\",\n\t\"./collections/openrange/highways08.jpg\": \"./src/img/art/collections/openrange/highways08.jpg\",\n\t\"./collections/openrange/highways09.jpg\": \"./src/img/art/collections/openrange/highways09.jpg\",\n\t\"./collections/openrange/joshuatree01.jpg\": \"./src/img/art/collections/openrange/joshuatree01.jpg\",\n\t\"./collections/openrange/joshuatree02.jpg\": \"./src/img/art/collections/openrange/joshuatree02.jpg\",\n\t\"./collections/openrange/joshuatree03.jpg\": \"./src/img/art/collections/openrange/joshuatree03.jpg\",\n\t\"./collections/openrange/joshuatree04.jpg\": \"./src/img/art/collections/openrange/joshuatree04.jpg\",\n\t\"./collections/openrange/lakepowell01.jpg\": \"./src/img/art/collections/openrange/lakepowell01.jpg\",\n\t\"./collections/openrange/lakepowell02.jpg\": \"./src/img/art/collections/openrange/lakepowell02.jpg\",\n\t\"./collections/openrange/lakepowell03.jpg\": \"./src/img/art/collections/openrange/lakepowell03.jpg\",\n\t\"./collections/openrange/lakepowell04.jpg\": \"./src/img/art/collections/openrange/lakepowell04.jpg\",\n\t\"./collections/openrange/lakepowell05.jpg\": \"./src/img/art/collections/openrange/lakepowell05.jpg\",\n\t\"./collections/openrange/leesferry01.jpg\": \"./src/img/art/collections/openrange/leesferry01.jpg\",\n\t\"./collections/openrange/leesferry02.jpg\": \"./src/img/art/collections/openrange/leesferry02.jpg\",\n\t\"./collections/openrange/monumentvalley01.jpg\": \"./src/img/art/collections/openrange/monumentvalley01.jpg\",\n\t\"./collections/openrange/monumentvalley02.jpg\": \"./src/img/art/collections/openrange/monumentvalley02.jpg\",\n\t\"./collections/openrange/monumentvalley03.jpg\": \"./src/img/art/collections/openrange/monumentvalley03.jpg\",\n\t\"./collections/openrange/monumentvalley04.jpg\": \"./src/img/art/collections/openrange/monumentvalley04.jpg\",\n\t\"./collections/openrange/monumentvalley05.jpg\": \"./src/img/art/collections/openrange/monumentvalley05.jpg\",\n\t\"./collections/openrange/monumentvalley06.jpg\": \"./src/img/art/collections/openrange/monumentvalley06.jpg\",\n\t\"./collections/openrange/monumentvalley07.jpg\": \"./src/img/art/collections/openrange/monumentvalley07.jpg\",\n\t\"./collections/openrange/monumentvalley08.jpg\": \"./src/img/art/collections/openrange/monumentvalley08.jpg\",\n\t\"./collections/openrange/monumentvalley09.jpg\": \"./src/img/art/collections/openrange/monumentvalley09.jpg\",\n\t\"./collections/openrange/monumentvalley10.jpg\": \"./src/img/art/collections/openrange/monumentvalley10.jpg\",\n\t\"./collections/openrange/monumentvalley11.jpg\": \"./src/img/art/collections/openrange/monumentvalley11.jpg\",\n\t\"./collections/openrange/monumentvalley12.jpg\": \"./src/img/art/collections/openrange/monumentvalley12.jpg\",\n\t\"./collections/openrange/monumentvalley13.jpg\": \"./src/img/art/collections/openrange/monumentvalley13.jpg\",\n\t\"./collections/openrange/monumentvalley14.jpg\": \"./src/img/art/collections/openrange/monumentvalley14.jpg\",\n\t\"./collections/openrange/monumentvalley15.jpg\": \"./src/img/art/collections/openrange/monumentvalley15.jpg\",\n\t\"./collections/openrange/monumentvalley16.jpg\": \"./src/img/art/collections/openrange/monumentvalley16.jpg\",\n\t\"./collections/openrange/navajomonument01.jpg\": \"./src/img/art/collections/openrange/navajomonument01.jpg\",\n\t\"./collections/openrange/navajomonument02.jpg\": \"./src/img/art/collections/openrange/navajomonument02.jpg\",\n\t\"./collections/openrange/navajomonument03.jpg\": \"./src/img/art/collections/openrange/navajomonument03.jpg\",\n\t\"./collections/openrange/navajomonument04.jpg\": \"./src/img/art/collections/openrange/navajomonument04.jpg\",\n\t\"./collections/openrange/navajomonument05.jpg\": \"./src/img/art/collections/openrange/navajomonument05.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon01.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon01.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon02.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon02.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon03.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon03.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon04.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon04.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon05.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon05.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon06.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon06.jpg\",\n\t\"./collections/openrange/thumbs/grandcanyon07.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon07.jpg\",\n\t\"./collections/openrange/thumbs/highways01.jpg\": \"./src/img/art/collections/openrange/thumbs/highways01.jpg\",\n\t\"./collections/openrange/thumbs/highways02.jpg\": \"./src/img/art/collections/openrange/thumbs/highways02.jpg\",\n\t\"./collections/openrange/thumbs/highways03.jpg\": \"./src/img/art/collections/openrange/thumbs/highways03.jpg\",\n\t\"./collections/openrange/thumbs/highways04.jpg\": \"./src/img/art/collections/openrange/thumbs/highways04.jpg\",\n\t\"./collections/openrange/thumbs/highways05.jpg\": \"./src/img/art/collections/openrange/thumbs/highways05.jpg\",\n\t\"./collections/openrange/thumbs/highways06.jpg\": \"./src/img/art/collections/openrange/thumbs/highways06.jpg\",\n\t\"./collections/openrange/thumbs/highways07.jpg\": \"./src/img/art/collections/openrange/thumbs/highways07.jpg\",\n\t\"./collections/openrange/thumbs/highways08.jpg\": \"./src/img/art/collections/openrange/thumbs/highways08.jpg\",\n\t\"./collections/openrange/thumbs/highways09.jpg\": \"./src/img/art/collections/openrange/thumbs/highways09.jpg\",\n\t\"./collections/openrange/thumbs/joshuatree01.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree01.jpg\",\n\t\"./collections/openrange/thumbs/joshuatree02.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree02.jpg\",\n\t\"./collections/openrange/thumbs/joshuatree03.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree03.jpg\",\n\t\"./collections/openrange/thumbs/joshuatree04.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree04.jpg\",\n\t\"./collections/openrange/thumbs/lakepowell01.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell01.jpg\",\n\t\"./collections/openrange/thumbs/lakepowell02.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell02.jpg\",\n\t\"./collections/openrange/thumbs/lakepowell03.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell03.jpg\",\n\t\"./collections/openrange/thumbs/lakepowell04.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell04.jpg\",\n\t\"./collections/openrange/thumbs/lakepowell05.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell05.jpg\",\n\t\"./collections/openrange/thumbs/leesferry01.jpg\": \"./src/img/art/collections/openrange/thumbs/leesferry01.jpg\",\n\t\"./collections/openrange/thumbs/leesferry02.jpg\": \"./src/img/art/collections/openrange/thumbs/leesferry02.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley01.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley01.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley02.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley02.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley03.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley03.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley04.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley04.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley05.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley05.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley06.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley06.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley07.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley07.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley08.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley08.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley09.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley09.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley10.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley10.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley11.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley11.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley12.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley12.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley13.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley13.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley14.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley14.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley15.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley15.jpg\",\n\t\"./collections/openrange/thumbs/monumentvalley16.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley16.jpg\",\n\t\"./collections/openrange/thumbs/navajomonument01.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument01.jpg\",\n\t\"./collections/openrange/thumbs/navajomonument02.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument02.jpg\",\n\t\"./collections/openrange/thumbs/navajomonument03.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument03.jpg\",\n\t\"./collections/openrange/thumbs/navajomonument04.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument04.jpg\",\n\t\"./collections/openrange/thumbs/navajomonument05.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument05.jpg\",\n\t\"./collections/wideworld/austria-1.jpg\": \"./src/img/art/collections/wideworld/austria-1.jpg\",\n\t\"./collections/wideworld/austria-2.jpg\": \"./src/img/art/collections/wideworld/austria-2.jpg\",\n\t\"./collections/wideworld/austria-3.jpg\": \"./src/img/art/collections/wideworld/austria-3.jpg\",\n\t\"./collections/wideworld/austria-4.jpg\": \"./src/img/art/collections/wideworld/austria-4.jpg\",\n\t\"./collections/wideworld/austria-5.jpg\": \"./src/img/art/collections/wideworld/austria-5.jpg\",\n\t\"./collections/wideworld/emeraldisle-1.jpg\": \"./src/img/art/collections/wideworld/emeraldisle-1.jpg\",\n\t\"./collections/wideworld/emeraldisle-2.jpg\": \"./src/img/art/collections/wideworld/emeraldisle-2.jpg\",\n\t\"./collections/wideworld/emeraldisle-3.jpg\": \"./src/img/art/collections/wideworld/emeraldisle-3.jpg\",\n\t\"./collections/wideworld/england-1.jpg\": \"./src/img/art/collections/wideworld/england-1.jpg\",\n\t\"./collections/wideworld/england-2.jpg\": \"./src/img/art/collections/wideworld/england-2.jpg\",\n\t\"./collections/wideworld/england-3.jpg\": \"./src/img/art/collections/wideworld/england-3.jpg\",\n\t\"./collections/wideworld/england-4.jpg\": \"./src/img/art/collections/wideworld/england-4.jpg\",\n\t\"./collections/wideworld/england-5.jpg\": \"./src/img/art/collections/wideworld/england-5.jpg\",\n\t\"./collections/wideworld/england-6.jpg\": \"./src/img/art/collections/wideworld/england-6.jpg\",\n\t\"./collections/wideworld/england-7.jpg\": \"./src/img/art/collections/wideworld/england-7.jpg\",\n\t\"./collections/wideworld/joshuatree-1.jpg\": \"./src/img/art/collections/wideworld/joshuatree-1.jpg\",\n\t\"./collections/wideworld/joshuatree-2.jpg\": \"./src/img/art/collections/wideworld/joshuatree-2.jpg\",\n\t\"./collections/wideworld/joshuatree-3.jpg\": \"./src/img/art/collections/wideworld/joshuatree-3.jpg\",\n\t\"./collections/wideworld/maine-1.jpg\": \"./src/img/art/collections/wideworld/maine-1.jpg\",\n\t\"./collections/wideworld/maine-2.jpg\": \"./src/img/art/collections/wideworld/maine-2.jpg\",\n\t\"./collections/wideworld/maine-3.jpg\": \"./src/img/art/collections/wideworld/maine-3.jpg\",\n\t\"./collections/wideworld/maine-4.jpg\": \"./src/img/art/collections/wideworld/maine-4.jpg\",\n\t\"./collections/wideworld/paris-1.jpg\": \"./src/img/art/collections/wideworld/paris-1.jpg\",\n\t\"./collections/wideworld/paris-2.jpg\": \"./src/img/art/collections/wideworld/paris-2.jpg\",\n\t\"./collections/wideworld/paris-3.jpg\": \"./src/img/art/collections/wideworld/paris-3.jpg\",\n\t\"./collections/wideworld/sandiego-1.jpg\": \"./src/img/art/collections/wideworld/sandiego-1.jpg\",\n\t\"./collections/wideworld/sandiego-2.jpg\": \"./src/img/art/collections/wideworld/sandiego-2.jpg\",\n\t\"./collections/wideworld/thumbs/austria-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-1.jpg\",\n\t\"./collections/wideworld/thumbs/austria-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-2.jpg\",\n\t\"./collections/wideworld/thumbs/austria-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-3.jpg\",\n\t\"./collections/wideworld/thumbs/austria-4.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-4.jpg\",\n\t\"./collections/wideworld/thumbs/austria-5.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-5.jpg\",\n\t\"./collections/wideworld/thumbs/emeraldisle-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/emeraldisle-1.jpg\",\n\t\"./collections/wideworld/thumbs/emeraldisle-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/emeraldisle-2.jpg\",\n\t\"./collections/wideworld/thumbs/emeraldisle-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/emeraldisle-3.jpg\",\n\t\"./collections/wideworld/thumbs/england-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-1.jpg\",\n\t\"./collections/wideworld/thumbs/england-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-2.jpg\",\n\t\"./collections/wideworld/thumbs/england-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-3.jpg\",\n\t\"./collections/wideworld/thumbs/england-4.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-4.jpg\",\n\t\"./collections/wideworld/thumbs/england-5.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-5.jpg\",\n\t\"./collections/wideworld/thumbs/england-6.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-6.jpg\",\n\t\"./collections/wideworld/thumbs/england-7.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-7.jpg\",\n\t\"./collections/wideworld/thumbs/joshuatree-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/joshuatree-1.jpg\",\n\t\"./collections/wideworld/thumbs/joshuatree-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/joshuatree-2.jpg\",\n\t\"./collections/wideworld/thumbs/joshuatree-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/joshuatree-3.jpg\",\n\t\"./collections/wideworld/thumbs/maine-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-1.jpg\",\n\t\"./collections/wideworld/thumbs/maine-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-2.jpg\",\n\t\"./collections/wideworld/thumbs/maine-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-3.jpg\",\n\t\"./collections/wideworld/thumbs/maine-4.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-4.jpg\",\n\t\"./collections/wideworld/thumbs/paris-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/paris-1.jpg\",\n\t\"./collections/wideworld/thumbs/paris-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/paris-2.jpg\",\n\t\"./collections/wideworld/thumbs/paris-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/paris-3.jpg\",\n\t\"./collections/wideworld/thumbs/sandiego-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/sandiego-1.jpg\",\n\t\"./collections/wideworld/thumbs/sandiego-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/sandiego-2.jpg\",\n\t\"./collections/wideworld/thumbs/venezia-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/venezia-1.jpg\",\n\t\"./collections/wideworld/thumbs/venezia-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/venezia-2.jpg\",\n\t\"./collections/wideworld/thumbs/venezia-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/venezia-3.jpg\",\n\t\"./collections/wideworld/venezia-1.jpg\": \"./src/img/art/collections/wideworld/venezia-1.jpg\",\n\t\"./collections/wideworld/venezia-2.jpg\": \"./src/img/art/collections/wideworld/venezia-2.jpg\",\n\t\"./collections/wideworld/venezia-3.jpg\": \"./src/img/art/collections/wideworld/venezia-3.jpg\",\n\t\"./galleries/galleries-birds.jpg\": \"./src/img/art/galleries/galleries-birds.jpg\",\n\t\"./galleries/galleries-books.jpg\": \"./src/img/art/galleries/galleries-books.jpg\",\n\t\"./galleries/galleries-collections.jpg\": \"./src/img/art/galleries/galleries-collections.jpg\",\n\t\"./galleries/galleries-movies.jpg\": \"./src/img/art/galleries/galleries-movies.jpg\",\n\t\"./galleries/galleries-other.jpg\": \"./src/img/art/galleries/galleries-other.jpg\",\n\t\"./movies/full/beetlejuice.jpg\": \"./src/img/art/movies/full/beetlejuice.jpg\",\n\t\"./movies/full/cormanandpoe.jpg\": \"./src/img/art/movies/full/cormanandpoe.jpg\",\n\t\"./movies/full/downbylaw.jpg\": \"./src/img/art/movies/full/downbylaw.jpg\",\n\t\"./movies/full/earthvsflyingsaucers.jpg\": \"./src/img/art/movies/full/earthvsflyingsaucers.jpg\",\n\t\"./movies/full/edwardscissorhands.jpg\": \"./src/img/art/movies/full/edwardscissorhands.jpg\",\n\t\"./movies/full/eternalsunshine.jpg\": \"./src/img/art/movies/full/eternalsunshine.jpg\",\n\t\"./movies/full/frankcellardoor.jpg\": \"./src/img/art/movies/full/frankcellardoor.jpg\",\n\t\"./movies/full/nightmareb4xmas.jpg\": \"./src/img/art/movies/full/nightmareb4xmas.jpg\",\n\t\"./movies/full/phibes.jpg\": \"./src/img/art/movies/full/phibes.jpg\",\n\t\"./movies/full/rocky.jpg\": \"./src/img/art/movies/full/rocky.jpg\",\n\t\"./movies/full/shaunofthedead.jpg\": \"./src/img/art/movies/full/shaunofthedead.jpg\",\n\t\"./movies/full/shining.jpg\": \"./src/img/art/movies/full/shining.jpg\",\n\t\"./movies/full/sleepyhollow.jpg\": \"./src/img/art/movies/full/sleepyhollow.jpg\",\n\t\"./movies/full/swampthing.jpg\": \"./src/img/art/movies/full/swampthing.jpg\",\n\t\"./movies/full/thecrow.jpg\": \"./src/img/art/movies/full/thecrow.jpg\",\n\t\"./movies/full/thedancingclown.jpg\": \"./src/img/art/movies/full/thedancingclown.jpg\",\n\t\"./movies/full/thefog.jpg\": \"./src/img/art/movies/full/thefog.jpg\",\n\t\"./movies/full/theshape.jpg\": \"./src/img/art/movies/full/theshape.jpg\",\n\t\"./movies/full/thesnake.jpg\": \"./src/img/art/movies/full/thesnake.jpg\",\n\t\"./movies/full/thetwotowers.jpg\": \"./src/img/art/movies/full/thetwotowers.jpg\",\n\t\"./movies/full/vincentprice.jpg\": \"./src/img/art/movies/full/vincentprice.jpg\",\n\t\"./movies/thumbs/beetlejuice-250.jpg\": \"./src/img/art/movies/thumbs/beetlejuice-250.jpg\",\n\t\"./movies/thumbs/cormanandpoe-250.jpg\": \"./src/img/art/movies/thumbs/cormanandpoe-250.jpg\",\n\t\"./movies/thumbs/downbylaw-250.jpg\": \"./src/img/art/movies/thumbs/downbylaw-250.jpg\",\n\t\"./movies/thumbs/earthvsflyingsaucers-250.jpg\": \"./src/img/art/movies/thumbs/earthvsflyingsaucers-250.jpg\",\n\t\"./movies/thumbs/edwardscissorhands-250.jpg\": \"./src/img/art/movies/thumbs/edwardscissorhands-250.jpg\",\n\t\"./movies/thumbs/eternalsunshine-250.jpg\": \"./src/img/art/movies/thumbs/eternalsunshine-250.jpg\",\n\t\"./movies/thumbs/frankcellardoor-250.jpg\": \"./src/img/art/movies/thumbs/frankcellardoor-250.jpg\",\n\t\"./movies/thumbs/nightmareb4xmas-250.jpg\": \"./src/img/art/movies/thumbs/nightmareb4xmas-250.jpg\",\n\t\"./movies/thumbs/phibes-250.jpg\": \"./src/img/art/movies/thumbs/phibes-250.jpg\",\n\t\"./movies/thumbs/rocky-250.jpg\": \"./src/img/art/movies/thumbs/rocky-250.jpg\",\n\t\"./movies/thumbs/shaunofthedead-250.jpg\": \"./src/img/art/movies/thumbs/shaunofthedead-250.jpg\",\n\t\"./movies/thumbs/shining-250.jpg\": \"./src/img/art/movies/thumbs/shining-250.jpg\",\n\t\"./movies/thumbs/sleepyhollow-250.jpg\": \"./src/img/art/movies/thumbs/sleepyhollow-250.jpg\",\n\t\"./movies/thumbs/swampthing-250.jpg\": \"./src/img/art/movies/thumbs/swampthing-250.jpg\",\n\t\"./movies/thumbs/thecrow-250.jpg\": \"./src/img/art/movies/thumbs/thecrow-250.jpg\",\n\t\"./movies/thumbs/thedancingclown-250.jpg\": \"./src/img/art/movies/thumbs/thedancingclown-250.jpg\",\n\t\"./movies/thumbs/thefog-250.jpg\": \"./src/img/art/movies/thumbs/thefog-250.jpg\",\n\t\"./movies/thumbs/theshape-250.jpg\": \"./src/img/art/movies/thumbs/theshape-250.jpg\",\n\t\"./movies/thumbs/thesnake-250.jpg\": \"./src/img/art/movies/thumbs/thesnake-250.jpg\",\n\t\"./movies/thumbs/thetwotowers-250.jpg\": \"./src/img/art/movies/thumbs/thetwotowers-250.jpg\",\n\t\"./movies/thumbs/vincentprice-250.jpg\": \"./src/img/art/movies/thumbs/vincentprice-250.jpg\",\n\t\"./other/full/allanon.jpg\": \"./src/img/art/other/full/allanon.jpg\",\n\t\"./other/full/andrettilongbeach.jpg\": \"./src/img/art/other/full/andrettilongbeach.jpg\",\n\t\"./other/full/baxvox.jpg\": \"./src/img/art/other/full/baxvox.jpg\",\n\t\"./other/full/chopin.jpg\": \"./src/img/art/other/full/chopin.jpg\",\n\t\"./other/full/fqmg.jpg\": \"./src/img/art/other/full/fqmg.jpg\",\n\t\"./other/full/jimclark.jpg\": \"./src/img/art/other/full/jimclark.jpg\",\n\t\"./other/full/meltingdoge.jpg\": \"./src/img/art/other/full/meltingdoge.jpg\",\n\t\"./other/full/mexicanvaquero.jpg\": \"./src/img/art/other/full/mexicanvaquero.jpg\",\n\t\"./other/full/mingojack.jpg\": \"./src/img/art/other/full/mingojack.jpg\",\n\t\"./other/full/probewinndixie.jpg\": \"./src/img/art/other/full/probewinndixie.jpg\",\n\t\"./other/full/quanahparker.jpg\": \"./src/img/art/other/full/quanahparker.jpg\",\n\t\"./other/full/redrialto.jpg\": \"./src/img/art/other/full/redrialto.jpg\",\n\t\"./other/full/riomendicanti.jpg\": \"./src/img/art/other/full/riomendicanti.jpg\",\n\t\"./other/full/schumi-monaco.jpg\": \"./src/img/art/other/full/schumi-monaco.jpg\",\n\t\"./other/full/selfportrait2007.jpg\": \"./src/img/art/other/full/selfportrait2007.jpg\",\n\t\"./other/full/selfportrait2020.jpg\": \"./src/img/art/other/full/selfportrait2020.jpg\",\n\t\"./other/full/sotoportego.jpg\": \"./src/img/art/other/full/sotoportego.jpg\",\n\t\"./other/full/woodspoint.jpg\": \"./src/img/art/other/full/woodspoint.jpg\",\n\t\"./other/thumbs/allanon-250.jpg\": \"./src/img/art/other/thumbs/allanon-250.jpg\",\n\t\"./other/thumbs/andrettilongbeach-250.jpg\": \"./src/img/art/other/thumbs/andrettilongbeach-250.jpg\",\n\t\"./other/thumbs/baxvox-250.jpg\": \"./src/img/art/other/thumbs/baxvox-250.jpg\",\n\t\"./other/thumbs/chopin-250.jpg\": \"./src/img/art/other/thumbs/chopin-250.jpg\",\n\t\"./other/thumbs/fqmg-250.jpg\": \"./src/img/art/other/thumbs/fqmg-250.jpg\",\n\t\"./other/thumbs/jimclark-250.jpg\": \"./src/img/art/other/thumbs/jimclark-250.jpg\",\n\t\"./other/thumbs/meltingdoge-250.jpg\": \"./src/img/art/other/thumbs/meltingdoge-250.jpg\",\n\t\"./other/thumbs/mexicanvaquero-250.jpg\": \"./src/img/art/other/thumbs/mexicanvaquero-250.jpg\",\n\t\"./other/thumbs/mingojack-250.jpg\": \"./src/img/art/other/thumbs/mingojack-250.jpg\",\n\t\"./other/thumbs/probewinndixie-250.jpg\": \"./src/img/art/other/thumbs/probewinndixie-250.jpg\",\n\t\"./other/thumbs/quanahparker-250.jpg\": \"./src/img/art/other/thumbs/quanahparker-250.jpg\",\n\t\"./other/thumbs/redrialto-250.jpg\": \"./src/img/art/other/thumbs/redrialto-250.jpg\",\n\t\"./other/thumbs/riomendicanti-250.jpg\": \"./src/img/art/other/thumbs/riomendicanti-250.jpg\",\n\t\"./other/thumbs/schumi-monaco-250.jpg\": \"./src/img/art/other/thumbs/schumi-monaco-250.jpg\",\n\t\"./other/thumbs/selfportrait2007-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2007-250.jpg\",\n\t\"./other/thumbs/selfportrait2020-250.jpg\": \"./src/img/art/other/thumbs/selfportrait2020-250.jpg\",\n\t\"./other/thumbs/sotoportego-250.jpg\": \"./src/img/art/other/thumbs/sotoportego-250.jpg\",\n\t\"./other/thumbs/woodspoint-250.jpg\": \"./src/img/art/other/thumbs/woodspoint-250.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art_sync_^\\.\\/.*\\.jpg$?");
 
 /***/ }),
 
@@ -1005,6 +1005,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/birds/full/peregrine.jp
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/birds/full/pileatedwoodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/birds/full/pileatedwoodpecker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/birds/full/redjunglefowl.jpg":
+/*!**************************************************!*\
+  !*** ./src/img/art/birds/full/redjunglefowl.jpg ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/birds/full/redjunglefowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/birds/full/redjunglefowl.jpg?");
 
 /***/ }),
 
@@ -1382,6 +1393,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/birds/thumbs/pileatedwo
 
 /***/ }),
 
+/***/ "./src/img/art/birds/thumbs/redjunglefowl-250.jpg":
+/*!********************************************************!*\
+  !*** ./src/img/art/birds/thumbs/redjunglefowl-250.jpg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/birds/thumbs/redjunglefowl-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/birds/thumbs/redjunglefowl-250.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/birds/thumbs/redwingedblackbird-250.jpg":
 /*!*************************************************************!*\
   !*** ./src/img/art/birds/thumbs/redwingedblackbird-250.jpg ***!
@@ -1470,2082 +1492,3391 @@ eval("module.exports = __webpack_require__.p + \"img/art/birds/thumbs/woodduck-2
 
 /***/ }),
 
-/***/ "./src/img/art/books sync recursive ^\\.\\/.*\\.jpg$":
-/*!**********************************************!*\
-  !*** ./src/img/art/books sync ^\.\/.*\.jpg$ ***!
-  \**********************************************/
+/***/ "./src/img/art/collections sync recursive ^\\.\\/.*\\.jpg$":
+/*!****************************************************!*\
+  !*** ./src/img/art/collections sync ^\.\/.*\.jpg$ ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./birdsofchicagoland/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/bluejay.jpg\",\n\t\"./birdsofchicagoland/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/cardinals.jpg\",\n\t\"./birdsofchicagoland/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/coopershawk.jpg\",\n\t\"./birdsofchicagoland/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/cormorant.jpg\",\n\t\"./birdsofchicagoland/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/crow.jpg\",\n\t\"./birdsofchicagoland/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/flicker.jpg\",\n\t\"./birdsofchicagoland/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/goshawk.jpg\",\n\t\"./birdsofchicagoland/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/greatblueheron.jpg\",\n\t\"./birdsofchicagoland/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/greathornedowl.jpg\",\n\t\"./birdsofchicagoland/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/grosbeaks.jpg\",\n\t\"./birdsofchicagoland/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/kestrel.jpg\",\n\t\"./birdsofchicagoland/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/kingfisher.jpg\",\n\t\"./birdsofchicagoland/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/loon.jpg\",\n\t\"./birdsofchicagoland/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/meadowlark.jpg\",\n\t\"./birdsofchicagoland/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/nightheron.jpg\",\n\t\"./birdsofchicagoland/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg\",\n\t\"./birdsofchicagoland/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/peregrine.jpg\",\n\t\"./birdsofchicagoland/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg\",\n\t\"./birdsofchicagoland/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/rockpigeon.jpg\",\n\t\"./birdsofchicagoland/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/tern.jpg\",\n\t\"./birdsofchicagoland/thumbs/bluejay.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg\",\n\t\"./birdsofchicagoland/thumbs/cardinals.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg\",\n\t\"./birdsofchicagoland/thumbs/coopershawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg\",\n\t\"./birdsofchicagoland/thumbs/cormorant.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg\",\n\t\"./birdsofchicagoland/thumbs/crow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg\",\n\t\"./birdsofchicagoland/thumbs/flicker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg\",\n\t\"./birdsofchicagoland/thumbs/goshawk.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg\",\n\t\"./birdsofchicagoland/thumbs/greatblueheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg\",\n\t\"./birdsofchicagoland/thumbs/greathornedowl.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg\",\n\t\"./birdsofchicagoland/thumbs/grosbeaks.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg\",\n\t\"./birdsofchicagoland/thumbs/kestrel.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg\",\n\t\"./birdsofchicagoland/thumbs/kingfisher.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg\",\n\t\"./birdsofchicagoland/thumbs/loon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg\",\n\t\"./birdsofchicagoland/thumbs/meadowlark.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg\",\n\t\"./birdsofchicagoland/thumbs/nightheron.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg\",\n\t\"./birdsofchicagoland/thumbs/passengerpigeons.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg\",\n\t\"./birdsofchicagoland/thumbs/peregrine.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg\",\n\t\"./birdsofchicagoland/thumbs/redwingedblackbird.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\",\n\t\"./birdsofchicagoland/thumbs/rockpigeon.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg\",\n\t\"./birdsofchicagoland/thumbs/tern.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg\",\n\t\"./birdsofchicagoland/thumbs/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg\",\n\t\"./birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\",\n\t\"./birdsofchicagoland/thumbs/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg\",\n\t\"./birdsofchicagoland/thumbs/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg\",\n\t\"./birdsofchicagoland/turkey.jpg\": \"./src/img/art/books/birdsofchicagoland/turkey.jpg\",\n\t\"./birdsofchicagoland/whitethroatedsparrow.jpg\": \"./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg\",\n\t\"./birdsofchicagoland/woodduck.jpg\": \"./src/img/art/books/birdsofchicagoland/woodduck.jpg\",\n\t\"./birdsofchicagoland/woodpecker.jpg\": \"./src/img/art/books/birdsofchicagoland/woodpecker.jpg\",\n\t\"./charlieinktober/alien.jpg\": \"./src/img/art/books/charlieinktober/alien.jpg\",\n\t\"./charlieinktober/batman.jpg\": \"./src/img/art/books/charlieinktober/batman.jpg\",\n\t\"./charlieinktober/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/beetlejuice.jpg\",\n\t\"./charlieinktober/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/bladerunner.jpg\",\n\t\"./charlieinktober/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/donniedarko.jpg\",\n\t\"./charlieinktober/dracula.jpg\": \"./src/img/art/books/charlieinktober/dracula.jpg\",\n\t\"./charlieinktober/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/edwardscissorhands.jpg\",\n\t\"./charlieinktober/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/escapefromny.jpg\",\n\t\"./charlieinktober/halloween.jpg\": \"./src/img/art/books/charlieinktober/halloween.jpg\",\n\t\"./charlieinktober/lotr.jpg\": \"./src/img/art/books/charlieinktober/lotr.jpg\",\n\t\"./charlieinktober/metropolis.jpg\": \"./src/img/art/books/charlieinktober/metropolis.jpg\",\n\t\"./charlieinktober/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/nightmareb4xmas.jpg\",\n\t\"./charlieinktober/phibes.jpg\": \"./src/img/art/books/charlieinktober/phibes.jpg\",\n\t\"./charlieinktober/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/shaunofthedead.jpg\",\n\t\"./charlieinktober/shining.jpg\": \"./src/img/art/books/charlieinktober/shining.jpg\",\n\t\"./charlieinktober/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/sleepyhollow.jpg\",\n\t\"./charlieinktober/starwars.jpg\": \"./src/img/art/books/charlieinktober/starwars.jpg\",\n\t\"./charlieinktober/terminator2.jpg\": \"./src/img/art/books/charlieinktober/terminator2.jpg\",\n\t\"./charlieinktober/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thecrow.jpg\",\n\t\"./charlieinktober/thefog.jpg\": \"./src/img/art/books/charlieinktober/thefog.jpg\",\n\t\"./charlieinktober/thumbs/alien.jpg\": \"./src/img/art/books/charlieinktober/thumbs/alien.jpg\",\n\t\"./charlieinktober/thumbs/batman.jpg\": \"./src/img/art/books/charlieinktober/thumbs/batman.jpg\",\n\t\"./charlieinktober/thumbs/beetlejuice.jpg\": \"./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg\",\n\t\"./charlieinktober/thumbs/bladerunner.jpg\": \"./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg\",\n\t\"./charlieinktober/thumbs/donniedarko.jpg\": \"./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg\",\n\t\"./charlieinktober/thumbs/dracula.jpg\": \"./src/img/art/books/charlieinktober/thumbs/dracula.jpg\",\n\t\"./charlieinktober/thumbs/edwardscissorhands.jpg\": \"./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg\",\n\t\"./charlieinktober/thumbs/escapefromny.jpg\": \"./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg\",\n\t\"./charlieinktober/thumbs/halloween.jpg\": \"./src/img/art/books/charlieinktober/thumbs/halloween.jpg\",\n\t\"./charlieinktober/thumbs/lotr.jpg\": \"./src/img/art/books/charlieinktober/thumbs/lotr.jpg\",\n\t\"./charlieinktober/thumbs/metropolis.jpg\": \"./src/img/art/books/charlieinktober/thumbs/metropolis.jpg\",\n\t\"./charlieinktober/thumbs/nightmareb4xmas.jpg\": \"./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg\",\n\t\"./charlieinktober/thumbs/phibes.jpg\": \"./src/img/art/books/charlieinktober/thumbs/phibes.jpg\",\n\t\"./charlieinktober/thumbs/shaunofthedead.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg\",\n\t\"./charlieinktober/thumbs/shining.jpg\": \"./src/img/art/books/charlieinktober/thumbs/shining.jpg\",\n\t\"./charlieinktober/thumbs/sleepyhollow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg\",\n\t\"./charlieinktober/thumbs/starwars.jpg\": \"./src/img/art/books/charlieinktober/thumbs/starwars.jpg\",\n\t\"./charlieinktober/thumbs/terminator2.jpg\": \"./src/img/art/books/charlieinktober/thumbs/terminator2.jpg\",\n\t\"./charlieinktober/thumbs/thecrow.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thecrow.jpg\",\n\t\"./charlieinktober/thumbs/thefog.jpg\": \"./src/img/art/books/charlieinktober/thumbs/thefog.jpg\",\n\t\"./covers/birdsofchicagoland.jpg\": \"./src/img/art/books/covers/birdsofchicagoland.jpg\",\n\t\"./covers/charlieinktober.jpg\": \"./src/img/art/books/covers/charlieinktober.jpg\",\n\t\"./covers/openrange.jpg\": \"./src/img/art/books/covers/openrange.jpg\",\n\t\"./openrange/grandcanyon01.jpg\": \"./src/img/art/books/openrange/grandcanyon01.jpg\",\n\t\"./openrange/grandcanyon02.jpg\": \"./src/img/art/books/openrange/grandcanyon02.jpg\",\n\t\"./openrange/grandcanyon03.jpg\": \"./src/img/art/books/openrange/grandcanyon03.jpg\",\n\t\"./openrange/grandcanyon04.jpg\": \"./src/img/art/books/openrange/grandcanyon04.jpg\",\n\t\"./openrange/grandcanyon05.jpg\": \"./src/img/art/books/openrange/grandcanyon05.jpg\",\n\t\"./openrange/grandcanyon06.jpg\": \"./src/img/art/books/openrange/grandcanyon06.jpg\",\n\t\"./openrange/grandcanyon07.jpg\": \"./src/img/art/books/openrange/grandcanyon07.jpg\",\n\t\"./openrange/highways01.jpg\": \"./src/img/art/books/openrange/highways01.jpg\",\n\t\"./openrange/highways02.jpg\": \"./src/img/art/books/openrange/highways02.jpg\",\n\t\"./openrange/highways03.jpg\": \"./src/img/art/books/openrange/highways03.jpg\",\n\t\"./openrange/highways04.jpg\": \"./src/img/art/books/openrange/highways04.jpg\",\n\t\"./openrange/highways05.jpg\": \"./src/img/art/books/openrange/highways05.jpg\",\n\t\"./openrange/highways06.jpg\": \"./src/img/art/books/openrange/highways06.jpg\",\n\t\"./openrange/highways07.jpg\": \"./src/img/art/books/openrange/highways07.jpg\",\n\t\"./openrange/highways08.jpg\": \"./src/img/art/books/openrange/highways08.jpg\",\n\t\"./openrange/highways09.jpg\": \"./src/img/art/books/openrange/highways09.jpg\",\n\t\"./openrange/joshuatree01.jpg\": \"./src/img/art/books/openrange/joshuatree01.jpg\",\n\t\"./openrange/joshuatree02.jpg\": \"./src/img/art/books/openrange/joshuatree02.jpg\",\n\t\"./openrange/joshuatree03.jpg\": \"./src/img/art/books/openrange/joshuatree03.jpg\",\n\t\"./openrange/joshuatree04.jpg\": \"./src/img/art/books/openrange/joshuatree04.jpg\",\n\t\"./openrange/lakepowell01.jpg\": \"./src/img/art/books/openrange/lakepowell01.jpg\",\n\t\"./openrange/lakepowell02.jpg\": \"./src/img/art/books/openrange/lakepowell02.jpg\",\n\t\"./openrange/lakepowell03.jpg\": \"./src/img/art/books/openrange/lakepowell03.jpg\",\n\t\"./openrange/lakepowell04.jpg\": \"./src/img/art/books/openrange/lakepowell04.jpg\",\n\t\"./openrange/lakepowell05.jpg\": \"./src/img/art/books/openrange/lakepowell05.jpg\",\n\t\"./openrange/leesferry01.jpg\": \"./src/img/art/books/openrange/leesferry01.jpg\",\n\t\"./openrange/leesferry02.jpg\": \"./src/img/art/books/openrange/leesferry02.jpg\",\n\t\"./openrange/monumentvalley01.jpg\": \"./src/img/art/books/openrange/monumentvalley01.jpg\",\n\t\"./openrange/monumentvalley02.jpg\": \"./src/img/art/books/openrange/monumentvalley02.jpg\",\n\t\"./openrange/monumentvalley03.jpg\": \"./src/img/art/books/openrange/monumentvalley03.jpg\",\n\t\"./openrange/monumentvalley04.jpg\": \"./src/img/art/books/openrange/monumentvalley04.jpg\",\n\t\"./openrange/monumentvalley05.jpg\": \"./src/img/art/books/openrange/monumentvalley05.jpg\",\n\t\"./openrange/monumentvalley06.jpg\": \"./src/img/art/books/openrange/monumentvalley06.jpg\",\n\t\"./openrange/monumentvalley07.jpg\": \"./src/img/art/books/openrange/monumentvalley07.jpg\",\n\t\"./openrange/monumentvalley08.jpg\": \"./src/img/art/books/openrange/monumentvalley08.jpg\",\n\t\"./openrange/monumentvalley09.jpg\": \"./src/img/art/books/openrange/monumentvalley09.jpg\",\n\t\"./openrange/monumentvalley10.jpg\": \"./src/img/art/books/openrange/monumentvalley10.jpg\",\n\t\"./openrange/monumentvalley11.jpg\": \"./src/img/art/books/openrange/monumentvalley11.jpg\",\n\t\"./openrange/monumentvalley12.jpg\": \"./src/img/art/books/openrange/monumentvalley12.jpg\",\n\t\"./openrange/monumentvalley13.jpg\": \"./src/img/art/books/openrange/monumentvalley13.jpg\",\n\t\"./openrange/monumentvalley14.jpg\": \"./src/img/art/books/openrange/monumentvalley14.jpg\",\n\t\"./openrange/monumentvalley15.jpg\": \"./src/img/art/books/openrange/monumentvalley15.jpg\",\n\t\"./openrange/monumentvalley16.jpg\": \"./src/img/art/books/openrange/monumentvalley16.jpg\",\n\t\"./openrange/navajomonument01.jpg\": \"./src/img/art/books/openrange/navajomonument01.jpg\",\n\t\"./openrange/navajomonument02.jpg\": \"./src/img/art/books/openrange/navajomonument02.jpg\",\n\t\"./openrange/navajomonument03.jpg\": \"./src/img/art/books/openrange/navajomonument03.jpg\",\n\t\"./openrange/navajomonument04.jpg\": \"./src/img/art/books/openrange/navajomonument04.jpg\",\n\t\"./openrange/navajomonument05.jpg\": \"./src/img/art/books/openrange/navajomonument05.jpg\",\n\t\"./openrange/thumbs/grandcanyon01.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon01.jpg\",\n\t\"./openrange/thumbs/grandcanyon02.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon02.jpg\",\n\t\"./openrange/thumbs/grandcanyon03.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon03.jpg\",\n\t\"./openrange/thumbs/grandcanyon04.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon04.jpg\",\n\t\"./openrange/thumbs/grandcanyon05.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon05.jpg\",\n\t\"./openrange/thumbs/grandcanyon06.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon06.jpg\",\n\t\"./openrange/thumbs/grandcanyon07.jpg\": \"./src/img/art/books/openrange/thumbs/grandcanyon07.jpg\",\n\t\"./openrange/thumbs/highways01.jpg\": \"./src/img/art/books/openrange/thumbs/highways01.jpg\",\n\t\"./openrange/thumbs/highways02.jpg\": \"./src/img/art/books/openrange/thumbs/highways02.jpg\",\n\t\"./openrange/thumbs/highways03.jpg\": \"./src/img/art/books/openrange/thumbs/highways03.jpg\",\n\t\"./openrange/thumbs/highways04.jpg\": \"./src/img/art/books/openrange/thumbs/highways04.jpg\",\n\t\"./openrange/thumbs/highways05.jpg\": \"./src/img/art/books/openrange/thumbs/highways05.jpg\",\n\t\"./openrange/thumbs/highways06.jpg\": \"./src/img/art/books/openrange/thumbs/highways06.jpg\",\n\t\"./openrange/thumbs/highways07.jpg\": \"./src/img/art/books/openrange/thumbs/highways07.jpg\",\n\t\"./openrange/thumbs/highways08.jpg\": \"./src/img/art/books/openrange/thumbs/highways08.jpg\",\n\t\"./openrange/thumbs/highways09.jpg\": \"./src/img/art/books/openrange/thumbs/highways09.jpg\",\n\t\"./openrange/thumbs/joshuatree01.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree01.jpg\",\n\t\"./openrange/thumbs/joshuatree02.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree02.jpg\",\n\t\"./openrange/thumbs/joshuatree03.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree03.jpg\",\n\t\"./openrange/thumbs/joshuatree04.jpg\": \"./src/img/art/books/openrange/thumbs/joshuatree04.jpg\",\n\t\"./openrange/thumbs/lakepowell01.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell01.jpg\",\n\t\"./openrange/thumbs/lakepowell02.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell02.jpg\",\n\t\"./openrange/thumbs/lakepowell03.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell03.jpg\",\n\t\"./openrange/thumbs/lakepowell04.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell04.jpg\",\n\t\"./openrange/thumbs/lakepowell05.jpg\": \"./src/img/art/books/openrange/thumbs/lakepowell05.jpg\",\n\t\"./openrange/thumbs/leesferry01.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry01.jpg\",\n\t\"./openrange/thumbs/leesferry02.jpg\": \"./src/img/art/books/openrange/thumbs/leesferry02.jpg\",\n\t\"./openrange/thumbs/monumentvalley01.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley01.jpg\",\n\t\"./openrange/thumbs/monumentvalley02.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley02.jpg\",\n\t\"./openrange/thumbs/monumentvalley03.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley03.jpg\",\n\t\"./openrange/thumbs/monumentvalley04.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley04.jpg\",\n\t\"./openrange/thumbs/monumentvalley05.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley05.jpg\",\n\t\"./openrange/thumbs/monumentvalley06.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley06.jpg\",\n\t\"./openrange/thumbs/monumentvalley07.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley07.jpg\",\n\t\"./openrange/thumbs/monumentvalley08.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley08.jpg\",\n\t\"./openrange/thumbs/monumentvalley09.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley09.jpg\",\n\t\"./openrange/thumbs/monumentvalley10.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley10.jpg\",\n\t\"./openrange/thumbs/monumentvalley11.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley11.jpg\",\n\t\"./openrange/thumbs/monumentvalley12.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley12.jpg\",\n\t\"./openrange/thumbs/monumentvalley13.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley13.jpg\",\n\t\"./openrange/thumbs/monumentvalley14.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley14.jpg\",\n\t\"./openrange/thumbs/monumentvalley15.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley15.jpg\",\n\t\"./openrange/thumbs/monumentvalley16.jpg\": \"./src/img/art/books/openrange/thumbs/monumentvalley16.jpg\",\n\t\"./openrange/thumbs/navajomonument01.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument01.jpg\",\n\t\"./openrange/thumbs/navajomonument02.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument02.jpg\",\n\t\"./openrange/thumbs/navajomonument03.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument03.jpg\",\n\t\"./openrange/thumbs/navajomonument04.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument04.jpg\",\n\t\"./openrange/thumbs/navajomonument05.jpg\": \"./src/img/art/books/openrange/thumbs/navajomonument05.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/books sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/books_sync_^\\.\\/.*\\.jpg$?");
+eval("var map = {\n\t\"./birdsofchicagoland/bluejay.jpg\": \"./src/img/art/collections/birdsofchicagoland/bluejay.jpg\",\n\t\"./birdsofchicagoland/cardinals.jpg\": \"./src/img/art/collections/birdsofchicagoland/cardinals.jpg\",\n\t\"./birdsofchicagoland/coopershawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/coopershawk.jpg\",\n\t\"./birdsofchicagoland/cormorant.jpg\": \"./src/img/art/collections/birdsofchicagoland/cormorant.jpg\",\n\t\"./birdsofchicagoland/crow.jpg\": \"./src/img/art/collections/birdsofchicagoland/crow.jpg\",\n\t\"./birdsofchicagoland/flicker.jpg\": \"./src/img/art/collections/birdsofchicagoland/flicker.jpg\",\n\t\"./birdsofchicagoland/goshawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/goshawk.jpg\",\n\t\"./birdsofchicagoland/greatblueheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/greatblueheron.jpg\",\n\t\"./birdsofchicagoland/greathornedowl.jpg\": \"./src/img/art/collections/birdsofchicagoland/greathornedowl.jpg\",\n\t\"./birdsofchicagoland/grosbeaks.jpg\": \"./src/img/art/collections/birdsofchicagoland/grosbeaks.jpg\",\n\t\"./birdsofchicagoland/kestrel.jpg\": \"./src/img/art/collections/birdsofchicagoland/kestrel.jpg\",\n\t\"./birdsofchicagoland/kingfisher.jpg\": \"./src/img/art/collections/birdsofchicagoland/kingfisher.jpg\",\n\t\"./birdsofchicagoland/loon.jpg\": \"./src/img/art/collections/birdsofchicagoland/loon.jpg\",\n\t\"./birdsofchicagoland/meadowlark.jpg\": \"./src/img/art/collections/birdsofchicagoland/meadowlark.jpg\",\n\t\"./birdsofchicagoland/nightheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/nightheron.jpg\",\n\t\"./birdsofchicagoland/passengerpigeons.jpg\": \"./src/img/art/collections/birdsofchicagoland/passengerpigeons.jpg\",\n\t\"./birdsofchicagoland/peregrine.jpg\": \"./src/img/art/collections/birdsofchicagoland/peregrine.jpg\",\n\t\"./birdsofchicagoland/redwingedblackbird.jpg\": \"./src/img/art/collections/birdsofchicagoland/redwingedblackbird.jpg\",\n\t\"./birdsofchicagoland/rockpigeon.jpg\": \"./src/img/art/collections/birdsofchicagoland/rockpigeon.jpg\",\n\t\"./birdsofchicagoland/tern.jpg\": \"./src/img/art/collections/birdsofchicagoland/tern.jpg\",\n\t\"./birdsofchicagoland/thumbs/bluejay.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/bluejay.jpg\",\n\t\"./birdsofchicagoland/thumbs/cardinals.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/cardinals.jpg\",\n\t\"./birdsofchicagoland/thumbs/coopershawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/coopershawk.jpg\",\n\t\"./birdsofchicagoland/thumbs/cormorant.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/cormorant.jpg\",\n\t\"./birdsofchicagoland/thumbs/crow.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/crow.jpg\",\n\t\"./birdsofchicagoland/thumbs/flicker.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/flicker.jpg\",\n\t\"./birdsofchicagoland/thumbs/goshawk.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/goshawk.jpg\",\n\t\"./birdsofchicagoland/thumbs/greatblueheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/greatblueheron.jpg\",\n\t\"./birdsofchicagoland/thumbs/greathornedowl.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/greathornedowl.jpg\",\n\t\"./birdsofchicagoland/thumbs/grosbeaks.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/grosbeaks.jpg\",\n\t\"./birdsofchicagoland/thumbs/kestrel.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/kestrel.jpg\",\n\t\"./birdsofchicagoland/thumbs/kingfisher.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/kingfisher.jpg\",\n\t\"./birdsofchicagoland/thumbs/loon.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/loon.jpg\",\n\t\"./birdsofchicagoland/thumbs/meadowlark.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/meadowlark.jpg\",\n\t\"./birdsofchicagoland/thumbs/nightheron.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/nightheron.jpg\",\n\t\"./birdsofchicagoland/thumbs/passengerpigeons.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/passengerpigeons.jpg\",\n\t\"./birdsofchicagoland/thumbs/peregrine.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/peregrine.jpg\",\n\t\"./birdsofchicagoland/thumbs/redwingedblackbird.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg\",\n\t\"./birdsofchicagoland/thumbs/rockpigeon.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/rockpigeon.jpg\",\n\t\"./birdsofchicagoland/thumbs/tern.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/tern.jpg\",\n\t\"./birdsofchicagoland/thumbs/turkey.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/turkey.jpg\",\n\t\"./birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\",\n\t\"./birdsofchicagoland/thumbs/woodduck.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/woodduck.jpg\",\n\t\"./birdsofchicagoland/thumbs/woodpecker.jpg\": \"./src/img/art/collections/birdsofchicagoland/thumbs/woodpecker.jpg\",\n\t\"./birdsofchicagoland/turkey.jpg\": \"./src/img/art/collections/birdsofchicagoland/turkey.jpg\",\n\t\"./birdsofchicagoland/whitethroatedsparrow.jpg\": \"./src/img/art/collections/birdsofchicagoland/whitethroatedsparrow.jpg\",\n\t\"./birdsofchicagoland/woodduck.jpg\": \"./src/img/art/collections/birdsofchicagoland/woodduck.jpg\",\n\t\"./birdsofchicagoland/woodpecker.jpg\": \"./src/img/art/collections/birdsofchicagoland/woodpecker.jpg\",\n\t\"./charlieinktober/alien.jpg\": \"./src/img/art/collections/charlieinktober/alien.jpg\",\n\t\"./charlieinktober/batman.jpg\": \"./src/img/art/collections/charlieinktober/batman.jpg\",\n\t\"./charlieinktober/beetlejuice.jpg\": \"./src/img/art/collections/charlieinktober/beetlejuice.jpg\",\n\t\"./charlieinktober/bladerunner.jpg\": \"./src/img/art/collections/charlieinktober/bladerunner.jpg\",\n\t\"./charlieinktober/donniedarko.jpg\": \"./src/img/art/collections/charlieinktober/donniedarko.jpg\",\n\t\"./charlieinktober/dracula.jpg\": \"./src/img/art/collections/charlieinktober/dracula.jpg\",\n\t\"./charlieinktober/edwardscissorhands.jpg\": \"./src/img/art/collections/charlieinktober/edwardscissorhands.jpg\",\n\t\"./charlieinktober/escapefromny.jpg\": \"./src/img/art/collections/charlieinktober/escapefromny.jpg\",\n\t\"./charlieinktober/halloween.jpg\": \"./src/img/art/collections/charlieinktober/halloween.jpg\",\n\t\"./charlieinktober/lotr.jpg\": \"./src/img/art/collections/charlieinktober/lotr.jpg\",\n\t\"./charlieinktober/metropolis.jpg\": \"./src/img/art/collections/charlieinktober/metropolis.jpg\",\n\t\"./charlieinktober/nightmareb4xmas.jpg\": \"./src/img/art/collections/charlieinktober/nightmareb4xmas.jpg\",\n\t\"./charlieinktober/phibes.jpg\": \"./src/img/art/collections/charlieinktober/phibes.jpg\",\n\t\"./charlieinktober/shaunofthedead.jpg\": \"./src/img/art/collections/charlieinktober/shaunofthedead.jpg\",\n\t\"./charlieinktober/shining.jpg\": \"./src/img/art/collections/charlieinktober/shining.jpg\",\n\t\"./charlieinktober/sleepyhollow.jpg\": \"./src/img/art/collections/charlieinktober/sleepyhollow.jpg\",\n\t\"./charlieinktober/starwars.jpg\": \"./src/img/art/collections/charlieinktober/starwars.jpg\",\n\t\"./charlieinktober/terminator2.jpg\": \"./src/img/art/collections/charlieinktober/terminator2.jpg\",\n\t\"./charlieinktober/thecrow.jpg\": \"./src/img/art/collections/charlieinktober/thecrow.jpg\",\n\t\"./charlieinktober/thefog.jpg\": \"./src/img/art/collections/charlieinktober/thefog.jpg\",\n\t\"./charlieinktober/thumbs/alien.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/alien.jpg\",\n\t\"./charlieinktober/thumbs/batman.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/batman.jpg\",\n\t\"./charlieinktober/thumbs/beetlejuice.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/beetlejuice.jpg\",\n\t\"./charlieinktober/thumbs/bladerunner.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/bladerunner.jpg\",\n\t\"./charlieinktober/thumbs/donniedarko.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/donniedarko.jpg\",\n\t\"./charlieinktober/thumbs/dracula.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/dracula.jpg\",\n\t\"./charlieinktober/thumbs/edwardscissorhands.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/edwardscissorhands.jpg\",\n\t\"./charlieinktober/thumbs/escapefromny.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/escapefromny.jpg\",\n\t\"./charlieinktober/thumbs/halloween.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/halloween.jpg\",\n\t\"./charlieinktober/thumbs/lotr.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/lotr.jpg\",\n\t\"./charlieinktober/thumbs/metropolis.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/metropolis.jpg\",\n\t\"./charlieinktober/thumbs/nightmareb4xmas.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/nightmareb4xmas.jpg\",\n\t\"./charlieinktober/thumbs/phibes.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/phibes.jpg\",\n\t\"./charlieinktober/thumbs/shaunofthedead.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/shaunofthedead.jpg\",\n\t\"./charlieinktober/thumbs/shining.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/shining.jpg\",\n\t\"./charlieinktober/thumbs/sleepyhollow.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/sleepyhollow.jpg\",\n\t\"./charlieinktober/thumbs/starwars.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/starwars.jpg\",\n\t\"./charlieinktober/thumbs/terminator2.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/terminator2.jpg\",\n\t\"./charlieinktober/thumbs/thecrow.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/thecrow.jpg\",\n\t\"./charlieinktober/thumbs/thefog.jpg\": \"./src/img/art/collections/charlieinktober/thumbs/thefog.jpg\",\n\t\"./covers/birdsofchicagoland.jpg\": \"./src/img/art/collections/covers/birdsofchicagoland.jpg\",\n\t\"./covers/charlieinktober.jpg\": \"./src/img/art/collections/covers/charlieinktober.jpg\",\n\t\"./covers/englishportfolio.jpg\": \"./src/img/art/collections/covers/englishportfolio.jpg\",\n\t\"./covers/lightandink.jpg\": \"./src/img/art/collections/covers/lightandink.jpg\",\n\t\"./covers/openrange.jpg\": \"./src/img/art/collections/covers/openrange.jpg\",\n\t\"./covers/wideworld.jpg\": \"./src/img/art/collections/covers/wideworld.jpg\",\n\t\"./englishportfolio/birmingham-1.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-1.jpg\",\n\t\"./englishportfolio/birmingham-2.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-2.jpg\",\n\t\"./englishportfolio/birmingham-3.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-3.jpg\",\n\t\"./englishportfolio/birmingham-4.jpg\": \"./src/img/art/collections/englishportfolio/birmingham-4.jpg\",\n\t\"./englishportfolio/bradfield-1.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-1.jpg\",\n\t\"./englishportfolio/bradfield-2.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-2.jpg\",\n\t\"./englishportfolio/bradfield-3.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-3.jpg\",\n\t\"./englishportfolio/bradfield-4.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-4.jpg\",\n\t\"./englishportfolio/bradfield-5.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-5.jpg\",\n\t\"./englishportfolio/bradfield-6.jpg\": \"./src/img/art/collections/englishportfolio/bradfield-6.jpg\",\n\t\"./englishportfolio/kenilworth-1.jpg\": \"./src/img/art/collections/englishportfolio/kenilworth-1.jpg\",\n\t\"./englishportfolio/liverpool-1.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-1.jpg\",\n\t\"./englishportfolio/liverpool-2.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-2.jpg\",\n\t\"./englishportfolio/liverpool-3.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-3.jpg\",\n\t\"./englishportfolio/liverpool-4.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-4.jpg\",\n\t\"./englishportfolio/liverpool-5.jpg\": \"./src/img/art/collections/englishportfolio/liverpool-5.jpg\",\n\t\"./englishportfolio/sheffield-1.jpg\": \"./src/img/art/collections/englishportfolio/sheffield-1.jpg\",\n\t\"./englishportfolio/thumbs/birmingham-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-1.jpg\",\n\t\"./englishportfolio/thumbs/birmingham-2.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-2.jpg\",\n\t\"./englishportfolio/thumbs/birmingham-3.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-3.jpg\",\n\t\"./englishportfolio/thumbs/birmingham-4.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/birmingham-4.jpg\",\n\t\"./englishportfolio/thumbs/bradfield-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-1.jpg\",\n\t\"./englishportfolio/thumbs/bradfield-2.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-2.jpg\",\n\t\"./englishportfolio/thumbs/bradfield-3.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-3.jpg\",\n\t\"./englishportfolio/thumbs/bradfield-4.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-4.jpg\",\n\t\"./englishportfolio/thumbs/bradfield-5.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-5.jpg\",\n\t\"./englishportfolio/thumbs/bradfield-6.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/bradfield-6.jpg\",\n\t\"./englishportfolio/thumbs/kenilworth-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/kenilworth-1.jpg\",\n\t\"./englishportfolio/thumbs/liverpool-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-1.jpg\",\n\t\"./englishportfolio/thumbs/liverpool-2.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-2.jpg\",\n\t\"./englishportfolio/thumbs/liverpool-3.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-3.jpg\",\n\t\"./englishportfolio/thumbs/liverpool-4.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-4.jpg\",\n\t\"./englishportfolio/thumbs/liverpool-5.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/liverpool-5.jpg\",\n\t\"./englishportfolio/thumbs/sheffield-1.jpg\": \"./src/img/art/collections/englishportfolio/thumbs/sheffield-1.jpg\",\n\t\"./lightandink/batmanreturns.jpg\": \"./src/img/art/collections/lightandink/batmanreturns.jpg\",\n\t\"./lightandink/coverpage.jpg\": \"./src/img/art/collections/lightandink/coverpage.jpg\",\n\t\"./lightandink/doctorsleep.jpg\": \"./src/img/art/collections/lightandink/doctorsleep.jpg\",\n\t\"./lightandink/downbylaw.jpg\": \"./src/img/art/collections/lightandink/downbylaw.jpg\",\n\t\"./lightandink/empirestrikesback.jpg\": \"./src/img/art/collections/lightandink/empirestrikesback.jpg\",\n\t\"./lightandink/evildeadii.jpg\": \"./src/img/art/collections/lightandink/evildeadii.jpg\",\n\t\"./lightandink/goldrush.jpg\": \"./src/img/art/collections/lightandink/goldrush.jpg\",\n\t\"./lightandink/halloween18.jpg\": \"./src/img/art/collections/lightandink/halloween18.jpg\",\n\t\"./lightandink/lostboys.jpg\": \"./src/img/art/collections/lightandink/lostboys.jpg\",\n\t\"./lightandink/thetwotowers.jpg\": \"./src/img/art/collections/lightandink/thetwotowers.jpg\",\n\t\"./lightandink/thumbs/batmanreturns.jpg\": \"./src/img/art/collections/lightandink/thumbs/batmanreturns.jpg\",\n\t\"./lightandink/thumbs/coverpage.jpg\": \"./src/img/art/collections/lightandink/thumbs/coverpage.jpg\",\n\t\"./lightandink/thumbs/doctorsleep.jpg\": \"./src/img/art/collections/lightandink/thumbs/doctorsleep.jpg\",\n\t\"./lightandink/thumbs/downbylaw.jpg\": \"./src/img/art/collections/lightandink/thumbs/downbylaw.jpg\",\n\t\"./lightandink/thumbs/empirestrikesback.jpg\": \"./src/img/art/collections/lightandink/thumbs/empirestrikesback.jpg\",\n\t\"./lightandink/thumbs/evildeadii.jpg\": \"./src/img/art/collections/lightandink/thumbs/evildeadii.jpg\",\n\t\"./lightandink/thumbs/goldrush.jpg\": \"./src/img/art/collections/lightandink/thumbs/goldrush.jpg\",\n\t\"./lightandink/thumbs/halloween18.jpg\": \"./src/img/art/collections/lightandink/thumbs/halloween18.jpg\",\n\t\"./lightandink/thumbs/lostboys.jpg\": \"./src/img/art/collections/lightandink/thumbs/lostboys.jpg\",\n\t\"./lightandink/thumbs/thetwotowers.jpg\": \"./src/img/art/collections/lightandink/thumbs/thetwotowers.jpg\",\n\t\"./lightandink/thumbs/wizardofoz.jpg\": \"./src/img/art/collections/lightandink/thumbs/wizardofoz.jpg\",\n\t\"./lightandink/wizardofoz.jpg\": \"./src/img/art/collections/lightandink/wizardofoz.jpg\",\n\t\"./openrange/grandcanyon01.jpg\": \"./src/img/art/collections/openrange/grandcanyon01.jpg\",\n\t\"./openrange/grandcanyon02.jpg\": \"./src/img/art/collections/openrange/grandcanyon02.jpg\",\n\t\"./openrange/grandcanyon03.jpg\": \"./src/img/art/collections/openrange/grandcanyon03.jpg\",\n\t\"./openrange/grandcanyon04.jpg\": \"./src/img/art/collections/openrange/grandcanyon04.jpg\",\n\t\"./openrange/grandcanyon05.jpg\": \"./src/img/art/collections/openrange/grandcanyon05.jpg\",\n\t\"./openrange/grandcanyon06.jpg\": \"./src/img/art/collections/openrange/grandcanyon06.jpg\",\n\t\"./openrange/grandcanyon07.jpg\": \"./src/img/art/collections/openrange/grandcanyon07.jpg\",\n\t\"./openrange/highways01.jpg\": \"./src/img/art/collections/openrange/highways01.jpg\",\n\t\"./openrange/highways02.jpg\": \"./src/img/art/collections/openrange/highways02.jpg\",\n\t\"./openrange/highways03.jpg\": \"./src/img/art/collections/openrange/highways03.jpg\",\n\t\"./openrange/highways04.jpg\": \"./src/img/art/collections/openrange/highways04.jpg\",\n\t\"./openrange/highways05.jpg\": \"./src/img/art/collections/openrange/highways05.jpg\",\n\t\"./openrange/highways06.jpg\": \"./src/img/art/collections/openrange/highways06.jpg\",\n\t\"./openrange/highways07.jpg\": \"./src/img/art/collections/openrange/highways07.jpg\",\n\t\"./openrange/highways08.jpg\": \"./src/img/art/collections/openrange/highways08.jpg\",\n\t\"./openrange/highways09.jpg\": \"./src/img/art/collections/openrange/highways09.jpg\",\n\t\"./openrange/joshuatree01.jpg\": \"./src/img/art/collections/openrange/joshuatree01.jpg\",\n\t\"./openrange/joshuatree02.jpg\": \"./src/img/art/collections/openrange/joshuatree02.jpg\",\n\t\"./openrange/joshuatree03.jpg\": \"./src/img/art/collections/openrange/joshuatree03.jpg\",\n\t\"./openrange/joshuatree04.jpg\": \"./src/img/art/collections/openrange/joshuatree04.jpg\",\n\t\"./openrange/lakepowell01.jpg\": \"./src/img/art/collections/openrange/lakepowell01.jpg\",\n\t\"./openrange/lakepowell02.jpg\": \"./src/img/art/collections/openrange/lakepowell02.jpg\",\n\t\"./openrange/lakepowell03.jpg\": \"./src/img/art/collections/openrange/lakepowell03.jpg\",\n\t\"./openrange/lakepowell04.jpg\": \"./src/img/art/collections/openrange/lakepowell04.jpg\",\n\t\"./openrange/lakepowell05.jpg\": \"./src/img/art/collections/openrange/lakepowell05.jpg\",\n\t\"./openrange/leesferry01.jpg\": \"./src/img/art/collections/openrange/leesferry01.jpg\",\n\t\"./openrange/leesferry02.jpg\": \"./src/img/art/collections/openrange/leesferry02.jpg\",\n\t\"./openrange/monumentvalley01.jpg\": \"./src/img/art/collections/openrange/monumentvalley01.jpg\",\n\t\"./openrange/monumentvalley02.jpg\": \"./src/img/art/collections/openrange/monumentvalley02.jpg\",\n\t\"./openrange/monumentvalley03.jpg\": \"./src/img/art/collections/openrange/monumentvalley03.jpg\",\n\t\"./openrange/monumentvalley04.jpg\": \"./src/img/art/collections/openrange/monumentvalley04.jpg\",\n\t\"./openrange/monumentvalley05.jpg\": \"./src/img/art/collections/openrange/monumentvalley05.jpg\",\n\t\"./openrange/monumentvalley06.jpg\": \"./src/img/art/collections/openrange/monumentvalley06.jpg\",\n\t\"./openrange/monumentvalley07.jpg\": \"./src/img/art/collections/openrange/monumentvalley07.jpg\",\n\t\"./openrange/monumentvalley08.jpg\": \"./src/img/art/collections/openrange/monumentvalley08.jpg\",\n\t\"./openrange/monumentvalley09.jpg\": \"./src/img/art/collections/openrange/monumentvalley09.jpg\",\n\t\"./openrange/monumentvalley10.jpg\": \"./src/img/art/collections/openrange/monumentvalley10.jpg\",\n\t\"./openrange/monumentvalley11.jpg\": \"./src/img/art/collections/openrange/monumentvalley11.jpg\",\n\t\"./openrange/monumentvalley12.jpg\": \"./src/img/art/collections/openrange/monumentvalley12.jpg\",\n\t\"./openrange/monumentvalley13.jpg\": \"./src/img/art/collections/openrange/monumentvalley13.jpg\",\n\t\"./openrange/monumentvalley14.jpg\": \"./src/img/art/collections/openrange/monumentvalley14.jpg\",\n\t\"./openrange/monumentvalley15.jpg\": \"./src/img/art/collections/openrange/monumentvalley15.jpg\",\n\t\"./openrange/monumentvalley16.jpg\": \"./src/img/art/collections/openrange/monumentvalley16.jpg\",\n\t\"./openrange/navajomonument01.jpg\": \"./src/img/art/collections/openrange/navajomonument01.jpg\",\n\t\"./openrange/navajomonument02.jpg\": \"./src/img/art/collections/openrange/navajomonument02.jpg\",\n\t\"./openrange/navajomonument03.jpg\": \"./src/img/art/collections/openrange/navajomonument03.jpg\",\n\t\"./openrange/navajomonument04.jpg\": \"./src/img/art/collections/openrange/navajomonument04.jpg\",\n\t\"./openrange/navajomonument05.jpg\": \"./src/img/art/collections/openrange/navajomonument05.jpg\",\n\t\"./openrange/thumbs/grandcanyon01.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon01.jpg\",\n\t\"./openrange/thumbs/grandcanyon02.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon02.jpg\",\n\t\"./openrange/thumbs/grandcanyon03.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon03.jpg\",\n\t\"./openrange/thumbs/grandcanyon04.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon04.jpg\",\n\t\"./openrange/thumbs/grandcanyon05.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon05.jpg\",\n\t\"./openrange/thumbs/grandcanyon06.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon06.jpg\",\n\t\"./openrange/thumbs/grandcanyon07.jpg\": \"./src/img/art/collections/openrange/thumbs/grandcanyon07.jpg\",\n\t\"./openrange/thumbs/highways01.jpg\": \"./src/img/art/collections/openrange/thumbs/highways01.jpg\",\n\t\"./openrange/thumbs/highways02.jpg\": \"./src/img/art/collections/openrange/thumbs/highways02.jpg\",\n\t\"./openrange/thumbs/highways03.jpg\": \"./src/img/art/collections/openrange/thumbs/highways03.jpg\",\n\t\"./openrange/thumbs/highways04.jpg\": \"./src/img/art/collections/openrange/thumbs/highways04.jpg\",\n\t\"./openrange/thumbs/highways05.jpg\": \"./src/img/art/collections/openrange/thumbs/highways05.jpg\",\n\t\"./openrange/thumbs/highways06.jpg\": \"./src/img/art/collections/openrange/thumbs/highways06.jpg\",\n\t\"./openrange/thumbs/highways07.jpg\": \"./src/img/art/collections/openrange/thumbs/highways07.jpg\",\n\t\"./openrange/thumbs/highways08.jpg\": \"./src/img/art/collections/openrange/thumbs/highways08.jpg\",\n\t\"./openrange/thumbs/highways09.jpg\": \"./src/img/art/collections/openrange/thumbs/highways09.jpg\",\n\t\"./openrange/thumbs/joshuatree01.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree01.jpg\",\n\t\"./openrange/thumbs/joshuatree02.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree02.jpg\",\n\t\"./openrange/thumbs/joshuatree03.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree03.jpg\",\n\t\"./openrange/thumbs/joshuatree04.jpg\": \"./src/img/art/collections/openrange/thumbs/joshuatree04.jpg\",\n\t\"./openrange/thumbs/lakepowell01.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell01.jpg\",\n\t\"./openrange/thumbs/lakepowell02.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell02.jpg\",\n\t\"./openrange/thumbs/lakepowell03.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell03.jpg\",\n\t\"./openrange/thumbs/lakepowell04.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell04.jpg\",\n\t\"./openrange/thumbs/lakepowell05.jpg\": \"./src/img/art/collections/openrange/thumbs/lakepowell05.jpg\",\n\t\"./openrange/thumbs/leesferry01.jpg\": \"./src/img/art/collections/openrange/thumbs/leesferry01.jpg\",\n\t\"./openrange/thumbs/leesferry02.jpg\": \"./src/img/art/collections/openrange/thumbs/leesferry02.jpg\",\n\t\"./openrange/thumbs/monumentvalley01.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley01.jpg\",\n\t\"./openrange/thumbs/monumentvalley02.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley02.jpg\",\n\t\"./openrange/thumbs/monumentvalley03.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley03.jpg\",\n\t\"./openrange/thumbs/monumentvalley04.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley04.jpg\",\n\t\"./openrange/thumbs/monumentvalley05.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley05.jpg\",\n\t\"./openrange/thumbs/monumentvalley06.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley06.jpg\",\n\t\"./openrange/thumbs/monumentvalley07.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley07.jpg\",\n\t\"./openrange/thumbs/monumentvalley08.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley08.jpg\",\n\t\"./openrange/thumbs/monumentvalley09.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley09.jpg\",\n\t\"./openrange/thumbs/monumentvalley10.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley10.jpg\",\n\t\"./openrange/thumbs/monumentvalley11.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley11.jpg\",\n\t\"./openrange/thumbs/monumentvalley12.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley12.jpg\",\n\t\"./openrange/thumbs/monumentvalley13.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley13.jpg\",\n\t\"./openrange/thumbs/monumentvalley14.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley14.jpg\",\n\t\"./openrange/thumbs/monumentvalley15.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley15.jpg\",\n\t\"./openrange/thumbs/monumentvalley16.jpg\": \"./src/img/art/collections/openrange/thumbs/monumentvalley16.jpg\",\n\t\"./openrange/thumbs/navajomonument01.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument01.jpg\",\n\t\"./openrange/thumbs/navajomonument02.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument02.jpg\",\n\t\"./openrange/thumbs/navajomonument03.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument03.jpg\",\n\t\"./openrange/thumbs/navajomonument04.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument04.jpg\",\n\t\"./openrange/thumbs/navajomonument05.jpg\": \"./src/img/art/collections/openrange/thumbs/navajomonument05.jpg\",\n\t\"./wideworld/austria-1.jpg\": \"./src/img/art/collections/wideworld/austria-1.jpg\",\n\t\"./wideworld/austria-2.jpg\": \"./src/img/art/collections/wideworld/austria-2.jpg\",\n\t\"./wideworld/austria-3.jpg\": \"./src/img/art/collections/wideworld/austria-3.jpg\",\n\t\"./wideworld/austria-4.jpg\": \"./src/img/art/collections/wideworld/austria-4.jpg\",\n\t\"./wideworld/austria-5.jpg\": \"./src/img/art/collections/wideworld/austria-5.jpg\",\n\t\"./wideworld/emeraldisle-1.jpg\": \"./src/img/art/collections/wideworld/emeraldisle-1.jpg\",\n\t\"./wideworld/emeraldisle-2.jpg\": \"./src/img/art/collections/wideworld/emeraldisle-2.jpg\",\n\t\"./wideworld/emeraldisle-3.jpg\": \"./src/img/art/collections/wideworld/emeraldisle-3.jpg\",\n\t\"./wideworld/england-1.jpg\": \"./src/img/art/collections/wideworld/england-1.jpg\",\n\t\"./wideworld/england-2.jpg\": \"./src/img/art/collections/wideworld/england-2.jpg\",\n\t\"./wideworld/england-3.jpg\": \"./src/img/art/collections/wideworld/england-3.jpg\",\n\t\"./wideworld/england-4.jpg\": \"./src/img/art/collections/wideworld/england-4.jpg\",\n\t\"./wideworld/england-5.jpg\": \"./src/img/art/collections/wideworld/england-5.jpg\",\n\t\"./wideworld/england-6.jpg\": \"./src/img/art/collections/wideworld/england-6.jpg\",\n\t\"./wideworld/england-7.jpg\": \"./src/img/art/collections/wideworld/england-7.jpg\",\n\t\"./wideworld/joshuatree-1.jpg\": \"./src/img/art/collections/wideworld/joshuatree-1.jpg\",\n\t\"./wideworld/joshuatree-2.jpg\": \"./src/img/art/collections/wideworld/joshuatree-2.jpg\",\n\t\"./wideworld/joshuatree-3.jpg\": \"./src/img/art/collections/wideworld/joshuatree-3.jpg\",\n\t\"./wideworld/maine-1.jpg\": \"./src/img/art/collections/wideworld/maine-1.jpg\",\n\t\"./wideworld/maine-2.jpg\": \"./src/img/art/collections/wideworld/maine-2.jpg\",\n\t\"./wideworld/maine-3.jpg\": \"./src/img/art/collections/wideworld/maine-3.jpg\",\n\t\"./wideworld/maine-4.jpg\": \"./src/img/art/collections/wideworld/maine-4.jpg\",\n\t\"./wideworld/paris-1.jpg\": \"./src/img/art/collections/wideworld/paris-1.jpg\",\n\t\"./wideworld/paris-2.jpg\": \"./src/img/art/collections/wideworld/paris-2.jpg\",\n\t\"./wideworld/paris-3.jpg\": \"./src/img/art/collections/wideworld/paris-3.jpg\",\n\t\"./wideworld/sandiego-1.jpg\": \"./src/img/art/collections/wideworld/sandiego-1.jpg\",\n\t\"./wideworld/sandiego-2.jpg\": \"./src/img/art/collections/wideworld/sandiego-2.jpg\",\n\t\"./wideworld/thumbs/austria-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-1.jpg\",\n\t\"./wideworld/thumbs/austria-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-2.jpg\",\n\t\"./wideworld/thumbs/austria-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-3.jpg\",\n\t\"./wideworld/thumbs/austria-4.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-4.jpg\",\n\t\"./wideworld/thumbs/austria-5.jpg\": \"./src/img/art/collections/wideworld/thumbs/austria-5.jpg\",\n\t\"./wideworld/thumbs/emeraldisle-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/emeraldisle-1.jpg\",\n\t\"./wideworld/thumbs/emeraldisle-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/emeraldisle-2.jpg\",\n\t\"./wideworld/thumbs/emeraldisle-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/emeraldisle-3.jpg\",\n\t\"./wideworld/thumbs/england-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-1.jpg\",\n\t\"./wideworld/thumbs/england-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-2.jpg\",\n\t\"./wideworld/thumbs/england-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-3.jpg\",\n\t\"./wideworld/thumbs/england-4.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-4.jpg\",\n\t\"./wideworld/thumbs/england-5.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-5.jpg\",\n\t\"./wideworld/thumbs/england-6.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-6.jpg\",\n\t\"./wideworld/thumbs/england-7.jpg\": \"./src/img/art/collections/wideworld/thumbs/england-7.jpg\",\n\t\"./wideworld/thumbs/joshuatree-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/joshuatree-1.jpg\",\n\t\"./wideworld/thumbs/joshuatree-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/joshuatree-2.jpg\",\n\t\"./wideworld/thumbs/joshuatree-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/joshuatree-3.jpg\",\n\t\"./wideworld/thumbs/maine-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-1.jpg\",\n\t\"./wideworld/thumbs/maine-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-2.jpg\",\n\t\"./wideworld/thumbs/maine-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-3.jpg\",\n\t\"./wideworld/thumbs/maine-4.jpg\": \"./src/img/art/collections/wideworld/thumbs/maine-4.jpg\",\n\t\"./wideworld/thumbs/paris-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/paris-1.jpg\",\n\t\"./wideworld/thumbs/paris-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/paris-2.jpg\",\n\t\"./wideworld/thumbs/paris-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/paris-3.jpg\",\n\t\"./wideworld/thumbs/sandiego-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/sandiego-1.jpg\",\n\t\"./wideworld/thumbs/sandiego-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/sandiego-2.jpg\",\n\t\"./wideworld/thumbs/venezia-1.jpg\": \"./src/img/art/collections/wideworld/thumbs/venezia-1.jpg\",\n\t\"./wideworld/thumbs/venezia-2.jpg\": \"./src/img/art/collections/wideworld/thumbs/venezia-2.jpg\",\n\t\"./wideworld/thumbs/venezia-3.jpg\": \"./src/img/art/collections/wideworld/thumbs/venezia-3.jpg\",\n\t\"./wideworld/venezia-1.jpg\": \"./src/img/art/collections/wideworld/venezia-1.jpg\",\n\t\"./wideworld/venezia-2.jpg\": \"./src/img/art/collections/wideworld/venezia-2.jpg\",\n\t\"./wideworld/venezia-3.jpg\": \"./src/img/art/collections/wideworld/venezia-3.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/collections sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/collections_sync_^\\.\\/.*\\.jpg$?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/bluejay.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/bluejay.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/bluejay.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/bluejay.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/cardinals.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/cardinals.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/cardinals.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/cardinals.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/coopershawk.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/coopershawk.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/coopershawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/coopershawk.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/cormorant.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/cormorant.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/cormorant.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/cormorant.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/crow.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/crow.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/crow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/crow.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/flicker.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/flicker.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/flicker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/flicker.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/goshawk.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/goshawk.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/goshawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/goshawk.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/greatblueheron.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/greatblueheron.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/greatblueheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/greatblueheron.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/greathornedowl.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/greathornedowl.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/greathornedowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/greathornedowl.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/grosbeaks.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/grosbeaks.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/grosbeaks.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/grosbeaks.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/kestrel.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/kestrel.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/kestrel.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/kestrel.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/kingfisher.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/kingfisher.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/kingfisher.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/kingfisher.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/loon.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/loon.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/loon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/loon.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/meadowlark.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/meadowlark.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/meadowlark.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/meadowlark.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/nightheron.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/nightheron.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/nightheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/nightheron.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg":
-/*!*******************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/passengerpigeons.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/passengerpigeons.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/peregrine.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/peregrine.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/peregrine.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/peregrine.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg":
-/*!*********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/redwingedblackbird.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/redwingedblackbird.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/rockpigeon.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/rockpigeon.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/rockpigeon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/rockpigeon.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/tern.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/tern.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/tern.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/tern.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/bluejay.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/bluejay.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg":
-/*!*******************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/cardinals.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/cardinals.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg":
-/*!*********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/coopershawk.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg":
-/*!*******************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/cormorant.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/cormorant.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/crow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/crow.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/flicker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/flicker.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/goshawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/goshawk.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg":
-/*!************************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/greatblueheron.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg":
-/*!************************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/greathornedowl.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg":
-/*!*******************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/grosbeaks.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/kestrel.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/kestrel.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg":
-/*!********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/kingfisher.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/loon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/loon.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg":
-/*!********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/meadowlark.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg":
-/*!********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/nightheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/nightheron.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg":
-/*!**************************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/passengerpigeons.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg":
-/*!*******************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/peregrine.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/peregrine.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg":
-/*!****************************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/redwingedblackbird.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg":
-/*!********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/rockpigeon.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/tern.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/tern.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/bluejay.jpg":
 /*!****************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/bluejay.jpg ***!
   \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/turkey.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/turkey.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/bluejay.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/bluejay.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg":
-/*!******************************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/cardinals.jpg":
 /*!******************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/cardinals.jpg ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/woodduck.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/woodduck.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/cardinals.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/cardinals.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/coopershawk.jpg":
 /*!********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/coopershawk.jpg ***!
   \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/thumbs/woodpecker.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/coopershawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/coopershawk.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/turkey.jpg":
-/*!*********************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/turkey.jpg ***!
-  \*********************************************************/
+/***/ "./src/img/art/collections/birdsofchicagoland/cormorant.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/cormorant.jpg ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/turkey.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/turkey.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/cormorant.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/cormorant.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/crow.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/crow.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/crow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/crow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/flicker.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/flicker.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/flicker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/flicker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/goshawk.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/goshawk.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/goshawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/goshawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/greatblueheron.jpg":
 /*!***********************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/greatblueheron.jpg ***!
   \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/whitethroatedsparrow.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/greatblueheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/greatblueheron.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/woodduck.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/woodduck.jpg ***!
-  \***********************************************************/
+/***/ "./src/img/art/collections/birdsofchicagoland/greathornedowl.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/greathornedowl.jpg ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/woodduck.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/woodduck.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/greathornedowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/greathornedowl.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/birdsofchicagoland/woodpecker.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/birdsofchicagoland/woodpecker.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/birdsofchicagoland/woodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/birdsofchicagoland/woodpecker.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/alien.jpg":
-/*!*****************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/alien.jpg ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/alien.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/alien.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/batman.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/batman.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/batman.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/batman.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/beetlejuice.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/beetlejuice.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/beetlejuice.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/bladerunner.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/bladerunner.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/bladerunner.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/bladerunner.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/donniedarko.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/donniedarko.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/donniedarko.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/donniedarko.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/dracula.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/dracula.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/dracula.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/dracula.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/edwardscissorhands.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/grosbeaks.jpg":
 /*!******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/edwardscissorhands.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/grosbeaks.jpg ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/edwardscissorhands.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/edwardscissorhands.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/grosbeaks.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/grosbeaks.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/charlieinktober/escapefromny.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/escapefromny.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/escapefromny.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/escapefromny.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/halloween.jpg":
-/*!*********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/halloween.jpg ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/halloween.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/halloween.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/lotr.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/lotr.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/lotr.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/lotr.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/metropolis.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/metropolis.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/metropolis.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/metropolis.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/nightmareb4xmas.jpg":
-/*!***************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/nightmareb4xmas.jpg ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/nightmareb4xmas.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/phibes.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/phibes.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/phibes.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/shaunofthedead.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/shaunofthedead.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/shaunofthedead.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/shining.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/shining.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/shining.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/sleepyhollow.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/sleepyhollow.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/sleepyhollow.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/starwars.jpg":
-/*!********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/starwars.jpg ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/starwars.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/starwars.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/terminator2.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/terminator2.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/terminator2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/terminator2.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thecrow.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thecrow.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thecrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thecrow.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thefog.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thefog.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thefog.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thefog.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/alien.jpg":
-/*!************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/alien.jpg ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/alien.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/alien.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/batman.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/batman.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/batman.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/batman.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg":
-/*!******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/beetlejuice.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg":
-/*!******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/bladerunner.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/bladerunner.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg":
-/*!******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/donniedarko.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/donniedarko.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/dracula.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/dracula.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/dracula.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/dracula.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg":
-/*!*************************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/edwardscissorhands.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg":
-/*!*******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/escapefromny.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/escapefromny.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/halloween.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/kestrel.jpg":
 /*!****************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/halloween.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/kestrel.jpg ***!
   \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/halloween.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/halloween.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/kestrel.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/kestrel.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/charlieinktober/thumbs/lotr.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/lotr.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/lotr.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/lotr.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/metropolis.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/metropolis.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/metropolis.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/metropolis.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg":
-/*!**********************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/nightmareb4xmas.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/phibes.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/phibes.jpg ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/phibes.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg":
-/*!*********************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/shaunofthedead.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/shining.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/shining.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/shining.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/kingfisher.jpg":
 /*!*******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/kingfisher.jpg ***!
   \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/sleepyhollow.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/kingfisher.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/kingfisher.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/charlieinktober/thumbs/starwars.jpg":
-/*!***************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/starwars.jpg ***!
-  \***************************************************************/
+/***/ "./src/img/art/collections/birdsofchicagoland/loon.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/loon.jpg ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/starwars.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/starwars.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/loon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/loon.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/charlieinktober/thumbs/terminator2.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/meadowlark.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/meadowlark.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/meadowlark.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/meadowlark.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/nightheron.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/nightheron.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/nightheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/nightheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/passengerpigeons.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/passengerpigeons.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/passengerpigeons.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/passengerpigeons.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/peregrine.jpg":
 /*!******************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/terminator2.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/peregrine.jpg ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/terminator2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/terminator2.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/peregrine.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/peregrine.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/charlieinktober/thumbs/thecrow.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/thecrow.jpg ***!
-  \**************************************************************/
+/***/ "./src/img/art/collections/birdsofchicagoland/redwingedblackbird.jpg":
+/*!***************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/redwingedblackbird.jpg ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/thecrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/thecrow.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/redwingedblackbird.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/redwingedblackbird.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/charlieinktober/thumbs/thefog.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/rockpigeon.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/rockpigeon.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/rockpigeon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/rockpigeon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/tern.jpg":
 /*!*************************************************************!*\
-  !*** ./src/img/art/books/charlieinktober/thumbs/thefog.jpg ***!
+  !*** ./src/img/art/collections/birdsofchicagoland/tern.jpg ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/charlieinktober/thumbs/thefog.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/charlieinktober/thumbs/thefog.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/tern.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/tern.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/covers sync recursive ^\\.\\/.*\\.jpg$":
-/*!*****************************************************!*\
-  !*** ./src/img/art/books/covers sync ^\.\/.*\.jpg$ ***!
-  \*****************************************************/
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/bluejay.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/bluejay.jpg ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./birdsofchicagoland.jpg\": \"./src/img/art/books/covers/birdsofchicagoland.jpg\",\n\t\"./charlieinktober.jpg\": \"./src/img/art/books/covers/charlieinktober.jpg\",\n\t\"./openrange.jpg\": \"./src/img/art/books/covers/openrange.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/books/covers sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers_sync_^\\.\\/.*\\.jpg$?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/bluejay.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/bluejay.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/covers/birdsofchicagoland.jpg":
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/cardinals.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/cardinals.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/cardinals.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/cardinals.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/coopershawk.jpg":
+/*!***************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/coopershawk.jpg ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/coopershawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/coopershawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/cormorant.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/cormorant.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/cormorant.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/cormorant.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/crow.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/crow.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/crow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/crow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/flicker.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/flicker.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/flicker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/flicker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/goshawk.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/goshawk.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/goshawk.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/goshawk.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/greatblueheron.jpg":
+/*!******************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/greatblueheron.jpg ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/greatblueheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/greatblueheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/greathornedowl.jpg":
+/*!******************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/greathornedowl.jpg ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/greathornedowl.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/greathornedowl.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/grosbeaks.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/grosbeaks.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/grosbeaks.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/grosbeaks.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/kestrel.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/kestrel.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/kestrel.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/kestrel.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/kingfisher.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/kingfisher.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/kingfisher.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/kingfisher.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/loon.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/loon.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/loon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/loon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/meadowlark.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/meadowlark.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/meadowlark.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/meadowlark.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/nightheron.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/nightheron.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/nightheron.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/nightheron.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/passengerpigeons.jpg":
+/*!********************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/passengerpigeons.jpg ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/passengerpigeons.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/passengerpigeons.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/peregrine.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/peregrine.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/peregrine.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/peregrine.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg":
+/*!**********************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/redwingedblackbird.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/rockpigeon.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/rockpigeon.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/rockpigeon.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/rockpigeon.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/tern.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/tern.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/tern.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/tern.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/turkey.jpg":
+/*!**********************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/turkey.jpg ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/turkey.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/turkey.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg":
+/*!************************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/whitethroatedsparrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/woodduck.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/woodduck.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/woodduck.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/woodduck.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/thumbs/woodpecker.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/thumbs/woodpecker.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/thumbs/woodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/thumbs/woodpecker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/turkey.jpg":
+/*!***************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/turkey.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/turkey.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/turkey.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/whitethroatedsparrow.jpg":
+/*!*****************************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/whitethroatedsparrow.jpg ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/whitethroatedsparrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/whitethroatedsparrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/woodduck.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/woodduck.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/woodduck.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/woodduck.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/birdsofchicagoland/woodpecker.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/birdsofchicagoland/woodpecker.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/birdsofchicagoland/woodpecker.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/birdsofchicagoland/woodpecker.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/alien.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/alien.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/alien.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/alien.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/batman.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/batman.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/batman.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/batman.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/beetlejuice.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/beetlejuice.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/beetlejuice.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/bladerunner.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/bladerunner.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/bladerunner.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/bladerunner.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/donniedarko.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/donniedarko.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/donniedarko.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/donniedarko.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/dracula.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/dracula.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/dracula.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/dracula.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/edwardscissorhands.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/edwardscissorhands.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/edwardscissorhands.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/edwardscissorhands.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/escapefromny.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/escapefromny.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/escapefromny.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/escapefromny.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/halloween.jpg":
+/*!***************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/halloween.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/halloween.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/halloween.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/lotr.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/lotr.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/lotr.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/lotr.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/metropolis.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/metropolis.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/metropolis.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/metropolis.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/nightmareb4xmas.jpg":
+/*!*********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/nightmareb4xmas.jpg ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/nightmareb4xmas.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/phibes.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/phibes.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/phibes.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/shaunofthedead.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/shaunofthedead.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/shaunofthedead.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/shining.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/shining.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/shining.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/sleepyhollow.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/sleepyhollow.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/sleepyhollow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/starwars.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/starwars.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/starwars.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/starwars.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/terminator2.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/terminator2.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/terminator2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/terminator2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thecrow.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thecrow.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thecrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thecrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thefog.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thefog.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thefog.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thefog.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/alien.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/alien.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/alien.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/alien.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/batman.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/batman.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/batman.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/batman.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/beetlejuice.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/beetlejuice.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/beetlejuice.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/beetlejuice.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/bladerunner.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/bladerunner.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/bladerunner.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/bladerunner.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/donniedarko.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/donniedarko.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/donniedarko.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/donniedarko.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/dracula.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/dracula.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/dracula.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/dracula.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/edwardscissorhands.jpg":
+/*!*******************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/edwardscissorhands.jpg ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/edwardscissorhands.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/edwardscissorhands.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/escapefromny.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/escapefromny.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/escapefromny.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/escapefromny.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/halloween.jpg":
+/*!**********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/halloween.jpg ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/halloween.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/halloween.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/lotr.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/lotr.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/lotr.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/lotr.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/metropolis.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/metropolis.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/metropolis.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/metropolis.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/nightmareb4xmas.jpg":
+/*!****************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/nightmareb4xmas.jpg ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/nightmareb4xmas.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/nightmareb4xmas.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/phibes.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/phibes.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/phibes.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/shaunofthedead.jpg":
+/*!***************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/shaunofthedead.jpg ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/shaunofthedead.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/shaunofthedead.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/shining.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/shining.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/shining.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/shining.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/sleepyhollow.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/sleepyhollow.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/sleepyhollow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/sleepyhollow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/starwars.jpg":
+/*!*********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/starwars.jpg ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/starwars.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/starwars.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/terminator2.jpg":
+/*!************************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/terminator2.jpg ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/terminator2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/terminator2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/thecrow.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/thecrow.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/thecrow.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/thecrow.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/charlieinktober/thumbs/thefog.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/charlieinktober/thumbs/thefog.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/charlieinktober/thumbs/thefog.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/charlieinktober/thumbs/thefog.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers sync recursive ^\\.\\/.*\\.jpg$":
+/*!***********************************************************!*\
+  !*** ./src/img/art/collections/covers sync ^\.\/.*\.jpg$ ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./birdsofchicagoland.jpg\": \"./src/img/art/collections/covers/birdsofchicagoland.jpg\",\n\t\"./charlieinktober.jpg\": \"./src/img/art/collections/covers/charlieinktober.jpg\",\n\t\"./englishportfolio.jpg\": \"./src/img/art/collections/covers/englishportfolio.jpg\",\n\t\"./lightandink.jpg\": \"./src/img/art/collections/covers/lightandink.jpg\",\n\t\"./openrange.jpg\": \"./src/img/art/collections/covers/openrange.jpg\",\n\t\"./wideworld.jpg\": \"./src/img/art/collections/covers/wideworld.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/collections/covers sync recursive ^\\\\.\\\\/.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers_sync_^\\.\\/.*\\.jpg$?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers/birdsofchicagoland.jpg":
+/*!***************************************************************!*\
+  !*** ./src/img/art/collections/covers/birdsofchicagoland.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/covers/birdsofchicagoland.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers/birdsofchicagoland.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers/charlieinktober.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/covers/charlieinktober.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/covers/charlieinktober.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers/charlieinktober.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers/englishportfolio.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/covers/englishportfolio.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/covers/englishportfolio.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers/englishportfolio.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers/lightandink.jpg":
+/*!********************************************************!*\
+  !*** ./src/img/art/collections/covers/lightandink.jpg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/covers/lightandink.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers/lightandink.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers/openrange.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/collections/covers/openrange.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/covers/openrange.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers/openrange.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/covers/wideworld.jpg":
+/*!******************************************************!*\
+  !*** ./src/img/art/collections/covers/wideworld.jpg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/covers/wideworld.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/covers/wideworld.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/birmingham-1.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/birmingham-1.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/birmingham-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/birmingham-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/birmingham-2.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/birmingham-2.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/birmingham-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/birmingham-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/birmingham-3.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/birmingham-3.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/birmingham-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/birmingham-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/birmingham-4.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/birmingham-4.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/birmingham-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/birmingham-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/bradfield-1.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/bradfield-1.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/bradfield-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/bradfield-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/bradfield-2.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/bradfield-2.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/bradfield-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/bradfield-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/bradfield-3.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/bradfield-3.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/bradfield-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/bradfield-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/bradfield-4.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/bradfield-4.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/bradfield-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/bradfield-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/bradfield-5.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/bradfield-5.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/bradfield-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/bradfield-5.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/bradfield-6.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/bradfield-6.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/bradfield-6.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/bradfield-6.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/kenilworth-1.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/kenilworth-1.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/kenilworth-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/kenilworth-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/liverpool-1.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/liverpool-1.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/liverpool-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/liverpool-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/liverpool-2.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/liverpool-2.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/liverpool-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/liverpool-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/liverpool-3.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/liverpool-3.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/liverpool-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/liverpool-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/liverpool-4.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/liverpool-4.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/liverpool-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/liverpool-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/liverpool-5.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/liverpool-5.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/liverpool-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/liverpool-5.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/sheffield-1.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/sheffield-1.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/sheffield-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/sheffield-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/birmingham-1.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/birmingham-1.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/birmingham-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/birmingham-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/birmingham-2.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/birmingham-2.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/birmingham-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/birmingham-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/birmingham-3.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/birmingham-3.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/birmingham-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/birmingham-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/birmingham-4.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/birmingham-4.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/birmingham-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/birmingham-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/bradfield-1.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/bradfield-1.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/bradfield-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/bradfield-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/bradfield-2.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/bradfield-2.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/bradfield-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/bradfield-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/bradfield-3.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/bradfield-3.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/bradfield-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/bradfield-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/bradfield-4.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/bradfield-4.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/bradfield-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/bradfield-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/bradfield-5.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/bradfield-5.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/bradfield-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/bradfield-5.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/bradfield-6.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/bradfield-6.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/bradfield-6.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/bradfield-6.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/kenilworth-1.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/kenilworth-1.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/kenilworth-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/kenilworth-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/liverpool-1.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/liverpool-1.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/liverpool-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/liverpool-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/liverpool-2.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/liverpool-2.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/liverpool-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/liverpool-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/liverpool-3.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/liverpool-3.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/liverpool-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/liverpool-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/liverpool-4.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/liverpool-4.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/liverpool-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/liverpool-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/liverpool-5.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/liverpool-5.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/liverpool-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/liverpool-5.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/englishportfolio/thumbs/sheffield-1.jpg":
+/*!*************************************************************************!*\
+  !*** ./src/img/art/collections/englishportfolio/thumbs/sheffield-1.jpg ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/englishportfolio/thumbs/sheffield-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/englishportfolio/thumbs/sheffield-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/batmanreturns.jpg":
+/*!***************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/batmanreturns.jpg ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/batmanreturns.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/batmanreturns.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/coverpage.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/collections/lightandink/coverpage.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/coverpage.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/coverpage.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/doctorsleep.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/doctorsleep.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/doctorsleep.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/doctorsleep.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/downbylaw.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/collections/lightandink/downbylaw.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/downbylaw.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/downbylaw.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/empirestrikesback.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/empirestrikesback.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/empirestrikesback.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/empirestrikesback.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/evildeadii.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/evildeadii.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/evildeadii.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/evildeadii.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/goldrush.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/lightandink/goldrush.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/goldrush.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/goldrush.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/halloween18.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/halloween18.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/halloween18.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/halloween18.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/lostboys.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/lightandink/lostboys.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/lostboys.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/lostboys.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thetwotowers.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thetwotowers.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thetwotowers.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thetwotowers.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/batmanreturns.jpg":
+/*!**********************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/batmanreturns.jpg ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/batmanreturns.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/batmanreturns.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/coverpage.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/coverpage.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/coverpage.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/coverpage.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/doctorsleep.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/doctorsleep.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/doctorsleep.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/doctorsleep.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/downbylaw.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/downbylaw.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/downbylaw.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/downbylaw.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/empirestrikesback.jpg":
+/*!**************************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/empirestrikesback.jpg ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/empirestrikesback.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/empirestrikesback.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/evildeadii.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/evildeadii.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/evildeadii.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/evildeadii.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/goldrush.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/goldrush.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/goldrush.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/goldrush.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/halloween18.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/halloween18.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/halloween18.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/halloween18.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/lostboys.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/lostboys.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/lostboys.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/lostboys.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/thetwotowers.jpg":
+/*!*********************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/thetwotowers.jpg ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/thetwotowers.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/thetwotowers.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/thumbs/wizardofoz.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/thumbs/wizardofoz.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/thumbs/wizardofoz.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/thumbs/wizardofoz.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/lightandink/wizardofoz.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/lightandink/wizardofoz.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/lightandink/wizardofoz.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/lightandink/wizardofoz.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon01.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon01.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon02.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon02.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon03.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon03.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon04.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon04.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon05.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon05.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon06.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon06.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/grandcanyon07.jpg":
+/*!*************************************************************!*\
+  !*** ./src/img/art/collections/openrange/grandcanyon07.jpg ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/grandcanyon07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/grandcanyon07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways01.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways01.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways02.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways02.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways03.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways03.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways04.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways04.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways05.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways05.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways06.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways06.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways07.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways07.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways08.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways08.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/highways09.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/openrange/highways09.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/highways09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/highways09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/joshuatree01.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/joshuatree01.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/joshuatree01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/joshuatree01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/joshuatree02.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/joshuatree02.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/joshuatree02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/joshuatree02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/joshuatree03.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/joshuatree03.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/joshuatree03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/joshuatree03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/joshuatree04.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/joshuatree04.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/joshuatree04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/joshuatree04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/lakepowell01.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/lakepowell01.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/lakepowell01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/lakepowell01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/lakepowell02.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/lakepowell02.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/lakepowell02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/lakepowell02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/lakepowell03.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/lakepowell03.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/lakepowell03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/lakepowell03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/lakepowell04.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/lakepowell04.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/lakepowell04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/lakepowell04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/lakepowell05.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/openrange/lakepowell05.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/lakepowell05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/lakepowell05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/leesferry01.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/collections/openrange/leesferry01.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/leesferry01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/leesferry01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/leesferry02.jpg":
+/*!***********************************************************!*\
+  !*** ./src/img/art/collections/openrange/leesferry02.jpg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/leesferry02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/leesferry02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley01.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley01.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley02.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley02.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley03.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley03.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley04.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley04.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley05.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley05.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley06.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley06.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley07.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley07.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley08.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley08.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley09.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley09.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley10.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley10.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley10.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley10.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley11.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley11.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley11.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley11.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley12.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley12.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley12.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley12.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley13.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley13.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley13.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley13.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley14.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley14.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley14.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley14.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley15.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley15.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley15.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley15.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/monumentvalley16.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/monumentvalley16.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/monumentvalley16.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/monumentvalley16.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/navajomonument01.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/navajomonument01.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/navajomonument01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/navajomonument01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/navajomonument02.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/navajomonument02.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/navajomonument02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/navajomonument02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/navajomonument03.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/navajomonument03.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/navajomonument03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/navajomonument03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/navajomonument04.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/navajomonument04.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/navajomonument04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/navajomonument04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/navajomonument05.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/navajomonument05.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/navajomonument05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/navajomonument05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon01.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon01.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon02.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon02.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon03.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon03.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon04.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon04.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon05.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon05.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon06.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon06.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/grandcanyon07.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/grandcanyon07.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/grandcanyon07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/grandcanyon07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways01.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways01.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways02.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways02.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways03.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways03.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways04.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways04.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways05.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways05.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways06.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways06.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways07.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways07.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways08.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways08.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/highways09.jpg":
+/*!*****************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/highways09.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/highways09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/highways09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/joshuatree01.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/joshuatree01.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/joshuatree01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/joshuatree01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/joshuatree02.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/joshuatree02.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/joshuatree02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/joshuatree02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/joshuatree03.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/joshuatree03.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/joshuatree03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/joshuatree03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/joshuatree04.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/joshuatree04.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/joshuatree04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/joshuatree04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/lakepowell01.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/lakepowell01.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/lakepowell01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/lakepowell01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/lakepowell02.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/lakepowell02.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/lakepowell02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/lakepowell02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/lakepowell03.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/lakepowell03.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/lakepowell03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/lakepowell03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/lakepowell04.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/lakepowell04.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/lakepowell04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/lakepowell04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/lakepowell05.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/lakepowell05.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/lakepowell05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/lakepowell05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/leesferry01.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/leesferry01.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/leesferry01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/leesferry01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/leesferry02.jpg":
+/*!******************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/leesferry02.jpg ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/leesferry02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/leesferry02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley01.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley01.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley02.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley02.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley03.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley03.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley04.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley04.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley05.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley05.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley06.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley06.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley06.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley07.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley07.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley07.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley08.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley08.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley08.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley09.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley09.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley09.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley10.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley10.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley10.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley10.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley11.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley11.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley11.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley11.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley12.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley12.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley12.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley12.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley13.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley13.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley13.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley13.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley14.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley14.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley14.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley14.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley15.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley15.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley15.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley15.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/monumentvalley16.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/monumentvalley16.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/monumentvalley16.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/monumentvalley16.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/navajomonument01.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/navajomonument01.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/navajomonument01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/navajomonument01.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/navajomonument02.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/navajomonument02.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/navajomonument02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/navajomonument02.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/navajomonument03.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/navajomonument03.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/navajomonument03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/navajomonument03.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/navajomonument04.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/navajomonument04.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/navajomonument04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/navajomonument04.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/openrange/thumbs/navajomonument05.jpg":
+/*!***********************************************************************!*\
+  !*** ./src/img/art/collections/openrange/thumbs/navajomonument05.jpg ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/openrange/thumbs/navajomonument05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/openrange/thumbs/navajomonument05.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/austria-1.jpg":
 /*!*********************************************************!*\
-  !*** ./src/img/art/books/covers/birdsofchicagoland.jpg ***!
+  !*** ./src/img/art/collections/wideworld/austria-1.jpg ***!
   \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/covers/birdsofchicagoland.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers/birdsofchicagoland.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/austria-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/austria-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/covers/charlieinktober.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/covers/charlieinktober.jpg ***!
-  \******************************************************/
+/***/ "./src/img/art/collections/wideworld/austria-2.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/austria-2.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/covers/charlieinktober.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers/charlieinktober.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/austria-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/austria-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/covers/openrange.jpg":
-/*!************************************************!*\
-  !*** ./src/img/art/books/covers/openrange.jpg ***!
-  \************************************************/
+/***/ "./src/img/art/collections/wideworld/austria-3.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/austria-3.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/covers/openrange.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/covers/openrange.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/austria-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/austria-3.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/grandcanyon01.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon01.jpg ***!
-  \*******************************************************/
+/***/ "./src/img/art/collections/wideworld/austria-4.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/austria-4.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon01.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/austria-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/austria-4.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/grandcanyon02.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon02.jpg ***!
-  \*******************************************************/
+/***/ "./src/img/art/collections/wideworld/austria-5.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/austria-5.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon02.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/austria-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/austria-5.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/grandcanyon03.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon03.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/grandcanyon04.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon04.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/grandcanyon05.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon05.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/grandcanyon06.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon06.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon06.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/grandcanyon07.jpg":
-/*!*******************************************************!*\
-  !*** ./src/img/art/books/openrange/grandcanyon07.jpg ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/grandcanyon07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/grandcanyon07.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways01.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways01.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways02.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways02.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways03.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways03.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways04.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways04.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways05.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways05.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways06.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways06.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways06.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways07.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways07.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways07.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways08.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways08.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways08.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/highways09.jpg":
-/*!****************************************************!*\
-  !*** ./src/img/art/books/openrange/highways09.jpg ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/highways09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/highways09.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/joshuatree01.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/joshuatree01.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/joshuatree02.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/joshuatree02.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/joshuatree03.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/joshuatree03.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/joshuatree04.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/joshuatree04.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/joshuatree04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/joshuatree04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/lakepowell01.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/lakepowell01.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/lakepowell02.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/lakepowell02.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/lakepowell03.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/lakepowell03.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/lakepowell04.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/lakepowell04.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/lakepowell05.jpg":
-/*!******************************************************!*\
-  !*** ./src/img/art/books/openrange/lakepowell05.jpg ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/lakepowell05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/lakepowell05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/leesferry01.jpg":
-/*!*****************************************************!*\
-  !*** ./src/img/art/books/openrange/leesferry01.jpg ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/leesferry01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/leesferry01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/leesferry02.jpg":
-/*!*****************************************************!*\
-  !*** ./src/img/art/books/openrange/leesferry02.jpg ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/leesferry02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/leesferry02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley01.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley01.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley02.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley02.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley03.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley03.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley04.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley04.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley05.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley05.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley06.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley06.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley06.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley07.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley07.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley07.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley08.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley08.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley08.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley09.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley09.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley09.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley10.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley10.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley10.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley10.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley11.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley11.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley11.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley11.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley12.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley12.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley12.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley12.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley13.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley13.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley13.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley13.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley14.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley14.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley14.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley14.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley15.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley15.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley15.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley15.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/monumentvalley16.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/monumentvalley16.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/monumentvalley16.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/monumentvalley16.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/navajomonument01.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/navajomonument01.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/navajomonument02.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/navajomonument02.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/navajomonument03.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/navajomonument03.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/navajomonument04.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/navajomonument04.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/navajomonument05.jpg":
-/*!**********************************************************!*\
-  !*** ./src/img/art/books/openrange/navajomonument05.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/navajomonument05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/navajomonument05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon01.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon01.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon02.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon02.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon03.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon03.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon04.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon04.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon05.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon05.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon06.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon06.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon06.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/grandcanyon07.jpg":
-/*!**************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/grandcanyon07.jpg ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/grandcanyon07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/grandcanyon07.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways01.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways01.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways02.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways02.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways03.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways03.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways04.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways04.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways05.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways05.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways05.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways06.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways06.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways06.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways07.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways07.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways07.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways08.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways08.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways08.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/highways09.jpg":
-/*!***********************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/highways09.jpg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/highways09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/highways09.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/joshuatree01.jpg":
+/***/ "./src/img/art/collections/wideworld/emeraldisle-1.jpg":
 /*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/joshuatree01.jpg ***!
+  !*** ./src/img/art/collections/wideworld/emeraldisle-1.jpg ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree01.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/emeraldisle-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/emeraldisle-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/joshuatree02.jpg":
+/***/ "./src/img/art/collections/wideworld/emeraldisle-2.jpg":
 /*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/joshuatree02.jpg ***!
+  !*** ./src/img/art/collections/wideworld/emeraldisle-2.jpg ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree02.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/emeraldisle-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/emeraldisle-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/joshuatree03.jpg":
+/***/ "./src/img/art/collections/wideworld/emeraldisle-3.jpg":
 /*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/joshuatree03.jpg ***!
+  !*** ./src/img/art/collections/wideworld/emeraldisle-3.jpg ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree03.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/emeraldisle-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/emeraldisle-3.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/joshuatree04.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/joshuatree04.jpg ***!
-  \*************************************************************/
+/***/ "./src/img/art/collections/wideworld/england-1.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-1.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/joshuatree04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/joshuatree04.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/lakepowell01.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/lakepowell01.jpg ***!
-  \*************************************************************/
+/***/ "./src/img/art/collections/wideworld/england-2.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-2.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell01.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/lakepowell02.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/lakepowell02.jpg ***!
-  \*************************************************************/
+/***/ "./src/img/art/collections/wideworld/england-3.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-3.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell02.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-3.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/lakepowell03.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/lakepowell03.jpg ***!
-  \*************************************************************/
+/***/ "./src/img/art/collections/wideworld/england-4.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-4.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell03.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-4.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/lakepowell04.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/lakepowell04.jpg ***!
-  \*************************************************************/
+/***/ "./src/img/art/collections/wideworld/england-5.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-5.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell04.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-5.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/lakepowell05.jpg":
-/*!*************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/lakepowell05.jpg ***!
-  \*************************************************************/
+/***/ "./src/img/art/collections/wideworld/england-6.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-6.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/lakepowell05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/lakepowell05.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-6.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-6.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/leesferry01.jpg":
+/***/ "./src/img/art/collections/wideworld/england-7.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/england-7.jpg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/england-7.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/england-7.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/joshuatree-1.jpg":
 /*!************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/leesferry01.jpg ***!
+  !*** ./src/img/art/collections/wideworld/joshuatree-1.jpg ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/leesferry01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/leesferry01.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/joshuatree-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/joshuatree-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/leesferry02.jpg":
+/***/ "./src/img/art/collections/wideworld/joshuatree-2.jpg":
 /*!************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/leesferry02.jpg ***!
+  !*** ./src/img/art/collections/wideworld/joshuatree-2.jpg ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/leesferry02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/leesferry02.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/joshuatree-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/joshuatree-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley01.jpg":
+/***/ "./src/img/art/collections/wideworld/joshuatree-3.jpg":
+/*!************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/joshuatree-3.jpg ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/joshuatree-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/joshuatree-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/maine-1.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/maine-1.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/maine-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/maine-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/maine-2.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/maine-2.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/maine-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/maine-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/maine-3.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/maine-3.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/maine-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/maine-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/maine-4.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/maine-4.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/maine-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/maine-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/paris-1.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/paris-1.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/paris-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/paris-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/paris-2.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/paris-2.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/paris-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/paris-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/paris-3.jpg":
+/*!*******************************************************!*\
+  !*** ./src/img/art/collections/wideworld/paris-3.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/paris-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/paris-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/sandiego-1.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/sandiego-1.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/sandiego-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/sandiego-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/sandiego-2.jpg":
+/*!**********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/sandiego-2.jpg ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/sandiego-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/sandiego-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/austria-1.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/austria-1.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/austria-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/austria-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/austria-2.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/austria-2.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/austria-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/austria-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/austria-3.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/austria-3.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/austria-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/austria-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/austria-4.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/austria-4.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/austria-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/austria-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/austria-5.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/austria-5.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/austria-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/austria-5.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/emeraldisle-1.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/emeraldisle-1.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/emeraldisle-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/emeraldisle-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/emeraldisle-2.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/emeraldisle-2.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/emeraldisle-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/emeraldisle-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/emeraldisle-3.jpg":
+/*!********************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/emeraldisle-3.jpg ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/emeraldisle-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/emeraldisle-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-1.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-1.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-2.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-2.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-3.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-3.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-4.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-4.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-5.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-5.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-5.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-5.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-6.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-6.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-6.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-6.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/england-7.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/england-7.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/england-7.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/england-7.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/joshuatree-1.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/joshuatree-1.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/joshuatree-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/joshuatree-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/joshuatree-2.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/joshuatree-2.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/joshuatree-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/joshuatree-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/joshuatree-3.jpg":
+/*!*******************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/joshuatree-3.jpg ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/joshuatree-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/joshuatree-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/maine-1.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/maine-1.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/maine-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/maine-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/maine-2.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/maine-2.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/maine-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/maine-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/maine-3.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/maine-3.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/maine-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/maine-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/maine-4.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/maine-4.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/maine-4.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/maine-4.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/paris-1.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/paris-1.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/paris-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/paris-1.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/paris-2.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/paris-2.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/paris-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/paris-2.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/paris-3.jpg":
+/*!**************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/paris-3.jpg ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/paris-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/paris-3.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/collections/wideworld/thumbs/sandiego-1.jpg":
 /*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley01.jpg ***!
+  !*** ./src/img/art/collections/wideworld/thumbs/sandiego-1.jpg ***!
   \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley01.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/sandiego-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/sandiego-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley02.jpg":
+/***/ "./src/img/art/collections/wideworld/thumbs/sandiego-2.jpg":
 /*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley02.jpg ***!
+  !*** ./src/img/art/collections/wideworld/thumbs/sandiego-2.jpg ***!
   \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley02.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/sandiego-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/sandiego-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley03.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley03.jpg ***!
-  \*****************************************************************/
+/***/ "./src/img/art/collections/wideworld/thumbs/venezia-1.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/venezia-1.jpg ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley03.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/venezia-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/venezia-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley04.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley04.jpg ***!
-  \*****************************************************************/
+/***/ "./src/img/art/collections/wideworld/thumbs/venezia-2.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/venezia-2.jpg ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley04.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/venezia-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/venezia-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley05.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley05.jpg ***!
-  \*****************************************************************/
+/***/ "./src/img/art/collections/wideworld/thumbs/venezia-3.jpg":
+/*!****************************************************************!*\
+  !*** ./src/img/art/collections/wideworld/thumbs/venezia-3.jpg ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley05.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/thumbs/venezia-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/thumbs/venezia-3.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley06.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley06.jpg ***!
-  \*****************************************************************/
+/***/ "./src/img/art/collections/wideworld/venezia-1.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/venezia-1.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley06.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley06.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/venezia-1.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/venezia-1.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley07.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley07.jpg ***!
-  \*****************************************************************/
+/***/ "./src/img/art/collections/wideworld/venezia-2.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/venezia-2.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley07.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley07.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/venezia-2.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/venezia-2.jpg?");
 
 /***/ }),
 
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley08.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley08.jpg ***!
-  \*****************************************************************/
+/***/ "./src/img/art/collections/wideworld/venezia-3.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/collections/wideworld/venezia-3.jpg ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley08.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley08.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley09.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley09.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley09.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley09.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley10.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley10.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley10.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley10.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley11.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley11.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley11.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley11.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley12.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley12.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley12.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley12.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley13.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley13.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley13.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley13.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley14.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley14.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley14.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley14.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley15.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley15.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley15.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley15.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/monumentvalley16.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/monumentvalley16.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/monumentvalley16.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/monumentvalley16.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/navajomonument01.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/navajomonument01.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument01.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument01.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/navajomonument02.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/navajomonument02.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument02.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument02.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/navajomonument03.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/navajomonument03.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument03.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument03.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/navajomonument04.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/navajomonument04.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument04.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument04.jpg?");
-
-/***/ }),
-
-/***/ "./src/img/art/books/openrange/thumbs/navajomonument05.jpg":
-/*!*****************************************************************!*\
-  !*** ./src/img/art/books/openrange/thumbs/navajomonument05.jpg ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/navajomonument05.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/books/openrange/thumbs/navajomonument05.jpg?");
+eval("module.exports = __webpack_require__.p + \"img/art/collections/wideworld/venezia-3.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/collections/wideworld/venezia-3.jpg?");
 
 /***/ }),
 
@@ -3556,7 +4887,7 @@ eval("module.exports = __webpack_require__.p + \"img/art/books/openrange/thumbs/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./galleries-birds.jpg\": \"./src/img/art/galleries/galleries-birds.jpg\",\n\t\"./galleries-books.jpg\": \"./src/img/art/galleries/galleries-books.jpg\",\n\t\"./galleries-movies.jpg\": \"./src/img/art/galleries/galleries-movies.jpg\",\n\t\"./galleries-other.jpg\": \"./src/img/art/galleries/galleries-other.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/galleries sync recursive ^\\\\.\\\\/galleries\\\\-.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/galleries_sync_^\\.\\/galleries\\-.*\\.jpg$?");
+eval("var map = {\n\t\"./galleries-birds.jpg\": \"./src/img/art/galleries/galleries-birds.jpg\",\n\t\"./galleries-books.jpg\": \"./src/img/art/galleries/galleries-books.jpg\",\n\t\"./galleries-collections.jpg\": \"./src/img/art/galleries/galleries-collections.jpg\",\n\t\"./galleries-movies.jpg\": \"./src/img/art/galleries/galleries-movies.jpg\",\n\t\"./galleries-other.jpg\": \"./src/img/art/galleries/galleries-other.jpg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/img/art/galleries sync recursive ^\\\\.\\\\/galleries\\\\-.*\\\\.jpg$\";\n\n//# sourceURL=webpack:///./src/img/art/galleries_sync_^\\.\\/galleries\\-.*\\.jpg$?");
 
 /***/ }),
 
@@ -3579,6 +4910,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-bir
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-books.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-books.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/galleries/galleries-collections.jpg":
+/*!*********************************************************!*\
+  !*** ./src/img/art/galleries/galleries-collections.jpg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/galleries/galleries-collections.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/galleries/galleries-collections.jpg?");
 
 /***/ }),
 
@@ -3623,6 +4965,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/full/beetlejuice
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/movies/full/cormanandpoe.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/cormanandpoe.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/downbylaw.jpg":
+/*!***********************************************!*\
+  !*** ./src/img/art/movies/full/downbylaw.jpg ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/downbylaw.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/downbylaw.jpg?");
 
 /***/ }),
 
@@ -3689,6 +5042,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/full/nightmareb4
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/movies/full/phibes.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/phibes.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/full/rocky.jpg":
+/*!*******************************************!*\
+  !*** ./src/img/art/movies/full/rocky.jpg ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/rocky.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/rocky.jpg?");
 
 /***/ }),
 
@@ -3791,6 +5155,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/full/thesnake.jp
 
 /***/ }),
 
+/***/ "./src/img/art/movies/full/thetwotowers.jpg":
+/*!**************************************************!*\
+  !*** ./src/img/art/movies/full/thetwotowers.jpg ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/full/thetwotowers.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/full/thetwotowers.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/movies/full/vincentprice.jpg":
 /*!**************************************************!*\
   !*** ./src/img/art/movies/full/vincentprice.jpg ***!
@@ -3821,6 +5196,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/beetlejui
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/cormanandpoe-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/cormanandpoe-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/downbylaw-250.jpg":
+/*!*****************************************************!*\
+  !*** ./src/img/art/movies/thumbs/downbylaw-250.jpg ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/downbylaw-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/downbylaw-250.jpg?");
 
 /***/ }),
 
@@ -3887,6 +5273,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/nightmare
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/phibes-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/phibes-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/movies/thumbs/rocky-250.jpg":
+/*!*************************************************!*\
+  !*** ./src/img/art/movies/thumbs/rocky-250.jpg ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/rocky-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/rocky-250.jpg?");
 
 /***/ }),
 
@@ -3989,6 +5386,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/thesnake-
 
 /***/ }),
 
+/***/ "./src/img/art/movies/thumbs/thetwotowers-250.jpg":
+/*!********************************************************!*\
+  !*** ./src/img/art/movies/thumbs/thetwotowers-250.jpg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/movies/thumbs/thetwotowers-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/movies/thumbs/thetwotowers-250.jpg?");
+
+/***/ }),
+
 /***/ "./src/img/art/movies/thumbs/vincentprice-250.jpg":
 /*!********************************************************!*\
   !*** ./src/img/art/movies/thumbs/vincentprice-250.jpg ***!
@@ -4019,6 +5427,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/other/full/allanon.jpg\
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/other/full/andrettilongbeach.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/full/andrettilongbeach.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/other/full/baxvox.jpg":
+/*!*******************************************!*\
+  !*** ./src/img/art/other/full/baxvox.jpg ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/other/full/baxvox.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/full/baxvox.jpg?");
 
 /***/ }),
 
@@ -4206,6 +5625,17 @@ eval("module.exports = __webpack_require__.p + \"img/art/other/thumbs/allanon-25
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"img/art/other/thumbs/andrettilongbeach-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/thumbs/andrettilongbeach-250.jpg?");
+
+/***/ }),
+
+/***/ "./src/img/art/other/thumbs/baxvox-250.jpg":
+/*!*************************************************!*\
+  !*** ./src/img/art/other/thumbs/baxvox-250.jpg ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"img/art/other/thumbs/baxvox-250.jpg\";\n\n//# sourceURL=webpack:///./src/img/art/other/thumbs/baxvox-250.jpg?");
 
 /***/ }),
 
@@ -4462,7 +5892,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.runtime.esm.js\");\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _templates_art_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/art.vue */ \"./src/templates/art.vue\");\n/* harmony import */ var _galleries_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./galleries.js */ \"./src/js/galleries.js\");\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/main.scss */ \"./src/styles/main.scss\");\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\nvar router = new vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n  routes: _galleries_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n});\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: '#app-container',\n  render: function render(c) {\n    return c(_templates_art_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\n  },\n  router: router\n});\n\n//# sourceURL=webpack:///./src/js/art.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.runtime.esm.js\");\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _templates_art_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/art.vue */ \"./src/templates/art.vue\");\n/* harmony import */ var _galleries_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./galleries.js */ \"./src/js/galleries.js\");\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/main.scss */ \"./src/styles/main.scss\");\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\nvar router = new vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n  scrollBehavior: function scrollBehavior() {\n    return {\n      x: 0,\n      y: 0\n    };\n  },\n  routes: _galleries_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n});\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: '#app-container',\n  render: function render(c) {\n    return c(_templates_art_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\n  },\n  router: router\n});\n\n//# sourceURL=webpack:///./src/js/art.js?");
 
 /***/ }),
 
@@ -4474,7 +5904,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../templates/galleries/galleries.vue */ \"./src/templates/galleries/galleries.vue\");\n/* harmony import */ var _templates_galleries_books_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/galleries/books.vue */ \"./src/templates/galleries/books.vue\");\n/* harmony import */ var _templates_galleries_book_galleria_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/galleries/book-galleria.vue */ \"./src/templates/galleries/book-galleria.vue\");\n/* harmony import */ var _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../templates/galleries/birds.vue */ \"./src/templates/galleries/birds.vue\");\n/* harmony import */ var _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../templates/galleries/movies.vue */ \"./src/templates/galleries/movies.vue\");\n/* harmony import */ var _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../templates/galleries/other.vue */ \"./src/templates/galleries/other.vue\");\n\n\n\n\n\n\nvar routes = [{\n  path: '/',\n  component: _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n}, {\n  path: '/books',\n  component: _templates_galleries_books_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}, {\n  path: '/books/:id',\n  component: _templates_galleries_book_galleria_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}, {\n  path: '/birds',\n  component: _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n}, {\n  path: '/movies',\n  component: _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"]\n}, {\n  path: '/other',\n  component: _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"]\n}];\n/* harmony default export */ __webpack_exports__[\"default\"] = (routes);\n\n//# sourceURL=webpack:///./src/js/galleries.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../templates/galleries/galleries.vue */ \"./src/templates/galleries/galleries.vue\");\n/* harmony import */ var _templates_galleries_collections_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../templates/galleries/collections.vue */ \"./src/templates/galleries/collections.vue\");\n/* harmony import */ var _templates_galleries_collection_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/galleries/collection.vue */ \"./src/templates/galleries/collection.vue\");\n/* harmony import */ var _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../templates/galleries/birds.vue */ \"./src/templates/galleries/birds.vue\");\n/* harmony import */ var _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../templates/galleries/movies.vue */ \"./src/templates/galleries/movies.vue\");\n/* harmony import */ var _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../templates/galleries/other.vue */ \"./src/templates/galleries/other.vue\");\n\n\n\n\n\n\nvar routes = [{\n  path: '/',\n  component: _templates_galleries_galleries_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n}, {\n  path: '/collections',\n  component: _templates_galleries_collections_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}, {\n  path: '/collections/:id',\n  component: _templates_galleries_collection_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}, {\n  path: '/birds',\n  component: _templates_galleries_birds_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n}, {\n  path: '/movies',\n  component: _templates_galleries_movies_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"]\n}, {\n  path: '/other',\n  component: _templates_galleries_other_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"]\n}];\n/* harmony default export */ __webpack_exports__[\"default\"] = (routes);\n\n//# sourceURL=webpack:///./src/js/galleries.js?");
 
 /***/ }),
 
@@ -4741,75 +6171,75 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
-/***/ "./src/templates/galleries/book-galleria.vue":
-/*!***************************************************!*\
-  !*** ./src/templates/galleries/book-galleria.vue ***!
-  \***************************************************/
+/***/ "./src/templates/galleries/collection.vue":
+/*!************************************************!*\
+  !*** ./src/templates/galleries/collection.vue ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./book-galleria.vue?vue&type=template&id=bd0ac1f6& */ \"./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&\");\n/* harmony import */ var _book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./book-galleria.vue?vue&type=script&lang=js& */ \"./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/templates/galleries/book-galleria.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _collection_vue_vue_type_template_id_2051e768___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./collection.vue?vue&type=template&id=2051e768& */ \"./src/templates/galleries/collection.vue?vue&type=template&id=2051e768&\");\n/* harmony import */ var _collection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./collection.vue?vue&type=script&lang=js& */ \"./src/templates/galleries/collection.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _collection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _collection_vue_vue_type_template_id_2051e768___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _collection_vue_vue_type_template_id_2051e768___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/templates/galleries/collection.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/templates/galleries/collection.vue?");
 
 /***/ }),
 
-/***/ "./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
+/***/ "./src/templates/galleries/collection.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./src/templates/galleries/collection.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/lib??vue-loader-options!./book-galleria.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_collection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/lib??vue-loader-options!./collection.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collection.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_collection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/templates/galleries/collection.vue?");
 
 /***/ }),
 
-/***/ "./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&":
-/*!**********************************************************************************!*\
-  !*** ./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6& ***!
-  \**********************************************************************************/
+/***/ "./src/templates/galleries/collection.vue?vue&type=template&id=2051e768&":
+/*!*******************************************************************************!*\
+  !*** ./src/templates/galleries/collection.vue?vue&type=template&id=2051e768& ***!
+  \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./book-galleria.vue?vue&type=template&id=bd0ac1f6& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/book-galleria.vue?vue&type=template&id=bd0ac1f6&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_book_galleria_vue_vue_type_template_id_bd0ac1f6___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/book-galleria.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collection_vue_vue_type_template_id_2051e768___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./collection.vue?vue&type=template&id=2051e768& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collection.vue?vue&type=template&id=2051e768&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collection_vue_vue_type_template_id_2051e768___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collection_vue_vue_type_template_id_2051e768___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/collection.vue?");
 
 /***/ }),
 
-/***/ "./src/templates/galleries/books.vue":
-/*!*******************************************!*\
-  !*** ./src/templates/galleries/books.vue ***!
-  \*******************************************/
+/***/ "./src/templates/galleries/collections.vue":
+/*!*************************************************!*\
+  !*** ./src/templates/galleries/collections.vue ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./books.vue?vue&type=template&id=6b9a5f28& */ \"./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&\");\n/* harmony import */ var _books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./books.vue?vue&type=script&lang=js& */ \"./src/templates/galleries/books.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/templates/galleries/books.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _collections_vue_vue_type_template_id_0eb61e57___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./collections.vue?vue&type=template&id=0eb61e57& */ \"./src/templates/galleries/collections.vue?vue&type=template&id=0eb61e57&\");\n/* harmony import */ var _collections_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./collections.vue?vue&type=script&lang=js& */ \"./src/templates/galleries/collections.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _collections_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _collections_vue_vue_type_template_id_0eb61e57___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _collections_vue_vue_type_template_id_0eb61e57___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/templates/galleries/collections.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/templates/galleries/collections.vue?");
 
 /***/ }),
 
-/***/ "./src/templates/galleries/books.vue?vue&type=script&lang=js&":
-/*!********************************************************************!*\
-  !*** ./src/templates/galleries/books.vue?vue&type=script&lang=js& ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/lib??vue-loader-options!./books.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?");
-
-/***/ }),
-
-/***/ "./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&":
+/***/ "./src/templates/galleries/collections.vue?vue&type=script&lang=js&":
 /*!**************************************************************************!*\
-  !*** ./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28& ***!
+  !*** ./src/templates/galleries/collections.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_collections_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib!../../../node_modules/vue-loader/lib??vue-loader-options!./collections.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collections.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_collections_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/templates/galleries/collections.vue?");
+
+/***/ }),
+
+/***/ "./src/templates/galleries/collections.vue?vue&type=template&id=0eb61e57&":
+/*!********************************************************************************!*\
+  !*** ./src/templates/galleries/collections.vue?vue&type=template&id=0eb61e57& ***!
+  \********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./books.vue?vue&type=template&id=6b9a5f28& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/books.vue?vue&type=template&id=6b9a5f28&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_books_vue_vue_type_template_id_6b9a5f28___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/books.vue?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collections_vue_vue_type_template_id_0eb61e57___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./collections.vue?vue&type=template&id=0eb61e57& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/templates/galleries/collections.vue?vue&type=template&id=0eb61e57&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collections_vue_vue_type_template_id_0eb61e57___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collections_vue_vue_type_template_id_0eb61e57___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/templates/galleries/collections.vue?");
 
 /***/ }),
 
